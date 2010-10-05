@@ -1,17 +1,44 @@
 = irbtools
 
-Description goes here.
+This is a meta gem which installs great irb gems for you and configures your irb.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+== Setup
+
+  gem install irbtools
+
+On linux, you also need the +xclip+ program (apt-get install xclip).
+
+== Usage
+
+To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded everytime you start an irb):
+
+  require 'rubygems' # only needed in 1.8
+  require 'irbtools'
+
+You could also just read and copy the irbtools.rb source file, tweak it and use it directly as <tt>.irbrc</tt>
+
+== Features
+
+See http;//rbjl.net/40 or read the commented source file: @lib/irbtools.rb@
+
+=== Included gems and libraries
+
+  'wirble',        # colors
+  'hirb',          # active record tables
+  'fileutils',     # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+  'zucker/env',    # Info, OS, RubyVersion, RubyEngine
+  'zucker/debug',  # nice debug printing (q, o, c, .m, .d)
+  'ap',            # nice debug printing (ap)
+  'yaml',          # nice debug printing (y)
+  'clipboard',     # easy clipboard access (copy & paste)
+  'guessmethod',   # automatically correct typos (method_missing hook)
+  'drx',           # nice tk object inspector (.see)
+  'interactive_editor',  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+  'coderay',       # some nice colorful display ;)
+  'irb_rocket',    # put result as comment instead of a new line!
 
 == Copyright
 
 Copyright (c) 2010 Jan Lelis. See LICENSE for details.
+
+J-_-L
