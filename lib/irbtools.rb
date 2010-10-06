@@ -1,84 +1,61 @@
 # encoding: utf-8
 
-# required gems: wirble hirb zucker awesome_print g clipboard guessmethod drx interactive_editory coderay irb_rocket
+# # # # #
+# require 'irbtools' in your .irbrc
+# see the README file for more information
 
-# either use this file as .irbrc or require 'irbtools' in your .irbrc
+require File.expand_path('irbtools/configure', File.dirname(__FILE__) )
 
 # # # # #
 # load libraries
-irb_libs = ['rubygems',
- 'wirble',        # colors
- 'hirb',          # active record tables
- 'fileutils',     # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
- 'zucker/env',    # Info, OS, RubyVersion, RubyEngine
- 'zucker/debug',  # nice debug printing (q, o, c, .m, .d)
- 'ap',            # nice debug printing (ap)
- 'yaml',          # nice debug printing (y)
- 'g',             # nice debug printing (g) - MacOS only :/
- 'clipboard',     # easy clipboard access (copy & paste)
- 'guessmethod',   # automatically correct typos (method_missing hook)
- 'drx',           # nice tk object inspector (.see)
- 'interactive_editor',  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
- 'coderay',       # some nice colorful display ;)
- 'irb_rocket',    # put result as comment instead of a new line!
- # 'zucker/all'   # see rubyzucker.info
-]
-
-irb_libs.each{ |lib|
+Irbtools.libs.each{ |lib|
   begin
-    require lib
-
+    require lib # &&
     case lib
+
     when 'wirble'
       Wirble.init
-      Wirble.colorize
+      Wirble.colorize unless OS.windows?
 
     when 'hirb'
       Hirb::View.enable
-
-    when 'zucker/env'
-      include OS # linux?, windows?, ...
-      Zucker.more_aliases! # RV, RE
 
     when 'fileutils'
       include FileUtils::Verbose
 
     when 'clipboard'
+      # copies the clipboard
       def copy(str)
         Clipboard.copy(str)
       end
 
+      # pastes the clipboard
       def paste
         Clipboard.paste
       end
 
-      def copy_session
-        require 'open3'
-        Open3.popen3('irb'){ |i,o,e|
-          i.puts session_history + "\nexit"
-          o.read
-          #copy o.read
-        }
-       # "The session history has been copied to the clipboard."
-      end
-
+      # copies everything you have entered in this irb session
       def copy_input
         copy session_history
         "The session input history has been copied to the clipboard."
       end
       alias copy_session_input copy_input
 
+      # copies the output of all irb commands in this irb session
       def copy_output
         copy context.instance_variable_get(:@eval_history_values).inspect.gsub(/^\d+ (.*)/, '\1')
         "The session output history has been copied to the clipboard."
       end
       alias copy_session_output copy_output
 
+
     when 'coderay'
+      # syntax highlight a string
       def colorize(string)
         puts CodeRay.scan( string, :ruby ).term
       end
 
+      # syntax highlight a file
       def ray(path)
         puts CodeRay.scan( File.read(path), :ruby ).term
       end
@@ -86,12 +63,17 @@ irb_libs.each{ |lib|
     end
 
   rescue LoadError => err
-    warn "Couldn't load an irb library: #{err}"
+    if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
+      warn "Couldn't load the irb_rocket gem, which is not in the gem dependencies, because it is hosted on a different server.
+You can install it with: gem install irb_rocket --source http://merbi.st"
+    else
+      warn "Couldn't load an irb library: #{err}"
+    end
   end
 }
 
 # # # # #
-# shortcuts & helpers
+# general shortcuts & helper methods
 
 # shows the contents of your current directory (more such commands available by FileUtils)
 def ls(path='.')
@@ -100,8 +82,8 @@ end
 alias dir ls
 
 # patch cd so that it also shows the current directory
-def cd(*args)
-  FileUtils::Verbose.cd *args
+def cd(path = '/', *args)
+  FileUtils::Verbose.cd path, *args
   ls
 end
 
@@ -116,7 +98,7 @@ def rq(lib)
 end
 
 # returns the last lines, needed for some copy_ methods
-def session_history(number_of_lines = context.instance_variable_get(:@line_no) ) 
+def session_history(number_of_lines = context.instance_variable_get(:@line_no) )
   Readline::HISTORY.entries[-number_of_lines...-1]*"\n"
 end
 
@@ -134,7 +116,7 @@ def ruby_version(which = nil)
   # show rubies if called without options
   if !which
     puts 'Availabe Rubies: ' +
-         `rvm list`.scan( /^(?:  |=>) (.*) \[/ )*", "
+          `rvm list`.scan( /^(?:  |=>) (.*) \[/ )*", "
     return
   end
 
@@ -145,7 +127,8 @@ def ruby_version(which = nil)
 
   # if ruby is found, start it
   if $1
-    irbname = $0 + $1.tr(' ', '-') + '@global'
+    ruby_name = File.split( $1 )[-1].tr(' ', '-')
+    irbname = $0 + '-' + ruby_name + '@global'
     exec irbname
   else
     puts "Sorry, that Ruby version could not be found."
@@ -172,19 +155,14 @@ IRB.conf[:PROMPT].merge!({:IRBTOOLS => {
 IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 
 # # # # #
+# misc
+Zucker.more_aliases!  # RubyVersion --> RV, RubyEngine --> RE
+
+# # # # #
 # workarounds
 
-# patch exec (irb_rocket bug)
+# irb_rocket stdout problems
 if IRB.const_defined? :CaptureIO
-  module Kernel
-    alias original_exec exec
-    def exec(*args)
-      STDOUT.reopen(IRB::CaptureIO.streams[:stdout])
-      STDERR.reopen(IRB::CaptureIO.streams[:stderr])
-      original_exec *args
-    end
-  end
-  
   module IRB
     class CaptureIO
       def self.streams
@@ -193,7 +171,7 @@ if IRB.const_defined? :CaptureIO
            :stderr => @@current_capture.instance_variable_get( :@err ),
         }
       end
-    
+
       alias original_capture capture
       def capture(&block)
         @@current_capture = self
@@ -201,10 +179,34 @@ if IRB.const_defined? :CaptureIO
       end
     end
   end
+
+  # patch method using stdout
+  module Kernel
+    alias exec_unpatched exec
+    def exec(*args)
+      STDOUT.reopen(IRB::CaptureIO.streams[:stdout])
+      STDERR.reopen(IRB::CaptureIO.streams[:stderr])
+      exec_unpatched *args
+    end
+  end
+
+  if Object.const_defined? :InteractiveEditor
+    InteractiveEditor::Editors.class_eval do
+      editors = %w[vi vim emacs nano mate ed]
+      editors.each{ |editor|
+        alias_for editor, editor_unpatched = ( editor +  '_unpatched' ).to_sym
+        define_method editor do
+          STDOUT.reopen(IRB::CaptureIO.streams[:stdout])
+          STDERR.reopen(IRB::CaptureIO.streams[:stderr])
+          send editor_unpatched
+        end
+      }
+    end
+  end
 end
 
 # # # # #
 # done :)
-puts "Welcome to IRB. You are using #{RUBY_DESCRIPTION}. Have fun ;)"
+puts "Welcome to IRB. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
 
 # J-_-L
