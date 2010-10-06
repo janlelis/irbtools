@@ -86,8 +86,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000019">capture</a>&nbsp;&nbsp;
-      <a href="#M000018">streams</a>&nbsp;&nbsp;
+      <a href="#M000020">capture</a>&nbsp;&nbsp;
+      <a href="#M000019">streams</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -122,21 +122,21 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000018" class="method-detail">
-        <a name="M000018"></a>
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
 
         <div class="method-heading">
-          <a href="#M000018" class="method-signature">
+          <a href="#M000019" class="method-signature">
           <span class="method-name">streams</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000018-source">
+            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000019-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 168</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 179</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">streams</span>
         {
            <span class="ruby-identifier">:stdout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@@current_capture</span>.<span class="ruby-identifier">instance_variable_get</span>( <span class="ruby-identifier">:@out</span> ),
@@ -150,21 +150,21 @@
 
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
 
         <div class="method-heading">
-          <a href="#M000019" class="method-signature">
+          <a href="#M000020" class="method-signature">
           <span class="method-name">capture</span><span class="method-args">(&amp;block)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000019-source">
+            onclick="toggleCode('M000020-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000020-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 176</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 187</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">capture</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
         <span class="ruby-ivar">@@current_capture</span> = <span class="ruby-keyword kw">self</span>
         <span class="ruby-identifier">original_capture</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>

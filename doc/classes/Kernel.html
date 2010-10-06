@@ -86,7 +86,7 @@ patch method using stdout
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000022">exec</a>&nbsp;&nbsp;
+      <a href="#M000023">exec</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -121,21 +121,21 @@ patch method using stdout
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000022" class="method-detail">
-        <a name="M000022"></a>
+      <div id="method-M000023" class="method-detail">
+        <a name="M000023"></a>
 
         <div class="method-heading">
-          <a href="#M000022" class="method-signature">
+          <a href="#M000023" class="method-signature">
           <span class="method-name">exec</span><span class="method-args">(*args)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000022-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000022-source">
+            onclick="toggleCode('M000023-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000023-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 186</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 197</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exec</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
       <span class="ruby-constant">STDOUT</span>.<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">CaptureIO</span>.<span class="ruby-identifier">streams</span>[<span class="ruby-identifier">:stdout</span>])
       <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">CaptureIO</span>.<span class="ruby-identifier">streams</span>[<span class="ruby-identifier">:stderr</span>])

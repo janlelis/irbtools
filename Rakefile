@@ -13,7 +13,7 @@ begin
     gem.requirements << 'You need to add http://merbi.st to your gem sources (irb_rocket)'
     gem.add_dependency 'wirble'
     gem.add_dependency 'hirb'
-    gem.add_dependency 'zucker', '>=7'
+    gem.add_dependency 'zucker', '>=8'
     gem.add_dependency 'awesome_print'
     gem.add_dependency 'g'
     gem.add_dependency 'clipboard'

@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Wed Oct 06 18:32:15 +0200 2010</td>
+      <td>Wed Oct 06 23:45:19 +0200 2010</td>
     </tr>
     </table>
   </div>
@@ -75,6 +75,13 @@ encoding: utf-8
 
     </div>
 
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      ruby-debug&nbsp;&nbsp;
+      </div>
+    </div>
 
    </div>
 
@@ -90,6 +97,7 @@ encoding: utf-8
       <a href="#M000005">copy_output</a>&nbsp;&nbsp;
       <a href="#M000004">copy_session_input</a>&nbsp;&nbsp;
       <a href="#M000006">copy_session_output</a>&nbsp;&nbsp;
+      <a href="#M000018">debuger</a>&nbsp;&nbsp;
       <a href="#M000010">dir</a>&nbsp;&nbsp;
       <a href="#M000009">ls</a>&nbsp;&nbsp;
       <a href="#M000002">paste</a>&nbsp;&nbsp;
@@ -313,6 +321,37 @@ Alias for <a href="irbtools_rb.html#M000003">copy_input</a>
           <p>
 Alias for <a href="irbtools_rb.html#M000005">copy_output</a>
 </p>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="#M000018" class="method-signature">
+          <span class="method-name">debuger</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+load debugger, inspired by rdp
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 140</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">debuger</span> 
+  <span class="ruby-keyword kw">begin</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-value str">'ruby-debug'</span>
+    <span class="ruby-identifier">debugger</span>
+  <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span> 
+    <span class="ruby-identifier">throw</span> <span class="ruby-node">&quot;Sorry, unable to load ruby-debug gem for debugger: #{e}&quot;</span>
+  <span class="ruby-keyword kw">end</span>  
+<span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
         </div>
       </div>
 
