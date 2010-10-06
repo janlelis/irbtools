@@ -64,7 +64,7 @@ Irbtools.libs.each{ |lib|
 
   rescue LoadError => err
     if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
-      warn "Couldn't load the irb_rocket gem, which is not in the gem dependencies, because it is hosted on a different server.
+      warn "Couldn't load the irb_rocket gem.
 You can install it with: gem install irb_rocket --source http://merbi.st"
     else
       warn "Couldn't load an irb library: #{err}"
@@ -135,6 +135,17 @@ def ruby_version(which = nil)
   end
 end
 alias use ruby_version
+
+# load debugger, inspired by rdp
+def debuger 
+  begin
+    require 'ruby-debug'
+    debugger
+  rescue LoadError => e 
+    throw "Sorry, unable to load ruby-debug gem for debugger: #{e}"
+  end  
+end
+
 
 # # # # #
 # irb options
