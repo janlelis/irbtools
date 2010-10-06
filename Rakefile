@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "irbtools"
-    gem.summary = %Q{irbtools is a meta gem which installs some great irb gems for you and configures your irb.}
-    gem.description = %Q{irbtools is a meta gem which installs some great irb gems for you and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
+    gem.summary = %Q{irbtools is a meta gem which installs some useful irb gems and configures your irb.}
+    gem.description = %Q{irbtools is a meta gem which installs some useful irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
     gem.email = "mail@janlelis.de"
     gem.homepage = "http://github.com/janlelis/irbtools"
     gem.authors = ["Jan Lelis"]
@@ -22,7 +22,6 @@ begin
     gem.add_dependency 'interactive_editor'
     gem.add_dependency 'coderay'
     # gem.add_dependency 'irb_rocket'
-    # gem.post_install_message 'irbtools'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

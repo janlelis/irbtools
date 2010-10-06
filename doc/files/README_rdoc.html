@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Wed Oct 06 16:51:52 +0200 2010</td>
+      <td>Wed Oct 06 19:13:21 +0200 2010</td>
     </tr>
     </table>
   </div>
@@ -71,7 +71,7 @@
     <div id="description">
       <h1>irbtools</h1>
 <p>
-This is a meta gem which installs some great irb gems and configures your
+This is a meta gem which installs some useful irb gems and configures your
 irb.
 </p>
 <h2>Setup</h2>
@@ -100,11 +100,11 @@ loaded everytime you start an irb):
 If it does not exists, just create a new one.
 </p>
 <p>
-It&#8216;s is also possible to modify, which libraries get loaded:
+It&#8216;s possible to modify, which libraries get loaded:
 </p>
 <pre>
   require 'irbtools/configure'
-  # Irbtools.libs is an array of libraries and gems which get loaded. You can manually add or remove some.
+  # here you can edit the Irbtools.libs array
   Irbtools.init
 </pre>
 <p>
@@ -113,8 +113,9 @@ source files, tweak them and use them directly as <tt>.irbrc</tt> ;)
 </p>
 <h2>Features</h2>
 <p>
-See <a href="http://rbjl.net/40">rbjl.net/40</a> or read the commented
-source file: lib/irbtools.rb
+See <a
+href="http://rbjl.net/40-irbtools-tune-your-irbrc">rbjl.net/40-irbtools-tune-your-irbrc</a>
+or read the commented source file: lib/irbtools.rb
 </p>
 <h3>Included gems and libraries</h3>
 <ul>
@@ -149,7 +150,7 @@ access (copy &amp; paste)
 
 </li>
 <li><a href="http://guessmethod.rubyforge.org/">guessmethod</a> automatically
-correct typos (method_missing hook)
+corrects typos (method_missing hook)
 
 </li>
 <li><a
@@ -175,10 +176,17 @@ instead of a new line!
 <li>Fix Clipboard Windows issues
 
 </li>
-<li>Fix irb_rockets general stdout problem
+<li>Fix irb_rockets general stdout problem. If something stdout related fails,
+odds are high that it&#8216;s irb_rockets fault.
 
 </li>
 <li>&#8230;
+
+</li>
+</ul>
+<h2>More Features</h2>
+<ul>
+<li>suggest something ;)
 
 </li>
 </ul>

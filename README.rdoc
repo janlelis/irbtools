@@ -1,6 +1,6 @@
 = irbtools
 
-This is a meta gem which installs some great irb gems and configures your irb.
+This is a meta gem which installs some useful irb gems and configures your irb.
 
 == Setup
 
@@ -19,17 +19,17 @@ To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded
 
 If it does not exists, just create a new one.
 
-It's is also possible to modify, which libraries get loaded:
+It's possible to modify, which libraries get loaded:
 
   require 'irbtools/configure'
-  # Irbtools.libs is an array of libraries and gems which get loaded. You can manually add or remove some.
+  # here you can edit the Irbtools.libs array
   Irbtools.init
 
 You could also just read and copy the irbtools/configure.rb and irbtools.rb source files, tweak them and use them directly as <tt>.irbrc</tt> ;)
 
 == Features
 
-See http://rbjl.net/40 or read the commented source file: lib/irbtools.rb
+See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source file: lib/irbtools.rb
 
 === Included gems and libraries
 
@@ -41,7 +41,7 @@ See http://rbjl.net/40 or read the commented source file: lib/irbtools.rb
 * ap[http://github.com/michaeldv/awesome_print]      nice debug printing (ap)
 * *yaml*      nice debug printing (y)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
-* guessmethod[http://guessmethod.rubyforge.org/]    automatically correct typos (method_missing hook)
+* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 * interactive_editor[http://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
 * coderay[http://coderay.rubychan.de/]    some nice colorful display ;)
 * irb_rocket[http://merbi.st/plugins/22]   put result as comment instead of a new line!
@@ -50,8 +50,12 @@ See http://rbjl.net/40 or read the commented source file: lib/irbtools.rb
 
 * Make guessmethod 1.9 compatible
 * Fix Clipboard Windows issues
-* Fix irb_rockets general stdout problem
+* Fix irb_rockets general stdout problem. If something stdout related fails, odds are high that it's irb_rockets fault.
 * ...
+
+== More Features
+
+* suggest something ;)
 
 == Copyright
 

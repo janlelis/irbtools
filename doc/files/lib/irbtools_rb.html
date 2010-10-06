@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Wed Oct 06 16:34:13 +0200 2010</td>
+      <td>Wed Oct 06 18:32:15 +0200 2010</td>
     </tr>
     </table>
   </div>
@@ -350,7 +350,7 @@ by FileUtils)
 <pre>
 <span class="ruby-comment cmt"># File lib/irbtools.rb, line 79</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ls</span>(<span class="ruby-identifier">path</span>=<span class="ruby-value str">'.'</span>)
-  <span class="ruby-constant">Dir</span>[ <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-identifier">path</span>, <span class="ruby-value str">'*'</span> ].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{path}\/?/</span>; <span class="ruby-identifier">$'</span> }
+  <span class="ruby-constant">Dir</span>[ <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>( <span class="ruby-identifier">path</span>, <span class="ruby-value str">'*'</span> )].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{path}\/?/</span>; <span class="ruby-identifier">$'</span> }
 <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -497,7 +497,7 @@ allows concise syntax like <a href="irbtools_rb.html#M000013">rq</a>:mathn
   <span class="ruby-comment cmt"># if ruby is found, start it</span>
   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$1</span>
     <span class="ruby-identifier">ruby_name</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">split</span>( <span class="ruby-identifier">$1</span> )[<span class="ruby-value">-1</span>].<span class="ruby-identifier">tr</span>(<span class="ruby-value str">' '</span>, <span class="ruby-value str">'-'</span>)
-    <span class="ruby-identifier">irbname</span> = <span class="ruby-identifier">$0</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'-'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ruby_name</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'@global'</span>
+    <span class="ruby-identifier">irbname</span> = <span class="ruby-identifier">$0</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'-'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ruby_name</span><span class="ruby-comment cmt"># + '@global'</span>
     <span class="ruby-identifier">exec</span> <span class="ruby-identifier">irbname</span>
   <span class="ruby-keyword kw">else</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Sorry, that Ruby version could not be found.&quot;</span>

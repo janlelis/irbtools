@@ -77,7 +77,7 @@ You can install it with: gem install irb_rocket --source http://merbi.st"
 
 # shows the contents of your current directory (more such commands available by FileUtils)
 def ls(path='.')
-  Dir[ File.join path, '*' ].map{|res| res =~ /^#{path}\/?/; $' }
+  Dir[ File.join( path, '*' )].map{|res| res =~ /^#{path}\/?/; $' }
 end
 alias dir ls
 
@@ -128,7 +128,7 @@ def ruby_version(which = nil)
   # if ruby is found, start it
   if $1
     ruby_name = File.split( $1 )[-1].tr(' ', '-')
-    irbname = $0 + '-' + ruby_name + '@global'
+    irbname = $0 + '-' + ruby_name# + '@global'
     exec irbname
   else
     puts "Sorry, that Ruby version could not be found."

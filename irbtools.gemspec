@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irbtools}
-  s.version = "0.0.4"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
   s.date = %q{2010-10-06}
-  s.description = %q{irbtools is a meta gem which installs some great irb gems for you and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
+  s.description = %q{irbtools is a meta gem which installs some great irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,14 +23,29 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "lib/irbtools.rb"
+     "doc/classes/IRB.html",
+     "doc/classes/IRB/CaptureIO.html",
+     "doc/classes/Irbtools.html",
+     "doc/classes/Kernel.html",
+     "doc/created.rid",
+     "doc/files/README_rdoc.html",
+     "doc/files/lib/irbtools/configure_rb.html",
+     "doc/files/lib/irbtools_rb.html",
+     "doc/fr_class_index.html",
+     "doc/fr_file_index.html",
+     "doc/fr_method_index.html",
+     "doc/index.html",
+     "doc/rdoc-style.css",
+     "irbtools.gemspec",
+     "lib/irbtools.rb",
+     "lib/irbtools/configure.rb"
   ]
   s.homepage = %q{http://github.com/janlelis/irbtools}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.requirements = ["You need to add http://merbi.st to your gem sources (irb_rocket)"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{irbtools is a meta gem which installs some great irb gems for you and configures your irb.}
+  s.summary = %q{irbtools is a meta gem which installs some great irb gems and configures your irb.}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
