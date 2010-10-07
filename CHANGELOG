@@ -1,2 +1,9 @@
 0.7.1
+* fixed Rails 3 bug
 * added boson gem (command repository)
+* remember history when resetting or switching ruby version
+
+0.7.0
+* initial release
+
+J-_-L

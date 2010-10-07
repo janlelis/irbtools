@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irbtools}
-  s.version = "0.7.1"
+  s.version = "0.7.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-10-06}
+  s.date = %q{2010-10-07}
   s.description = %q{irbtools is a meta gem which installs some useful irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
@@ -19,23 +19,11 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "CHANGELOG",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "doc/classes/IRB.html",
-     "doc/classes/IRB/CaptureIO.html",
-     "doc/classes/Irbtools.html",
-     "doc/classes/Kernel.html",
-     "doc/created.rid",
-     "doc/files/README_rdoc.html",
-     "doc/files/lib/irbtools/configure_rb.html",
-     "doc/files/lib/irbtools_rb.html",
-     "doc/fr_class_index.html",
-     "doc/fr_file_index.html",
-     "doc/fr_method_index.html",
-     "doc/index.html",
-     "doc/rdoc-style.css",
      "irbtools.gemspec",
      "lib/irbtools.rb",
      "lib/irbtools/configure.rb",
@@ -63,6 +51,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<guessmethod>, [">= 0"])
       s.add_runtime_dependency(%q<interactive_editor>, [">= 0"])
       s.add_runtime_dependency(%q<coderay>, [">= 0"])
+      s.add_runtime_dependency(%q<boson>, [">= 0"])
     else
       s.add_dependency(%q<wirble>, [">= 0"])
       s.add_dependency(%q<hirb>, [">= 0"])
@@ -73,6 +62,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<guessmethod>, [">= 0"])
       s.add_dependency(%q<interactive_editor>, [">= 0"])
       s.add_dependency(%q<coderay>, [">= 0"])
+      s.add_dependency(%q<boson>, [">= 0"])
     end
   else
     s.add_dependency(%q<wirble>, [">= 0"])
@@ -84,6 +74,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<guessmethod>, [">= 0"])
     s.add_dependency(%q<interactive_editor>, [">= 0"])
     s.add_dependency(%q<coderay>, [">= 0"])
+    s.add_dependency(%q<boson>, [">= 0"])
   end
 end
 
