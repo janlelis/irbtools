@@ -7,7 +7,8 @@ This is a meta gem which installs some useful irb gems and configures your irb.
   gem install irbtools
   gem install irb_rocket --source http://merbi.st
   
-* On Linux, you also need the +xclip+ program (apt-get install xclip).
+* On Linux, you also need the +xclip+ program: sudo <tt>apt-get install xclip</tt>
+* The <tt>irb_rocket</tt> gem might require <tt>libncurses-dev</tt>
 * On MacOS, you need growl, if you want to use the +g+ gem.
 
 == Usage
@@ -17,7 +18,7 @@ To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded
   require 'rubygems' # only needed in 1.8
   require 'irbtools'
 
-If it does not exists, just create a new one.
+If it does not exist, just create a new one.
 
 It's possible to modify, which libraries get loaded:
 
@@ -44,6 +45,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 * interactive_editor[http://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
 * coderay[http://coderay.rubychan.de/]    some nice colorful display ;)
+* boson[http://tagaholic.me/boson/]  IRB commands repository (which also works for the shell!)
 * irb_rocket[http://merbi.st/plugins/22]   put result as comment instead of a new line!
 
 == Bugs / TODO

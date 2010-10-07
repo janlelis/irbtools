@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Wed Oct 06 18:32:15 +0200 2010</td>
+      <td>Thu Oct 07 15:38:41 +0200 2010</td>
     </tr>
     </table>
   </div>
@@ -83,17 +83,17 @@ encoding: utf-8
 
       <div class="name-list">
       <a href="#M000012">cat</a>&nbsp;&nbsp;
-      <a href="#M000011">cd</a>&nbsp;&nbsp;
-      <a href="#M000007">colorize</a>&nbsp;&nbsp;
-      <a href="#M000001">copy</a>&nbsp;&nbsp;
-      <a href="#M000003">copy_input</a>&nbsp;&nbsp;
-      <a href="#M000005">copy_output</a>&nbsp;&nbsp;
-      <a href="#M000004">copy_session_input</a>&nbsp;&nbsp;
-      <a href="#M000006">copy_session_output</a>&nbsp;&nbsp;
-      <a href="#M000010">dir</a>&nbsp;&nbsp;
-      <a href="#M000009">ls</a>&nbsp;&nbsp;
-      <a href="#M000002">paste</a>&nbsp;&nbsp;
-      <a href="#M000008">ray</a>&nbsp;&nbsp;
+      <a href="#M000001">cd</a>&nbsp;&nbsp;
+      <a href="#M000008">colorize</a>&nbsp;&nbsp;
+      <a href="#M000002">copy</a>&nbsp;&nbsp;
+      <a href="#M000004">copy_input</a>&nbsp;&nbsp;
+      <a href="#M000006">copy_output</a>&nbsp;&nbsp;
+      <a href="#M000005">copy_session_input</a>&nbsp;&nbsp;
+      <a href="#M000007">copy_session_output</a>&nbsp;&nbsp;
+      <a href="#M000011">dir</a>&nbsp;&nbsp;
+      <a href="#M000010">ls</a>&nbsp;&nbsp;
+      <a href="#M000003">paste</a>&nbsp;&nbsp;
+      <a href="#M000009">ray</a>&nbsp;&nbsp;
       <a href="#M000015">reset!</a>&nbsp;&nbsp;
       <a href="#M000013">rq</a>&nbsp;&nbsp;
       <a href="#M000016">ruby_version</a>&nbsp;&nbsp;
@@ -138,71 +138,17 @@ encoding: utf-8
       
         <div class="method-description">
           <p>
-read file contents (also see <a href="irbtools_rb.html#M000008">ray</a> for
+read file contents (also see <a href="irbtools_rb.html#M000009">ray</a> for
 ruby source files ;) )
 </p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000012-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 91</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 95</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cat</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
-
-        <div class="method-heading">
-          <a href="#M000011" class="method-signature">
-          <span class="method-name">cd</span><span class="method-args">(path = '/', *args)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-patch <a href="irbtools_rb.html#M000011">cd</a> so that it also shows the
-current directory
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000011-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 85</span>
-<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cd</span>(<span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
-  <span class="ruby-constant">FileUtils</span><span class="ruby-operator">::</span><span class="ruby-constant">Verbose</span>.<span class="ruby-identifier">cd</span> <span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
-  <span class="ruby-identifier">ls</span>
-<span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
-
-        <div class="method-heading">
-          <a href="#M000007" class="method-signature">
-          <span class="method-name">colorize</span><span class="method-args">(string)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-syntax highlight a string
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000007-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 54</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">string</span>)
-        <span class="ruby-identifier">puts</span> <span class="ruby-constant">CodeRay</span>.<span class="ruby-identifier">scan</span>( <span class="ruby-identifier">string</span>, <span class="ruby-identifier">:ruby</span> ).<span class="ruby-identifier">term</span>
-      <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -213,171 +159,24 @@ syntax highlight a string
 
         <div class="method-heading">
           <a href="#M000001" class="method-signature">
-          <span class="method-name">copy</span><span class="method-args">(str)</span>
+          <span class="method-name">cd</span><span class="method-args">(path = '/', *args)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-copies the clipboard
+patch <a href="irbtools_rb.html#M000001">cd</a> so that it also shows the
+current directory
 </p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000001-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 28</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">str</span>)
-        <span class="ruby-constant">Clipboard</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">str</span>)
-      <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
-
-        <div class="method-heading">
-          <a href="#M000003" class="method-signature">
-          <span class="method-name">copy_input</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-copies everything you have entered in this irb session
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000003-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 38</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy_input</span>
-        <span class="ruby-identifier">copy</span> <span class="ruby-identifier">session_history</span>
-        <span class="ruby-value str">&quot;The session input history has been copied to the clipboard.&quot;</span>
-      <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
-
-        <div class="method-heading">
-          <a href="#M000005" class="method-signature">
-          <span class="method-name">copy_output</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-copies the output of all irb commands in this irb session
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000005-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 45</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy_output</span>
-        <span class="ruby-identifier">copy</span> <span class="ruby-identifier">context</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">:@eval_history_values</span>).<span class="ruby-identifier">inspect</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/^\d+ (.*)/</span>, <span class="ruby-value str">'\1'</span>)
-        <span class="ruby-value str">&quot;The session output history has been copied to the clipboard.&quot;</span>
-      <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
-
-        <div class="method-heading">
-          <span class="method-name">copy_session_input</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="irbtools_rb.html#M000003">copy_input</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
-
-        <div class="method-heading">
-          <span class="method-name">copy_session_output</span><span class="method-args">()</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="irbtools_rb.html#M000005">copy_output</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
-
-        <div class="method-heading">
-          <span class="method-name">dir</span><span class="method-args">(path='.')</span>
-        </div>
-      
-        <div class="method-description">
-          <p>
-Alias for <a href="irbtools_rb.html#M000009">ls</a>
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
-
-        <div class="method-heading">
-          <a href="#M000009" class="method-signature">
-          <span class="method-name">ls</span><span class="method-args">(path='.')</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-shows the contents of your current directory (more such commands available
-by FileUtils)
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000009-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 79</span>
-<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ls</span>(<span class="ruby-identifier">path</span>=<span class="ruby-value str">'.'</span>)
-  <span class="ruby-constant">Dir</span>[ <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>( <span class="ruby-identifier">path</span>, <span class="ruby-value str">'*'</span> )].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{path}\/?/</span>; <span class="ruby-identifier">$'</span> }
-<span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
-
-        <div class="method-heading">
-          <a href="#M000002" class="method-signature">
-          <span class="method-name">paste</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-pastes the clipboard
-</p>
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000002-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 33</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">paste</span>
-        <span class="ruby-constant">Clipboard</span>.<span class="ruby-identifier">paste</span>
-      <span class="ruby-keyword kw">end</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 27</span>
+     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cd</span>(<span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+       <span class="ruby-constant">FileUtils</span><span class="ruby-operator">::</span><span class="ruby-constant">Verbose</span>.<span class="ruby-identifier">cd</span> <span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+       <span class="ruby-identifier">ls</span>
+     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
@@ -388,6 +187,207 @@ pastes the clipboard
 
         <div class="method-heading">
           <a href="#M000008" class="method-signature">
+          <span class="method-name">colorize</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+syntax highlight a string
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 60</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">string</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-constant">CodeRay</span>.<span class="ruby-identifier">scan</span>( <span class="ruby-identifier">string</span>, <span class="ruby-identifier">:ruby</span> ).<span class="ruby-identifier">term</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">copy</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+copies the clipboard
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 34</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy</span>(<span class="ruby-identifier">str</span>)
+        <span class="ruby-constant">Clipboard</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-identifier">str</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">copy_input</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+copies everything you have entered in this irb session
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 44</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy_input</span>
+        <span class="ruby-identifier">copy</span> <span class="ruby-identifier">session_history</span>
+        <span class="ruby-value str">&quot;The session input history has been copied to the clipboard.&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">copy_output</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+copies the output of all irb commands in this irb session
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 51</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy_output</span>
+        <span class="ruby-identifier">copy</span> <span class="ruby-identifier">context</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">:@eval_history_values</span>).<span class="ruby-identifier">inspect</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/^\d+ (.*)/</span>, <span class="ruby-value str">'\1'</span>)
+        <span class="ruby-value str">&quot;The session output history has been copied to the clipboard.&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <span class="method-name">copy_session_input</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="irbtools_rb.html#M000004">copy_input</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <span class="method-name">copy_session_output</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="irbtools_rb.html#M000006">copy_output</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <span class="method-name">dir</span><span class="method-args">(path='.')</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="irbtools_rb.html#M000010">ls</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="#M000010" class="method-signature">
+          <span class="method-name">ls</span><span class="method-args">(path='.')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+shows the contents of your current directory (more such commands available
+by FileUtils)
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000010-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000010-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 89</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ls</span>(<span class="ruby-identifier">path</span>=<span class="ruby-value str">'.'</span>)
+  <span class="ruby-constant">Dir</span>[ <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>( <span class="ruby-identifier">path</span>, <span class="ruby-value str">'*'</span> )].<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">res</span><span class="ruby-operator">|</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{path}\/?/</span>; <span class="ruby-identifier">$'</span> }
+<span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">paste</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+pastes the clipboard
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 39</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">paste</span>
+        <span class="ruby-constant">Clipboard</span>.<span class="ruby-identifier">paste</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
           <span class="method-name">ray</span><span class="method-args">(path)</span>
           </a>
         </div>
@@ -397,10 +397,10 @@ pastes the clipboard
 syntax highlight a file
 </p>
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000008-source">
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 59</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 65</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ray</span>(<span class="ruby-identifier">path</span>)
         <span class="ruby-identifier">puts</span> <span class="ruby-constant">CodeRay</span>.<span class="ruby-identifier">scan</span>( <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>), <span class="ruby-identifier">:ruby</span> ).<span class="ruby-identifier">term</span>
       <span class="ruby-keyword kw">end</span>
@@ -426,7 +426,7 @@ restart irb
             onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000015-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 106</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 110</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset!</span> <span class="ruby-comment cmt"># restart irb</span>
   <span class="ruby-identifier">exec</span><span class="ruby-identifier">$0</span>
 <span class="ruby-keyword kw">end</span>
@@ -452,7 +452,7 @@ allows concise syntax like <a href="irbtools_rb.html#M000013">rq</a>:mathn
             onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000013-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 96</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 100</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rq</span>(<span class="ruby-identifier">lib</span>)
   <span class="ruby-identifier">require</span> <span class="ruby-identifier">lib</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword kw">end</span>
@@ -475,7 +475,7 @@ allows concise syntax like <a href="irbtools_rb.html#M000013">rq</a>:mathn
             onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000016-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 110</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 114</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ruby_version</span>(<span class="ruby-identifier">which</span> = <span class="ruby-keyword kw">nil</span>)
   <span class="ruby-comment cmt"># test if installed</span>
   <span class="ruby-keyword kw">unless</span> <span class="ruby-value">`rvm -v`</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/Seguin/</span>
@@ -525,7 +525,7 @@ returns the last lines, needed for some copy_ methods
             onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000014-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/irbtools.rb, line 101</span>
+<span class="ruby-comment cmt"># File lib/irbtools.rb, line 105</span>
 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">session_history</span>(<span class="ruby-identifier">number_of_lines</span> = <span class="ruby-identifier">context</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">:@line_no</span>) )
   <span class="ruby-constant">Readline</span><span class="ruby-operator">::</span><span class="ruby-constant">HISTORY</span>.<span class="ruby-identifier">entries</span>[<span class="ruby-operator">-</span><span class="ruby-identifier">number_of_lines</span><span class="ruby-operator">...</span><span class="ruby-value">-1</span>]<span class="ruby-operator">*</span><span class="ruby-value str">&quot;\n&quot;</span>
 <span class="ruby-keyword kw">end</span>

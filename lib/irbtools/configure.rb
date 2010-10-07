@@ -26,6 +26,7 @@ else
         # 'drx',           # nice tk object inspector (.see) [not included because it fails to install out of the box on lots of systems]
        'interactive_editor',  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
        'coderay',       # some nice colorful display ;)
+       'boson',         # IRB commands repository (which also works for the shell!)
        'irb_rocket',    # put result as comment instead of a new line!
        # 'zucker/all'   # see rubyzucker.info
       ]

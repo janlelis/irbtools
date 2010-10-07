@@ -13,7 +13,7 @@ begin
     gem.requirements << 'You need to add http://merbi.st to your gem sources (irb_rocket)'
     gem.add_dependency 'wirble'
     gem.add_dependency 'hirb'
-    gem.add_dependency 'zucker', '>=7'
+    gem.add_dependency 'zucker', '>=8'
     gem.add_dependency 'awesome_print'
     gem.add_dependency 'g'
     gem.add_dependency 'clipboard'
@@ -21,6 +21,7 @@ begin
     # gem.add_dependency 'drx'
     gem.add_dependency 'interactive_editor'
     gem.add_dependency 'coderay'
+    gem.add_dependency 'boson'
     # gem.add_dependency 'irb_rocket'
   end
   Jeweler::GemcutterTasks.new

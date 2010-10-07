@@ -21,7 +21,13 @@ Irbtools.libs.each{ |lib|
       Hirb::View.enable
 
     when 'fileutils'
-      include FileUtils::Verbose
+     include FileUtils::Verbose
+
+     # patch cd so that it also shows the current directory
+     def cd(path = '/', *args)
+       FileUtils::Verbose.cd path, *args
+       ls
+     end
 
     when 'clipboard'
       # copies the clipboard
@@ -60,11 +66,15 @@ Irbtools.libs.each{ |lib|
         puts CodeRay.scan( File.read(path), :ruby ).term
       end
 
+    when 'boson'
+      undef :install if respond_to?( :install, true )
+      Boson.start :verbose => false
+
     end
 
   rescue LoadError => err
     if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
-      warn "Couldn't load the irb_rocket gem, which is not in the gem dependencies, because it is hosted on a different server.
+      warn "Couldn't load the irb_rocket gem.
 You can install it with: gem install irb_rocket --source http://merbi.st"
     else
       warn "Couldn't load an irb library: #{err}"
@@ -80,12 +90,6 @@ def ls(path='.')
   Dir[ File.join( path, '*' )].map{|res| res =~ /^#{path}\/?/; $' }
 end
 alias dir ls
-
-# patch cd so that it also shows the current directory
-def cd(path = '/', *args)
-  FileUtils::Verbose.cd path, *args
-  ls
-end
 
 # read file contents (also see ray for ruby source files ;) )
 def cat(path)
