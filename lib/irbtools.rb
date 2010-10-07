@@ -107,8 +107,9 @@ def session_history(number_of_lines = context.instance_variable_get(:@line_no) )
 end
 
 # restart irb
-def reset! # restart irb
-  exec$0
+def reset!
+  at_exit { exec$0 } # remember history
+  exit
 end
 
 def ruby_version(which = nil)
@@ -133,12 +134,24 @@ def ruby_version(which = nil)
   if $1
     ruby_name = File.split( $1 )[-1].tr(' ', '-')
     irbname = $0 + '-' + ruby_name# + '@global'
-    exec irbname
+    at_exit { exec irbname } # remember history
+    exit
   else
     puts "Sorry, that Ruby version could not be found."
   end
 end
 alias use ruby_version
+
+# load debugger, inspired by rdp
+def debuger 
+  begin
+    require 'ruby-debug'
+    debugger
+  rescue LoadError => e 
+    throw "Sorry, unable to load ruby-debug gem for debugger: #{e}"
+  end  
+end
+
 
 # # # # #
 # irb options

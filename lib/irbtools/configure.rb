@@ -53,6 +53,7 @@ else
         require File.expand_path( '../irbtools.rb', File.dirname(__FILE__) )
       end
     end
+    VERSION = File.read File.expand_path( '../../VERSION', File.dirname(__FILE__) )
   end#module
 end
 
