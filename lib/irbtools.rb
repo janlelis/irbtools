@@ -139,7 +139,7 @@ end
 alias use ruby_version
 
 # load debugger, inspired by rdp
-def debuger 
+def dbg
   begin
     require 'ruby-debug'
     debugger
@@ -169,7 +169,9 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 
 # # # # #
 # misc
-Zucker.more_aliases!  # RubyVersion --> RV, RubyEngine --> RE
+Object.const_set 'RV', RubyVersion  rescue nil
+Object.const_set 'RE', RubyEngine   rescue nil
+
 
 # # # # #
 # workarounds
@@ -193,8 +195,10 @@ if IRB.const_defined? :CaptureIO
     end
   end
 
-  # patch method using stdout
+  # patch methods using stdout
   module Kernel
+    private
+
     alias exec_unpatched exec
     def exec(*args)
       STDOUT.reopen(IRB::CaptureIO.streams[:stdout])
@@ -203,6 +207,13 @@ if IRB.const_defined? :CaptureIO
     end
   end
 
+  alias dbg_unpatched dbg
+  def dbg
+    STDOUT.reopen(IRB::CaptureIO.streams[:stdout])
+    STDERR.reopen(IRB::CaptureIO.streams[:stderr])
+    dbg_unpatched
+  end
+ 
   if Object.const_defined? :InteractiveEditor
     InteractiveEditor::Editors.class_eval do
       editors = %w[vi vim emacs nano mate ed]
