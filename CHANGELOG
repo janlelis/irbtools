@@ -1,4 +1,9 @@
-0.7.1
+0.7.3
+* refactored file structure and added new Irbtools.add_lib method
+* load railsrc if executed with rails and Irbtools.railsrc is set
+* more little fixes
+
+0.7.2
 * fixed Rails 3 bug
 * added boson gem (command repository)
 * remember history when resetting or switching ruby version

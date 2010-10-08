@@ -31,7 +31,7 @@ $VERBOSE, $DEBUG = remember_verbose_and_debug
 
 # # # # #
 # general shortcuts & helper methods
-File.expand_path('irbtools/general', File.dirname(__FILE__) )
+require File.expand_path('irbtools/general', File.dirname(__FILE__) )
 
 # # # # #
 # irb options
@@ -56,9 +56,18 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 Object.const_set 'RV', RubyVersion  rescue nil
 Object.const_set 'RE', RubyEngine   rescue nil
 
+# # # # # 
+# load rails.rc
+begin 
+  if ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc
+    load File.expand_path( Irbtools.railsrc )
+  end
+rescue
+end
+
 # # # # #
 # workarounds
-File.expand_path('irbtools/workarounds', File.dirname(__FILE__) )
+require File.expand_path('irbtools/workarounds', File.dirname(__FILE__) )
 
 # # # # #
 # done :)

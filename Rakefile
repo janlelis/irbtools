@@ -18,7 +18,6 @@ begin
     gem.add_dependency 'g'
     gem.add_dependency 'clipboard'
     gem.add_dependency 'guessmethod'
-    # gem.add_dependency 'drx'
     gem.add_dependency 'interactive_editor'
     gem.add_dependency 'coderay'
     gem.add_dependency 'boson'

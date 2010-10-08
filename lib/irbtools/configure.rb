@@ -17,6 +17,7 @@ end
 module Irbtools
   @lib_hooks = Hash.new{|h,k| h[k] = [] }
   @libs = %w[rubygems]
+  @railsrc = '~/.railsrc'
 
   class << self
     def libraries
@@ -40,6 +41,14 @@ module Irbtools
       @lib_hooks.delete lib.to_s
     end
     aliases_for :remove_library, :remove_lib, :remove_gem
+
+    def railsrc
+      @railsrc
+    end
+
+    def railsrc=(path)
+      @railsrc = path
+    end
 
     def library_loaded(lib)
       @lib_hooks[lib.to_s].each{ |hook| hook.call }

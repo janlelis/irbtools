@@ -26,8 +26,6 @@ It's possible to modify, which libraries get loaded:
   # here you can edit the <tt>Irbtools.libs</tt> array or add libraries inclusive load callbacks with <tt>Irbtools.add_library</tt>
   Irbtools.init
 
-You could also just read and copy the source files, tweak them, put them together and use them directly as <tt>.irbrc</tt> ;)
-
 == Features
 
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source file: lib/irbtools.rb
