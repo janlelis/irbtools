@@ -49,6 +49,11 @@ else
       end
       aliases_for :libs, :gems, :libraries
 
+      def libs=(value)
+        @libs = value
+      end
+      aliases_for :libs=, :gems=, :libraries=
+
       def init
         require File.expand_path( '../irbtools.rb', File.dirname(__FILE__) )
       end
