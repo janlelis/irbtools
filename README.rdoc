@@ -22,10 +22,10 @@ If it does not exists, just create a new one.
 It's possible to modify, which libraries get loaded:
 
   require 'irbtools/configure'
-  # here you can edit the Irbtools.libs array
+  # here you can edit the <tt>Irbtools.libs</tt> array or add libraries inclusive load callbacks with <tt>Irbtools.add_library</tt>
   Irbtools.init
 
-You could also just read and copy the irbtools/configure.rb and irbtools.rb source files, tweak them and use them directly as <tt>.irbrc</tt> ;)
+You could also just read and copy the source files, tweak them, put them together and use them directly as <tt>.irbrc</tt> ;)
 
 == Features
 
