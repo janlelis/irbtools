@@ -21,6 +21,7 @@ begin
     # gem.add_dependency 'drx'
     gem.add_dependency 'interactive_editor'
     gem.add_dependency 'coderay'
+    gem.add_dependency 'boson'
     # gem.add_dependency 'irb_rocket'
   end
   Jeweler::GemcutterTasks.new

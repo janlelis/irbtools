@@ -4,12 +4,6 @@ def ls(path='.')
 end
 alias dir ls
 
-# patch cd so that it also shows the current directory
-def cd(path = '/', *args)
-  FileUtils::Verbose.cd path, *args
-  ls
-end
-
 # read file contents (also see ray for ruby source files ;) )
 def cat(path)
   File.read path

@@ -57,77 +57,7 @@ end
 
 # # # # #
 # libraries
-Irbtools.add_library :wirble do # colors
-  Wirble.init
-  Wirble.colorize unless OS.windows?
-end
-
-Irbtools.add_library :hirb do # active record tables
-  Hirb::View.enable
-end
-
-Irbtools.add_library :fileutils do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
-  include FileUtils::Verbose
-end
-
-Irbtools.add_library :coderay do
-  # syntax highlight a string
-  def colorize(string)
-    puts CodeRay.scan( string, :ruby ).term
-  end
-
-  # syntax highlight a file
-  def ray(path)
-    puts CodeRay.scan( File.read(path), :ruby ).term
-  end
-end
-
-Irbtools.add_library :clipboard do # access the clipboard
-  # copies the clipboard
-  def copy(str)
-    Clipboard.copy(str)
-  end
-
-  # pastes the clipboard
-  def paste
-    Clipboard.paste
-  end
-
-  # copies everything you have entered in this irb session
-  def copy_input
-    copy session_history
-    "The session input history has been copied to the clipboard."
-  end
-  alias copy_session_input copy_input
-
-  # copies the output of all irb commands in this irb session
-  def copy_output
-    copy context.instance_variable_get(:@eval_history_values).inspect.gsub(/^\d+ (.*)/, '\1')
-    "The session output history has been copied to the clipboard."
-  end
-  alias copy_session_output copy_output
-end
-
-Irbtools.add_library 'zucker/debug' # nice debug printing (q, o, c, .m, .d)
-Irbtools.add_library 'ap'           # nice debug printing (ap)
-Irbtools.add_library 'yaml'         # nice debug printing (y)
-Irbtools.add_library 'g'            # nice debug printing (g) - MacOS only :/
-Irbtools.add_library 'guessmethod'  # automatically correct typos (method_missing hook)
-Irbtools.add_library 'interactive_editor'  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
-Irbtools.add_library 'irb_rocket'   # put result as comment instead of a new line!
-#Irbtools.add_library 'zucker/all'   # see rubyzucker.info
-
-if OS.windows?
-  Irbtools.libraries -= %w[irb_rocket coderay]
-end
-
-unless OS.mac?
-  Irbtools.libraries -= %w[g]
-end
-
-if RubyVersion.is? 1.9
-  Irbtools.libraries -= %w[guessmethod]
-end
+require File.expand_path( 'libraries.rb', File.dirname(__FILE__) )
 
 # J-_-L
 

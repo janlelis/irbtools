@@ -1,3 +1,10 @@
+# encoding: utf-8
+
+# # # # #
+# require 'irbtools' in your .irbrc
+# but you could also require 'irbtools/configure' and then call Irbtools.init to modify the loaded libraries
+# see the README file for more information
+
 # irb_rocket stdout problems
 if IRB.const_defined? :CaptureIO
   module IRB
@@ -52,3 +59,4 @@ if IRB.const_defined? :CaptureIO
 end
 
 # J-_-L
+
