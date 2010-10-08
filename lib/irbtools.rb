@@ -4,7 +4,7 @@
 # require 'irbtools' in your .irbrc
 # see the README file for more information
 
-require File.expand_path('irbtools/configure', File.dirname(__FILE__) )
+require File.expand_path('irbtools/configure', File.dirname(__FILE__) ) unless defined? Irbtools
 
 # # # # #
 # load libraries

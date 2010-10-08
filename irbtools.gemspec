@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irbtools}
-  s.version = "0.7.2"
+  s.version = "0.7.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-10-07}
+  s.date = %q{2010-10-08}
   s.description = %q{irbtools is a meta gem which installs some useful irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
@@ -27,6 +27,9 @@ Gem::Specification.new do |s|
      "irbtools.gemspec",
      "lib/irbtools.rb",
      "lib/irbtools/configure.rb",
+     "lib/irbtools/general.rb",
+     "lib/irbtools/libraries.rb",
+     "lib/irbtools/workarounds.rb",
      "screenshots/examples1.png",
      "screenshots/examples2.png"
   ]
