@@ -5,10 +5,13 @@
 # but you could also require 'irbtools/configure' and then call Irbtools.init to modify the loaded libraries
 # see the README file for more information
 
+# the order does matter
 Irbtools.add_library :wirble do # colors
   Wirble.init
   Wirble.colorize unless OS.windows?
 end
+
+Irbtools.add_library :irb_rocket # put result as comment instead of a new line!
 
 Irbtools.add_library :hirb do # active record tables
   Hirb::View.enable
@@ -69,7 +72,6 @@ Irbtools.add_library 'yaml'         # nice debug printing (y)
 Irbtools.add_library 'g'            # nice debug printing (g) - MacOS only :/
 Irbtools.add_library 'guessmethod'  # automatically correct typos (method_missing hook)
 Irbtools.add_library 'interactive_editor'  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
-Irbtools.add_library 'irb_rocket'   # put result as comment instead of a new line!
 #Irbtools.add_library 'zucker/all'   # see rubyzucker.info
 
 Irbtools.add_library :boson do

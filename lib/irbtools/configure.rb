@@ -61,7 +61,7 @@ module Irbtools
     alias start init
   end
 
-  VERSION = File.read File.expand_path( '../../VERSION', File.dirname(__FILE__) )
+  VERSION = File.read File.expand_path( '../../VERSION', File.dirname(__FILE__) ).chomp
 end
 
 # # # # #

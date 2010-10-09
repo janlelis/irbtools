@@ -56,6 +56,41 @@ if IRB.const_defined? :CaptureIO
       }
     end
   end
+
+  # hacks for hirb - irb_rocket interaction
+  module IRB
+    class Irb
+      alias output_value_unrocket output_value
+      def output_value
+        return ' ' if @io.nil?
+        hirb_output = Hirb::Util.capture_stdout do output_value_unrocket end
+        if Hirb::View.did_output?
+          print hirb_output
+        else
+          last = @context.io.prompt + @last_line.split("\n").last
+          @io.print(rc + cuu1 + (cuf1*last.length) + " " +
+            Wirble::Colorize::Color.escape(:blue) + "#=>" + sgr0 +
+            " " + Wirble::Colorize.colorize(@context.last_value.inspect) + cud1)
+        end
+      end
+    end
+  end
+  
+  class << Hirb::View
+    def did_output?; @did_output; end
+
+    def render_output(output, options={})
+      @did_output = false
+      if (formatted_output = formatter.format_output(output, options))
+        render_method.call(formatted_output)
+        @did_output = true 
+        true 
+      else 
+        false
+      end  
+    end
+  end
+
 end
 
 # J-_-L
