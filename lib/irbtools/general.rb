@@ -9,9 +9,21 @@ def cat(path)
   File.read path
 end
 
-# allows concise syntax like rq:mathn
+# allows concise syntax like rq:mathn and reloading/requireing
 def rq(lib)
   require lib.to_s
+end
+
+# two hints from http://www.themomorohoax.com/2009/03/27/irb-tip-load-files-faster
+def rerequire(lib)
+  $".delete( "#{lib}.rb" )
+  require( lib.to_s )
+end
+alias rrq rerequire
+
+# load shortcut
+def ld(lib)
+  load lib.to_s + '.rb'
 end
 
 # returns the last lines, needed for some copy_ methods
@@ -25,6 +37,12 @@ def reset!
   exit
 end
 
+# just clear the screen
+def clear
+  system 'clear'
+end
+
+# change ruby version (requires rvm)
 def ruby_version(which = nil)
   # test if installed
   unless `rvm -v` =~ /Seguin/
