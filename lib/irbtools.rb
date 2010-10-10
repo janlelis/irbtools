@@ -8,26 +8,41 @@ require File.expand_path('irbtools/configure', File.dirname(__FILE__) ) unless d
 
 # # # # #
 # load libraries
-remember_verbose_and_debug = $VERBOSE, $DEBUG
-$VERBOSE = $DEBUG = false
 
-Irbtools.libraries.each{ |lib|
-  begin
-    require lib.to_s
+# load helper proc
+load_libraries_proc = proc{ |libs|
+  remember_verbose_and_debug = $VERBOSE, $DEBUG
+  $VERBOSE = $DEBUG = false
 
-    Irbtools.send :library_loaded, lib
+  libs.each{ |lib|
+    begin
+      require lib.to_s
 
-  rescue LoadError => err
-    if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
-      warn "Couldn't load the irb_rocket gem.
+      Irbtools.send :library_loaded, lib
+
+    rescue LoadError => err
+      if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
+        warn "Couldn't load the irb_rocket gem.
 You can install it with: gem install irb_rocket --source http://merbi.st"
-    else
-      warn "Couldn't load an irb library: #{err}"
+      else
+        warn "Couldn't load an irb library: #{err}"
+      end
     end
-  end
+  }
+  $VERBOSE, $DEBUG = remember_verbose_and_debug
 }
 
-$VERBOSE, $DEBUG = remember_verbose_and_debug
+# load them :)
+load_libraries_proc[ Irbtools.libraries ]
+
+# load these each time a new sub irb starts
+original_irbrc_proc = IRB.conf[:IRB_RC]
+IRB.conf[:IRB_RC] = proc{
+  load_libraries_proc[ Irbtools.libraries_in_proc ]
+  original_irbrc_proc[ ]  if original_irbrc_proc
+}
+
+
 
 # # # # #
 # general shortcuts & helper methods

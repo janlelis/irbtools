@@ -70,13 +70,13 @@ Irbtools.add_library 'zucker/debug' # nice debug printing (q, o, c, .m, .d)
 Irbtools.add_library 'ap'           # nice debug printing (ap)
 Irbtools.add_library 'yaml'         # nice debug printing (y)
 Irbtools.add_library 'g'            # nice debug printing (g) - MacOS only :/
-Irbtools.add_library 'guessmethod'  # automatically correct typos (method_missing hook)
+Irbtools.add_library 'guessmethod', true   # automatically correct typos (method_missing hook)
 Irbtools.add_library 'interactive_editor'  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
-#Irbtools.add_library 'zucker/all'   # see rubyzucker.info
+#Irbtools.add_library 'zucker/all'         # see rubyzucker.info
 
 Irbtools.add_library :boson do
-    undef :install if respond_to?( :install, true )
-      Boson.start :verbose => false
+  undef :install if respond_to?( :install, true )
+  Boson.start :verbose => false
 end
 
 # remove failing/not needed libs

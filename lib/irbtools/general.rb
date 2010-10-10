@@ -14,7 +14,7 @@ def rq(lib)
   require lib.to_s
 end
 
-# two hints from http://www.themomorohoax.com/2009/03/27/irb-tip-load-files-faster
+# reloading, hints from http://www.themomorohoax.com/2009/03/27/irb-tip-load-files-faster
 def rerequire(lib)
   $".delete( "#{lib}.rb" )
   require( lib.to_s )
