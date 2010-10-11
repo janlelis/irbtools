@@ -10,7 +10,7 @@ begin
     gem.email = "mail@janlelis.de"
     gem.homepage = "http://github.com/janlelis/irbtools"
     gem.authors = ["Jan Lelis"]
-    gem.requirements << 'You need to add http://merbi.st to your gem sources (irb_rocket)'
+    gem.requirements << "It's recommended to use the irb_rocket gem: gem install irb_rocket --source http://merbi.st"
     gem.add_dependency 'wirble'
     gem.add_dependency 'hirb'
     gem.add_dependency 'zucker', '>=8'
@@ -30,7 +30,7 @@ end
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
 
   rdoc.rdoc_dir = 'doc'
   rdoc.title = "irbtools #{version}"

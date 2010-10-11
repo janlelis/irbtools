@@ -18,9 +18,13 @@ module Irbtools
   @lib_hooks = Hash.new{|h,k| h[k] = [] }
   @libs = [] # %w[rubygems]
   @libs_in_proc = []
+  @packages = []
   @railsrc = '~/.railsrc'
 
   class << self
+    # lets you define the path to the irbrc or deactivate this feature with nil
+    attr_accessor :railsrc
+
     # an array of the libraries which get loaded at start
     attr_accessor :libs
     aliases_for :libs, :libraries, :gems
@@ -30,6 +34,9 @@ module Irbtools
     attr_accessor :libs_in_proc
     aliases_for :libs_in_proc, :libraries_in_proc, :gems_in_proc
     aliases_for :libs_in_proc=, :libraries_in_proc=, :gems_in_proc=
+
+    # an array of extension packages which get loaded (e.g. irbtools-more)
+    attr_accessor :packages
 
     # add a library. the block gets executed, when the library was loaded.
     # if the second param is true, it's hooked in into IRB.conf[:IRB_RC] instead of the start.
@@ -41,6 +48,7 @@ module Irbtools
     end
     aliases_for :add_library, :add_lib, :add_gem
 
+    # don't load a specific library
     def remove_library(lib)
       @libs.delete lib.to_s
       @libs_in_proc.delete lib.to_s
@@ -48,15 +56,16 @@ module Irbtools
     end
     aliases_for :remove_library, :remove_lib, :remove_gem
 
-    # getter for the railsrc setting
-    def railsrc
-      @railsrc
+    # add extensions packages
+    def add_package(pkg)
+      @packages << pkg.to_s
     end
 
-    # lets you define the path to the irbrc or deactivate this feature with nil
-    def railsrc=(path)
-      @railsrc = path
+    # remove extension package
+    def remove_package(pkg)
+      @packages.delete pkg.to_s
     end
+
 
     def library_loaded(lib) #:nodoc:
       @lib_hooks[lib.to_s].each{ |hook| hook.call }

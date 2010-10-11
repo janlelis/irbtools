@@ -3,8 +3,18 @@
 # # # # #
 # require 'irbtools' in your .irbrc
 # see the README file for more information
-
 require File.expand_path('irbtools/configure', File.dirname(__FILE__) ) unless defined? Irbtools
+
+# # # # #
+# load extension packages
+Irbtools.packages.each{ |pkg|
+  begin
+    require "irbtools/#{pkg}"
+
+  rescue LoadError => err
+    warn "Couldn't load an extension package: #{err}"
+  end
+}
 
 # # # # #
 # load libraries
@@ -68,10 +78,14 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 
 # # # # #
 # misc
+
+# add current directory to the loadpath
+$: << '.'  if RubyVersion.is.at_least? '1.9.2'
+
+# shoter ruby info constants
 Object.const_set 'RV', RubyVersion  rescue nil
 Object.const_set 'RE', RubyEngine   rescue nil
 
-# # # # # 
 # load rails.rc
 begin 
   if ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc

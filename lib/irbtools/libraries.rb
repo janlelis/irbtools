@@ -89,8 +89,7 @@ unless OS.mac?
 end
 
 if RubyVersion.is? 1.9
-  Irbtools.libraries -= %w[guessmethod]
+  Irbtools.libraries_in_proc -= %w[guessmethod]
 end
 
 # J-_-L
-

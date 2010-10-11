@@ -82,3 +82,26 @@ def dbg
     throw "Sorry, unable to load ruby-debug gem for debugger: #{e}"
   end
 end
+
+
+module Kernel
+  # display ri entry (let ri do the backward search)
+  def ri(meth)
+    ri_cmd = 'ri9'
+    puts `#{ri_cmd} ##{meth}`
+  end
+end
+
+class Object
+  # display ri entry (let ri do the backward search)
+  def ri(meth)
+    ri_cmd = 'ri9'
+    if is_a? Module
+      puts `#{ri_cmd} #{self}.#{meth}`
+    else
+      puts `#{ri_cmd} #{self.class}##{meth}`
+    end
+  end
+end
+
+# J-_-L
