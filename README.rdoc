@@ -1,17 +1,59 @@
 = irbtools-more
 
-Description goes here.
+irbtools[http://github.com/janlelis/irbtools]] is a meta gem which installs some useful irb gems and configures your irb.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box.
+
+== Setup
+
+  gem install irbtools-more
+  gem install irb_rocket --source http://merbi.st
+  
+* On Linux, you also need the +xclip+ program (apt-get install xclip).
+* On MacOS, you need growl, if you want to use the +g+ gem.
+
+== Usage
+
+To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded everytime you start an irb):
+
+  require 'rubygems' # only needed in 1.8
+  require 'irbtools-more'
+
+If it does not exist, just create a new one.
+
+It's possible to modify, which libraries get loaded:
+
+  require 'irbtools/configure'
+  Irbtools.add_package :more # adds this extension package
+  # here you can edit the <tt>Irbtools.libs</tt> array or add libraries inclusive load callbacks with <tt>Irbtools.add_library</tt>
+  Irbtools.start
+
+You could also just use the base +irbtools+ and add the additional gems yourself.
+
+== Features
+
+=== Included gems and libraries
+
+ For the libraries included in +irbtools+, see its README[] page or http://rbjl.net/40-irbtools-release-the-power-of-irb
+* DrX[] A tk object inspector, defines <tt>Object#see</tt>
+* bond[] Better auto completion
+* fastri[] Faster ri powered by drb. Adds a <tt>Object#ri_{method}</tt>
+
+== Bugs / TODO
+
+* ...
+
+== More features
+
+* suggest something ;)
+
+
+== Extension packages
+
+* Feel free to build your own extension package gem and upload it to rubygems ;)
 
 == Copyright
 
-Copyright (c) 2010 Jan Lelis. See LICENSE for details.
+Copyright (c) 2010 Jan Lelis, http://rbjl.net. See LICENSE for details.
+
+J-_-L
