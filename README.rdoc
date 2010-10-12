@@ -23,12 +23,21 @@ If it does not exist, just create a new one.
 It's possible to modify, which libraries get loaded:
 
   require 'irbtools/configure'
-  # here you can edit the <tt>Irbtools.libs</tt> array or add libraries inclusive load callbacks with <tt>Irbtools.add_library</tt>
+  # here you can modify which libraries get loaded (see below)
   Irbtools.init
+
+=== How to load more or less libraries
+
+You have the following ways:
+* <tt>Irbtools.add_library(lib, in_proc = false, &block)</tt>
+* <tt>Irbtools.remove_library(lib)</tt>
+* <tt>Irbtools.add_packakge(pkg)</tt>
+* <tt>Irbtools.remove_package(pkg)</tt>
+* Edit the <tt>Irbtools.libraries</tt>, <tt>Irbtools.libraries_in_proc</tt> or <tt>Irbtools.packages</tt> arrays directly (no way to set callbacks).
 
 == Features
 
-See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source file: lib/irbtools.rb
+See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source file.
 
 === Included gems and libraries
 
@@ -46,16 +55,27 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * boson[http://tagaholic.me/boson/]  IRB commands repository (which also works for the shell!)
 * irb_rocket[http://merbi.st/plugins/22]   put result as comment instead of a new line!
 
+=== Helper methods
+See the source/rdoc for a description. These methods are defined directly by irbtools.
+
+*General*: <tt>ls, cat, rq, rrq/rerequire, ls, session_history, reset!, clear, use_ruby/use, dbg, Object#ri</tt>
+
+*Clipboard*: <tt>copy, paste, copy_input, copy_output</tt>
+
+*CodeRay*: <tt>colorize, ray</tt>
+
 == Bugs / TODO
 
 * Make guessmethod 1.9 compatible
 * Fix Clipboard Windows issues
 * Fix irb_rockets general stdout problem. If something stdout related fails, odds are high that it's irb_rockets fault.
+* Pager for hirb and ri
+* Use RDoc driver instead of system ri for ri (?)
 * ...
 
 == More Features
 
-* suggest something ;)
+* See the irbtools-more[http://github.com/janlelis/irbtools-more] package.
 
 == Copyright
 

@@ -1,4 +1,5 @@
 0.8.0
+* added Object#ri method
 * feature: extension package loading (e.g. irbtools-more)
 * feature: loading in IRB.conf[:IRB_RC] (loading when a subirb starts, no more guessmethod rails errors)
 * added rerequire (rrq) and ld load helper

@@ -43,7 +43,7 @@ def clear
 end
 
 # change ruby version (requires rvm)
-def ruby_version(which = nil)
+def use_ruby(which = nil)
   # test if installed
   unless `rvm -v` =~ /Seguin/
     raise 'Ruby Version Manager must be installed to use this command'
@@ -71,7 +71,7 @@ def ruby_version(which = nil)
     puts "Sorry, that Ruby version could not be found."
   end
 end
-alias use ruby_version
+alias use use_ruby
 
 # load debugger, inspired by rdp
 def dbg
@@ -83,20 +83,13 @@ def dbg
   end
 end
 
-
-module Kernel
-  # display ri entry (let ri do the backward search)
-  def ri(meth)
-    ri_cmd = 'ri9'
-    puts `#{ri_cmd} ##{meth}`
-  end
-end
-
 class Object
-  # display ri entry (let ri do the backward search)
+  # display ri entry
   def ri(meth)
-    ri_cmd = 'ri9'
-    if is_a? Module
+    ri_cmd = 'ri'
+    if instance_of?( Kernel ) || instance_of?( Object )
+      puts `#{ri_cmd} #{meth}`
+    elsif is_a? Module
       puts `#{ri_cmd} #{self}.#{meth}`
     else
       puts `#{ri_cmd} #{self.class}##{meth}`
