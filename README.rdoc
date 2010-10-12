@@ -31,7 +31,7 @@ It's possible to modify, which libraries get loaded:
 You have the following ways:
 * <tt>Irbtools.add_library(lib, in_proc = false, &block)</tt>
 * <tt>Irbtools.remove_library(lib)</tt>
-* <tt>Irbtools.add_packakge(pkg)</tt>
+* <tt>Irbtools.add_package(pkg)</tt>
 * <tt>Irbtools.remove_package(pkg)</tt>
 * Edit the <tt>Irbtools.libraries</tt>, <tt>Irbtools.libraries_in_proc</tt> or <tt>Irbtools.packages</tt> arrays directly (no way to set callbacks).
 
