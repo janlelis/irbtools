@@ -18,7 +18,7 @@ irbtools[http://github.com/janlelis/irbtools] is a meta gem which installs some 
 To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded everytime you start an irb):
 
   require 'rubygems' # only needed in 1.8
-  require 'irbtools-more'
+  require 'irbtools/more'
 
 If it does not exist, just create a new one.
 
