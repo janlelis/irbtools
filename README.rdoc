@@ -2,7 +2,7 @@
 
 irbtools[http://github.com/janlelis/irbtools]] is a meta gem which installs some useful irb gems and configures your irb.
 
-<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box.
+<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box: currently - better auto completion and an object inspector.
 
 == Setup
 
@@ -11,6 +11,7 @@ irbtools[http://github.com/janlelis/irbtools]] is a meta gem which installs some
   
 * On Linux, you also need the +xclip+ program (apt-get install xclip).
 * On MacOS, you need growl, if you want to use the +g+ gem.
+* You need +tk+ for the object inspector (maybe try <tt>tk_as_gem</tk>)
 
 == Usage
 
@@ -25,7 +26,7 @@ It's possible to modify, which libraries get loaded:
 
   require 'irbtools/configure'
   Irbtools.add_package :more # adds this extension package
-  # here you can edit the <tt>Irbtools.libs</tt> array or add libraries inclusive load callbacks with <tt>Irbtools.add_library</tt>
+  # here you can edit which libraries get loaded. See the irbtools README for details.
   Irbtools.start
 
 You could also just use the base +irbtools+ and add the additional gems yourself.
@@ -34,19 +35,9 @@ You could also just use the base +irbtools+ and add the additional gems yourself
 
 === Included gems and libraries
 
- For the libraries included in +irbtools+, see its README[] page or http://rbjl.net/40-irbtools-release-the-power-of-irb
-* DrX[] A tk object inspector, defines <tt>Object#see</tt>
-* bond[] Better auto completion
-* fastri[] Faster ri powered by drb. Adds a <tt>Object#ri_{method}</tt>
-
-== Bugs / TODO
-
-* ...
-
-== More features
-
-* suggest something ;)
-
+ For the libraries included in +irbtools+, see its README page or http://rbjl.net/40-irbtools-release-the-power-of-irb
+* DrX[http://drx.rubyforge.org/] A tk object inspector, defines <tt>Object#see</tt>
+* bond[http://tagaholic.me/bond/] Better auto completion
 
 == Extension packages
 
