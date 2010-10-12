@@ -10,7 +10,7 @@ begin
     gem.email = "mail@janlelis.de"
     gem.homepage = "http://github.com/janlelis/irbtools-more"
     gem.authors = ["Jan Lelis"]
-    gem.add_dependency 'irbtools'#, '>= 0.8.0'
+    gem.add_dependency 'irbtools', '>= 0.8.0'
     gem.add_dependency 'drx'
     gem.add_dependency 'bond'
   end

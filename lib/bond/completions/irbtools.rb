@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # TODO more ;)
 
 def send_methods(obj)

@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irbtools-more}
-  s.version = "0.0.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-10-11}
+  s.date = %q{2010-10-12}
   s.description = %q{irbtools is a meta gem which installs some useful irb gems and configures your irb. irbtools-more adds some gems which may not build out-of-the-box. Simply put a require 'irbtools-more' in the .irbrc file in your home directory}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "irbtools-more.gemspec",
+     "lib/bond/completions/irbtools.rb",
      "lib/irbtools/more.rb"
   ]
   s.homepage = %q{http://github.com/janlelis/irbtools-more}
@@ -39,18 +41,15 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<irbtools>, [">= 0"])
       s.add_runtime_dependency(%q<drx>, [">= 0"])
       s.add_runtime_dependency(%q<bond>, [">= 0"])
-      s.add_runtime_dependency(%q<fastri>, [">= 0"])
     else
       s.add_dependency(%q<irbtools>, [">= 0"])
       s.add_dependency(%q<drx>, [">= 0"])
       s.add_dependency(%q<bond>, [">= 0"])
-      s.add_dependency(%q<fastri>, [">= 0"])
     end
   else
     s.add_dependency(%q<irbtools>, [">= 0"])
     s.add_dependency(%q<drx>, [">= 0"])
     s.add_dependency(%q<bond>, [">= 0"])
-    s.add_dependency(%q<fastri>, [">= 0"])
   end
 end
 

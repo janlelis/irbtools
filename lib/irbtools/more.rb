@@ -20,7 +20,7 @@ end
 # irbtools-more libraries
 Irbtools.add_library :drx
 Irbtools.add_library :bond do
-  Bond.start
+  Bond.start :gems => %w[irbtools]
 end
 
 # load now
