@@ -11,7 +11,9 @@ Irbtools.add_library :wirble do # colors
   Wirble.colorize unless OS.windows?
 end
 
-Irbtools.add_library :irb_rocket # put result as comment instead of a new line!
+Irbtools.add_library :'fancy_irb' do # put result as comment instead of a new line!
+  FancyIrb.start
+end
 
 Irbtools.add_library :hirb do # active record tables
   Hirb::View.enable
@@ -36,7 +38,7 @@ Irbtools.add_library :coderay do
 
   # syntax highlight a file
   def ray(path)
-    puts CodeRay.scan( File.read(path), :ruby ).term
+    print CodeRay.scan( File.read(path), :ruby ).term
   end
 end
 
@@ -72,6 +74,7 @@ Irbtools.add_library 'yaml'         # nice debug printing (y)
 Irbtools.add_library 'g'            # nice debug printing (g) - MacOS only :/
 Irbtools.add_library 'guessmethod', true   # automatically correct typos (method_missing hook)
 Irbtools.add_library 'interactive_editor'  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'sketches'            # another, more flexible "start editor and it gets loaded into your irb session" plugin
 #Irbtools.add_library 'zucker/all'         # see rubyzucker.info
 
 Irbtools.add_library :boson do
@@ -81,7 +84,7 @@ end
 
 # remove failing/not needed libs
 if OS.windows?
-  Irbtools.libraries -= %w[irb_rocket coderay]
+  Irbtools.libraries -= %w[coderay]
 end
 
 unless OS.mac?

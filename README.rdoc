@@ -8,12 +8,11 @@ This is a meta gem which installs some useful irb gems and configures your irb.
   gem install irb_rocket --source http://merbi.st
   
 * On Linux, you also need the +xclip+ program: sudo <tt>apt-get install xclip</tt>
-* The <tt>irb_rocket</tt> gem might require <tt>libncurses-dev</tt>
 * On MacOS, you need growl, if you want to use the +g+ gem.
 
 == Usage
 
-To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded everytime you start an irb):
+To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
   require 'rubygems' # only needed in 1.8
   require 'irbtools'
@@ -42,6 +41,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 === Included gems and libraries
 
 * wirble[http://pablotron.org/software/wirble/]      colors
+* fancy_irbt[tODO]   put result as comment instead of a new line and colorization
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     active record tables
 * *fileutils*    cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * zucker/env[http://rubyzucker.info]   Info, OS, RubyVersion, RubyEngine
@@ -51,14 +51,14 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 * interactive_editor[http://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
+* sketches[http://sketches.rubyforge.org/] another, more flexible "start editor and it gets loaded into your irb session" plugin
 * coderay[http://coderay.rubychan.de/]    some nice colorful display ;)
 * boson[http://tagaholic.me/boson/]  IRB commands repository (which also works for the shell!)
-* irb_rocket[http://merbi.st/plugins/22]   put result as comment instead of a new line!
 
 === Helper methods
-See the source/rdoc for a description. These methods are defined directly by irbtools.
+See the source/rdoc for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
 
-*General*: <tt>ls, cat, rq, rrq/rerequire, ls, session_history, reset!, clear, use_ruby/use, dbg, Object#ri</tt>
+*General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, dbg, Object#ri</tt>
 
 *Clipboard*: <tt>copy, paste, copy_input, copy_output</tt>
 
@@ -67,18 +67,14 @@ See the source/rdoc for a description. These methods are defined directly by irb
 == Bugs / TODO
 
 * Make guessmethod 1.9 compatible
-* Fix Clipboard Windows issues
-* Fix irb_rockets general stdout problem. If something stdout related fails, odds are high that it's irb_rockets fault.
-* Pager for hirb and ri
-* Use RDoc driver instead of system ri for ri (?)
-* ...
+* Nicer ri command
 
 == More Features
 
-* See the irbtools-more[http://github.com/janlelis/irbtools-more] package.
+* See the irbtools-more[https://github.com/janlelis/irbtools-more] package.
 
 == Copyright
 
-Copyright (c) 2010 Jan Lelis, http://rbjl.net. See LICENSE for details.
+Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license.
 
 J-_-L

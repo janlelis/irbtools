@@ -53,7 +53,6 @@ IRB.conf[:IRB_RC] = proc{
 }
 
 
-
 # # # # #
 # general shortcuts & helper methods
 require File.expand_path('irbtools/general', File.dirname(__FILE__) )
@@ -82,7 +81,7 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 # add current directory to the loadpath
 $: << '.'  if RubyVersion.is.at_least? '1.9.2'
 
-# shoter ruby info constants
+# shorter ruby info constants TODO
 Object.const_set 'RV', RubyVersion  rescue nil
 Object.const_set 'RE', RubyEngine   rescue nil
 
@@ -95,11 +94,7 @@ rescue
 end
 
 # # # # #
-# workarounds
-require File.expand_path('irbtools/workarounds', File.dirname(__FILE__) )
-
-# # # # #
 # done :)
-puts "Welcome to IRB. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
+puts wm  if wm = Irbtools.welcome_message
 
 # J-_-L

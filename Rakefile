@@ -10,18 +10,18 @@ begin
     gem.email = "mail@janlelis.de"
     gem.homepage = "http://github.com/janlelis/irbtools"
     gem.authors = ["Jan Lelis"]
-    gem.requirements << "It's recommended to use the irb_rocket gem: gem install irb_rocket --source http://merbi.st"
     gem.add_dependency 'wirble'
+    gem.add_dependency 'fancy_irb'
     gem.add_dependency 'hirb'
     gem.add_dependency 'zucker', '>=8'
     gem.add_dependency 'awesome_print'
     gem.add_dependency 'g'
-    gem.add_dependency 'clipboard'
+    gem.add_dependency 'clipboard', '>=0.9'
     gem.add_dependency 'guessmethod'
     gem.add_dependency 'interactive_editor'
     gem.add_dependency 'coderay'
     gem.add_dependency 'boson'
-    # gem.add_dependency 'irb_rocket'
+    gem.add_dependency 'sketches'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

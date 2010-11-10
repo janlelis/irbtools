@@ -20,8 +20,12 @@ module Irbtools
   @libs_in_proc = []
   @packages = []
   @railsrc = '~/.railsrc'
+  @welcome_message = "Welcome to IRB. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
 
   class << self
+    # message to display when starting. Set to nil to disable
+    attr_accessor :welcome_message
+
     # lets you define the path to the irbrc or deactivate this feature with nil
     attr_accessor :railsrc
 
