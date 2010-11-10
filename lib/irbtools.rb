@@ -67,7 +67,7 @@ IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.ir
 (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
   :PROMPT_I => ">> ",    # normal
   :PROMPT_N => "|  ",    # indenting
-  :PROMPT_C => "(>>) ",  # continuing a statement
+  :PROMPT_C => ".> ",  # continuing a statement
   :PROMPT_S => "%l> ",   # continuing a string
   :RETURN   => "=> %s \n",
   :AUTO_INDENT => true,
@@ -81,7 +81,7 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 # add current directory to the loadpath
 $: << '.'  if RubyVersion.is.at_least? '1.9.2'
 
-# shorter ruby info constants TODO
+# shorter ruby info constants
 Object.const_set 'RV', RubyVersion  rescue nil
 Object.const_set 'RE', RubyEngine   rescue nil
 
@@ -95,6 +95,8 @@ end
 
 # # # # #
 # done :)
-puts wm  if wm = Irbtools.welcome_message
+if msg = Irbtools.welcome_message
+  puts msg
+end
 
 # J-_-L

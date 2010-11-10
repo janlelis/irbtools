@@ -11,12 +11,8 @@ Irbtools.add_library :wirble do # colors
   Wirble.colorize unless OS.windows?
 end
 
-Irbtools.add_library :'fancy_irb' do # put result as comment instead of a new line!
+Irbtools.add_library :fancy_irb do # put result as comment instead of a new line!
   FancyIrb.start
-end
-
-Irbtools.add_library :hirb do # active record tables
-  Hirb::View.enable
 end
 
 Irbtools.add_library :fileutils do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
@@ -81,6 +77,12 @@ Irbtools.add_library :boson do
   undef :install if respond_to?( :install, true )
   Boson.start :verbose => false
 end
+
+Irbtools.add_library :hirb do # active record tables
+  Hirb::View.enable
+  extend Hirb::Console
+end
+
 
 # remove failing/not needed libs
 if OS.windows?

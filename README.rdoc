@@ -5,7 +5,6 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 == Setup
 
   gem install irbtools
-  gem install irb_rocket --source http://merbi.st
   
 * On Linux, you also need the +xclip+ program: sudo <tt>apt-get install xclip</tt>
 * On MacOS, you need growl, if you want to use the +g+ gem.
@@ -14,7 +13,7 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 
 To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
-  require 'rubygems' # only needed in 1.8
+  require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
   require 'irbtools'
 
 If it does not exist, just create a new one.
@@ -40,9 +39,9 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 
 === Included gems and libraries
 
-* wirble[http://pablotron.org/software/wirble/]      colors
-* fancy_irbt[tODO]   put result as comment instead of a new line and colorization
-* hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     active record tables
+* wirble[http://pablotron.org/software/wirble/]      colorize output
+* fancy_irbt[tODO]   put result as comment and more colorization
+* hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * *fileutils*    cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * zucker/env[http://rubyzucker.info]   Info, OS, RubyVersion, RubyEngine
 * zucker/debug[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d)
@@ -63,6 +62,10 @@ See the source/rdoc for a description. These methods are defined directly by irb
 *Clipboard*: <tt>copy, paste, copy_input, copy_output</tt>
 
 *CodeRay*: <tt>colorize, ray</tt>
+
+== Welcome message
+
+You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 
 == Bugs / TODO
 

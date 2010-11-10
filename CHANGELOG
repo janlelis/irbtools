@@ -1,3 +1,9 @@
+0.8.1
+* rewrote irb_rocket: fancy_irb. No more workarounds needed, anymore.
+* added sketches gem
+* customizable welcome message
+* more little fixes/enhancements
+
 0.8.0
 * added Object#ri method
 * feature: extension package loading (e.g. irbtools-more)
