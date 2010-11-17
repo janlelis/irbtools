@@ -40,12 +40,16 @@ load_libraries_proc = proc{ |libs|
 # load them :)
 load_libraries_proc[ Irbtools.libraries ]
 
-# load these each time a new sub irb starts
-original_irbrc_proc = IRB.conf[:IRB_RC]
-IRB.conf[:IRB_RC] = proc{
+# load these each time a new sub irb starts (only if supported)
+if defined? ::IRB
+  original_irbrc_proc = IRB.conf[:IRB_RC]
+  IRB.conf[:IRB_RC] = proc{
+    load_libraries_proc[ Irbtools.libraries_in_proc ]
+    original_irbrc_proc[ ]  if original_irbrc_proc
+  }
+else
   load_libraries_proc[ Irbtools.libraries_in_proc ]
-  original_irbrc_proc[ ]  if original_irbrc_proc
-}
+end
 
 
 # # # # #
@@ -54,21 +58,23 @@ require File.expand_path('irbtools/general', File.dirname(__FILE__) )
 
 # # # # #
 # irb options
-IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
-IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
-IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
+if defined? ::IRB && !defined? ::Ripl
+  IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
+  IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
+  IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
 
-# prompt
-(IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
-  :PROMPT_I => ">> ",    # normal
-  :PROMPT_N => "|  ",    # indenting
-  :PROMPT_C => ".> ",    # continuing a statement
-  :PROMPT_S => "%l> ",   # continuing a string
-  :RETURN   => "=> %s \n",
-  :AUTO_INDENT => true,
-}})
+  # prompt
+  (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
+    :PROMPT_I => ">> ",    # normal
+    :PROMPT_N => "|  ",    # indenting
+    :PROMPT_C => ".> ",    # continuing a statement
+    :PROMPT_S => "%l> ",   # continuing a string
+    :RETURN   => "=> %s \n",
+    :AUTO_INDENT => true,
+  }})
 
-IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+  IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+end
 
 # # # # #
 # misc

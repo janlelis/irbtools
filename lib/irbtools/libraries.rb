@@ -97,4 +97,8 @@ if RubyVersion.is? 1.9
   Irbtools.libraries_in_proc -= %w[guessmethod]
 end
 
+if defined? Ripl
+  Irbtools.libraries -= %w[wirble fancy_irb]
+end
+
 # J-_-L
