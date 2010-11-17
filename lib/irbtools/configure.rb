@@ -9,22 +9,26 @@ begin
   require 'zucker/alias_for'
   require 'zucker/env'       # Info, OS, RubyVersion, RubyEngine
 rescue LoadError
-  raise "Sorry, the irbtools couldn't load, because the zucker gem is not available"
+  raise LoadError, "Sorry, the irbtools couldn't load, because the zucker gem is not available"
 end
 
 # # # # #
 # define module methods
 module Irbtools
-  @lib_hooks = Hash.new{|h,k| h[k] = [] }
-  @libs = [] # %w[rubygems]
-  @libs_in_proc = []
-  @packages = []
-  @railsrc = '~/.railsrc'
-  @welcome_message = "Welcome to IRB. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
+  @lib_hooks       = Hash.new{|h,k| h[k] = [] }
+  @libs            = [] # %w[rubygems]
+  @libs_in_proc    = []
+  @packages        = []
+  @railsrc         = '~/.railsrc'
+  @shell_name      = File.split($0)[-1].upcase
+  @welcome_message = "Welcome to #{ @shell_name }. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
 
   class << self
     # message to display when starting. Set to nil to disable
     attr_accessor :welcome_message
+
+    # shell name (usually irb), retrieved from $0
+    attr_reader :shell_name
 
     # lets you define the path to the irbrc or deactivate this feature with nil
     attr_accessor :railsrc

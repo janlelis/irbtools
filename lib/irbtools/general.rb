@@ -78,8 +78,8 @@ def dbg
   begin
     require 'ruby-debug'
     debugger
-  rescue LoadError => e
-    throw "Sorry, unable to load ruby-debug gem for debugger: #{e}"
+  rescue LoadError => err
+    throw "Sorry, unable to load ruby-debug gem for debugger: #{err}"
   end
 end
 
