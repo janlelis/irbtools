@@ -31,12 +31,7 @@ load_libraries_proc = proc{ |libs|
       Irbtools.send :library_loaded, lib
 
     rescue LoadError => err
-      if err.to_s =~ /irb_rocket/ && RubyEngine.mri?
-        warn "Couldn't load the irb_rocket gem.
-You can install it with: gem install irb_rocket --source http://merbi.st"
-      else
-        warn "Couldn't load an irb library: #{err}"
-      end
+      warn "Couldn't load an irb library: #{err}"
     end
   }
   $VERBOSE, $DEBUG = remember_verbose_and_debug
@@ -67,7 +62,7 @@ IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.ir
 (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
   :PROMPT_I => ">> ",    # normal
   :PROMPT_N => "|  ",    # indenting
-  :PROMPT_C => ".> ",  # continuing a statement
+  :PROMPT_C => ".> ",    # continuing a statement
   :PROMPT_S => "%l> ",   # continuing a string
   :RETURN   => "=> %s \n",
   :AUTO_INDENT => true,
@@ -78,12 +73,12 @@ IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 # # # # #
 # misc
 
-# add current directory to the loadpath
+# add current directory to the load path
 $: << '.'  if RubyVersion.is.at_least? '1.9.2'
 
 # shorter ruby info constants
-Object.const_set 'RV', RubyVersion  rescue nil
-Object.const_set 'RE', RubyEngine   rescue nil
+Object.const_set :RV, RubyVersion  rescue nil
+Object.const_set :RE, RubyEngine   rescue nil
 
 # load rails.rc
 begin 

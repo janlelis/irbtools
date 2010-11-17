@@ -31,7 +31,8 @@ You have the following ways:
 * <tt>Irbtools.remove_library(lib)</tt>
 * <tt>Irbtools.add_package(pkg)</tt>
 * <tt>Irbtools.remove_package(pkg)</tt>
-* Edit the <tt>Irbtools.libraries</tt>, <tt>Irbtools.libraries_in_proc</tt> or <tt>Irbtools.packages</tt> arrays directly (no way to set callbacks).
+
+Edit the <tt>Irbtools.libraries</tt>, <tt>Irbtools.libraries_in_proc</tt> or <tt>Irbtools.packages</tt> arrays directly. If you use the <tt>add_library</tt> method, you can apply a block which gets executed when the library is loaded.
 
 == Features
 
@@ -40,22 +41,22 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 === Included gems and libraries
 
 * wirble[http://pablotron.org/software/wirble/]      colorize output
-* fancy_irbt[tODO]   put result as comment and more colorization
+* fancy_irbt[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * *fileutils*    cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * zucker/env[http://rubyzucker.info]   Info, OS, RubyVersion, RubyEngine
 * zucker/debug[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d)
-* ap[http://github.com/michaeldv/awesome_print]      nice debug printing (ap)
+* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap)
 * *yaml*      nice debug printing (y)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
-* interactive_editor[http://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
+* interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
 * sketches[http://sketches.rubyforge.org/] another, more flexible "start editor and it gets loaded into your irb session" plugin
 * coderay[http://coderay.rubychan.de/]    some nice colorful display ;)
 * boson[http://tagaholic.me/boson/]  IRB commands repository (which also works for the shell!)
 
 === Helper methods
-See the source/rdoc for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
+See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
 
 *General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, dbg, Object#ri</tt>
 
