@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{irbtools}
-  s.version = "0.8.1"
+  s.version = "0.8.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jan Lelis"]
-  s.date = %q{2010-11-10}
+  s.date = %q{2010-11-17}
   s.description = %q{irbtools is a meta gem which installs some useful irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
   s.email = %q{mail@janlelis.de}
   s.extra_rdoc_files = [
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    ".document",
      ".gitignore",
      "CHANGELOG",
      "LICENSE",
@@ -41,44 +40,44 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<wirble>, [">= 0"])
-      s.add_runtime_dependency(%q<fancy_irb>, [">= 0"])
-      s.add_runtime_dependency(%q<hirb>, [">= 0"])
+      s.add_runtime_dependency(%q<fancy_irb>, [">= 0.6.2"])
       s.add_runtime_dependency(%q<zucker>, [">= 8"])
-      s.add_runtime_dependency(%q<awesome_print>, [">= 0"])
+      s.add_runtime_dependency(%q<hirb>, ["~> 0.3"])
+      s.add_runtime_dependency(%q<awesome_print>, ["~> 0.3"])
+      s.add_runtime_dependency(%q<clipboard>, ["~> 0.9"])
+      s.add_runtime_dependency(%q<coderay>, ["~> 0.9"])
+      s.add_runtime_dependency(%q<boson>, ["~> 0.3"])
+      s.add_runtime_dependency(%q<wirble>, [">= 0"])
       s.add_runtime_dependency(%q<g>, [">= 0"])
-      s.add_runtime_dependency(%q<clipboard>, [">= 0.9"])
       s.add_runtime_dependency(%q<guessmethod>, [">= 0"])
       s.add_runtime_dependency(%q<interactive_editor>, [">= 0"])
-      s.add_runtime_dependency(%q<coderay>, [">= 0"])
-      s.add_runtime_dependency(%q<boson>, [">= 0"])
       s.add_runtime_dependency(%q<sketches>, [">= 0"])
     else
-      s.add_dependency(%q<wirble>, [">= 0"])
-      s.add_dependency(%q<fancy_irb>, [">= 0"])
-      s.add_dependency(%q<hirb>, [">= 0"])
+      s.add_dependency(%q<fancy_irb>, [">= 0.6.2"])
       s.add_dependency(%q<zucker>, [">= 8"])
-      s.add_dependency(%q<awesome_print>, [">= 0"])
+      s.add_dependency(%q<hirb>, ["~> 0.3"])
+      s.add_dependency(%q<awesome_print>, ["~> 0.3"])
+      s.add_dependency(%q<clipboard>, ["~> 0.9"])
+      s.add_dependency(%q<coderay>, ["~> 0.9"])
+      s.add_dependency(%q<boson>, ["~> 0.3"])
+      s.add_dependency(%q<wirble>, [">= 0"])
       s.add_dependency(%q<g>, [">= 0"])
-      s.add_dependency(%q<clipboard>, [">= 0.9"])
       s.add_dependency(%q<guessmethod>, [">= 0"])
       s.add_dependency(%q<interactive_editor>, [">= 0"])
-      s.add_dependency(%q<coderay>, [">= 0"])
-      s.add_dependency(%q<boson>, [">= 0"])
       s.add_dependency(%q<sketches>, [">= 0"])
     end
   else
-    s.add_dependency(%q<wirble>, [">= 0"])
-    s.add_dependency(%q<fancy_irb>, [">= 0"])
-    s.add_dependency(%q<hirb>, [">= 0"])
+    s.add_dependency(%q<fancy_irb>, [">= 0.6.2"])
     s.add_dependency(%q<zucker>, [">= 8"])
-    s.add_dependency(%q<awesome_print>, [">= 0"])
+    s.add_dependency(%q<hirb>, ["~> 0.3"])
+    s.add_dependency(%q<awesome_print>, ["~> 0.3"])
+    s.add_dependency(%q<clipboard>, ["~> 0.9"])
+    s.add_dependency(%q<coderay>, ["~> 0.9"])
+    s.add_dependency(%q<boson>, ["~> 0.3"])
+    s.add_dependency(%q<wirble>, [">= 0"])
     s.add_dependency(%q<g>, [">= 0"])
-    s.add_dependency(%q<clipboard>, [">= 0.9"])
     s.add_dependency(%q<guessmethod>, [">= 0"])
     s.add_dependency(%q<interactive_editor>, [">= 0"])
-    s.add_dependency(%q<coderay>, [">= 0"])
-    s.add_dependency(%q<boson>, [">= 0"])
     s.add_dependency(%q<sketches>, [">= 0"])
   end
 end
