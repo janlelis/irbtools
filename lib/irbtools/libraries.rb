@@ -19,8 +19,18 @@ Irbtools.add_library :fileutils do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory
-  def cd(path = '/', *args)
-    FileUtils::Verbose.cd path, *args
+  def cd( path = File.expand_path('~') )
+    new_last_path = FileUtils.pwd
+    if path == '-'
+      if @last_path
+        path = @last_path
+      else
+        warn 'Sorry, there is no previous directory.'
+        return
+      end
+    end
+    FileUtils.cd path
+    @last_path = new_last_path
     ls
   end
 
