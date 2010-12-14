@@ -43,35 +43,56 @@ def clear
 end
 
 # change ruby version (requires rvm)
-def use_ruby(which = nil)
-  # test if installed
-  unless `rvm -v` =~ /Seguin/
-    raise 'Ruby Version Manager must be installed to use this command'
-  end
+autoload :RVM, 'irbtools/rvm'
 
+def rubies
+  RVM.current.list_strings
+end
+
+def use(which = nil) # TODO with gemsets?
   # show rubies if called without options
   if !which
-    puts 'Availabe Rubies: ' +
-          `rvm list`.scan( /^(?:  |=>) (.*) \[/ )*", "
-    return
+    return RVM.current.environment_name[/^.*@|.*$/].chomp('@')
   end
-
-  # get irb suffix
-  rv = `rvm use #{which}` # e.g. => "\ninfo: Using ruby 1.9.2 p0\n"
-                          # it does not change the ruby for the current user
-  rv =~ /^.*Using(.*)\n/
 
   # if ruby is found, start it
-  if $1
-    ruby_name = File.split( $1 )[-1].tr(' ', '-')
-    irbname = $0 + '-' + ruby_name# + '@global'
-    at_exit { exec irbname } # remember history
-    exit
-  else
-    puts "Sorry, that Ruby version could not be found."
+  begin
+    RVM.use! which.to_s
+  rescue RVM::IncompatibleRubyError => err
+    err.message =~ /requires (.*?) \(/
+    rubies = RVM.current.list_strings
+    if rubies.include? $1
+      # remember history...
+      run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
+      if defined?(Ripl)&& Ripl.instance_variable_get(:@shell) # ripl is running
+        Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
+        run_irb.call
+      else
+        at_exit(&run_irb)
+        exit
+      end
+    else
+      warn "Sorry, that Ruby version could not be found (see rubies)!"
+    end
   end
 end
-alias use use_ruby
+alias use_ruby use
+
+def gemsets
+  RVM.current.gemset.list
+end
+
+def gemset(which=nil)
+  if which
+    if RVM.current.gemset.list.include? which.to_s
+      RVM.use! RVM.current.environment_name.gsub /(@.*$|$)/, "@#{ which }"
+    else
+      warn "Sorry, that gemset could not be found (see gemsets)!"
+    end
+  end
+  RVM.current.gemset_name
+end
+alias use_gemset gemset
 
 # load debugger, inspired by rdp
 def dbg

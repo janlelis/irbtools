@@ -1,3 +1,11 @@
+[future] 0.8.3
+* improved/added rvm methods (use, gemset, rubies, gemsets)
+  * RVM (Ruby API) constant gets autoloaded
+
+0.8.2
+* only do irb specific features if in irb (ripl compatibility)
+* more generic shell_name (in welcome message)
+
 0.8.1
 * rewrote irb_rocket: fancy_irb. No more workarounds needed, anymore.
 * added sketches gem
