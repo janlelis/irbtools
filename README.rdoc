@@ -73,6 +73,10 @@ You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 * Make guessmethod 1.9 compatible
 * Nicer ri command
 
+=== Planned features for 0.9.0 (next version)
+* define flexibly, whether library should be loaded on start/on subsession or via autoload
+* faster loading
+
 == More Features
 
 * See the irbtools-more[https://github.com/janlelis/irbtools-more] package.
