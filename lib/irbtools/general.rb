@@ -50,12 +50,12 @@ def rubies
 end
 
 def use(which = nil) # TODO with gemsets?
-  # show rubies if called without options
+  # show current ruby if called without options
   if !which
     return RVM.current.environment_name[/^.*@|.*$/].chomp('@')
   end
 
-  # if ruby is found, start it
+  # start ruby :)
   begin
     RVM.use! which.to_s
   rescue RVM::IncompatibleRubyError => err
@@ -85,7 +85,7 @@ end
 def gemset(which=nil)
   if which
     if RVM.current.gemset.list.include? which.to_s
-      RVM.use! RVM.current.environment_name.gsub /(@.*$|$)/, "@#{ which }"
+      RVM.use! RVM.current.environment_name.gsub /(@.*?$)|$/, "@#{ which }"
     else
       warn "Sorry, that gemset could not be found (see gemsets)!"
     end

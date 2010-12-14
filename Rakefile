@@ -1,34 +1,33 @@
-require 'rubygems'
 require 'rake'
+require 'rake/rdoctask'
+require 'fileutils'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "irbtools"
-    gem.summary     = %Q{irbtools is a meta gem which installs some useful irb gems and configures your irb.}
-    gem.description = %Q{irbtools is a meta gem which installs some useful irb gems and configures your irb. Simply put a require 'irbtools' in the .irbrc file in your home directory.}
-    gem.email = "mail@janlelis.de"
-    gem.homepage = "http://github.com/janlelis/irbtools"
-    gem.authors = ["Jan Lelis"]
-    gem.add_dependency 'fancy_irb',     '>=0.6.2'
-    gem.add_dependency 'zucker',        '>=8'
-    gem.add_dependency 'hirb',          '~>0.3'
-    gem.add_dependency 'awesome_print', '~>0.3'
-    gem.add_dependency 'clipboard',     '~>0.9'
-    gem.add_dependency 'coderay',       '~>0.9'
-    gem.add_dependency 'boson',         '~>0.3'
-    gem.add_dependency 'wirble'
-    gem.add_dependency 'g'
-    gem.add_dependency 'guessmethod'
-    gem.add_dependency 'interactive_editor'
-    gem.add_dependency 'sketches'
-  end
-  Jeweler::GemcutterTasks.new
-rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+def gemspec
+  @gemspec ||= eval(File.read('irbtools.gemspec'), binding, 'irbtools.gemspec')
 end
 
-require 'rake/rdoctask'
+desc "Build the gem"
+task :gem=>:gemspec do
+  sh "gem build irbtools.gemspec"
+  FileUtils.mkdir_p 'pkg'
+  FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
+end
+
+desc "Install the gem locally (without docs)"
+task :install => :gem do
+  sh %{gem install pkg/#{gemspec.name}-#{gemspec.version} --no-rdoc --no-ri}
+end
+
+desc "Generate the gemspec"
+task :generate do
+  puts gemspec.to_ruby
+end
+
+desc "Validate the gemspec"
+task :gemspec do
+  gemspec.validate
+end
+
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
 

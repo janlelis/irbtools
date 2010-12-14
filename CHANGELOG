@@ -1,6 +1,7 @@
 [future] 0.8.3
 * improved/added rvm methods (use, gemset, rubies, gemsets)
   * RVM (Ruby API) constant gets autoloaded
+* improved cd command
 
 0.8.2
 * only do irb specific features if in irb (ripl compatibility)
