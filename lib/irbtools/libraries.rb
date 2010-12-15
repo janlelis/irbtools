@@ -78,21 +78,19 @@ Irbtools.add_library 'zucker/debug' # nice debug printing (q, o, c, .m, .d)
 Irbtools.add_library 'ap'           # nice debug printing (ap)
 Irbtools.add_library 'yaml'         # nice debug printing (y)
 Irbtools.add_library 'g'            # nice debug printing (g) - MacOS only :/
-Irbtools.add_library 'guessmethod', true   # automatically correct typos (method_missing hook)
+#Irbtools.add_library 'guessmethod', true   # automatically correct typos (method_missing hook)
 Irbtools.add_library 'interactive_editor'  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
 Irbtools.add_library 'sketches'            # another, more flexible "start editor and it gets loaded into your irb session" plugin
-#Irbtools.add_library 'zucker/all'         # see rubyzucker.info
 
 Irbtools.add_library :boson do
   undef :install if respond_to?( :install, true )
   Boson.start :verbose => false
 end
 
-Irbtools.add_library :hirb do # active record tables
+Irbtools.add_library :hirb do
   Hirb::View.enable
   extend Hirb::Console
 end
-
 
 # remove failing/not needed libs
 if OS.windows?
@@ -103,9 +101,9 @@ unless OS.mac?
   Irbtools.libraries -= %w[g]
 end
 
-if RubyVersion.is? 1.9
-  Irbtools.libraries_in_proc -= %w[guessmethod]
-end
+#if RubyVersion.is? 1.9
+#  Irbtools.libraries_in_proc -= %w[guessmethod]
+#end
 
 if defined? Ripl
   Irbtools.libraries -= %w[wirble fancy_irb]
