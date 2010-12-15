@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[ LICENSE README.rdoc]
   s.files                 = Dir.glob(%w[lib/**/*.rb ]) + %w{VERSION CHANGELOG Rakefile irbtools.gemspec}
   s.homepage              = %q{http://github.com/janlelis/irbtools}
-  s.rubygems_version      = %q{1.3.7}
   s.required_ruby_version = '>= 1.8.7'
 
   s.add_dependency %q<fancy_irb>,     ">= 0.6.2"
