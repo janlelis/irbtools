@@ -14,10 +14,14 @@ def rq(lib)
   require lib.to_s
 end
 
-# reloading, hints from http://www.themomorohoax.com/2009/03/27/irb-tip-load-files-faster
+# rerequire, please note: can have non-intended side effects
 def rerequire(lib)
-  $".delete( "#{lib}.rb" )
-  require( lib.to_s )
+  $".dup.grep(/#{lib}\.rb$/).each{ |path|
+    $".delete path.to_s
+    require path.to_s
+  }
+  require lib.to_s
+  true
 end
 alias rrq rerequire
 
