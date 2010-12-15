@@ -1,7 +1,9 @@
-[future] 0.8.3
+0.8.3
 * improved/added rvm methods (use, gemset, rubies, gemsets)
   * RVM (Ruby API) constant gets autoloaded
 * improved cd command
+* don't load guessmethod by default (it's cool, but not always suited for production)
+* more small changes
 
 0.8.2
 * only do irb specific features if in irb (ripl compatibility)

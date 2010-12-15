@@ -27,14 +27,28 @@ def ld(lib)
 end
 
 # returns the last lines, needed for some copy_ methods
-def session_history(number_of_lines = context.instance_variable_get(:@line_no) )
+def session_history(number_of_lines = nil)
+  if !number_of_lines
+    if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
+      number_of_lines = Ripl.shell.line
+    else
+      number_of_lines = context.instance_variable_get(:@line_no)
+    end
+  end
   Readline::HISTORY.entries[-number_of_lines...-1]*"\n"
 end
 
 # restart irb
 def reset!
-  at_exit { exec$0 } # remember history
-  exit
+  # remember history...
+  reset_irb = proc{ exec$0 } 
+  if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
+    Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
+    reset_irb.call
+  else
+    at_exit(&reset_irb)
+    exit
+  end
 end
 
 # just clear the screen
@@ -64,7 +78,7 @@ def use(which = nil) # TODO with gemsets?
     if rubies.include? $1
       # remember history...
       run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
-      if defined?(Ripl)&& Ripl.instance_variable_get(:@shell) # ripl is running
+      if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
         Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
         run_irb.call
       else
@@ -82,7 +96,7 @@ def gemsets
   RVM.current.gemset.list
 end
 
-def gemset(which=nil)
+def gemset(which = nil)
   if which
     if RVM.current.gemset.list.include? which.to_s
       RVM.use! RVM.current.environment_name.gsub /(@.*?$)|$/, "@#{ which }"
