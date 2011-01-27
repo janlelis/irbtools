@@ -6,12 +6,13 @@
 # see the README file for more information
 
 # the order does matter
-Irbtools.add_library :wirble do # colors
-  Wirble.init
-  Wirble.colorize unless OS.windows?
+Irbtools.add_library :wirb do # result colors
+  Wirb.start unless OS.windows?
 end
+Irbtools.add_library 'wirb/wp'
 
-Irbtools.add_library :fancy_irb do # put result as comment instead of a new line!
+
+Irbtools.add_library :fancy_irb do # put result as comment instead of a new line and colorful errors/streams
   FancyIrb.start
 end
 
@@ -106,7 +107,7 @@ end
 #end
 
 if defined? Ripl
-  Irbtools.libraries -= %w[wirble fancy_irb]
+  Irbtools.libraries -= %w[wirb fancy_irb] # install ripl-color_result for ripl colorization ;)
 end
 
 # J-_-L

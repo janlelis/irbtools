@@ -13,7 +13,7 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 
 To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
-  require 'rubygems' if RUBY_VERSION[2] == ?8 # rubygems is only needed in 1.8
+  require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
   require 'irbtools'
 
 If it does not exist, just create a new one.
@@ -40,20 +40,19 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 
 === Included gems and libraries
 
-* wirble[http://pablotron.org/software/wirble/]      colorize output
+* wirb[https://github.com/janlelis/wirb/]      colorize output
 * fancy_irbt[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * *fileutils*    cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * zucker/env[http://rubyzucker.info]   Info, OS, RubyVersion, RubyEngine
 * zucker/debug[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d)
 * ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap)
-* *yaml*      nice debug printing (y)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
-* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
+* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
 * interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
 * sketches[http://sketches.rubyforge.org/] another, more flexible "start editor and it gets loaded into your irb session" plugin
-* coderay[http://coderay.rubychan.de/]    some nice colorful display ;)
-* boson[http://tagaholic.me/boson/]  IRB commands repository (which also works for the shell!)
+* coderay[http://coderay.rubychan.de/]    some nice colorful displaying ;)
+* boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
 
 === Helper methods
 See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
@@ -72,12 +71,15 @@ If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</t
 
 You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 
+== Wrong display widths?
+When using double-width unicode chars, you should need to pass the <tt>:east_asian_width = true</tt> when starting <tt>FancyIrb</tt>. It is deactivated because of performance issues.
+
 == Bugs / TODO
 
 * Make guessmethod 1.9 compatible
 * Nicer ri command
 
-=== Planned features for 0.9.0 (next version)
+=== Planned features for 0.9.0 (next main version)
 * define flexibly, whether library should be loaded on start/on subsession or via autoload
 * faster loading
 
