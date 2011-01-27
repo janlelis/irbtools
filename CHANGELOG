@@ -1,3 +1,6 @@
+0.8.4
+* no using wirb instead of wirble
+
 0.8.3
 * improved/added rvm methods (use, gemset, rubies, gemsets)
   * RVM (Ruby API) constant gets autoloaded
