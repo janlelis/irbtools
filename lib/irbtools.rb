@@ -87,8 +87,8 @@ Object.const_set :RV, RubyVersion  rescue nil
 Object.const_set :RE, RubyEngine   rescue nil
 
 # load rails.rc
-begin 
-  if ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc
+begin
+  if ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc && File.exist?(Irbtools.railsrc)
     load File.expand_path( Irbtools.railsrc )
   end
 rescue
