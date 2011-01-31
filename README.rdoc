@@ -6,8 +6,8 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 
   gem install irbtools
   
-* On Linux, you also need the +xclip+ program: sudo <tt>apt-get install xclip</tt>
-* On MacOS, you need growl, if you want to use the +g+ gem.
+* On Linux, you need +xclip+ or +xsel+ to use the clipboard: <tt>sudo apt-get install xclip</tt>
+* On MacOS, you will need growl, if you want to use the +g+ gem.
 
 == Usage
 
@@ -23,6 +23,12 @@ It's possible to modify, which libraries get loaded:
   require 'irbtools/configure'
   # here you can modify which libraries get loaded (see below)
   Irbtools.init
+
+=== Rails notes
+
+To use irbtools within the rails console, you will have to add irbtools to your Gemfile.
+
+You can put Rails specific configuration in a <tt>~/.railsrc</tt> file which gets loaded only in Rails environments.
 
 === How to load more or less libraries
 
@@ -41,18 +47,17 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 === Included gems and libraries
 
 * wirb[https://github.com/janlelis/wirb/]      colorize output
-* fancy_irbt[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
-* *fileutils*    cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
-* zucker/env[http://rubyzucker.info]   Info, OS, RubyVersion, RubyEngine
-* zucker/debug[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d)
-* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap)
+* fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
+* *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
-* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
 * interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
 * sketches[http://sketches.rubyforge.org/] another, more flexible "start editor and it gets loaded into your irb session" plugin
+* zucker[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d) + useful pseudo-constants (Info, OS, RubyVersion, RubyEngine)
+* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap)
 * coderay[http://coderay.rubychan.de/]    some nice colorful displaying ;)
 * boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
+* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
 
 === Helper methods
 See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
@@ -74,9 +79,8 @@ You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 == Wrong display widths?
 When using double-width unicode chars, you should need to pass the <tt>:east_asian_width = true</tt> when starting <tt>FancyIrb</tt>. It is deactivated because of performance issues.
 
-== Bugs / TODO
+== Todo
 
-* Make guessmethod 1.9 compatible
 * Nicer ri command
 
 === Planned features for 0.9.0 (next main version)
@@ -85,7 +89,7 @@ When using double-width unicode chars, you should need to pass the <tt>:east_asi
 
 == More Features
 
-* See the irbtools-more[https://github.com/janlelis/irbtools-more] package.
+* See the irbtools-more[https://github.com/janlelis/irbtools-more] package or suggest some useful utilities/tweaks ;)
 
 == Copyright
 

@@ -1,5 +1,8 @@
+0.8.5
+* rails related fixes
+
 0.8.4
-* no using wirb instead of wirble
+* now using wirb instead of wirble
 
 0.8.3
 * improved/added rvm methods (use, gemset, rubies, gemsets)
