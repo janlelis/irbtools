@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency %q<fancy_irb>,     ">= 0.6.4"
   s.add_dependency %q<zucker>,        ">= 9"
-  s.add_dependency %q<hirb>,          "~> 0.3"
+  s.add_dependency %q<hirb>,          "~> 0.4"
   s.add_dependency %q<awesome_print>, "~> 0.3"
   s.add_dependency %q<clipboard>,     ">= 0.9.4"
   s.add_dependency %q<coderay>,       "~> 0.9"

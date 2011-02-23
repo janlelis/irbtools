@@ -91,6 +91,7 @@ end
 Irbtools.add_library :hirb do
   Hirb::View.enable
   extend Hirb::Console
+  Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
 
 # remove failing/not needed libs
