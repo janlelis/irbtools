@@ -1,5 +1,8 @@
-0.8.5
+0.8.6
 * update hirb + activate unicode-drawn tables
+
+0.8.5
+* rails related fixes
 
 0.8.4
 * now using wirb instead of wirble

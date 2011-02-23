@@ -16,7 +16,7 @@ end
 # define module methods
 module Irbtools
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @libs            = [] # %w[rubygems]
+  @libs            = []
   @libs_in_proc    = []
   @packages        = []
   @railsrc         = '~/.railsrc'

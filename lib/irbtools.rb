@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-if defined? ::IRB
+if defined?(IRB) || defined?(Ripl)
   # # # # #
   # require 'irbtools' in your .irbrc
   # see the README file for more information
@@ -55,7 +55,7 @@ if defined? ::IRB
 
   # # # # #
   # irb options
-  unless defined? ::Ripl
+  unless defined? Ripl
     IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
     IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
     IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
