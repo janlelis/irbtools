@@ -6,8 +6,12 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 
   gem install irbtools
   
-* On Linux, you need +xclip+ or +xsel+ to use the clipboard: <tt>sudo apt-get install xclip</tt>
+* On Linux, you also need +xclip+: sudo <tt>apt-get install xclip</tt>
+* On Windows, you need ansicon[https://github.com/adoxa/ansicon]
 * On MacOS, you will need growl, if you want to use the +g+ gem.
+
+=== Wrong display widths?
+When using double-width unicode chars, you should need to pass the <tt>:east_asian_width = true</tt> when starting <tt>FancyIrb</tt>. It is deactivated because of performance issues.
 
 == Usage
 
@@ -52,14 +56,15 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
 * interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
-* sketches[http://sketches.rubyforge.org/] another, more flexible "start editor and it gets loaded into your irb session" plugin
+* sketches[http://sketches.rubyforge.org/]   another, more flexible "start editor and it gets loaded into your irb session" plugin
 * zucker[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d) + useful pseudo-constants (Info, OS, RubyVersion, RubyEngine)
-* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap)
+* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap) [also see wp]
 * coderay[http://coderay.rubychan.de/]    some nice colorful displaying ;)
 * boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
 
 === Helper methods
+
 See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
 
 *General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, rubies, use_gemset/gemset, gemsets, dbg, Object#ri</tt>
@@ -76,14 +81,12 @@ If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</t
 
 You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 
-== Wrong display widths?
-When using double-width unicode chars, you should need to pass the <tt>:east_asian_width = true</tt> when starting <tt>FancyIrb</tt>. It is deactivated because of performance issues.
-
 == Todo
 
 * Nicer ri command
 
 === Planned features for 0.9.0 (next main version)
+
 * define flexibly, whether library should be loaded on start/on subsession or via autoload
 * faster loading
 
@@ -93,6 +96,6 @@ When using double-width unicode chars, you should need to pass the <tt>:east_asi
 
 == Copyright
 
-Copyright (c) 2010 Jan Lelis, http://rbjl.net, released under the MIT license.
+Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license.
 
 J-_-L
