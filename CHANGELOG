@@ -1,3 +1,6 @@
+0.8.7
+* fix railsrc loading
+
 0.8.6
 * windows support
 * update hirb + activate unicode-drawn tables

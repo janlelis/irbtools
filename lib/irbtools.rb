@@ -85,8 +85,9 @@ if defined?(IRB) || defined?(Ripl)
 
   # load rails.rc
   begin
-    if ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc && File.exist?(Irbtools.railsrc)
-      load File.expand_path( Irbtools.railsrc )
+    if  ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc &&
+        File.exist?( File.expand_path(Irbtools.railsrc) )
+      load File.expand_path(Irbtools.railsrc)
     end
   rescue
   end
