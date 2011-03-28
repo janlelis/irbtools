@@ -9,7 +9,7 @@
 Irbtools.add_library :wirb do # result colors
   Wirb.start unless OS.windows?
 end
-Irbtools.add_library 'wirb/wp'
+Irbtools.add_library 'wirb/wp' # ap alternative
 
 
 Irbtools.add_library :fancy_irb do # put result as comment instead of a new line and colorful errors/streams
@@ -93,6 +93,27 @@ Irbtools.add_library :hirb do
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
+
+Irbtools.add_library :ori do
+  class Object
+    # patch ori to also allow shell-like "Array#slice" syntax
+    def ri(*args)
+      if  args[0] &&
+          self == TOPLEVEL_BINDING.eval('self') &&
+          args[0] =~ /\A(.*)(?:#|\.)(.*)\Z/
+        begin
+          klass = Object.const_get $1
+          klass.ri $2
+        rescue
+          super
+        end
+      else
+        super
+      end
+    end
+  end
+end
+
 
 # remove failing/not needed libs
 if OS.windows?

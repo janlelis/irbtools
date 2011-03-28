@@ -24,6 +24,7 @@ If it does not exist, just create a new one.
 
 It's possible to modify, which libraries get loaded:
 
+  # don't require 'irbtools'
   require 'irbtools/configure'
   # here you can modify which libraries get loaded (see below)
   Irbtools.init
@@ -42,7 +43,10 @@ You have the following ways:
 * <tt>Irbtools.add_package(pkg)</tt>
 * <tt>Irbtools.remove_package(pkg)</tt>
 
-Edit the <tt>Irbtools.libraries</tt>, <tt>Irbtools.libraries_in_proc</tt> or <tt>Irbtools.packages</tt> arrays directly. If you use the <tt>add_library</tt> method, you can apply a block which gets executed when the library is loaded.
+You can edit the <tt>Irbtools.libraries</tt> or <tt>Irbtools.libraries_in_proc</tt> directly, but when using the <tt>add_library</tt> method, you can apply a block which gets executed after the library is loaded.
+
+==== Packages
+<tt>Irbtools.packages</tt> are extension packs for Irbtools, e.g. {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
 == Features
 
@@ -55,11 +59,11 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
 * *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
-* interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session
+* interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session, also possible: yaml object editing
 * sketches[http://sketches.rubyforge.org/]   another, more flexible "start editor and it gets loaded into your irb session" plugin
 * zucker[http:/rubyzucker.info]   nice debug printing (q, o, c, .m, .d) + useful pseudo-constants (Info, OS, RubyVersion, RubyEngine)
-* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap) [also see wp]
-* coderay[http://coderay.rubychan.de/]    some nice colorful displaying ;)
+* ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap) [also see wp from wirb/wp]
+* coderay[http://coderay.rubychan.de/]    some colorful code displaying ;)
 * boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
 
@@ -67,7 +71,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 
 See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
 
-*General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, rubies, use_gemset/gemset, gemsets, dbg, Object#ri</tt>
+*General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, rubies, use_gemset/gemset, gemsets, dbg</tt>
 
 *Clipboard*: <tt>copy, paste, copy_input, copy_output</tt>
 
@@ -81,18 +85,10 @@ If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</t
 
 You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 
-== Todo
-
-* Nicer ri command
-
-=== Planned features for 0.9.0 (next main version)
+== Planned features for 0.9.0 (next main version - probably coming in may 2011)
 
 * define flexibly, whether library should be loaded on start/on subsession or via autoload
 * faster loading
-
-== More Features
-
-* See the irbtools-more[https://github.com/janlelis/irbtools-more] package or suggest some useful utilities/tweaks ;)
 
 == Copyright
 

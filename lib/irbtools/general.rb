@@ -122,18 +122,4 @@ def dbg
   end
 end
 
-class Object
-  # display ri entry
-  def ri(meth)
-    ri_cmd = 'ri'
-    if instance_of?( Kernel ) || instance_of?( Object )
-      puts `#{ri_cmd} #{meth}`
-    elsif is_a? Module
-      puts `#{ri_cmd} #{self}.#{meth}`
-    else
-      puts `#{ri_cmd} #{self.class}##{meth}`
-    end
-  end
-end
-
 # J-_-L
