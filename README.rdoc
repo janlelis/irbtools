@@ -1,9 +1,7 @@
 = irbtools
-
 This is a meta gem which installs some useful irb gems and configures your irb.
 
 == Setup
-
   gem install irbtools
   
 * On Linux, you also need +xclip+: sudo <tt>apt-get install xclip</tt>
@@ -14,7 +12,6 @@ This is a meta gem which installs some useful irb gems and configures your irb.
 When using double-width unicode chars, you should need to pass the <tt>:east_asian_width = true</tt> when starting <tt>FancyIrb</tt>. It is deactivated because of performance issues.
 
 == Usage
-
 To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
   require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
@@ -30,13 +27,13 @@ It's possible to modify, which libraries get loaded:
   Irbtools.init
 
 === Rails notes
+To use irbtools within the rails console, you will have to add irbtools to your Gemfile <b>in this way:</b> (or there will be some bundler double require issues..)
 
-To use irbtools within the rails console, you will have to add irbtools to your Gemfile.
+  gem 'irbtools', :require => 'irbtools/configure'
 
 You can put Rails specific configuration in a <tt>~/.railsrc</tt> file which gets loaded only in Rails environments.
 
 === How to load more or less libraries
-
 You have the following ways:
 * <tt>Irbtools.add_library(lib, in_proc = false, &block)</tt>
 * <tt>Irbtools.remove_library(lib)</tt>
@@ -49,11 +46,9 @@ You can edit the <tt>Irbtools.libraries</tt> or <tt>Irbtools.libraries_in_proc</
 <tt>Irbtools.packages</tt> are extension packs for Irbtools, e.g. {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
 == Features
-
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files.
 
 === Included gems and libraries
-
 * wirb[https://github.com/janlelis/wirb/]      colorize output
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
@@ -72,7 +67,6 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 
 === Helper methods
-
 See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
 
 *General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, rubies, use_gemset/gemset, gemsets, dbg</tt>
@@ -82,20 +76,16 @@ See the source for a description. These methods are defined directly by irbtools
 *CodeRay*: <tt>colorize, ray</tt>
 
 ==== RVM
-
 If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</tt> and <tt>use</tt> (use <tt>gemsets</tt> and <tt>rubies</tt> to get a list). The gemset can be changed within the session, while changing ruby starts a new one. Please also note that you need to have installed irbtools for that ruby version. I recommend installing it in the <tt>global</tt> gemset.
 
 == Welcome message
-
 You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
 
 == Planned features for 0.9.0 (next main version - probably coming in may 2011)
-
 * define flexibly, whether library should be loaded on start/on subsession or via autoload
 * faster loading
 
 == Copyright
-
 Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license.
 
 J-_-L
