@@ -1,3 +1,8 @@
+0.8.8
+* fix 0.8.7 file permissions
+* add methodfinder gem
+* don't depend on guessmethod anymore
+
 0.8.7
 * fix railsrc loading
 * add ori gem for nice Object#ri calling

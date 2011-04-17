@@ -114,6 +114,14 @@ Irbtools.add_library :ori do
   end
 end
 
+Irbtools.add_library :methodfinder do
+  MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed, :sketch]
+  
+  def mf(*args, &block)
+    args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
+  end
+end
+
 
 # remove failing/not needed libs
 if OS.windows?
@@ -123,10 +131,6 @@ end
 unless OS.mac?
   Irbtools.libraries -= %w[g]
 end
-
-#if RubyVersion.is? 1.9
-#  Irbtools.libraries_in_proc -= %w[guessmethod]
-#end
 
 if defined? Ripl
   Irbtools.libraries -= %w[wirb fancy_irb] # install ripl-color_result for ripl colorization ;)

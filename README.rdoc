@@ -57,7 +57,6 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * wirb[https://github.com/janlelis/wirb/]      colorize output
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
-* *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
 * interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session, also possible: yaml object editing
 * sketches[http://sketches.rubyforge.org/]   another, more flexible "start editor and it gets loaded into your irb session" plugin
@@ -65,7 +64,12 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * ap[https://github.com/michaeldv/awesome_print]      nice debug printing (ap) [also see wp from wirb/wp]
 * coderay[http://coderay.rubychan.de/]    some colorful code displaying ;)
 * boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
-* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook) [not loaded by default]
+* methodfinder[https://github.com/citizen428/methodfinder] interesting method finder (mf)
+* *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+
+=== Not included anymore
+
+* guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 
 === Helper methods
 

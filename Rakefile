@@ -7,7 +7,7 @@ def gemspec
 end
 
 desc "Build the gem"
-task :gem=>:gemspec do
+task :gem => :gemspec do
   sh "gem build irbtools.gemspec"
   FileUtils.mkdir_p 'pkg'
   FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'

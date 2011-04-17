@@ -21,11 +21,11 @@ Gem::Specification.new do |s|
   s.add_dependency %q<awesome_print>, "~> 0.3.2"
   s.add_dependency %q<clipboard>,     ">= 0.9.7"
   s.add_dependency %q<coderay>,       "~> 0.9"
-  s.add_dependency %q<boson>,         "~> 0.3"
+  s.add_dependency %q<boson>,         ">= 0.3.3"
   s.add_dependency %q<wirb>,          ">= 0.2.4"
   s.add_dependency %q<interactive_editor>, ">= 0.0.8"
   s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<sketches>,      ">= 0"
   s.add_dependency %q<g>,             ">= 0"
-  s.add_dependency %q<guessmethod>,   ">= 0"
+  s.add_dependency %q<methodfinder>,  ">= 1.2.1"
 end
