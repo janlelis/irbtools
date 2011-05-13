@@ -1,3 +1,6 @@
+1.0.0
+* 4 different loading schemas: require, after_rc, thread, autoload
+
 0.8.8
 * fix 0.8.7 file permissions
 * add methodfinder gem

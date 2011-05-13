@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+start = Time.now
+
 if defined?(IRB) || defined?(Ripl)
   # # # # #
   # require 'irbtools' in your .irbrc
@@ -19,7 +21,7 @@ if defined?(IRB) || defined?(Ripl)
 
   # # # # #
   # load libraries
-
+puts "before load: #{ Time.now - start }"
   # load helper proc
   load_libraries_proc = proc{ |libs|
     remember_verbose_and_debug = $VERBOSE, $DEBUG
@@ -27,9 +29,13 @@ if defined?(IRB) || defined?(Ripl)
 
     libs.each{ |lib|
       begin
+        now = Time.now
+#puts "before #{lib}: #{ Time.now - start }"
         require lib.to_s
+#puts "#{lib}: %.2f" % (Time.now - now)
 
         Irbtools.send :library_loaded, lib
+#puts "#{lib}(hook): %.2f" % (Time.now - now)
 
       rescue LoadError => err
         warn "Couldn't load an irb library: #{err}"
@@ -38,17 +44,33 @@ if defined?(IRB) || defined?(Ripl)
     $VERBOSE, $DEBUG = remember_verbose_and_debug
   }
 
-  # load them :)
-  load_libraries_proc[ Irbtools.libraries ]
+  # load: require
+  load_libraries_proc[ Irbtools.libraries[:require] ]
 
-  # load these each time a new sub irb starts (only if supported)
-  original_irbrc_proc = IRB.conf[:IRB_RC]
-  IRB.conf[:IRB_RC] = proc{
-    load_libraries_proc[ Irbtools.libraries_in_proc ]
-    original_irbrc_proc[ ]  if original_irbrc_proc
+  # load : after_rc / sub-session
+  if defined?(Ripl) && Ripl.started?
+    if defined? Ripl::AfterRc
+      Ripl.after_rcs += Irbtools.libraries[:after_rc]
+    else
+      warn "Couldn't load Irbtools.libraries[:after_rc]. Install ripl-after_rc to use this feature for Ripl"
+    end
+  else
+    original_irbrc_proc = IRB.conf[:IRB_RC]
+    IRB.conf[:IRB_RC] = proc{
+      load_libraries_proc[ Irbtools.libraries[:after_rc] ]
+      original_irbrc_proc[ ]  if original_irbrc_proc
+    }
+  end
+
+  # load: autoload
+  Irbtools.libraries[:autoload].each{ |constant, lib|
+    gem lib
+    autoload constant, lib
+    Irbtools.send :library_loaded, lib
   }
 
 
+#puts "after loading: #{ Time.now - start }"
   # # # # #
   # general shortcuts & helper methods
   require File.expand_path('irbtools/general', File.dirname(__FILE__) )
@@ -83,7 +105,7 @@ if defined?(IRB) || defined?(Ripl)
   Object.const_set :RV, RubyVersion  rescue nil
   Object.const_set :RE, RubyEngine   rescue nil
 
-  # load rails.rc
+  # load: rails.rc
   begin
     if  ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc &&
         File.exist?( File.expand_path(Irbtools.railsrc) )
@@ -92,6 +114,13 @@ if defined?(IRB) || defined?(Ripl)
   rescue
   end
 
+  # load: threads
+  Irbtools.libraries[:thread].each{ |_,libs|
+    Thread.new do
+      load_libraries_proc[ libs ]
+    end
+  }
+
   # # # # #
   # done :)
   if msg = Irbtools.welcome_message
@@ -99,4 +128,5 @@ if defined?(IRB) || defined?(Ripl)
   end
 end
 
+#puts "__END__ #{ Time.now - start }"
 # J-_-L

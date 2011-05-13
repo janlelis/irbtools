@@ -16,8 +16,7 @@ end
 # define module methods
 module Irbtools
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @libs            = []
-  @libs_in_proc    = []
+  @libs            = { :require => [], :after_rc => [], :autoload => [], :thread => {} }
   @packages        = []
   @railsrc         = '~/.railsrc'
   @shell_name      = File.split($0)[-1].upcase
@@ -30,27 +29,31 @@ module Irbtools
     # shell name (usually irb), retrieved from $0
     attr_reader :shell_name
 
-    # lets you define the path to the irbrc or deactivate this feature with nil
+    # lets you define the path to the railsrc file or deactivate this feature with nil
     attr_accessor :railsrc
 
-    # an array of the libraries which get loaded at start
+    # a hash of arrays of libraries that get loaded
+    # keys determine if lib is required, required on sub-session or autoloaded
     attr_accessor :libs
     aliases_for :libs, :libraries, :gems
     aliases_for :libs=, :libraries=, :gems=
 
-    # an array of the libraries which get loaded everytime a new subirb starts (IRB.conf[:IRB_RC])
-    attr_accessor :libs_in_proc
-    aliases_for :libs_in_proc, :libraries_in_proc, :gems_in_proc
-    aliases_for :libs_in_proc=, :libraries_in_proc=, :gems_in_proc=
-
-    # an array of extension packages which get loaded (e.g. irbtools-more)
+    # an array of extension packages that get loaded (e.g. irbtools-more)
     attr_accessor :packages
 
     # add a library. the block gets executed, when the library was loaded.
     # if the second param is true, it's hooked in into IRB.conf[:IRB_RC] instead of the start.
-    def add_library(lib, in_proc = false, &block)
-      libs = in_proc ? @libs_in_proc : @libs
-      libs << lib.to_s unless libs.include? lib.to_s
+    def add_library(lib, options = {}, &block)
+      if constant = options[:autoload]
+        @libs[:autoload] << [constant, lib.to_s]
+      elsif options[:after_rc]
+        @libs[:after_rc] << lib.to_s
+      elsif which = options[:thread]
+        @libs[:thread][which] ||= []
+        @libs[:thread][which] << lib.to_s
+      else
+        @libs[:require] << lib.to_s
+      end
 
       @lib_hooks[lib.to_s] << block if block_given?
     end
@@ -58,8 +61,9 @@ module Irbtools
 
     # don't load a specific library
     def remove_library(lib)
-      @libs.delete lib.to_s
-      @libs_in_proc.delete lib.to_s
+      @libs[:require].delete lib.to_s
+      @libs[:after_rc].delete lib.to_s
+      @libs[:autload].reject{|_,e| e == lib.to_s }
       @lib_hooks.delete lib.to_s
     end
     aliases_for :remove_library, :remove_lib, :remove_gem
@@ -73,7 +77,6 @@ module Irbtools
     def remove_package(pkg)
       @packages.delete pkg.to_s
     end
-
 
     def library_loaded(lib) #:nodoc:
       @lib_hooks[lib.to_s].each{ |hook| hook.call }
