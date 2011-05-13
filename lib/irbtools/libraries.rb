@@ -1,27 +1,30 @@
 # encoding: utf-8
 
-# default set of libraries
+# default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
-# # # require
+# # # load via threads
 
-Irbtools.add_library :wirb do # result colors, install ripl-color_result for ripl colorization
+Irbtools.add_library :wirb, :thread => 10 do # result colors, install ripl-color_result for ripl colorization
   Wirb.start unless OS.windows?
 end unless OS.windows? || ( defined?(Ripl) ) #&& Ripl.started? )
 
-Irbtools.add_library :fancy_irb do # put result as comment instead of a new line and colorful errors/streams
+Irbtools.add_library :fancy_irb, :thread => 20 do # put result as comment instead of a new line and colorful errors/streams
   FancyIrb.start
 end unless defined?(Ripl) # && Ripl.started?
 
-Irbtools.add_library :hirb do
+Irbtools.add_library :hirb, :thread => 30 do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
 
+Irbtools.add_library :boson, :thread => 30 do
+  undef install if respond_to?( :install, true )
+  undef menu    if respond_to?( :menu, true )
+  Boson.start :verbose => false
+end
 
-# # # threads
-
-Irbtools.add_library :fileutils, :thread => 1 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+Irbtools.add_library :fileutils, :thread => 40 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory
@@ -41,19 +44,19 @@ Irbtools.add_library :fileutils, :thread => 1 do # cd, pwd, ln_s, mv, rm, mkdir,
   end
 end
 
-Irbtools.add_library 'zucker/debug', :thread => 2 # nice debug printing (q, o, c, .m, .d)
+Irbtools.add_library 'zucker/debug', :thread => 50 # nice debug printing (q, o, c, .m, .d)
 
-Irbtools.add_library 'ap', :thread => 3           # nice debug printing (ap)
+Irbtools.add_library 'ap', :thread => 60           # nice debug printing (ap)
 
-Irbtools.add_library 'wirb/wp', :thread => 4 # ap alternative
+Irbtools.add_library 'wirb/wp', :thread => 70      # ap alternative (wp)
 
-Irbtools.add_library 'g', :thread => 5 if OS.mac? # nice debug printing (g) - MacOS only :/
+Irbtools.add_library 'g', :thread => 80 if OS.mac? # nice debug printing (g) - MacOS only :/
 
-Irbtools.add_library 'interactive_editor', :thread => 6  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'interactive_editor', :thread => 90  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
 
-Irbtools.add_library 'sketches', :thread => 7            # another, more flexible "start editor and it gets loaded into your irb session" plugin
+Irbtools.add_library 'sketches', :thread => 100    # another, more flexible "start editor and it gets loaded into your irb session" plugin
 
-Irbtools.add_library :ori, :thread => 8 do
+Irbtools.add_library :ori, :thread => 110 do       # object oriented ri method
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
@@ -73,13 +76,8 @@ Irbtools.add_library :ori, :thread => 8 do
   end
 end
 
-#Irbtools.add_library :boson, :thread => 9 do
-#  undef :install if respond_to?( :install, true )
-#  Boson.start :verbose => false
-#end
 
-
-# # # autoload
+# # # load via autoload
 
 Irbtools.add_library :coderay, :autoload => :CodeRay do
   # syntax highlight a string
@@ -119,7 +117,7 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do # access the clipboa
   alias copy_session_output copy_output
 end
 
-Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
+Irbtools.add_library :methodfinder, :autoload => :MethodFinder do # small-talk like method finder
   MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed, :sketch]
   
   def mf(*args, &block)

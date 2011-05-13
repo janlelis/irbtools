@@ -1,11 +1,11 @@
 = irbtools
-This is a meta gem which installs some useful irb gems and configures your irb.
+This is a meta gem which installs useful irb gems and configures your irb. It has a modular structure and supports multiple library-loading mechanisms like via <tt>autoload</tt> or threads.
 
 == Setup
   gem install irbtools
   
-* On Linux, you also need +xclip+: sudo <tt>apt-get install xclip</tt>
-* On Windows, you need ansicon[https://github.com/adoxa/ansicon]
+* On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
+* On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enjoy all the colors
 * On MacOS, you will need growl, if you want to use the +g+ gem.
 
 === Wrong display widths?
@@ -24,7 +24,7 @@ It's possible to modify, which libraries get loaded:
   # don't require 'irbtools'
   require 'irbtools/configure'
   # here you can modify which libraries get loaded (see below)
-  Irbtools.init
+  Irbtools.start
 
 === Rails notes
 To use irbtools within the rails console, you will have to add irbtools to your Gemfile <b>in this way:</b> (or there will be some bundler double require issues..)
@@ -35,15 +35,25 @@ You can put Rails specific configuration in a <tt>~/.railsrc</tt> file which get
 
 === How to load more or less libraries
 You have the following ways:
-* <tt>Irbtools.add_library(lib, in_proc = false, &block)</tt>
+* <tt>Irbtools.add_library(lib, options_hash, &block)</tt>
 * <tt>Irbtools.remove_library(lib)</tt>
+
+The <tt>options_hash</tt> defines the way in which Irbtools loads the library. Following options are possible
+* (no options) - The library is loaded on startup via <tt>require</tt> (before displaying the prompt)
+* <tt>:thread => identifier</tt> - After loading everything else, the library is required in a thread (while showing the prompt). You can choose any identifier, but if you take the same one for multiple libraries, they will be loaded in the same thread (in the order that you define)
+* <tt>:after_rc => true</tt> - sub-session
+* <tt>:autoload => :Constant</tt> - Use Ruby's <tt>autoload</tt> feature. It loads the library as soon as the constant is encountered.
+
+You can also apply a block that gets executed after the library is loaded (except for autoload, the code will executed on startup in this case).
+
+See the <tt>Irbtools.libraries</tt> hash for the current Irbtools configuration, which actually will be used.
+
+==== Packages
+There are irbtools extension packages, which can be modified via:
 * <tt>Irbtools.add_package(pkg)</tt>
 * <tt>Irbtools.remove_package(pkg)</tt>
 
-You can edit the <tt>Irbtools.libraries</tt> or <tt>Irbtools.libraries_in_proc</tt> directly, but when using the <tt>add_library</tt> method, you can apply a block which gets executed after the library is loaded.
-
-==== Packages
-<tt>Irbtools.packages</tt> are extension packs for Irbtools, e.g. {irbtools-more}[https://github.com/janlelis/irbtools-more].
+These packages add/modify the libraries to be loaded. For an example, see {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
 == Features
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files.
@@ -79,11 +89,7 @@ See the source for a description. These methods are defined directly by irbtools
 If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</tt> and <tt>use</tt> (use <tt>gemsets</tt> and <tt>rubies</tt> to get a list). The gemset can be changed within the session, while changing ruby starts a new one. Please also note that you need to have installed irbtools for that ruby version. I recommend installing it in the <tt>global</tt> gemset.
 
 == Welcome message
-You can customize the welcome message with <tt>Irbtools.welcome_message=</tt>
-
-== Planned features for 0.9.0 (next main version - probably coming in may 2011)
-* define flexibly, whether library should be loaded on start/on subsession or via autoload
-* faster loading
+The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
 
 == Copyright
 Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license.

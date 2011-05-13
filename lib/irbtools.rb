@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-start = Time.now
-
 if defined?(IRB) || defined?(Ripl)
   # # # # #
   # require 'irbtools' in your .irbrc
@@ -21,22 +19,16 @@ if defined?(IRB) || defined?(Ripl)
 
   # # # # #
   # load libraries
-puts "before load: #{ Time.now - start }"
-  # load helper proc
+  
+  # loading helper proc
   load_libraries_proc = proc{ |libs|
     remember_verbose_and_debug = $VERBOSE, $DEBUG
     $VERBOSE = $DEBUG = false
 
     libs.each{ |lib|
       begin
-        now = Time.now
-#puts "before #{lib}: #{ Time.now - start }"
         require lib.to_s
-#puts "#{lib}: %.2f" % (Time.now - now)
-
         Irbtools.send :library_loaded, lib
-#puts "#{lib}(hook): %.2f" % (Time.now - now)
-
       rescue LoadError => err
         warn "Couldn't load an irb library: #{err}"
       end
@@ -44,8 +36,8 @@ puts "before load: #{ Time.now - start }"
     $VERBOSE, $DEBUG = remember_verbose_and_debug
   }
 
-  # load: require
-  load_libraries_proc[ Irbtools.libraries[:require] ]
+  # load: start
+  load_libraries_proc[ Irbtools.libraries[:start] ]
 
   # load : after_rc / sub-session
   if defined?(Ripl) && Ripl.started?
@@ -70,7 +62,6 @@ puts "before load: #{ Time.now - start }"
   }
 
 
-#puts "after loading: #{ Time.now - start }"
   # # # # #
   # general shortcuts & helper methods
   require File.expand_path('irbtools/general', File.dirname(__FILE__) )
@@ -128,5 +119,4 @@ puts "before load: #{ Time.now - start }"
   end
 end
 
-#puts "__END__ #{ Time.now - start }"
 # J-_-L

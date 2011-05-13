@@ -16,7 +16,7 @@ end
 # define module methods
 module Irbtools
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @libs            = { :require => [], :after_rc => [], :autoload => [], :thread => {} }
+  @libs            = { :start => [], :after_rc => [], :autoload => [], :thread => {} }
   @packages        = []
   @railsrc         = '~/.railsrc'
   @shell_name      = File.split($0)[-1].upcase
@@ -52,7 +52,7 @@ module Irbtools
         @libs[:thread][which] ||= []
         @libs[:thread][which] << lib.to_s
       else
-        @libs[:require] << lib.to_s
+        @libs[:start] << lib.to_s
       end
 
       @lib_hooks[lib.to_s] << block if block_given?
