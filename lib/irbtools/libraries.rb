@@ -24,7 +24,9 @@ Irbtools.add_library :boson, :thread => 30 do
   Boson.start :verbose => false
 end
 
-Irbtools.add_library :fileutils, :thread => 40 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+Irbtools.add_library 'every_day_irb', :thread => 40 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
+
+Irbtools.add_library :fileutils, :thread => 50 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory
@@ -44,19 +46,19 @@ Irbtools.add_library :fileutils, :thread => 40 do # cd, pwd, ln_s, mv, rm, mkdir
   end
 end
 
-Irbtools.add_library 'zucker/debug', :thread => 50 # nice debug printing (q, o, c, .m, .d)
+Irbtools.add_library 'zucker/debug', :thread => 60 # nice debug printing (q, o, c, .m, .d)
 
-Irbtools.add_library 'ap', :thread => 60           # nice debug printing (ap)
+Irbtools.add_library 'ap', :thread => 70           # nice debug printing (ap)
 
-Irbtools.add_library 'wirb/wp', :thread => 70      # ap alternative (wp)
+Irbtools.add_library 'wirb/wp', :thread => 80      # ap alternative (wp)
 
-Irbtools.add_library 'g', :thread => 80 if OS.mac? # nice debug printing (g) - MacOS only :/
+Irbtools.add_library 'g', :thread => 90 if OS.mac? # nice debug printing (g) - MacOS only :/
 
-Irbtools.add_library 'interactive_editor', :thread => 90  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'interactive_editor', :thread => 100  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
 
-Irbtools.add_library 'sketches', :thread => 100    # another, more flexible "start editor and it gets loaded into your irb session" plugin
+Irbtools.add_library 'sketches', :thread => 110    # another, more flexible "start editor and it gets loaded into your irb session" plugin
 
-Irbtools.add_library :ori, :thread => 110 do       # object oriented ri method
+Irbtools.add_library :ori, :thread => 120 do       # object oriented ri method
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
@@ -123,6 +125,57 @@ Irbtools.add_library :methodfinder, :autoload => :MethodFinder do # small-talk l
   def mf(*args, &block)
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
   end
+end
+
+Irbtools.add_library 'rvm_loader', :autoload => :RVM do
+  def rubies
+    RVM.current.list_strings
+  end
+
+  def use(which = nil) # TODO with gemsets?
+    # show current ruby if called without options
+    if !which
+      return RVM.current.environment_name[/^.*@|.*$/].chomp('@')
+    end
+
+    # start ruby :)
+    begin
+      RVM.use! which.to_s
+    rescue RVM::IncompatibleRubyError => err
+      err.message =~ /requires (.*?) \(/
+      rubies = RVM.current.list_strings
+      if rubies.include? $1
+        # remember history...
+        run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
+        if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
+          Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
+          run_irb.call
+        else
+          at_exit(&run_irb)
+          exit
+        end
+      else
+        warn "Sorry, that Ruby version could not be found (see rubies)!"
+      end
+    end
+  end
+  alias use_ruby use
+
+  def gemsets
+    RVM.current.gemset.list
+  end
+
+  def gemset(which = nil)
+    if which
+      if RVM.current.gemset.list.include? which.to_s
+        RVM.use! RVM.current.environment_name.gsub /(@.*?$)|$/, "@#{ which }"
+      else
+        warn "Sorry, that gemset could not be found (see gemsets)!"
+      end
+    end
+    RVM.current.gemset_name
+  end
+  alias use_gemset gemset
 end
 
 # J-_-L

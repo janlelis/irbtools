@@ -1,5 +1,5 @@
 = irbtools
-This is a meta gem which installs useful irb gems and configures your irb. It has a modular structure and supports multiple library-loading mechanisms like via <tt>autoload</tt> or threads.
+This is a meta gem that installs useful irb gems and configures your irb. It has a modular structure and supports multiple library-loading mechanisms like via <tt>autoload</tt> or threads.
 
 == Setup
   gem install irbtools
@@ -62,6 +62,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * wirb[https://github.com/janlelis/wirb/]      colorize output
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
+* every_day_irb[https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb]   helper methods that might be useful in every-day irb usage, e.g.: ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg
 * clipboard[http://github.com/janlelis/clipboard]     easy clipboard access (copy & paste)
 * interactive_editor[https://github.com/jberkel/interactive_editor]    lets you open vim, hack something, and it gets loaded into the current session, also possible: yaml object editing
 * sketches[http://sketches.rubyforge.org/]   another, more flexible "start editor and it gets loaded into your irb session" plugin
@@ -75,15 +76,6 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 === Not included anymore
 
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
-
-=== Helper methods
-See the source for a description. These methods are defined directly by irbtools. Each gem may add its own helper methods.
-
-*General*: <tt>ls, cat, rq, rrq/rerequire, ld, session_history, reset!, clear, use_ruby/use, rubies, use_gemset/gemset, gemsets, dbg</tt>
-
-*Clipboard*: <tt>copy, paste, copy_input, copy_output</tt>
-
-*CodeRay*: <tt>colorize, ray</tt>
 
 ==== RVM
 If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</tt> and <tt>use</tt> (use <tt>gemsets</tt> and <tt>rubies</tt> to get a list). The gemset can be changed within the session, while changing ruby starts a new one. Please also note that you need to have installed irbtools for that ruby version. I recommend installing it in the <tt>global</tt> gemset.

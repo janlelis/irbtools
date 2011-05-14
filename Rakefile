@@ -2,37 +2,37 @@ require 'rake'
 require 'rake/rdoctask'
 require 'fileutils'
 
-def gemspec
-  @gemspec ||= eval(File.read('irbtools.gemspec'), binding, 'irbtools.gemspec')
+def gemspec1
+  @gemspec1 ||= eval(File.read('irbtools.gemspec'), binding, 'irbtools.gemspec')
+end
+
+def gemspec2
+  @gemspec2 ||= eval(File.read('every_day_irb.gemspec'), binding, 'every_day_irb.gemspec')
 end
 
 desc "Build the gem"
 task :gem => :gemspec do
   sh "gem build irbtools.gemspec"
+  sh "gem build every_day_irb.gemspec"
   FileUtils.mkdir_p 'pkg'
-  FileUtils.mv "#{gemspec.name}-#{gemspec.version}.gem", 'pkg'
+  FileUtils.mv "#{gemspec1.name}-#{gemspec1.version}.gem", 'pkg'
+  FileUtils.mv "#{gemspec2.name}-#{gemspec2.version}.gem", 'pkg'
 end
 
 desc "Install the gem locally (without docs)"
 task :install => :gem do
-  sh %{gem install pkg/#{gemspec.name}-#{gemspec.version} --no-rdoc --no-ri}
+  sh %{gem install pkg/#{gemspec2.name}-#{gemspec2.version} --no-rdoc --no-ri}
+  sh %{gem install pkg/#{gemspec1.name}-#{gemspec1.version} --no-rdoc --no-ri}
 end
 
 desc "Generate the gemspec"
 task :generate do
-  puts gemspec.to_ruby
+  puts gemspec1.to_ruby
+  puts gemspec2.to_ruby
 end
 
 desc "Validate the gemspec"
 task :gemspec do
-  gemspec.validate
-end
-
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION').chomp : ""
-
-  rdoc.rdoc_dir = 'doc'
-  rdoc.title = "irbtools #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+  gemspec1.validate
+  gemspec2.validate
 end

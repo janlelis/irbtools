@@ -1,3 +1,9 @@
+# every_day_irb defines some helper methods that might be useful in every-day irb usage
+
+module EveryDayIrb
+  VERSION = File.read( File.dirname(__FILE__) + '/../VERSION' ).chomp
+end
+
 # shows the contents of your current directory (more such commands available by FileUtils)
 def ls(path='.')
   Dir[ File.join( path, '*' )].map{|res| res =~ /^#{path}\/?/; $' }
@@ -59,58 +65,6 @@ end
 def clear
   system 'clear'
 end
-
-# change ruby version (requires rvm)
-autoload :RVM, 'irbtools/rvm'
-
-def rubies
-  RVM.current.list_strings
-end
-
-def use(which = nil) # TODO with gemsets?
-  # show current ruby if called without options
-  if !which
-    return RVM.current.environment_name[/^.*@|.*$/].chomp('@')
-  end
-
-  # start ruby :)
-  begin
-    RVM.use! which.to_s
-  rescue RVM::IncompatibleRubyError => err
-    err.message =~ /requires (.*?) \(/
-    rubies = RVM.current.list_strings
-    if rubies.include? $1
-      # remember history...
-      run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
-      if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
-        Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
-        run_irb.call
-      else
-        at_exit(&run_irb)
-        exit
-      end
-    else
-      warn "Sorry, that Ruby version could not be found (see rubies)!"
-    end
-  end
-end
-alias use_ruby use
-
-def gemsets
-  RVM.current.gemset.list
-end
-
-def gemset(which = nil)
-  if which
-    if RVM.current.gemset.list.include? which.to_s
-      RVM.use! RVM.current.environment_name.gsub /(@.*?$)|$/, "@#{ which }"
-    else
-      warn "Sorry, that gemset could not be found (see gemsets)!"
-    end
-  end
-  RVM.current.gemset_name
-end
-alias use_gemset gemset
 
 # load debugger, inspired by rdp
 def dbg

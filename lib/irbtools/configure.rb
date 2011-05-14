@@ -15,6 +15,8 @@ end
 # # # # #
 # define module methods
 module Irbtools
+  VERSION = File.read( File.dirname(__FILE__) + '/../../VERSION' ).chomp
+
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
   @libs            = { :start => [], :after_rc => [], :autoload => [], :thread => {} }
   @packages        = []
@@ -89,8 +91,6 @@ module Irbtools
     end
     alias start init
   end
-
-  VERSION = ( File.read File.expand_path( '../../VERSION', File.dirname(__FILE__)) ).chomp
 end
 
 # # # # #

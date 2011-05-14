@@ -39,7 +39,7 @@ if defined?(IRB) || defined?(Ripl)
   # load: start
   load_libraries_proc[ Irbtools.libraries[:start] ]
 
-  # load : after_rc / sub-session
+  # load: after_rc / sub-session
   if defined?(Ripl) && Ripl.started?
     if defined? Ripl::AfterRc
       Ripl.after_rcs += Irbtools.libraries[:after_rc]
@@ -54,17 +54,12 @@ if defined?(IRB) || defined?(Ripl)
     }
   end
 
-  # load: autoload
+  # load: autoload hooks
   Irbtools.libraries[:autoload].each{ |constant, lib|
     gem lib
     autoload constant, lib
     Irbtools.send :library_loaded, lib
   }
-
-
-  # # # # #
-  # general shortcuts & helper methods
-  require File.expand_path('irbtools/general', File.dirname(__FILE__) )
 
   # # # # #
   # irb options
