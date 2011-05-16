@@ -1,5 +1,8 @@
 1.0.0
+* gemify general helpers/rvm stuff ("every_day_irb", "rvm_loader")
 * 4 different loading schemas: require, after_rc, thread, autoload
+  * load almost every feature in threads
+* don't use zucker/alias_for, autload zucker/env (except zucker/os) for performance reasons
 
 0.8.8
 * fix 0.8.7 file permissions

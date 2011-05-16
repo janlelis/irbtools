@@ -5,20 +5,13 @@
 # but you could also require 'irbtools/configure' and then call Irbtools.init to modify the loaded libraries
 # see the README file for more information
 
-begin
-  require 'zucker/alias_for'
-  require 'zucker/env'       # Info, OS, RubyVersion, RubyEngine
-rescue LoadError
-  raise LoadError, "Sorry, the irbtools couldn't load, because the zucker gem is not available"
-end
-
 # # # # #
 # define module methods
 module Irbtools
   VERSION = File.read( File.dirname(__FILE__) + '/../../VERSION' ).chomp
 
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @libs            = { :start => [], :after_rc => [], :autoload => [], :thread => {} }
+  @libraries       = { :start => [], :after_rc => [], :autoload => [], :thread => {} }
   @packages        = []
   @railsrc         = '~/.railsrc'
   @shell_name      = File.split($0)[-1].upcase
@@ -36,9 +29,13 @@ module Irbtools
 
     # a hash of arrays of libraries that get loaded
     # keys determine if lib is required, required on sub-session or autoloaded
-    attr_accessor :libs
-    aliases_for :libs, :libraries, :gems
-    aliases_for :libs=, :libraries=, :gems=
+    attr_accessor :libraries
+    # aliases_for :libs, :libraries, :gems
+    # aliases_for :libs=, :libraries=, :gems=
+    alias libs libraries
+    alias libs= libraries=
+    alias gems libraries
+    alias gems= libraries=
 
     # an array of extension packages that get loaded (e.g. irbtools-more)
     attr_accessor :packages
@@ -47,28 +44,40 @@ module Irbtools
     # if the second param is true, it's hooked in into IRB.conf[:IRB_RC] instead of the start.
     def add_library(lib, options = {}, &block)
       if constant = options[:autoload]
-        @libs[:autoload] << [constant, lib.to_s]
+        lib_path = File.split( lib.to_s ); lib_path.delete('.')
+        gem_name = lib_path[0] # assume that first dir in load dir is the gem name
+        if constant.is_a?(Array)
+          constant.each{ |single_constant|
+            @libraries[:autoload] << [single_constant, lib.to_s, gem_name]
+          }
+        else
+          @libraries[:autoload] << [constant, lib.to_s, gem_name]
+        end
       elsif options[:after_rc]
-        @libs[:after_rc] << lib.to_s
+        @libraries[:after_rc] << lib.to_s
       elsif which = options[:thread]
-        @libs[:thread][which] ||= []
-        @libs[:thread][which] << lib.to_s
+        @libraries[:thread][which] ||= []
+        @libraries[:thread][which] << lib.to_s
       else
-        @libs[:start] << lib.to_s
+        @libraries[:start] << lib.to_s
       end
 
       @lib_hooks[lib.to_s] << block if block_given?
     end
-    aliases_for :add_library, :add_lib, :add_gem
+    # aliases_for :add_library, :add_lib, :add_gem
+    alias add_lib add_library
+    alias add_gem add_library
 
     # don't load a specific library
     def remove_library(lib)
-      @libs[:require].delete lib.to_s
-      @libs[:after_rc].delete lib.to_s
-      @libs[:autload].reject{|_,e| e == lib.to_s }
+      @libraries[:require].delete lib.to_s
+      @libraries[:after_rc].delete lib.to_s
+      @libraries[:autload].reject{|_,e| e == lib.to_s }
       @lib_hooks.delete lib.to_s
     end
-    aliases_for :remove_library, :remove_lib, :remove_gem
+    # aliases_for :remove_library, :remove_lib, :remove_gem
+    alias remove_lib remove_library
+    alias remove_gem remove_library
 
     # add extensions packages
     def add_package(pkg)

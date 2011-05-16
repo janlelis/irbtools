@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'zucker/os'
+
 # default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
 # # # load via threads
@@ -80,6 +82,8 @@ end
 
 
 # # # load via autoload
+
+Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info]
 
 Irbtools.add_library :coderay, :autoload => :CodeRay do
   # syntax highlight a string

@@ -55,10 +55,10 @@ if defined?(IRB) || defined?(Ripl)
   end
 
   # load: autoload hooks
-  Irbtools.libraries[:autoload].each{ |constant, lib|
-    gem lib
-    autoload constant, lib
-    Irbtools.send :library_loaded, lib
+  Irbtools.libraries[:autoload].each{ |constant, lib_name, gem_name|
+    gem gem_name
+    autoload constant, lib_name
+    Irbtools.send :library_loaded, lib_name
   }
 
   # # # # #
@@ -85,11 +85,12 @@ if defined?(IRB) || defined?(Ripl)
   # misc
 
   # add current directory to the load path
-  $: << '.'  if RubyVersion.is.at_least? '1.9.2'
+  $: << '.'  if RUBY_VERSION >= '1.9.2'
+  # $: << '.'  if RubyVersion.is.at_least? '1.9.2'
 
   # shorter ruby info constants
-  Object.const_set :RV, RubyVersion  rescue nil
-  Object.const_set :RE, RubyEngine   rescue nil
+  #Object.const_set :RV, RubyVersion  rescue nil
+  #Object.const_set :RE, RubyEngine   rescue nil
 
   # load: rails.rc
   begin
