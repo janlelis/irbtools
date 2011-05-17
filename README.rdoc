@@ -26,6 +26,8 @@ It's possible to modify, which libraries get loaded:
   # here you can modify which libraries get loaded (see below)
   Irbtools.start
 
+You can also deactivate the loading of the complete default set of irbtools libraries by using <tt>require 'irbtools/minimal'</tt> instead of <tt>configure</tt>. You need to use the below methods for adding libraries in this case, or it won't modify anything of your irb ;).
+
 === Rails notes
 To use irbtools within the rails console, you will have to add irbtools to your Gemfile <b>in this way:</b> (or there will be some bundler double require issues..)
 

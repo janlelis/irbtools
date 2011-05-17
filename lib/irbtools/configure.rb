@@ -16,6 +16,7 @@ module Irbtools
   @railsrc         = '~/.railsrc'
   @shell_name      = File.split($0)[-1].upcase
   @welcome_message = "Welcome to #{ @shell_name }. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
+  @minimal         ||= false
 
   class << self
     # message to display when starting. Set to nil to disable
@@ -26,6 +27,9 @@ module Irbtools
 
     # lets you define the path to the railsrc file or deactivate this feature with nil
     attr_accessor :railsrc
+
+    # set this to true before loading this file to deactivate loading of default libraries
+    attr_accessor :minimal
 
     # a hash of arrays of libraries that get loaded
     # keys determine if lib is required, required on sub-session or autoloaded
@@ -104,7 +108,7 @@ end
 
 # # # # #
 # libraries
-require File.expand_path( 'libraries.rb', File.dirname(__FILE__) )
+require File.expand_path( 'libraries.rb', File.dirname(__FILE__) ) unless Irbtools.minimal
 
 # J-_-L
 
