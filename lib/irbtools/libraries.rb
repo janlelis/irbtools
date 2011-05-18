@@ -8,11 +8,11 @@ require 'zucker/os'
 
 Irbtools.add_library :wirb, :late => true do # result colors, install ripl-color_result for ripl colorization
   Wirb.start unless OS.windows?
-end unless OS.windows? || ( defined?(Ripl) ) #&& Ripl.started? )
+end unless OS.windows? || ( defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started? )
 
 Irbtools.add_library :fancy_irb, :late => true do # put result as comment instead of a new line and colorful errors/streams
   FancyIrb.start
-end unless defined?(Ripl) # && Ripl.started?
+end unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
 
 
 # # # load via late_thread
@@ -160,7 +160,7 @@ Irbtools.add_library 'rvm_loader', :autoload => :RVM do
       if rubies.include? $1
         # remember history...
         run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
-        if defined?(Ripl) && Ripl.instance_variable_get(:@shell) # ripl is running
+        if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
           Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
           run_irb.call
         else

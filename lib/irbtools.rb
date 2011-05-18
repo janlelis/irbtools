@@ -48,7 +48,7 @@ if defined?(IRB) || defined?(Ripl)
 
   # # # # #
   # irb options
-  unless defined?(Ripl)
+  unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
     IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
     IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
     IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
@@ -82,10 +82,10 @@ if defined?(IRB) || defined?(Ripl)
 
   # # # # #
   # load: sub-session / after_rc
-  if defined?(Ripl) && Ripl.started?
+  if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
     if defined? Ripl::AfterRc
       Ripl.after_rcs += Irbtools.libraries[:sub_session]
-    else
+    elsif !Irbtools.libraries[:sub_session].empty?
       warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
     end
   else
