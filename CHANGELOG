@@ -4,6 +4,7 @@
   * load almost every feature in threads
 * don't use zucker/alias_for, autload zucker/env (except zucker/os) for performance reasons
 * add irbtools/minimal mode for starting Irbtools without the default set of libraries
+* replace RV and RE with rv and re
 
 0.8.8
 * fix 0.8.7 file permissions

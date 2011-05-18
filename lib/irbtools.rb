@@ -67,15 +67,8 @@ if defined?(IRB) || defined?(Ripl)
   end
 
   # # # # #
-  # misc
-
-  # add current directory to the load path
+  # misc: add current directory to the load path
   $: << '.'  if RUBY_VERSION >= '1.9.2'
-  # $: << '.'  if RubyVersion.is.at_least? '1.9.2'
-
-  # shorter ruby info constants
-  #Object.const_set :RV, RubyVersion  rescue nil
-  #Object.const_set :RE, RubyEngine   rescue nil
 
   # # # # #
   # load: rails.rc

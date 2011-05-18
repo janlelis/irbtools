@@ -89,7 +89,10 @@ end
 
 # # # load via autoload
 
-Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info]
+Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info] do
+  def rv; RubyVersion; end
+  def re; RubyEngine;  end
+end
 
 Irbtools.add_library :coderay, :autoload => :CodeRay do
   # syntax highlight a string
