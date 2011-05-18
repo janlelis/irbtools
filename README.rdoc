@@ -80,14 +80,16 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * methodfinder[https://github.com/citizen428/methodfinder] interesting method finder (mf)
 * *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 
-By the way: You can get about 0.1 - 0.3 seconds faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (only drawback: the hash rocket will not be used for the first result).
-
 === Not included anymore
 
 * guessmethod[http://guessmethod.rubyforge.org/]    automatically corrects typos (method_missing hook)
 
 ==== RVM
 If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</tt> and <tt>use</tt> (use <tt>gemsets</tt> and <tt>rubies</tt> to get a list). The gemset can be changed within the session, while changing ruby starts a new one. Please also note that you need to have installed irbtools for that ruby version. I recommend installing it in the <tt>global</tt> gemset.
+
+== Hint: Faster start-up
+
+You can get an about a second faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (drawback: the hash rocket will not be used for the first result).
 
 == Welcome message
 The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>

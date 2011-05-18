@@ -21,22 +21,9 @@ Irbtools.add_library 'wirb/wp', :late_thread => 10 # ap alternative (wp)
 
 
 # # # load via thread
+# the :stdlib thread ensures proper loading of fileutils, yaml and tempfile
 
-Irbtools.add_library :hirb, :thread => 10 do
-  Hirb::View.enable
-  extend Hirb::Console
-  Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
-end
-
-Irbtools.add_library :boson, :thread => 10 do
-  undef install if respond_to?( :install, true )
-  undef menu    if respond_to?( :menu, true )
-  Boson.start :verbose => false
-end
-
-Irbtools.add_library 'every_day_irb', :thread => 20 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
-
-Irbtools.add_library :fileutils, :thread => 30 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory
@@ -56,17 +43,31 @@ Irbtools.add_library :fileutils, :thread => 30 do # cd, pwd, ln_s, mv, rm, mkdir
   end
 end
 
-Irbtools.add_library 'zucker/debug', :thread => 40 # nice debug printing (q, o, c, .m, .d)
+Irbtools.add_library :hirb, :thread => :stdlib do
+  Hirb::View.enable
+  extend Hirb::Console
+  Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
+end
 
-Irbtools.add_library 'ap', :thread => 50           # nice debug printing (ap)
+Irbtools.add_library :boson, :thread => :stdlib do
+  undef install if respond_to?( :install, true )
+  undef menu    if respond_to?( :menu, true )
+  Boson.start :verbose => false
+end
 
-Irbtools.add_library 'g', :thread => 60 if OS.mac? # nice debug printing (g) - MacOS only :/
+Irbtools.add_library 'every_day_irb', :thread => 10 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 
-Irbtools.add_library 'interactive_editor', :thread => 70  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'zucker/debug', :thread => 20 # nice debug printing (q, o, c, .m, .d)
 
-Irbtools.add_library 'sketches', :thread => 80    # another, more flexible "start editor and it gets loaded into your irb session" plugin
+Irbtools.add_library 'ap', :thread => 30           # nice debug printing (ap)
 
-Irbtools.add_library :ori, :thread => 90 do       # object oriented ri method
+Irbtools.add_library 'g', :thread => 40 if OS.mac? # nice debug printing (g) - MacOS only :/
+
+Irbtools.add_library 'interactive_editor', :thread => :stdlib  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+
+Irbtools.add_library 'sketches', :thread => :stdlib    # another, more flexible "start editor and it gets loaded into your irb session" plugin
+
+Irbtools.add_library :ori, :thread => 50 do       # object oriented ri method
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
@@ -90,8 +91,8 @@ end
 # # # load via autoload
 
 Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info] do
-  def rv; RubyVersion; end
-  def re; RubyEngine;  end
+  def rv() RubyVersion end unless defined? rv
+  def re() RubyEngine  end unless defined? re
 end
 
 Irbtools.add_library :coderay, :autoload => :CodeRay do
@@ -181,7 +182,7 @@ Irbtools.add_library 'rvm_loader', :autoload => :RVM do
   def gemset(which = nil)
     if which
       if RVM.current.gemset.list.include? which.to_s
-        RVM.use! RVM.current.environment_name.gsub /(@.*?$)|$/, "@#{ which }"
+        RVM.use! RVM.current.environment_name.gsub(/(@.*?$)|$/, "@#{ which }")
       else
         warn "Sorry, that gemset could not be found (see gemsets)!"
       end
