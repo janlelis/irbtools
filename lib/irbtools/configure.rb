@@ -82,7 +82,7 @@ module Irbtools
 
       @libraries[:start].delete lib
       @libraries[:sub_session].delete lib
-      @libraries[:autload].reject!{|_,e,| e == lib }
+      @libraries[:autoload].reject!{|_,e,| e == lib }
       @libraries[:thread].each{ |_,libs| libs.delete lib }
       @libraries[:late].delete lib
       @libraries[:late_thread].each{ |_,libs| libs.delete lib }

@@ -1,18 +1,17 @@
 # encoding: utf-8
 # default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
-require 'zucker/os'
-
-
 # # # load via late
 
-Irbtools.add_library :wirb, :late => true do # result colors, install ripl-color_result for ripl colorization
-  Wirb.start unless OS.windows?
-end unless OS.windows? || ( defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started? )
+unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+  Irbtools.add_library :wirb, :late => true do # result colors, install ripl-color_result for ripl colorization
+    Wirb.start 
+  end
 
-Irbtools.add_library :fancy_irb, :late => true do # put result as comment instead of a new line and colorful errors/streams
-  FancyIrb.start
-end unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+  Irbtools.add_library :fancy_irb, :late => true do # put result as comment instead of a new line and colorful errors/streams
+    FancyIrb.start
+  end
+end
 
 
 # # # load via late_thread
@@ -21,7 +20,7 @@ Irbtools.add_library 'wirb/wp', :late_thread => 10 # ap alternative (wp)
 
 
 # # # load via thread
-# the :stdlib thread ensures proper loading of fileutils, yaml and tempfile
+#      the :stdlib thread ensures proper loading of fileutils, yaml and tempfile
 
 Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
@@ -43,31 +42,40 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
   end
 end
 
+# tables, menus...
 Irbtools.add_library :hirb, :thread => :stdlib do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
 
+# command framework
 Irbtools.add_library :boson, :thread => :stdlib do
   undef install if respond_to?( :install, true )
   undef menu    if respond_to?( :menu, true )
   Boson.start :verbose => false
 end
 
-Irbtools.add_library 'every_day_irb', :thread => 10 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
+# ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
+Irbtools.add_library 'every_day_irb', :thread => 10 
 
-Irbtools.add_library 'zucker/debug', :thread => 20 # nice debug printing (q, o, c, .m, .d)
+# nice debug printing (q, o, c, .m, .d)
+Irbtools.add_library 'zucker/debug', :thread => 20
 
-Irbtools.add_library 'ap', :thread => 30           # nice debug printing (ap)
+# nice debug printing (ap)
+Irbtools.add_library 'ap', :thread => 30
 
-Irbtools.add_library 'g', :thread => 40 if OS.mac? # nice debug printing (g) - MacOS only :/
+# nice debug printing (g)
+Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 
-Irbtools.add_library 'interactive_editor', :thread => :stdlib  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+# lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'interactive_editor', :thread => :stdlib
 
-Irbtools.add_library 'sketches', :thread => :stdlib    # another, more flexible "start editor and it gets loaded into your irb session" plugin
+# another, more flexible "start editor and it gets loaded into your irb session" plugin
+Irbtools.add_library 'sketches', :thread => :stdlib    
 
-Irbtools.add_library :ori, :thread => 50 do       # object oriented ri method
+# object oriented ri method
+Irbtools.add_library :ori, :thread => 50 do
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
@@ -90,24 +98,27 @@ end
 
 # # # load via autoload
 
-Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info] do
+# useful information pseudo-constants
+Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info, :OS] do
   def rv() RubyVersion end unless defined? rv
   def re() RubyEngine  end unless defined? re
 end
 
+# syntax highlight
 Irbtools.add_library :coderay, :autoload => :CodeRay do
-  # syntax highlight a string
+  # ...a string
   def colorize(string)
     puts CodeRay.scan( string, :ruby ).term
   end
 
-  # syntax highlight a file
+  # ...a file
   def ray(path)
     print CodeRay.scan( File.read(path), :ruby ).term
   end
-end unless OS.windows?
+end
 
-Irbtools.add_library :clipboard, :autoload => :Clipboard do # access the clipboard
+# access the clipboard
+Irbtools.add_library :clipboard, :autoload => :Clipboard do
   # copies the clipboard
   def copy(str)
     Clipboard.copy(str)
@@ -133,7 +144,8 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do # access the clipboa
   alias copy_session_output copy_output
 end
 
-Irbtools.add_library :methodfinder, :autoload => :MethodFinder do # small-talk like method finder
+# small-talk like method finder
+Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
   MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed, :sketch]
   
   def mf(*args, &block)
@@ -141,6 +153,7 @@ Irbtools.add_library :methodfinder, :autoload => :MethodFinder do # small-talk l
   end
 end
 
+# rvm helpers
 Irbtools.add_library 'rvm_loader', :autoload => :RVM do
   def rubies
     RVM.current.list_strings
