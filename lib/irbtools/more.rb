@@ -4,7 +4,7 @@ standalone =  !(defined? Irbtools)
 # define version
 module Irbtools
   module More
-    PACKAGE_VERSION = ( File.read File.expand_path( '../../VERSION', File.dirname(__FILE__)) ).chomp
+    VERSION = ( File.read File.expand_path( '../../VERSION', File.dirname(__FILE__)) ).chomp
   end
 end
 
@@ -18,14 +18,14 @@ if standalone
 end
 
 # irbtools-more libraries
-Irbtools.add_library :drx
-Irbtools.add_library :bond do
+Irbtools.add_library :drx, :thread => 'more_1'
+Irbtools.add_library :bond, :thread => 'more_2' do
   Bond.start :gems => %w[irbtools]
 end
 
 # load now
 if standalone
-  Irbtools.init
+  Irbtools.start
 end
 
 # J-_-L

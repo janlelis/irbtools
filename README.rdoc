@@ -1,16 +1,13 @@
 = irbtools-more
 
-irbtools[http://github.com/janlelis/irbtools] is a meta gem which installs some useful irb gems and configures your irb.
+irbtools[https://github.com/janlelis/irbtools] is a meta gem which installs some useful irb gems and configures your irb.
 
 <tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: better auto completion and an object inspector.
 
 == Setup
 
   gem install irbtools-more
-  gem install irb_rocket --source http://merbi.st
   
-* On Linux, you also need the +xclip+ program (apt-get install xclip).
-* On MacOS, you need growl, if you want to use the +g+ gem.
 * You need +tk+ for DrX (maybe try <tt>tk_as_gem</tt>)
 
 == Usage
@@ -45,6 +42,6 @@ Feel free to build your own extension package gem (see this gem's source) and up
 
 == Copyright
 
-Copyright (c) 2010 Jan Lelis, http://rbjl.net. See LICENSE for details.
+Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net. See LICENSE for details.
 
 J-_-L
