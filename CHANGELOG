@@ -1,6 +1,6 @@
 1.0.0
 * gemify general helpers/rvm stuff ("every_day_irb", "rvm_loader")
-* 4 different loading schemas: require, after_rc, thread, autoload
+* 6 different loading schemas: start, thread, autoload, sub-session, late, late_thread
   * load almost every feature in threads
 * don't use zucker/alias_for, autload zucker/env (except zucker/os) for performance reasons
 * add irbtools/minimal mode for starting Irbtools without the default set of libraries

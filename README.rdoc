@@ -41,14 +41,19 @@ You have the following ways:
 * <tt>Irbtools.remove_library(lib)</tt>
 
 The <tt>options_hash</tt> defines the way in which Irbtools loads the library. Following options are possible
-* (no options) - The library is loaded on startup via <tt>require</tt> (before displaying the prompt)
-* <tt>:thread => identifier</tt> - After loading everything else, the library is required in a thread (while showing the prompt). You can choose any identifier, but if you take the same one for multiple libraries, they will be loaded in the same thread (in the order that you define)
-* <tt>:after_rc => true</tt> - sub-session
+* (no options)/<tt>:start</tt> - The library is required on startup before doing anything else
+ (before displaying the prompt)
+* <tt>:thread => identifier</tt> - After loading everything else, the library is required in a thread (while continuing loading). You can choose any identifier, but if you take the same one for multiple libraries, they will be loaded in the same thread (in the order that you define)
+* <tt>:late => true</tt> - The library is required just before showing the prompt (note: loading threads might still be in process)
+* <tt>:late_thread => identifier</tt> - Same as <tt>:thread</tt>, but after loading late libraries.
+* <tt>:sub_session => true</tt> - The library is loaded every time a sub-session starts (using <tt>IRB.conf[:IRB_RC]</tt>). In ripl[https://github.com/cldwalker/ripl], <tt>ripl-after_rc</tt> is used.
 * <tt>:autoload => :Constant</tt> - Use Ruby's <tt>autoload</tt> feature. It loads the library as soon as the constant is encountered.
 
 You can also apply a block that gets executed after the library is loaded (except for autoload, the code will executed on startup in this case).
 
-See the <tt>Irbtools.libraries</tt> hash for the current Irbtools configuration, which actually will be used.
+When adding a new library, you should consider adding it via autoload, try loading it via thread if autoload is not suitable and fallback to some other method, if not via thread is not possible.
+
+See the <tt>Irbtools.libraries</tt> hash for the current Irbtools configuration that actually will be used when calling <tt>Irbtools.start</tt>.
 
 ==== Packages
 There are irbtools extension packages, which can be modified via:
@@ -74,6 +79,8 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 * boson[http://tagaholic.me/boson/]  commands repository (commands also work in the shell!)
 * methodfinder[https://github.com/citizen428/methodfinder] interesting method finder (mf)
 * *fileutils* (stdlib) cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+
+By the way: You can get about 0.1 - 0.3 seconds faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (only drawback: the hash rocket will not be used for the first result).
 
 === Not included anymore
 

@@ -1,34 +1,42 @@
 # encoding: utf-8
+# default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
 require 'zucker/os'
 
-# default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
-# # # load via threads
+# # # load via late
 
-Irbtools.add_library :wirb, :thread => 10 do # result colors, install ripl-color_result for ripl colorization
+Irbtools.add_library :wirb, :late => true do # result colors, install ripl-color_result for ripl colorization
   Wirb.start unless OS.windows?
 end unless OS.windows? || ( defined?(Ripl) ) #&& Ripl.started? )
 
-Irbtools.add_library :fancy_irb, :thread => 20 do # put result as comment instead of a new line and colorful errors/streams
+Irbtools.add_library :fancy_irb, :late => true do # put result as comment instead of a new line and colorful errors/streams
   FancyIrb.start
 end unless defined?(Ripl) # && Ripl.started?
 
-Irbtools.add_library :hirb, :thread => 30 do
+
+# # # load via late_thread
+
+Irbtools.add_library 'wirb/wp', :late_thread => 10 # ap alternative (wp)
+
+
+# # # load via thread
+
+Irbtools.add_library :hirb, :thread => 10 do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
 
-Irbtools.add_library :boson, :thread => 30 do
+Irbtools.add_library :boson, :thread => 10 do
   undef install if respond_to?( :install, true )
   undef menu    if respond_to?( :menu, true )
   Boson.start :verbose => false
 end
 
-Irbtools.add_library 'every_day_irb', :thread => 40 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
+Irbtools.add_library 'every_day_irb', :thread => 20 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 
-Irbtools.add_library :fileutils, :thread => 50 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+Irbtools.add_library :fileutils, :thread => 30 do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory
@@ -48,19 +56,17 @@ Irbtools.add_library :fileutils, :thread => 50 do # cd, pwd, ln_s, mv, rm, mkdir
   end
 end
 
-Irbtools.add_library 'zucker/debug', :thread => 60 # nice debug printing (q, o, c, .m, .d)
+Irbtools.add_library 'zucker/debug', :thread => 40 # nice debug printing (q, o, c, .m, .d)
 
-Irbtools.add_library 'ap', :thread => 70           # nice debug printing (ap)
+Irbtools.add_library 'ap', :thread => 50           # nice debug printing (ap)
 
-Irbtools.add_library 'wirb/wp', :thread => 80      # ap alternative (wp)
+Irbtools.add_library 'g', :thread => 60 if OS.mac? # nice debug printing (g) - MacOS only :/
 
-Irbtools.add_library 'g', :thread => 90 if OS.mac? # nice debug printing (g) - MacOS only :/
+Irbtools.add_library 'interactive_editor', :thread => 70  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
 
-Irbtools.add_library 'interactive_editor', :thread => 100  # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
+Irbtools.add_library 'sketches', :thread => 80    # another, more flexible "start editor and it gets loaded into your irb session" plugin
 
-Irbtools.add_library 'sketches', :thread => 110    # another, more flexible "start editor and it gets loaded into your irb session" plugin
-
-Irbtools.add_library :ori, :thread => 120 do       # object oriented ri method
+Irbtools.add_library :ori, :thread => 90 do       # object oriented ri method
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)

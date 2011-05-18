@@ -18,8 +18,6 @@ if defined?(IRB) || defined?(Ripl)
   }
 
   # # # # #
-  # load libraries
-  
   # loading helper proc
   load_libraries_proc = proc{ |libs|
     remember_verbose_and_debug = $VERBOSE, $DEBUG
@@ -36,25 +34,12 @@ if defined?(IRB) || defined?(Ripl)
     $VERBOSE, $DEBUG = remember_verbose_and_debug
   }
 
+  # # # # #
   # load: start
   load_libraries_proc[ Irbtools.libraries[:start] ]
 
-  # load: after_rc / sub-session
-  if defined?(Ripl) && Ripl.started?
-    if defined? Ripl::AfterRc
-      Ripl.after_rcs += Irbtools.libraries[:after_rc]
-    else
-      warn "Couldn't load Irbtools.libraries[:after_rc]. Install ripl-after_rc to use this feature for Ripl"
-    end
-  else
-    original_irbrc_proc = IRB.conf[:IRB_RC]
-    IRB.conf[:IRB_RC] = proc{
-      load_libraries_proc[ Irbtools.libraries[:after_rc] ]
-      original_irbrc_proc[ ]  if original_irbrc_proc
-    }
-  end
-
-  # load: autoload hooks
+  # # # # #
+  # load: autoload
   Irbtools.libraries[:autoload].each{ |constant, lib_name, gem_name|
     gem gem_name
     autoload constant, lib_name
@@ -63,7 +48,7 @@ if defined?(IRB) || defined?(Ripl)
 
   # # # # #
   # irb options
-  unless defined? Ripl
+  unless defined?(Ripl)
     IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
     IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
     IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
@@ -92,6 +77,7 @@ if defined?(IRB) || defined?(Ripl)
   #Object.const_set :RV, RubyVersion  rescue nil
   #Object.const_set :RE, RubyEngine   rescue nil
 
+  # # # # #
   # load: rails.rc
   begin
     if  ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc &&
@@ -101,8 +87,37 @@ if defined?(IRB) || defined?(Ripl)
   rescue
   end
 
+  # # # # #
+  # load: sub-session / after_rc
+  if defined?(Ripl) && Ripl.started?
+    if defined? Ripl::AfterRc
+      Ripl.after_rcs += Irbtools.libraries[:sub_session]
+    else
+      warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
+    end
+  else
+    original_irbrc_proc = IRB.conf[:IRB_RC]
+    IRB.conf[:IRB_RC] = proc{
+      load_libraries_proc[ Irbtools.libraries[:sub_session] ]
+      original_irbrc_proc[ ]  if original_irbrc_proc
+    }
+  end
+
+  # # # # #
   # load: threads
   Irbtools.libraries[:thread].each{ |_,libs|
+    Thread.new do
+      load_libraries_proc[ libs ]
+    end
+  }
+
+  # # # # #
+  # load: late
+  load_libraries_proc[ Irbtools.libraries[:late] ]
+
+  # # # # #
+  # load: late_threads
+  Irbtools.libraries[:late_thread].each{ |_,libs|
     Thread.new do
       load_libraries_proc[ libs ]
     end
