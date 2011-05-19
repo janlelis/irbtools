@@ -1,6 +1,8 @@
 # encoding: utf-8
 # default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
 
+require 'rbconfig'
+
 # # # load via late
 
 unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?

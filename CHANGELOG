@@ -1,3 +1,6 @@
+1.0.1
+* add missing require 'rbconfig'
+
 1.0.0
 * gemify general helpers/rvm stuff ("every_day_irb", "rvm_loader")
 * 6 different loading schemas: start, thread, autoload, sub_session, late, late_thread
