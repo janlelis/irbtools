@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email                 = 'mail@janlelis.de'
   s.extra_rdoc_files      = %w[LICENSE README.rdoc]
   s.files                 = %w[lib/irbtools.rb lib/irbtools/configure.rb lib/irbtools/libraries.rb lib/irbtools/minimal.rb VERSION CHANGELOG Rakefile irbtools.gemspec]
-  s.homepage              = 'http://github.com/janlelis/irbtools'
+  s.homepage              = 'https://github.com/janlelis/irbtools'
   s.required_ruby_version = '>= 1.8.7'
 
   s.add_dependency %q<fancy_irb>,     ">= 0.6.5"
@@ -29,4 +29,12 @@ Gem::Specification.new do |s|
   s.add_dependency %q<methodfinder>,  ">= 1.2.3"
   s.add_dependency %q<rvm_loader>,    ">= 1.0.0"
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
+
+  len = s.homepage.size
+  s.post_install_message = \
+   ("       ┌── " + "info ".ljust(len-2,'%')                         + "─┐\n" +
+    " J-_-L │ "   + s.homepage                                       + " │\n" +
+    "       ├── " + "usage ".ljust(len-2,'%')                        + "─┤\n" +
+    "       │ "   + "require 'require 'irbtools'".ljust(len,' ')     + " │\n" +
+    "       └─"   + '─'*len                                          + "─┘").gsub('%', '─') # 1.8 workaround
 end
