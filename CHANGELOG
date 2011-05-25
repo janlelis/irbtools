@@ -1,3 +1,6 @@
+1.0.2
+* version bumps for zucker (rbx compatible) and wirb (improved generic object-description highlighting)
+
 1.0.1
 * add missing require 'rbconfig'
 
