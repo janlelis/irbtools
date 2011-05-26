@@ -62,7 +62,9 @@ end
 Irbtools.add_library 'every_day_irb', :thread => 10 
 
 # nice debug printing (q, o, c, .m, .d)
-Irbtools.add_library 'zucker/debug', :thread => 20
+unless defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
+  Irbtools.add_library 'zucker/debug', :thread => 20 
+end
 
 # nice debug printing (ap)
 Irbtools.add_library 'ap', :thread => 30
