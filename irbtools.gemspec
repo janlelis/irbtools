@@ -35,6 +35,6 @@ Gem::Specification.new do |s|
    ("       ┌── " + "info ".ljust(len-2,'%')                         + "─┐\n" +
     " J-_-L │ "   + s.homepage                                       + " │\n" +
     "       ├── " + "usage ".ljust(len-2,'%')                        + "─┤\n" +
-    "       │ "   + "require 'require 'irbtools'".ljust(len,' ')     + " │\n" +
+    "       │ "   + "require 'irbtools'".ljust(len,' ')              + " │\n" +
     "       └─"   + '─'*len                                          + "─┘").gsub('%', '─') # 1.8 workaround
 end
