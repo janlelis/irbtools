@@ -27,7 +27,7 @@ if defined?(IRB) || defined?(Ripl)
       begin
         require lib.to_s
         Irbtools.send :library_loaded, lib
-      rescue LoadError => err
+      rescue Exception => err
         warn "Couldn't load an irb library: #{err}"
       end
     }

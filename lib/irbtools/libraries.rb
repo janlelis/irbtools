@@ -53,8 +53,9 @@ end
 
 # command framework
 Irbtools.add_library :boson, :thread => :stdlib do
+  # hirb issues, TODO fix cleanly
   undef install if respond_to?( :install, true )
-  undef menu    if respond_to?( :menu, true )
+  Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
   Boson.start :verbose => false
 end
 

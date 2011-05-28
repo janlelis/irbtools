@@ -1,3 +1,7 @@
+1.0.4
+* improve error-handling
+* fix broken loading of boson + interactive_editor
+
 1.0.3
 * fix post-install banner typo
 
