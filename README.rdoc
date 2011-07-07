@@ -65,7 +65,8 @@ These packages add/modify the libraries to be loaded. For an example, see {irbto
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files.
 
 === Included gems and libraries
-* wirb[https://github.com/janlelis/wirb/]      colorize output
+* paint[https://github.com/janlelis/paint/]    terminal colors
+* wirb[https://github.com/janlelis/wirb/]      colorize ruby objects
 * hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]     (active record) tables and custom views for specific objects
 * fancy_irb[https://github.com/janlelis/fancy_irb]   put result as comment and more colorization
 * every_day_irb[https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb]   helper methods that might be useful in every-day irb usage, e.g.: ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg
@@ -92,9 +93,9 @@ If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</t
 You can get an about a second faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (drawback: the hash rocket will not be used for the first result):
 
   require 'irbtools/configure'
-  Irbtools.remove_library :wirb
+  Irbtools.remove_library :paint
   Irbtools.remove_library :fancy_irb
-  Irbtools.add_library :wirb, :thread => -1 do Wirb.start end
+  Irbtools.add_library :paint, :late => true do Wirb.load_schema :classic_paint if defined? Wirb end
   Irbtools.add_library :fancy_irb, :thread => -1 do FancyIrb.start end
   Irbtools.start
 

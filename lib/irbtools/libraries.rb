@@ -3,14 +3,19 @@
 
 require 'rbconfig'
 
+# # # load on startup
+
+Irbtools.add_library :yaml
+
+
 # # # load via late
 
 unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
-  Irbtools.add_library :wirb, :late => true do # result colors, install ripl-color_result for ripl colorization
-    Wirb.start 
-  end
+  # terminal colors
+  Irbtools.add_library :paint, :late => true
 
-  Irbtools.add_library :fancy_irb, :late => true do # put result as comment instead of a new line and colorful errors/streams
+  # use hash rocket and colorful errors/streams
+  Irbtools.add_library :fancy_irb, :late => true do
     FancyIrb.start
   end
 end
@@ -18,11 +23,19 @@ end
 
 # # # load via late_thread
 
-Irbtools.add_library 'wirb/wp', :late_thread => 10 # ap alternative (wp)
+# result colors, install ripl-color_result for ripl colorization
+Irbtools.add_library :wirb, :late_thread => 10 do 
+  Wirb.load_schema :classic_paint
+  Wirb.start
+end
+
+Irbtools.add_library 'wirb/wp',  :late_thread => 10 # ap alternative (wp)
+
+Irbtools.add_library 'paint/pa', :late_thread => 20 # colorize a string (pa)
 
 
 # # # load via thread
-#      the :stdlib thread ensures proper loading of fileutils, yaml and tempfile
+#      the :stdlib thread ensures proper loading of fileutils and tempfile
 
 Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
