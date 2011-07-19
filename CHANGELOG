@@ -1,3 +1,6 @@
+1.0.6
+* add possibility to modify library callbacks without removing the library by using: replace_library_callback or add_library_callback
+
 1.0.5
 * use paint gem for terminal colors
 

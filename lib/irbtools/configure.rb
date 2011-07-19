@@ -71,10 +71,28 @@ module Irbtools
         @libraries[:start] << lib
       end
 
-      @lib_hooks[lib] << block if block_given?
+      add_library_callback(lib, &block) if block_given?
     end
     alias add_lib add_library
     alias add_gem add_library
+
+    # add a callback that gets (usually) executed after loading the library
+    def add_library_callback(lib, &block)
+      lib = lib.to_s
+      @lib_hooks[lib] << block
+    end
+    alias add_lib_callback add_library_callback
+    alias add_gem_callback add_library_callback
+
+    # replace all callbacks with the new one given in the block
+    # a callback that gets (usually) executed after loading the library
+    def replace_library_callback(lib, &block)
+      lib = lib.to_s
+      @lib_hooks[lib].clear
+      @lib_hooks[lib] << block
+    end
+    alias replace_lib_callback replace_library_callback
+    alias replace_gem_callback replace_library_callback
 
     # don't load a specific library
     def remove_library(lib)
