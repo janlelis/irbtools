@@ -14,15 +14,15 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.required_ruby_version = '>= 1.8.7'
 
-  s.add_dependency %q<paint>,         ">= 0.8.1"
+  s.add_dependency %q<paint>,         ">= 0.8.3"
   s.add_dependency %q<fancy_irb>,     ">= 0.7.0"
   s.add_dependency %q<zucker>,        ">= 11"
-  s.add_dependency %q<hirb>,          "~> 0.4.5"
+  s.add_dependency %q<hirb>,          "~> 0.5.0"
   s.add_dependency %q<awesome_print>, "~> 0.4.0"
   s.add_dependency %q<clipboard>,     ">= 0.9.9"
   s.add_dependency %q<coderay>,       "~> 0.9"
-  s.add_dependency %q<boson>,         ">= 0.3.3"
-  s.add_dependency %q<wirb>,          ">= 0.4.0"
+  s.add_dependency %q<boson>,         ">= 0.3.4"
+  s.add_dependency %q<wirb>,          ">= 0.4.1"
   s.add_dependency %q<interactive_editor>, ">= 0.0.8"
   s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<sketches>,      ">= 0"
