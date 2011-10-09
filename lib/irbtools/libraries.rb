@@ -58,14 +58,14 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
 end
 
 # tables, menus...
-Irbtools.add_library :hirb, :thread => :stdlib do
+Irbtools.add_library :hirb, :late_thread => :stdlib do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
 end
 
 # command framework
-Irbtools.add_library :boson, :thread => :stdlib do
+Irbtools.add_library :boson, :late_thread => :stdlib do
   # hirb issues, TODO fix cleanly
   undef install if respond_to?( :install, true )
   Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
