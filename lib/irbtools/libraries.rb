@@ -62,6 +62,22 @@ Irbtools.add_library :hirb, :late_thread => :stdlib do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
+
+  #colorful
+  table_color = Wirb.schema[:class]
+  Hirb::Helpers::Table::CHARS.each do |place, group|
+    Hirb::Helpers::Table::CHARS[place] = 
+    group.each do |name, part|
+      if part.kind_of? String
+        Hirb::Helpers::Table::CHARS[place][name] = Paint[part, *table_color]
+      elsif part.kind_of? Hash
+        part.each do |special, char|
+          Hirb::Helpers::Table::CHARS[place][name][special] = Paint[char, *table_color]
+        end
+      end
+    end
+  end
+
 end
 
 # command framework
