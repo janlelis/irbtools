@@ -58,14 +58,30 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
 end
 
 # tables, menus...
-Irbtools.add_library :hirb, :thread => :stdlib do
+Irbtools.add_library :hirb, :late_thread => :stdlib do
   Hirb::View.enable
   extend Hirb::Console
   Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
+
+  #colorful
+  table_color = Wirb.schema[:class]
+  Hirb::Helpers::Table::CHARS.each do |place, group|
+    Hirb::Helpers::Table::CHARS[place] = 
+    group.each do |name, part|
+      if part.kind_of? String
+        Hirb::Helpers::Table::CHARS[place][name] = Paint[part, *table_color]
+      elsif part.kind_of? Hash
+        part.each do |special, char|
+          Hirb::Helpers::Table::CHARS[place][name][special] = Paint[char, *table_color]
+        end
+      end
+    end
+  end
+
 end
 
 # command framework
-Irbtools.add_library :boson, :thread => :stdlib do
+Irbtools.add_library :boson, :late_thread => :stdlib do
   # hirb issues, TODO fix cleanly
   undef install if respond_to?( :install, true )
   Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
