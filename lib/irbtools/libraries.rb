@@ -131,6 +131,8 @@ Irbtools.add_library :ori, :thread => 50 do
   end
 end
 
+# Object#method_lookup_path (improved ancestors) & Object#methods_for (get this method from all ancestors)
+Irbtools.add_library :method_locator, :thread => 60
 
 # # # load via autoload
 
