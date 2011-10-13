@@ -13,7 +13,8 @@ if defined?(IRB) || defined?(Ripl)
       require "irbtools/#{pkg}"
 
     rescue LoadError => err
-      warn "Couldn't load an extension package: #{err}"
+      warn "Couldn't load the extension package '#{pkg}' #{err.class}\n* " +
+            err.message + "\n* " + err.backtrace[0] + "\n"
     end
   }
 
@@ -28,7 +29,8 @@ if defined?(IRB) || defined?(Ripl)
         require lib.to_s
         Irbtools.send :library_loaded, lib
       rescue Exception => err
-        warn "Couldn't load an irb library: #{err}"
+        warn "Couldn't load the irb library '#{lib}': #{err.class}\n* " +
+             err.message + "\n* " + err.backtrace[0] + "\n"
       end
     }
     $VERBOSE, $DEBUG = remember_verbose_and_debug

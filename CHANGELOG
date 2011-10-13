@@ -1,6 +1,7 @@
-1.1.10
+1.1.10.pre
 * fix hirb loading/unicode issue + colorize tables (thanks to halan)
 * include method locator gem (improved ancestors)
+* small tweaks...
 
 1.0.6
 * add possibility to modify library callbacks without removing the library by using: replace_library_callback or add_library_callback
