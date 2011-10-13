@@ -1,5 +1,4 @@
 require 'rake'
-require 'rake/rdoctask'
 require 'fileutils'
 
 def gemspec1
