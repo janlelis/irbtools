@@ -59,12 +59,27 @@ end
 
 # tables, menus...
 Irbtools.add_library :hirb, :late_thread => :stdlib do
-#  Hirb::View.formatter.add_view 'Object', :ancestor => true, :options => { :unicode => true } # unicode tables
-                  
-  Hirb::View.enable :output=>{"Object"=>{:ancestor => true, :options => { :unicode => true }}}
+  Hirb::View.enable :output=>{"Object"=>{:ancestor => true, :options => { :unicode => true }}},
+                    :pager_command => 'less -R'
   extend Hirb::Console
 
-  # colorful
+  # page wirb output hacks
+  if defined?(Wirb) && defined?(Paint)
+    class Hirb::Pager
+      alias original_activated_by? activated_by?
+      def activated_by?(string_to_page, inspect_mode=false)
+        original_activated_by?(Paint.unpaint(string_to_page), inspect_mode)
+      end
+    end
+
+    class << Hirb::View
+      def view_or_page_output(str)
+        view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
+      end
+    end
+  end
+
+  # colorful border
   if defined?(Paint)
     table_color = :yellow
     

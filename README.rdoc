@@ -116,8 +116,7 @@ These packages add/modify the libraries to be loaded. For an example, see {irbto
 
 == TODO irbtools 1.1.0
 * Fix/Improve RVM stuff
-* Way to use irbtools without
-* Better hirb interaction
+* Way to use irbtools without Bundler
 * Show some features in README
 
 == Copyright
