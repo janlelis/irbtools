@@ -65,6 +65,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [methodfinder[https://github.com/citizen428/methodfinder]] interesting method finder (mf)
 [ori[https://github.com/dadooda/ori]]                      object-oriented <tt>.ri</tt> method
 [method_locator[https://github.com/ryanlecompte/method_locator]] .method_lookup_path (improved ancestors) and .methods_for (get this method from all ancestors)
+[looksee[https://github.com/oggy/looksee]]                 great loadpath inspector (.l), also can open the source of a method (.src)
 [*fileutils* (stdlib)]                                     cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
 
 === Not included anymore

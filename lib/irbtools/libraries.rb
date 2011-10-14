@@ -107,6 +107,13 @@ Irbtools.add_library :boson, :late_thread => :stdlib do
   Boson.start :verbose => false
 end
 
+
+# Object#l method for inspecting its load path
+Irbtools.add_library 'looksee', :thread => 10 do
+  Looksee::ObjectMixin.rename :ls => :l, :edit => :src
+  class Object; alias ll l end
+end
+
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 Irbtools.add_library 'every_day_irb', :thread => 10 
 
