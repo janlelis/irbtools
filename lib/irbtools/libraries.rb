@@ -3,35 +3,10 @@
 
 require 'rbconfig'
 
+
 # # # load on startup
 
 Irbtools.add_library :yaml
-
-
-# # # load via late
-
-unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
-  # terminal colors
-  Irbtools.add_library :paint, :late => true
-
-  # use hash rocket and colorful errors/streams
-  Irbtools.add_library :fancy_irb, :late => true do
-    FancyIrb.start
-  end
-end
-
-
-# # # load via late_thread
-
-# result colors, install ripl-color_result for ripl colorization
-Irbtools.add_library :wirb, :late_thread => 10 do 
-  Wirb.load_schema :classic_paint
-  Wirb.start
-end
-
-Irbtools.add_library 'wirb/wp',  :late_thread => 10 # ap alternative (wp)
-
-Irbtools.add_library 'paint/pa', :late_thread => 20 # colorize a string (pa)
 
 
 # # # load via thread
@@ -57,65 +32,8 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
   end
 end
 
-# tables, menus...
-Irbtools.add_library :hirb, :late_thread => :stdlib do
-  Hirb::View.enable :output=>{"Object"=>{:ancestor => true, :options => { :unicode => true }}},
-                    :pager_command => 'less -R'
-  extend Hirb::Console
-
-  # page wirb output hacks
-  if defined?(Wirb) && defined?(Paint)
-    class Hirb::Pager
-      alias original_activated_by? activated_by?
-      def activated_by?(string_to_page, inspect_mode=false)
-        original_activated_by?(Paint.unpaint(string_to_page), inspect_mode)
-      end
-    end
-
-    class << Hirb::View
-      def view_or_page_output(str)
-        view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
-      end
-    end
-  end
-
-  # colorful border
-  if defined?(Paint)
-    table_color = :yellow
-    
-    Hirb::Helpers::UnicodeTable::CHARS.each do |place, group|
-      Hirb::Helpers::UnicodeTable::CHARS[place] = 
-      group.each do |name, part|
-        if part.kind_of? String
-          Hirb::Helpers::UnicodeTable::CHARS[place][name] = Paint[part, *table_color]
-        elsif part.kind_of? Hash
-          part.each do |special, char|
-            Hirb::Helpers::UnicodeTable::CHARS[place][name][special] = Paint[char, *table_color]
-          end
-        end
-      end
-    end
-  end
-
-end
-
-# command framework
-Irbtools.add_library :boson, :late_thread => :stdlib do
-  # hirb issues, TODO fix cleanly
-  undef install if respond_to?( :install, true )
-  Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
-  Boson.start :verbose => false
-end
-
-
-# Object#l method for inspecting its load path
-Irbtools.add_library 'looksee', :thread => 10 do
-  Looksee::ObjectMixin.rename :ls => :l, :edit => :src
-  class Object; alias ll l end
-end
-
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
-Irbtools.add_library 'every_day_irb', :thread => 10 
+Irbtools.add_library 'every_day_irb', :thread => 10
 
 # nice debug printing (q, o, c, .m, .d)
 Irbtools.add_library 'zucker/debug', :thread => 20
@@ -155,6 +73,88 @@ end
 
 # Object#method_lookup_path (improved ancestors) & Object#methods_for (get this method from all ancestors)
 Irbtools.add_library :method_locator, :thread => 60
+
+
+
+# # # load via late
+
+# terminal colors
+Irbtools.add_library :paint, :late => true
+
+# result colors, install ripl-color_result for ripl colorization
+Irbtools.add_library :wirb, :late => true do 
+  Wirb.load_schema :classic_paint
+  Wirb.start
+end
+
+unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+  # use hash rocket and colorful errors/streams
+  Irbtools.add_library :fancy_irb, :late => true do
+    FancyIrb.start
+  end
+end
+
+
+# # # load via late_thread
+
+Irbtools.add_library 'wirb/wp',  :late_thread => :a # ap alternative (wp)
+
+Irbtools.add_library 'paint/pa', :late_thread => :b # colorize a string (pa)
+
+# tables, menus...
+Irbtools.add_library :hirb, :late_thread => :hirb do
+  Hirb::View.enable :output => { "Object" => {:ancestor => true, :options => { :unicode => true }}},
+                    :pager_command => 'less -R'
+  extend Hirb::Console
+
+  # page wirb output hacks
+  if defined?(Wirb) && defined?(Paint)
+    class Hirb::Pager
+      alias original_activated_by? activated_by?
+      def activated_by?(string_to_page, inspect_mode=false)
+        original_activated_by?(Paint.unpaint(string_to_page), inspect_mode)
+      end
+    end
+
+    class << Hirb::View
+      def view_or_page_output(str)
+        view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
+      end
+    end
+  end
+
+  # colorful border
+  if defined?(Paint)
+    table_color = :yellow
+    
+    Hirb::Helpers::UnicodeTable::CHARS.each do |place, group|
+      Hirb::Helpers::UnicodeTable::CHARS[place] = 
+      group.each do |name, part|
+        if part.kind_of? String
+          Hirb::Helpers::UnicodeTable::CHARS[place][name] = Paint[part, *table_color]
+        elsif part.kind_of? Hash
+          part.each do |special, char|
+            Hirb::Helpers::UnicodeTable::CHARS[place][name][special] = Paint[char, *table_color]
+          end
+        end
+      end
+    end
+  end
+end
+
+# command framework
+Irbtools.add_library :boson, :late_thread => :hirb do
+  # hirb issues, TODO fix cleanly
+  undef install if respond_to?( :install, true )
+  Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
+  Boson.start :verbose => false
+end
+
+# Object#l method for inspecting its load path
+Irbtools.add_library 'looksee', :late_thread => :c do
+  Looksee::ObjectMixin.rename :ls => :l, :edit => :src
+  class Object; alias ll l end
+end
 
 # # # load via autoload
 
