@@ -48,7 +48,7 @@ Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|d
 Irbtools.add_library 'interactive_editor', :thread => :stdlib
 
 # another, more flexible "start editor and it gets loaded into your irb session" plugin
-Irbtools.add_library 'sketches', :thread => :stdlib    
+Irbtools.add_library 'sketches', :thread => :stdlib
 
 # object oriented ri method
 Irbtools.add_library :ori, :thread => 50 do
@@ -74,7 +74,28 @@ end
 # Object#method_lookup_path (improved ancestors) & Object#methods_for (get this method from all ancestors)
 Irbtools.add_library :method_locator, :thread => 60
 
+# view method source :)
+Irbtools.add_library :method_source, :thread => 70 do
+  class Object
+    def src(method_name)
+      m = method(method_name)
 
+      source   = m.source || ""
+      comment  = m.comment && !m.comment.empty? ? m.comment + "\n" : ""
+      location = m.source_location ? "#{ source.match(/^\s+/) }# in #{ m.source_location*':' }\n" : ""
+
+      puts CodeRay.scan(
+        location + comment + source, :ruby
+      ).term
+    rescue
+      raise unless $!.message =~ /Cannot locate source for this method/
+      
+      nil
+    end
+    
+    # alias source src # TODO activate this without warnings oO
+  end
+end
 
 # # # load via late
 
@@ -152,7 +173,7 @@ end
 
 # Object#l method for inspecting its load path
 Irbtools.add_library 'looksee', :late_thread => :c do
-  Looksee::ObjectMixin.rename :ls => :l, :edit => :src
+  Looksee::ObjectMixin.rename :ls => :l
   class Object; alias ll l end
 end
 

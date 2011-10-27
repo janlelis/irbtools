@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<g>,             ">= 1.4.0"
   s.add_dependency %q<methodfinder>,  ">= 1.2.3"
   s.add_dependency %q<method_locator>,">= 0.0.4"
+  s.add_dependency %q<method_source>, ">= 0.6.7"
   s.add_dependency %q<looksee>,       "~> 1.0.3"
   s.add_dependency %q<rvm_loader>,    ">= 1.0.0"
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"

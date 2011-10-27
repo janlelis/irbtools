@@ -2,7 +2,8 @@
 * fix hirb loading/unicode issue + colorize tables (thanks to halan)
 * colorize paged wirb output
 * include method locator gem (improved ancestors)
-* include looksee gem (aliased as Object#l/Object#ll and Object#src)
+* include looksee gem (aliased as Object#l/Object#ll and Object#edit)
+* include method source gem (Object#src)
 * small tweaks...
 
 1.0.6
