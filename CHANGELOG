@@ -1,3 +1,6 @@
+1.1.1
+* fix the Ripl.after_rc bug
+
 1.1.0
 * fix hirb loading/unicode issue + colorize tables (thanks to halan)
 * colorize paged wirb output

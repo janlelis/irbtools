@@ -86,7 +86,7 @@ if defined?(IRB) || defined?(Ripl)
   # load: sub-session / after_rc
   if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
     if defined? Ripl::AfterRc
-      Ripl.after_rcs += Irbtools.libraries[:sub_session]
+      Irbtools.libraries[:sub_session].each{ |r| Ripl.after_rcs << r }
     elsif !Irbtools.libraries[:sub_session].empty?
       warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
     end
