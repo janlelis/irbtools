@@ -1,4 +1,4 @@
-1.1.10.pre
+1.1.0
 * fix hirb loading/unicode issue + colorize tables (thanks to halan)
 * colorize paged wirb output
 * include method locator gem (improved ancestors)

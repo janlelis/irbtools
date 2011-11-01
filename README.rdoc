@@ -116,9 +116,10 @@ There are irbtools extension packages, which can be modified via:
 
 These packages add/modify the libraries to be loaded. For an example, see {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
-== TODO irbtools 1.1.0
+== TODO
+* More speed optimizations
 * Fix/Improve RVM stuff
-* Way to use irbtools without Bundler
+* Clean way to use irbtools without bundler (already tried a little bit, but was way too hacky so far)
 * Show some features in README
 
 == Copyright

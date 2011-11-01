@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.version = File.read('VERSION').chomp
 
   s.authors               = ["Jan Lelis"]
-  s.summary               = 'irbtools is a meta gem that installs useful irb gems and configures your irb.'
-  s.description           = 'irbtools is a meta gem that installs useful irb gems and configures your irb. Simply put a require "irbtools" in the .irbrc file in your home directory.'
+  s.summary               = 'irbtools is a "meta gem" that installs a bunch of useful irb gems and configures them for you.'
+  s.description           = 'irbtools is a "meta gem" that installs a bnuch of useful irb gems and configures them for you. Simply put a require "irbtools" in the .irbrc file in your home directory.'
   s.email                 = 'mail@janlelis.de'
   s.extra_rdoc_files      = %w[LICENSE README.rdoc]
   s.files                 = %w[lib/irbtools.rb lib/irbtools/configure.rb lib/irbtools/libraries.rb lib/irbtools/minimal.rb VERSION CHANGELOG Rakefile irbtools.gemspec]
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.7'
 
   s.add_dependency %q<paint>,         ">= 0.8.3"
-  s.add_dependency %q<fancy_irb>,     ">= 0.7.1"
+  s.add_dependency %q<fancy_irb>,     ">= 0.7.2"
   s.add_dependency %q<zucker>,        ">= 11"
   s.add_dependency %q<hirb>,          "~> 0.5.0"
   s.add_dependency %q<awesome_print>, "~> 0.4.0"
