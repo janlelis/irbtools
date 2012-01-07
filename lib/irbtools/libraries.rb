@@ -16,18 +16,18 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
   include FileUtils::Verbose
 
   # patch cd so that it also shows the current directory and got some extras
-  def cd( path = File.expand_path('~') )
+  def cd( path = '~' )
     new_last_path = FileUtils.pwd
     if path == '-'
-      if @last_path
-        path = @last_path
+      if $irbtools_last_cd_path
+        path = $irbtools_last_cd_path
       else
         warn 'Sorry, there is no previous directory.'
         return
       end
     end
-    cd path
-    @last_path = new_last_path
+    super(File.expand_path(path))
+    $irbtools_last_cd_path = new_last_path
     ls
   end
 end

@@ -1,6 +1,8 @@
 1.2.0
-* Version bumps: hirb, awesome_print, coderay, g, methodfinder, method_source
-* Remove RVM helpers: Sorry, they were too buggy...
+* version bumps: hirb, awesome_print, coderay, g, methodfinder, method_source
+* remove RVM helpers: Sorry, were too buggy...
+* fix/improve 'cd' helper method
+* more little tweaks
 
 1.1.1
 * fix the Ripl.after_rc bug
