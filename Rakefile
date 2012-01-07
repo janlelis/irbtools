@@ -1,4 +1,4 @@
-require 'rake'
+# require 'rake'
 require 'fileutils'
 
 def gemspec1

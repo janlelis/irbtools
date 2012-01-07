@@ -1,12 +1,12 @@
 = irbtools
-This is a meta gem that installs useful irb gems and configures them for you. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads, allowing you to use only the gems you need.
+The irbtools gem is a meta gem that installs handy and useful irb gems and provides an appealing ready-to-use irb configuration. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads.
 
 == Setup
   gem install irbtools
   
 * On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
 * On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enjoy all the colors
-* On MacOS, you will need growl, if you want to use the +g+ gem.
+* On MacOS, you need growl, to use the +g+ gem.
 
 === Wrong display widths?
 When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
@@ -18,14 +18,14 @@ When using double-width unicode chars, you need to paste the following snippet t
 This setting is deactivated by default because of performance issues.
 
 == Usage
-To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
+To use irbtools, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
 
   require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
   require 'irbtools'
 
 If the file does not exist, just create a new one.
 
-It's possible to modify, which libraries should be loaded:
+It's possible to modify, which libraries should get loaded:
 
   # don't require 'irbtools', but:
   require 'irbtools/configure'
@@ -72,9 +72,40 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 === Not included anymore
 
 [guessmethod[http://guessmethod.rubyforge.org/]]    automatically corrects typos (method_missing hook)
+[rvm_loader] RVM helpers
 
-==== RVM
-If you have RVM installed, you can switch your gemset or ruby with <tt>gemset</tt> and <tt>use</tt> (use <tt>gemsets</tt> and <tt>rubies</tt> to get a list). The gemset can be changed within the session, while changing ruby starts a new one. Please also note that you need to have installed irbtools for that ruby version. I recommend installing it in the <tt>global</tt> gemset.
+=== Irbtools methods
+
+The following general helper methods are defined by <b>every_day_irb</b> (which belongs to *irbtools*)
+
+[ls]     Returns an array with the directory's content
+[cat]    Shortcut for <tt>File.read</tt>
+[rq]     Shortcut for <tt>require library.to_s</tt> (allows concise syntax like <tt>rq:mathn</tt>)
+[ld]     Shortcut for <tt>load library.to_s + '.rb'</tt>
+[rrq/rerequire] Little hack for rerequiring a library (it's really hack and not reliable, but works in most cases)
+[reset!] Restarts irb
+[clear]  Clears your irb terminal (<tt>system "clear"</tt>)
+[session_history] Returns all issued commands as string
+[dbg]    Shortcut for <tt>debugger</tt> that also requires 'ruby-debug' if needed
+
+Irbtools also defines some more helpers in combination with the loaded gems:
+
+[cd]     Improves the cd that is already provided by *FileUtils* (try <tt>cd '-'</tt>)
+[rv]     Displays RubyVersion (*zucker*)
+[re]     Displays RubyEngine (*zucker*)
+[colorize] Syntax highlights a ruby string using *CodeRay*
+[ray]    Syntax highlights a ruby file using *CodeRay*
+[copy]   Shortcut for <tt>Clipboard.copy</tt>
+[paste]  Shortcut for <tt>Clipboard.paste</tt>
+[copy_input]  Copies the session_history to the clipboard
+[copy_output] Copies this session's results to the clipboard
+[mf]     Shortcut for using the *methodfinder*
+
+These are the public +Object+ methods defined for some gems
+[ri]     Patching the +ri+ provided by *ori* to also allow default ri syntax on toplevel
+[src]    Shortcut for displaying the method source using *method_source* and *coderay*
+[l/ll]   Alternative method name to trigger the *looksee* gem
+
 
 === How to load more or less libraries
 You have the following methods:
@@ -116,13 +147,7 @@ There are irbtools extension packages, which can be modified via:
 
 These packages add/modify the libraries to be loaded. For an example, see {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
-== TODO
-* More speed optimizations
-* Fix/Improve RVM stuff
-* Clean way to use irbtools without bundler (already tried a little bit, but was way too hacky so far)
-* Show some features in README
-
 == Copyright
-Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net, released under the MIT license.
+Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net, released under the MIT license.
 
 J-_-L
