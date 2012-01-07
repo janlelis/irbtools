@@ -1,5 +1,6 @@
 1.2.0
 * Version bumps: hirb, awesome_print, coderay, g, methodfinder, method_source
+* Remove RVM helpers: Sorry, they were too buggy...
 
 1.1.1
 * fix the Ripl.after_rc bug

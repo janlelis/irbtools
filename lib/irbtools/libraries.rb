@@ -15,7 +15,7 @@ Irbtools.add_library :yaml
 Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
   include FileUtils::Verbose
 
-  # patch cd so that it also shows the current directory
+  # patch cd so that it also shows the current directory and got some extras
   def cd( path = File.expand_path('~') )
     new_last_path = FileUtils.pwd
     if path == '-'
@@ -81,11 +81,12 @@ Irbtools.add_library :method_source, :thread => 70 do
       m = method(method_name)
 
       source   = m.source || ""
-      comment  = m.comment && !m.comment.empty? ? m.comment + "\n" : ""
-      location = m.source_location ? "#{ source.match(/^\s+/) }# in #{ m.source_location*':' }\n" : ""
+      indent   = source.match(/\A +/)
+      comment  = m.comment && !m.comment.empty? ? "#{ m.comment }" : ""
+      location = m.source_location ? "# in #{ m.source_location*':' }\n" : ""
 
       puts CodeRay.scan(
-        location + comment + source, :ruby
+        location + comment + source.gsub(/^#{indent}/,""), :ruby
       ).term
     rescue
       raise unless $!.message =~ /Cannot locate source for this method/
@@ -232,58 +233,6 @@ Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
   def mf(*args, &block)
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
   end
-end
-
-# rvm helpers
-Irbtools.add_library 'rvm_loader', :autoload => :RVM do
-  def rubies
-    RVM.current.list_strings
-  end
-
-  def use(which = nil) # TODO with gemsets?
-    # show current ruby if called without options
-    if !which
-      return RVM.current.environment_name[/^.*@|.*$/].chomp('@')
-    end
-
-    # start ruby :)
-    begin
-      RVM.use! which.to_s
-    rescue RVM::IncompatibleRubyError => err
-      err.message =~ /requires (.*?) \(/
-      rubies = RVM.current.list_strings
-      if rubies.include? $1
-        # remember history...
-        run_irb = proc{ exec "#{ $1 } -S #{ $0 }" } 
-        if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
-          Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
-          run_irb.call
-        else
-          at_exit(&run_irb)
-          exit
-        end
-      else
-        warn "Sorry, that Ruby version could not be found (see rubies)!"
-      end
-    end
-  end
-  alias use_ruby use
-
-  def gemsets
-    RVM.current.gemset.list
-  end
-
-  def gemset(which = nil)
-    if which
-      if RVM.current.gemset.list.include? which.to_s
-        RVM.use! RVM.current.environment_name.gsub(/(@.*?$)|$/, "@#{ which }")
-      else
-        warn "Sorry, that gemset could not be found (see gemsets)!"
-      end
-    end
-    RVM.current.gemset_name
-  end
-  alias use_gemset gemset
 end
 
 # J-_-L
