@@ -1,3 +1,6 @@
+== 1.2.0
+* add looksee
+
 == 0.3.2
 * load in threads (irbtools 1.0)
 * remove jeweler

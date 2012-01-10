@@ -1,47 +1,34 @@
 = irbtools-more
 
-irbtools[https://github.com/janlelis/irbtools] is a meta gem which installs some useful irb gems and configures your irb.
+The {irbtools gem}[https://github.com/janlelis/irbtools] is a meta gem that installs handy and useful irb gems and provides an appealing ready-to-use irb configuration. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads.
 
-<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: better auto completion and an object inspector.
+<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: bond, looksee and drx. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
+
 
 == Setup
 
   gem install irbtools-more
   
-* You need +tk+ for DrX (maybe try <tt>tk_as_gem</tt>)
+In a Gemfile, you need to add:
+
+  gem 'irbtools-more', :require => false
 
 == Usage
 
-To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded everytime you start an irb):
+To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
   require 'rubygems' # only needed in 1.8
   require 'irbtools/more'
 
-If it does not exist, just create a new one.
-
-It's possible to modify, which libraries get loaded:
+If it does not exist, just create a new one. It's possible to modify, which libraries get loaded:
 
   require 'irbtools/configure'
   Irbtools.add_package :more # adds this extension package
   # here you can edit which libraries get loaded. See the irbtools README for details.
   Irbtools.start
 
-You could also just use the base +irbtools+ and add the additional gems yourself.
-
-== Features
-
-=== Included gems and libraries
-
- For the libraries included in +irbtools+, see its README page or http://rbjl.net/40-irbtools-release-the-power-of-irb
-* DrX[http://drx.rubyforge.org/] A tk object inspector, defines <tt>Object#see</tt>
-* bond[http://tagaholic.me/bond/] Better auto completion
-
-== Extension packages
-
-Feel free to build your own extension package gem (see this gem's source) and upload it to rubygems.org.
-
 == Copyright
 
-Copyright (c) 2010-2011 Jan Lelis, http://rbjl.net. See LICENSE for details.
+Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net. See LICENSE for details.
 
-J-_-L
+== J-_-L
