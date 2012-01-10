@@ -47,31 +47,31 @@ See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some
 
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files to get some examples of what you can do with irbtools.
 
-[paint[https://github.com/janlelis/paint/]]                terminal colors
-[wirb[https://github.com/janlelis/wirb/]]                  colorize ruby objects
+[wirb[https://github.com/janlelis/wirb/]]                  Colorizes Ruby objects (used for the results)
+[paint[https://github.com/janlelis/paint/]]                Provides easily to use terminal colors
 [hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]]
-                                                           (active record) tables and custom views for specific objects
-[fancy_irb[https://github.com/janlelis/fancy_irb]]         use hash rockets for output and more colorization
+                                                           Custom views for specific objects, e.g. tables for ActiveRecord
+[fancy_irb[https://github.com/janlelis/fancy_irb]]         Hash rockets for results and colorful error messages
 [every_day_irb[https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb]]
-                                                           helper methods that might be useful in every-day irb usage, e.g.: ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg
-[clipboard[http://github.com/janlelis/clipboard]]          easy clipboard access (copy & paste)
+                                                           Contains helper methods that might be useful in every-day irb usage, see below for details
+[clipboard[http://github.com/janlelis/clipboard]]          Easy clipboard access
 [interactive_editor[https://github.com/jberkel/interactive_editor]]
-                                                           lets you open vim, hack something, and it gets loaded into the current session, also possible: yaml object editing
-[sketches[http://sketches.rubyforge.org/]]                 another, more flexible "start editor and it gets loaded into your irb session" plugin
-[zucker[http:/rubyzucker.info]]                            nice debug printing (q, o, c, .m, .d) + useful pseudo-constants (Info, OS, RubyVersion, RubyEngine)
-[ap[https://github.com/michaeldv/awesome_print]]           nice debug printing (ap) [also see wp from wirb/wp]
-[coderay[http://coderay.rubychan.de/]]                     some colorful code view helpers :)
-[boson[http://tagaholic.me/boson/]]                        commands framework (commands also work in the shell!)
-[methodfinder[https://github.com/citizen428/methodfinder]] interesting method finder (mf)
-[ori[https://github.com/dadooda/ori]]                      object-oriented <tt>.ri</tt> method
-[method_locator[https://github.com/ryanlecompte/method_locator]] .method_lookup_path (improved ancestors) and .methods_for (get this method from all ancestors)
-[method_source[https://github.com/banister/method_source]] .src can be shown for ruby methods
-[looksee[https://github.com/oggy/looksee]]                 great loadpath inspector (.l), also can open the source of many methods in the editor (.edit)
-[*fileutils* (stdlib)]                                     cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
+                                                           Lets you open vim from within irb to hack something that gets loaded into the current session, also possible: yaml object editing
+[sketches[http://sketches.rubyforge.org/]]                 Another, more flexible "start editor and it gets loaded into your irb session" plugin
+[zucker[http:/rubyzucker.info]]                            Nice debug printing (<tt>q</tt>, <tt>o</tt>, <tt>c</tt>, <tt>Object#m</tt>, <tt>Object#d</tt>) and useful pseudo-constants (<tt>Info</tt>, <tt>OS</tt>, <tt>RubyVersion</tt>, <tt>RubyEngine</tt>)
+[ap[https://github.com/michaeldv/awesome_print]]           Nice debug printing commands (<tt>ap</tt>) [also possible: <tt>wp</tt> from wirb/wp]
+[coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
+[boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
+[methodfinder[https://github.com/citizen428/methodfinder]] Interesting method finder (<tt>mf</tt>)
+[ori[https://github.com/dadooda/ori]]                      Adds an <tt>Object#ri</tt> method
+[method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#method_lookup_path</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for</tt> (get this method from all ancestors)
+[method_source[https://github.com/banister/method_source]] <tt>Object#src</tt> can be shown for Ruby methods
+[looksee[https://github.com/oggy/looksee]]                 Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
+[*fileutils* (stdlib)]                                     Includes file system utility methods: <tt>cd</tt>, <tt>pwd</tt>, <tt>ln_s</tt>, <tt>mv</tt>, <tt>rm</tt>, <tt>mkdir</tt>, <tt>touch</tt>, ... ;)
 
 === Not included anymore
 
-[guessmethod[http://guessmethod.rubyforge.org/]]    automatically corrects typos (method_missing hook)
+[guessmethod[http://guessmethod.rubyforge.org/]] Automatically tries to corrects typos in method names
 [rvm_loader] RVM helpers
 
 === Irbtools methods
@@ -101,7 +101,8 @@ Irbtools also defines some more helpers in combination with the loaded gems:
 [copy_output] Copies this session's results to the clipboard
 [mf]     Shortcut for using the *methodfinder*
 
-These are the public +Object+ methods defined for some gems
+These are the custom public +Object+ methods defined/patched for some gems
+
 [ri]     Patching the +ri+ provided by *ori* to also allow default ri syntax on toplevel
 [src]    Shortcut for displaying the method source using *method_source* and *coderay*
 [l/ll]   Alternative method name to trigger the *looksee* gem
