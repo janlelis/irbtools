@@ -30,7 +30,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<methodfinder>,  ">= 1.2.5"
   s.add_dependency %q<method_locator>,">= 0.0.4"
   s.add_dependency %q<method_source>, ">= 0.7.0"
-  s.add_dependency %q<looksee>,       "~> 1.0.3"
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
 
   len = s.homepage.size

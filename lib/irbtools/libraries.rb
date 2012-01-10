@@ -172,11 +172,6 @@ Irbtools.add_library :boson, :late_thread => :hirb do
   Boson.start :verbose => false
 end
 
-# Object#l method for inspecting its load path
-Irbtools.add_library 'looksee', :late_thread => :c do
-  Looksee::ObjectMixin.rename :ls => :l
-  class Object; alias ll l end
-end
 
 # # # load via autoload
 

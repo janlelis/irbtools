@@ -2,6 +2,8 @@
 * version bumps: hirb, awesome_print, coderay, g, methodfinder, method_source
 * remove RVM helpers: Sorry, were too buggy...
 * fix/improve 'cd' helper method
+* improve readme
+* move looksee gem to irbtools-more
 * more little tweaks
 
 1.1.1

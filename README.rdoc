@@ -2,20 +2,12 @@
 The irbtools gem is a meta gem that installs handy and useful irb gems and provides an appealing ready-to-use irb configuration. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads.
 
 == Setup
+
   gem install irbtools
   
 * On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
 * On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enjoy all the colors
 * On MacOS, you need growl, to use the +g+ gem.
-
-=== Wrong display widths?
-When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
-
-  Irbtools.replace_library_callback :fancy_irb do
-    FancyIrb.start :east_asian_width => true
-  end
-
-This setting is deactivated by default because of performance issues.
 
 == Usage
 To use irbtools, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
@@ -23,25 +15,28 @@ To use irbtools, put the following in your <tt>~/.irbrc</tt> file (this file is 
   require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
   require 'irbtools'
 
-If the file does not exist, just create a new one.
-
-It's possible to modify, which libraries should get loaded:
-
-  # don't require 'irbtools', but:
-  require 'irbtools/configure'
-  # here you can modify the libraries using the methods below
-  Irbtools.start
-
-If you don't want to load the default set of irbtools gems, you will have to use <tt>require 'irbtools/minimal'</tt> instead of <tt>configure</tt>. You need to use the below methods for adding libraries in this case or *Irbtools* won't modify anything of your irb ;).
+If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
 
 === Rails notes
-To use irbtools within the rails console, you will have to add <tt>irbtools</tt> to your Gemfile <b>in this way:</b> (or there will be some bundler double require issues..)
+To integrate irbtools into a rails console, you will have to add <tt>irbtools</tt> to your Gemfile <b>in this way:</b> (or there will be some bundler double require issues..)
 
-  gem 'irbtools', :require => 'irbtools/configure'
+  gem 'irbtools', :require => false
 
-You can put Rails specific configuration in a <tt>~/.railsrc</tt> file that gets only loaded in Rails environments.
+You can put Rails specific configuration in a <tt>~/.railsrc</tt> file that only gets loaded in Rails environments.
 
-See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails goodies. Please open an issue/say +1 in the comments there to get that stuff packaged into a gem.
+See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails goodies.
+
+=== This is irbtools "light"
+
+When installing *irbtools*, some gems won't be installed to keep windows support, e.g. better auto-completion or the looksee gem. These are packaged in the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use them, you need to change your <tt>.irbrc</tt> to:
+
+  require 'irbtools/configure'
+  Irbtools.add_package :more
+  Irbtools.start
+
+In that case, the Gemfile line looks like this:
+
+  gem 'irbtools-more', :require => false
 
 === Included gems and libraries
 
@@ -66,7 +61,9 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [ori[https://github.com/dadooda/ori]]                      Adds an <tt>Object#ri</tt> method
 [method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#method_lookup_path</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for</tt> (get this method from all ancestors)
 [method_source[https://github.com/banister/method_source]] <tt>Object#src</tt> can be shown for Ruby methods
-[looksee[https://github.com/oggy/looksee]]                 Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
+[bond[http://tagaholic.me/bond/]]                          <b>irbtools-more:</b> Improves irb tab-completion
+[looksee[https://github.com/oggy/looksee]]                 <b>irbtools-more:</b> Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
+[drx[http://drx.rubyforge.org/]]                           <b>irbtools-more:</b> A tk object inspector, defines <tt>Object#see</tt>
 [*fileutils* (stdlib)]                                     Includes file system utility methods: <tt>cd</tt>, <tt>pwd</tt>, <tt>ln_s</tt>, <tt>mv</tt>, <tt>rm</tt>, <tt>mkdir</tt>, <tt>touch</tt>, ... ;)
 
 === Not included anymore
@@ -101,14 +98,24 @@ Irbtools also defines some more helpers in combination with the loaded gems:
 [copy_output] Copies this session's results to the clipboard
 [mf]     Shortcut for using the *methodfinder*
 
-These are the custom public +Object+ methods defined/patched for some gems
+These are the custom public +Object+ methods renamed/patched for some gems
 
 [ri]     Patching the +ri+ provided by *ori* to also allow default ri syntax on toplevel
 [src]    Shortcut for displaying the method source using *method_source* and *coderay*
-[l/ll]   Alternative method name to trigger the *looksee* gem
+[l/ll]   Alternative method name to trigger the *looksee* gem (<b>irbtools-more</b>)
 
 
 === How to load more or less libraries
+
+It's possible to modify, which libraries should get loaded:
+
+  # don't require 'irbtools', but:
+  require 'irbtools/configure'
+  # here you can modify the libraries using the methods below
+  Irbtools.start
+
+If you don't want to load the default set of irbtools gems, you will have to use <tt>require 'irbtools/minimal'</tt> instead of <tt>configure</tt>.
+
 You have the following methods:
 * <tt>Irbtools.add_library(lib, options_hash, &block)</tt>
 * <tt>Irbtools.remove_library(lib)</tt>
@@ -126,6 +133,15 @@ You can also apply a block that gets executed after the library is loaded (excep
 When adding a new library, you should firstly consider some way to load it via <tt>:autoload</tt>.
 If not possible, try loading via thread.
 If that is not possible either, fallback to the default loading.
+
+== Troubleshooting: Unicode caused Wrong display widths?
+When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
+
+  Irbtools.replace_library_callback :fancy_irb do
+    FancyIrb.start :east_asian_width => true
+  end
+
+This setting is deactivated by default because of performance issues.
 
 == Hint: Faster start-up
 
@@ -151,4 +167,4 @@ These packages add/modify the libraries to be loaded. For an example, see {irbto
 == Copyright
 Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net, released under the MIT license.
 
-J-_-L
+== J-_-L
