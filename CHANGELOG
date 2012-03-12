@@ -1,3 +1,6 @@
+1.2.1
+* minor version bumps
+
 1.2.0
 * version bumps: hirb, awesome_print, coderay, g, methodfinder, method_source
 * remove RVM helpers: Sorry, were too buggy...
