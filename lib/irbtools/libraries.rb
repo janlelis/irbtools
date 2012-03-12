@@ -166,10 +166,6 @@ end
 
 # command framework
 Irbtools.add_library :boson, :late_thread => :hirb do
-  # hirb issues, TODO fix cleanly
-  undef install if respond_to?( :install, true )
-  Hirb::Console.class_eval do undef menu end if respond_to?( :menu, true )
-  Boson.start :verbose => false
 end
 
 
