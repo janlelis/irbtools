@@ -1,5 +1,6 @@
 1.2.2
 * fix errors when inspect returns nil (e.g. CarrierWave uploaders)
+* create legacy branch for 1.8.7 support
 
 1.2.1
 * fix newboson loader issue

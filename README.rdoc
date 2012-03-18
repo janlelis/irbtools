@@ -10,7 +10,7 @@ The irbtools gem is a meta gem that installs handy and useful irb gems and provi
 * On MacOS, you need growl, to use the +g+ gem.
 
 == Usage
-To use irbtools, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
+To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
 
   require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
   require 'irbtools'
@@ -25,6 +25,12 @@ To integrate irbtools into a rails console, you will have to add <tt>irbtools</t
 You can put Rails specific configuration in a <tt>~/.railsrc</tt> file that only gets loaded in Rails environments.
 
 See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails goodies.
+
+=== Yesterday's Ruby versions
+
+*irbtools* focuses on Ruby 1.9 support. To get it working with 1.8.7, use the following line in your Gemfile:
+
+  gem 'irbtools', :git => "git://github.com/janlelis/irbtools.git", :branch => 'legacy', :require => false
 
 === This is irbtools "light"
 
