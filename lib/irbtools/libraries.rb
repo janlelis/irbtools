@@ -134,7 +134,7 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
     class Hirb::Pager
       alias original_activated_by? activated_by?
       def activated_by?(string_to_page, inspect_mode=false)
-        original_activated_by?(Paint.unpaint(string_to_page), inspect_mode)
+        original_activated_by?(Paint.unpaint(string_to_page || ''), inspect_mode)
       end
     end
 

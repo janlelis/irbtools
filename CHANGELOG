@@ -1,3 +1,6 @@
+1.2.2
+* fix errors when inspect returns nil (e.g. CarrierWave uploaders)
+
 1.2.1
 * fix newboson loader issue
 * minor version bumps
