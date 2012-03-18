@@ -164,11 +164,6 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   end
 end
 
-# command framework
-Irbtools.add_library :boson, :late_thread => :hirb do
-end
-
-
 # # # load via autoload
 
 # useful information pseudo-constants

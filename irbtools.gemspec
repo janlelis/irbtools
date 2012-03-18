@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<awesome_print>, "~> 1.0.2"
   s.add_dependency %q<clipboard>,     "~> 1.0.1"
   s.add_dependency %q<coderay>,       "~> 1.0.5"
-  s.add_dependency %q<boson>,         "~> 1.1.1"
   s.add_dependency %q<wirb>,          ">= 0.4.2"
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"
   s.add_dependency %q<ori>,           "~> 0.1.0"
