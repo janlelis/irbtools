@@ -73,16 +73,6 @@ if defined?(IRB) || defined?(Ripl)
   $: << '.'  if RUBY_VERSION >= '1.9.2'
 
   # # # # #
-  # load: rails.rc
-  begin
-    if  ( ENV['RAILS_ENV'] || defined? Rails ) && Irbtools.railsrc &&
-        File.exist?( File.expand_path(Irbtools.railsrc) )
-      load File.expand_path(Irbtools.railsrc)
-    end
-  rescue
-  end
-
-  # # # # #
   # load: sub-session / after_rc
   if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
     if defined? Ripl::AfterRc

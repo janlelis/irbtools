@@ -22,9 +22,7 @@ To integrate irbtools into a rails console, you will have to add <tt>irbtools</t
 
   gem 'irbtools', :require => false
 
-You can put Rails specific configuration in a <tt>~/.railsrc</tt> file that only gets loaded in Rails environments.
-
-See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails goodies.
+See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails integration features.
 
 === Yesterday's Ruby versions
 

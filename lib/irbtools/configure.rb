@@ -13,7 +13,6 @@ module Irbtools
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
   @packages        = []
-  @railsrc         = '~/.railsrc'
   @shell_name      = File.split($0)[-1].upcase
   @welcome_message = "Welcome to #{ @shell_name }. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
   @minimal         ||= false
@@ -24,9 +23,6 @@ module Irbtools
 
     # shell name (usually irb), retrieved from $0
     attr_reader :shell_name
-
-    # lets you define the path to the railsrc file or deactivate this feature with nil
-    attr_accessor :railsrc
 
     # set this to true before loading this file to deactivate loading of default libraries
     attr_accessor :minimal
