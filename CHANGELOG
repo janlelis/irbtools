@@ -1,5 +1,7 @@
 1.3.0
 * remove loading of .railsrc
+* remove dbg method
+* version bumps
 
 1.2.2
 * fix errors when inspect returns nil (e.g. CarrierWave uploaders)
