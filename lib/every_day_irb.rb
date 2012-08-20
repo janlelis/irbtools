@@ -68,14 +68,4 @@ def session_history(number_of_lines = nil)
   Readline::HISTORY.entries[-number_of_lines...-1]*"\n"
 end
 
-# load debugger, inspired by rdp
-def dbg
-  begin
-    require 'ruby-debug'
-    debugger
-  rescue LoadError => err
-    throw "Sorry, unable to load ruby-debug gem for debugger: #{err}"
-  end
-end
-
 # J-_-L

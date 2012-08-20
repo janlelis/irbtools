@@ -87,7 +87,6 @@ The following general helper methods are defined by <b>every_day_irb</b> (which 
 [reset!] Restarts irb
 [clear]  Clears your irb terminal (<tt>system "clear"</tt>)
 [session_history] Returns all issued commands as string
-[dbg]    Shortcut for <tt>debugger</tt> that also requires 'ruby-debug' if needed
 
 Irbtools also defines some more helpers in combination with the loaded gems:
 
