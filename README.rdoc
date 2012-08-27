@@ -46,10 +46,6 @@ When installing *irbtools*, some gems won't be installed to keep windows support
   Irbtools.add_package :more
   Irbtools.start
 
-In that case, the Gemfile line looks like this:
-
-  gem 'irbtools-more', :require => false
-
 === Included gems and libraries
 
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files to get some examples of what you can do with irbtools.
