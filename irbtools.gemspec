@@ -14,23 +14,28 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.required_ruby_version = '>= 1.9.2'
 
+  # functionality
+  s.add_dependency %q<zucker>,        ">= 12.1"
+  s.add_dependency %q<boson>,         "~> 1.2.4"
+  s.add_dependency %q<clipboard>,     "~> 1.0.1"
+  s.add_dependency %q<interactive_editor>, ">= 0.0.10"
+  s.add_dependency %q<sketches>,      ">= 0.1.1"
+  s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
+
+  # display
   s.add_dependency %q<paint>,         ">= 0.8.5"
   s.add_dependency %q<fancy_irb>,     ">= 0.7.2"
-  s.add_dependency %q<zucker>,        ">= 12.1"
+  s.add_dependency %q<wirb>,          ">= 0.4.2"
   s.add_dependency %q<hirb>,          "~> 0.7.0"
   s.add_dependency %q<awesome_print>, "~> 1.0.2"
-  s.add_dependency %q<clipboard>,     "~> 1.0.1"
   s.add_dependency %q<coderay>,       "~> 1.0.7"
-  s.add_dependency %q<boson>,         "~> 1.2.4"
-  s.add_dependency %q<wirb>,          ">= 0.4.2"
-  s.add_dependency %q<interactive_editor>, ">= 0.0.10"
-  s.add_dependency %q<ori>,           "~> 0.1.0"
-  s.add_dependency %q<sketches>,      ">= 0.1.1"
   s.add_dependency %q<g>,             ">= 1.7.1"
+
+  # introspection / docs
+  s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<methodfinder>,  ">= 1.2.5"
   s.add_dependency %q<method_locator>,">= 0.0.4"
   s.add_dependency %q<method_source>, ">= 0.8.0"
-  s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
 
   len = s.homepage.size
   s.post_install_message = \
