@@ -18,7 +18,11 @@ To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (this file i
 If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
 
 === Rails notes
-To integrate irbtools into a Rails console (or another console that uses Bundler), you will need to add the following to the top of your <tt>~/.irbrc</tt>:
+To integrate irbtools into a rails console, you can either add <tt>irbtools</tt> to your Gemfile:
+
+  gem 'irbtools', :require => false
+
+Another way is to add a debundle hack on top of your <tt>~/.irbrc</tt>:
 
   # modified from https://github.com/ConradIrwin/pry-debundle/pull/5
   if defined?(Gem.post_reset_hooks)

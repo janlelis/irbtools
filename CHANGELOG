@@ -1,4 +1,5 @@
 1.3.0
+* add modern debundle note
 * remove loading of .railsrc
 * remove dbg method
 * version bumps
