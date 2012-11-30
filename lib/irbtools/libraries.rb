@@ -103,7 +103,6 @@ Irbtools.add_library :paint, :late => true
 
 # result colors, install ripl-color_result for ripl colorization
 Irbtools.add_library :wirb, :late => true do 
-  Wirb.load_schema :classic_paint
   Wirb.start
 end
 

@@ -24,18 +24,18 @@ Gem::Specification.new do |s|
 
   # display
   s.add_dependency %q<paint>,         ">= 0.8.5"
-  s.add_dependency %q<fancy_irb>,     ">= 0.7.2"
-  s.add_dependency %q<wirb>,          ">= 0.4.2"
+  s.add_dependency %q<fancy_irb>,     ">= 0.7.3"
+  s.add_dependency %q<wirb>,          ">= 0.4.3"
   s.add_dependency %q<hirb>,          "~> 0.7.0"
   s.add_dependency %q<awesome_print>, "~> 1.0.2"
-  s.add_dependency %q<coderay>,       "~> 1.0.7"
+  s.add_dependency %q<coderay>,       "~> 1.0.8"
   s.add_dependency %q<g>,             ">= 1.7.1"
 
   # introspection / docs
   s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<methodfinder>,  ">= 1.2.5"
   s.add_dependency %q<method_locator>,">= 0.0.4"
-  s.add_dependency %q<method_source>, ">= 0.8.0"
+  s.add_dependency %q<method_source>, ">= 0.8.1"
 
   len = s.homepage.size
   s.post_install_message = \
