@@ -19,15 +19,13 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
   def cd( path = '~' )
     new_last_path = FileUtils.pwd
     if path == '-'
-      if $irbtools_last_cd_path
-        path = $irbtools_last_cd_path
-      else
+      unless path = Irbtools.instance_variable_get(:@last_cd_path)
         warn 'Sorry, there is no previous directory.'
         return
       end
     end
     super(File.expand_path(path))
-    $irbtools_last_cd_path = new_last_path
+    Irbtools.instance_variable_set(:@last_cd_path, new_last_path)
     ls
   end
 end
@@ -128,6 +126,10 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   Hirb::View.enable :output => { "Object" => {:ancestor => true, :options => { :unicode => true }}},
                     :pager_command => 'less -R'
   extend Hirb::Console
+
+  def page(what, options = {})
+    Hirb::Pager.command_pager(what, options = {})
+  end
 
   # page wirb output hacks
   if defined?(Wirb) && defined?(Paint)
