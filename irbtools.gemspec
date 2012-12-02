@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<boson>,         "~> 1.2.4"
   s.add_dependency %q<clipboard>,     "~> 1.0.1"
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"
-  s.add_dependency %q<sketches>,      ">= 0.1.1"
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
 
   # display

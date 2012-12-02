@@ -45,9 +45,6 @@ Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|d
 # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
 Irbtools.add_library 'interactive_editor', :thread => :stdlib
 
-# another, more flexible "start editor and it gets loaded into your irb session" plugin
-Irbtools.add_library 'sketches', :thread => :stdlib
-
 # object oriented ri method
 Irbtools.add_library :ori, :thread => 50 do
   class Object
@@ -102,7 +99,7 @@ end
 Irbtools.add_library :paint, :late => true
 
 # result colors, install ripl-color_result for ripl colorization
-Irbtools.add_library :wirb, :late => true do 
+Irbtools.add_library :wirb, :late => true do
   Wirb.start
 end
 

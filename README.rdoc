@@ -62,7 +62,6 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [clipboard[http://github.com/janlelis/clipboard]]          Easy clipboard access
 [interactive_editor[https://github.com/jberkel/interactive_editor]]
                                                            Lets you open vim from within irb to hack something that gets loaded into the current session, also possible: yaml object editing
-[sketches[http://sketches.rubyforge.org/]]                 Another, more flexible "start editor and it gets loaded into your irb session" plugin
 [zucker[http:/rubyzucker.info]]                            Nice debug printing (<tt>q</tt>, <tt>o</tt>, <tt>c</tt>, <tt>Object#m</tt>, <tt>Object#d</tt>) and useful pseudo-constants (<tt>Info</tt>, <tt>OS</tt>, <tt>RubyVersion</tt>, <tt>RubyEngine</tt>)
 [ap[https://github.com/michaeldv/awesome_print]]           Nice debug printing commands (<tt>ap</tt>) [also possible: <tt>wp</tt> from wirb/wp]
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
@@ -78,6 +77,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 
 === Not included anymore
 
+[sketches[http://sketches.rubyforge.org/]]                 Another, more flexible "start editor and it gets loaded into your irb session" plugin. It's a great gem, but the reason it's not included anymore, is that it's functionality is very similar to the one provided by the interactive_editor gem
 [guessmethod[http://guessmethod.rubyforge.org/]] Automatically tries to corrects typos in method names
 [rvm_loader] RVM helpers
 

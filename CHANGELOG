@@ -4,6 +4,7 @@
 * specs for most of every_day_irb's functionality
 * add helper method for paging output with hirb: page
 * version bumps, including wirb and fancy_irb
+* remove sketches dependency, it's a great gem, but very similar to interactive_editor
 
 1.3.0 == 1.2.3
 * add modern debundle note
