@@ -1,18 +1,17 @@
 = irbtools
-The irbtools gem is a meta gem that installs handy and useful irb gems and provides an appealing ready-to-use irb configuration. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads.
+irbtools improves Ruby's irb console. Unlike pry, you are still in your normal irb, but you have colors and lots of helpful methods.
 
 == Setup
 
   gem install irbtools
   
 * On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
-* On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enjoy all the colors
+* On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enable colors
 * On MacOS, you need growl, to use the +g+ gem.
 
 == Usage
-To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start irb):
+To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (it is loaded every time you start irb):
 
-  require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
   require 'irbtools'
 
 If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
@@ -32,8 +31,6 @@ Another way is to add a debundle hack on top of your <tt>~/.irbrc</tt>:
     alias gem require                                                              
   end
 
-See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some Rails integration features.
-
 === Yesterday's Ruby versions
 
 *irbtools* focuses on Ruby 1.9 support. To get it working with 1.8.7, use the following line in your Gemfile:
@@ -42,7 +39,7 @@ See {this blog post}[http://rbjl.net/49-railsrc-rails-console-snippets] for some
 
 === This is irbtools "light"
 
-When installing *irbtools*, some gems won't be installed to keep windows support, e.g. better auto-completion or the looksee gem. These are packaged in the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use them, you need to change your <tt>.irbrc</tt> to:
+When installing *irbtools*, some gems won't be installed to keep windows support, e.g. better auto-completion or the looksee gem. These are packaged into the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use them, you need to change your <tt>.irbrc</tt> to:
 
   require 'irbtools/configure'
   Irbtools.add_package :more
@@ -52,7 +49,7 @@ When installing *irbtools*, some gems won't be installed to keep windows support
 
 See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files to get some examples of what you can do with irbtools.
 
-[wirb[https://github.com/janlelis/wirb/]]                  Colorizes Ruby objects (used for the results)
+[wirb[https://github.com/janlelis/wirb/]]                  Colorizes resulting Ruby objects
 [paint[https://github.com/janlelis/paint/]]                Provides easily to use terminal colors
 [hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]]
                                                            Custom views for specific objects, e.g. tables for ActiveRecord
@@ -61,9 +58,9 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
                                                            Contains helper methods that might be useful in every-day irb usage, see below for details
 [clipboard[http://github.com/janlelis/clipboard]]          Easy clipboard access
 [interactive_editor[https://github.com/jberkel/interactive_editor]]
-                                                           Lets you open vim from within irb to hack something that gets loaded into the current session, also possible: yaml object editing
+                                                           Lets you open vim (or emacs) from within irb to hack something that gets loaded into the current session, also possible: yaml object editing
 [zucker[http:/rubyzucker.info]]                            Nice debug printing (<tt>q</tt>, <tt>o</tt>, <tt>c</tt>, <tt>Object#m</tt>, <tt>Object#d</tt>) and useful pseudo-constants (<tt>Info</tt>, <tt>OS</tt>, <tt>RubyVersion</tt>, <tt>RubyEngine</tt>)
-[ap[https://github.com/michaeldv/awesome_print]]           Nice debug printing commands (<tt>ap</tt>) [also possible: <tt>wp</tt> from wirb/wp]
+[ap[https://github.com/michaeldv/awesome_print]]           Alternative for displaying Ruby objects
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
 [boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
 [methodfinder[https://github.com/citizen428/methodfinder]] Interesting method finder (<tt>mf</tt>)
@@ -77,7 +74,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 
 === Not included anymore
 
-[sketches[http://sketches.rubyforge.org/]]                 Another, more flexible "start editor and it gets loaded into your irb session" plugin. It's a great gem, but the reason it's not included anymore, is that it's functionality is very similar to the one provided by the interactive_editor gem
+[sketches[http://sketches.rubyforge.org/]]                 Another, more flexible "start editor and it gets loaded into your irb session" plugin. It's a great gem, but the reason it's not included anymore is that it's functionality is very similar to the one provided by the interactive_editor gem
 [guessmethod[http://guessmethod.rubyforge.org/]] Automatically tries to corrects typos in method names
 [rvm_loader] RVM helpers
 
@@ -106,6 +103,7 @@ Irbtools also defines some more helpers in combination with the loaded gems:
 [copy_input]  Copies the session_history to the clipboard
 [copy_output] Copies this session's results to the clipboard
 [mf]     Shortcut for using the *methodfinder*
+[page]   Shortcut for using the pager from *hirb*
 
 These are the custom public +Object+ methods renamed/patched for some gems
 
@@ -114,6 +112,7 @@ These are the custom public +Object+ methods renamed/patched for some gems
 [l/ll]   Alternative method name to trigger the *looksee* gem (<b>irbtools-more</b>)
 
 
+== Advanced tweaking
 === How to load more or less libraries
 
 It's possible to modify, which libraries should get loaded:
@@ -143,7 +142,7 @@ When adding a new library, you should firstly consider some way to load it via <
 If not possible, try loading via thread.
 If that is not possible either, fallback to the default loading.
 
-== Troubleshooting: Unicode caused Wrong display widths?
+== Troubleshooting: Unicode causes wrong display widths?
 When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
 
   Irbtools.replace_library_callback :fancy_irb do
