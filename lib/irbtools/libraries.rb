@@ -67,7 +67,11 @@ Irbtools.add_library :ori, :thread => 50 do
 end
 
 # Object#method_lookup_path (improved ancestors) & Object#methods_for (get this method from all ancestors)
-Irbtools.add_library :method_locator, :thread => 60
+Irbtools.add_library :method_locator, :thread => 60 do
+  module MethodLocator
+    alias mlp method_lookup_path
+  end
+end
 
 # view method source :)
 Irbtools.add_library :method_source, :thread => 70 do

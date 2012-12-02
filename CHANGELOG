@@ -5,6 +5,7 @@
 * add helper method for paging output with hirb: page
 * version bumps, including wirb and fancy_irb
 * remove sketches dependency, it's a great gem, but very similar to interactive_editor
+* Object#mlp alias for method_lookup_path
 
 1.3.0 == 1.2.3
 * add modern debundle note

@@ -65,7 +65,7 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
 [methodfinder[https://github.com/citizen428/methodfinder]] Interesting method finder (<tt>mf</tt>)
 [ori[https://github.com/dadooda/ori]]                      Adds an <tt>Object#ri</tt> method
-[method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#method_lookup_path</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for</tt> (get this method from all ancestors)
+[method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#mlp</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for(m)</tt> (get this method from all ancestors)
 [method_source[https://github.com/banister/method_source]] <tt>Object#src</tt> can be shown for Ruby methods
 [bond[http://tagaholic.me/bond/]]                          <b>irbtools-more:</b> Improves irb tab-completion
 [looksee[https://github.com/oggy/looksee]]                 <b>irbtools-more:</b> Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
