@@ -1,5 +1,4 @@
 1.4.0
-[in progress]
 * every_day_irb is now a module that extends self
 * specs for most of every_day_irb's functionality
 * add helper method for paging output with hirb: page

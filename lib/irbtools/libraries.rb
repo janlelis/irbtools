@@ -221,7 +221,7 @@ end
 
 # small-talk like method finder
 Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
-  MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed, :sketch]
+  MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed]
   
   def mf(*args, &block)
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
