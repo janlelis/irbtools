@@ -13,9 +13,10 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[LICENSE README.rdoc]
   s.files                 = Dir.glob(%w[lib/**/*.rb ]) + %w{VERSION CHANGELOG Rakefile irbtools-more.gemspec}
   s.required_ruby_version = '>= 1.8.7'
-  s.add_dependency 'irbtools',  '>= 1.2.0'
-  s.add_dependency %q<bond>,    '~> 0.4.1'
-  s.add_dependency %q<looksee>, '~> 1.0.3'
+  s.add_runtime_dependency 'irbtools',  '>= 1.2.0'
+  s.add_runtime_dependency %q<bond>,    '~> 0.4.1'
+  # Looksee doesn't appear to work with Ruby 2.0.0-p0
+  #s.add_dependency %q<looksee>, '~> 1.0.3'
   # DrX doesn't appear to work with Ruby 2.0.0-p0
   #s.add_dependency %q<drx>
 end
