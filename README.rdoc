@@ -1,23 +1,15 @@
 = irbtools-more
 
-The {irbtools gem}[https://github.com/janlelis/irbtools] is a meta gem that installs handy and useful irb gems and provides an appealing ready-to-use irb configuration. It has a modular structure and supports multiple library-loading mechanisms, e.g. via <tt>autoload</tt> or threads.
-
-<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: bond, looksee and drx. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
-
+<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: bond for better auto-completion and looksee for great introspection. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
 
 == Setup
 
   gem install irbtools-more
-  
-In a Gemfile, you need to add:
-
-  gem 'irbtools-more', :require => false
 
 == Usage
 
 To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
 
-  require 'rubygems' # only needed in 1.8
   require 'irbtools/more'
 
 If it does not exist, just create a new one. It's possible to modify, which libraries get loaded:
@@ -27,8 +19,16 @@ If it does not exist, just create a new one. It's possible to modify, which libr
   # here you can edit which libraries get loaded. See the irbtools README for details.
   Irbtools.start
 
+== Bundler Environments
+
+In the <tt>Gemfile</tt>, you need to add:
+
+  gem 'irbtools-more', :require => false
+
+Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
+
 == Copyright
 
-Copyright (c) 2010-2012 Jan Lelis, http://rbjl.net. See LICENSE for details.
+Copyright (c) 2010-2013 Jan Lelis, http://happycode.org. See LICENSE for details.
 
 == J-_-L

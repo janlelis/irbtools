@@ -4,7 +4,7 @@ standalone =  !(defined? Irbtools)
 # define version
 module Irbtools
   module More
-    VERSION = ( File.read File.expand_path( '../../VERSION', File.dirname(__FILE__)) ).chomp
+    VERSION = '1.5.0'
   end
 end
 
@@ -19,20 +19,16 @@ end
 
 # # # libraries
 
-# DrX is not currently working with Ruby 2.0.0
-# TK object inspector
-#Irbtools.add_library :drx, :thread => 'more_1'
-
 # Better auto-completion
 Irbtools.add_library :bond, :thread => 'more_2' do
   Bond.start :gems => %w[irbtools]
 end
 
 # Object#l method for inspecting its load path
-#Irbtools.add_library 'looksee', :late_thread => :c do
-#  Looksee::ObjectMixin.rename :ls => :l
-#  class Object; alias ll l end
-#end
+Irbtools.add_library 'looksee', :late_thread => :c do
+  Looksee::ObjectMixin.rename :ls => :l
+  class Object; alias ll l end
+end
 
 # load now
 if standalone
