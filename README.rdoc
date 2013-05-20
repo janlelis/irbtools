@@ -52,11 +52,12 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [ap[https://github.com/michaeldv/awesome_print]]           Alternative for displaying Ruby objects
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
 [paint[https://github.com/janlelis/paint/]]                Enables easy access to terminal colors
-[boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
 [methodfinder[https://github.com/citizen428/methodfinder]] "A Smalltalk like Method Finder for Ruby" (<tt>mf</tt>)
 [ori[https://github.com/dadooda/ori]]                      Adds an <tt>Object#ri</tt> method
 [method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#mlp</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for(m)</tt> (get this method from all ancestors)
 [method_source[https://github.com/banister/method_source]] <tt>Object#src</tt> can be shown for Ruby methods
+[alias[http://tagaholic.me/2009/07/07/alias-quickness-in-the-ruby-console.html]] Easily create shortcuts for your favorite methods, even when they are nested, saved in personal yaml file
+[boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
 [bond[http://tagaholic.me/bond/]]                          <b>irbtools-more:</b> Improves irb tab-completion
 [looksee[https://github.com/oggy/looksee]]                 <b>irbtools-more:</b> Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
 [*fileutils* (stdlib)]                                     Includes file system utility methods: <tt>cd</tt>, <tt>pwd</tt>, <tt>ln_s</tt>, <tt>mv</tt>, <tt>rm</tt>, <tt>mkdir</tt>, <tt>touch</tt>, ... ;)
