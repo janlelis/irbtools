@@ -1,3 +1,10 @@
+1.5.0 (master)
+* update debundle hack
+* load less zucker libraries
+* add alias gem
+* finaly load boson correctly (but don't load any boson plugin, yet), also depend on boson-more
+* version bumps (zucker, clipboard, paint, hirb, wirb, ap, coderay, g)
+
 1.4.0
 * every_day_irb is now a module that extends self
 * specs for most of every_day_irb's functionality

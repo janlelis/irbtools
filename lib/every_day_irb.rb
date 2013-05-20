@@ -1,7 +1,7 @@
 # every_day_irb defines some helper methods that might be useful in every-day irb usage
 
 module EveryDayIrb
-  VERSION = File.read( File.dirname(__FILE__) + '/../VERSION' ).chomp
+  VERSION = "1.4.0"
   extend self
 
   # shows the contents of your current directory (more such commands available by FileUtils)

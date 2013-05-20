@@ -20,8 +20,8 @@ end
 
 desc "Install the gem locally (without docs)"
 task :install => :gem do
-  sh %{gem install pkg/#{gemspec2.name}-#{gemspec2.version} --no-rdoc --no-ri}
-  sh %{gem install pkg/#{gemspec1.name}-#{gemspec1.version} --no-rdoc --no-ri}
+  sh %{gem install pkg/#{gemspec2.name}-#{gemspec2.version}.gem --no-rdoc --no-ri}
+  sh %{gem install pkg/#{gemspec1.name}-#{gemspec1.version}.gem --no-rdoc --no-ri}
 end
 
 desc "Generate the gemspec"

@@ -4,7 +4,7 @@ if defined?(IRB) || defined?(Ripl)
   # # # # #
   # require 'irbtools' in your .irbrc
   # see the README file for more information
-  require File.expand_path('irbtools/configure', File.dirname(__FILE__) ) unless defined? Irbtools
+  require_relative 'irbtools/configure' unless defined? Irbtools
 
   # # # # #
   # load extension packages

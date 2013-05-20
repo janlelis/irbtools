@@ -8,7 +8,7 @@
 # # # # #
 # define module methods
 module Irbtools
-  VERSION = File.read( File.dirname(__FILE__) + '/../../VERSION' ).chomp
+  VERSION = "1.4.0"
 
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
