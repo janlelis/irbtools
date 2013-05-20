@@ -33,13 +33,12 @@ end
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 Irbtools.add_library 'every_day_irb', :thread => 10
 
-# nice debug printing (q, o, c, .m, .d)
-Irbtools.add_library 'zucker/debug', :thread => 20
-
-# nice debug printing (ap)
+# print debugging helper (q, #m, #d, Regexp#visualize, ap, g)
+Irbtools.add_library 'zucker/qq', :thread => 20
+Irbtools.add_library 'zucker/mm', :thread => 21
+Irbtools.add_library 'zucker/dd', :thread => 22
+Irbtools.add_library 'zucker/regexp_visualize', :thread => 23
 Irbtools.add_library 'ap', :thread => 30
-
-# nice debug printing (g)
 Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 
 # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session
@@ -167,17 +166,23 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
 end
 
 # command framework
-Irbtools.add_library :boson, :late_thread => :hirb do
+Irbtools.add_library 'boson/console', :late_thread => :hirb do
+  Boson.start
 end
 
 
 # # # load via autoload
 
-# useful information pseudo-constants
-Irbtools.add_library 'zucker/env', :autoload => [:RubyVersion, :RubyEngine, :Info, :OS] do
-  def rv() RubyVersion end unless defined? rv
+# information pseudo-constants
+Irbtools.add_library 'zucker/info', :autoload => :Info
+Irbtools.add_library 'zucker/os', :autoload => :OS
+Irbtools.add_library 'zucker/engine', :autoload => :RubyEngine do
   def re() RubyEngine  end unless defined? re
 end
+Irbtools.add_library 'zucker/ruby_version', :autoload => :RubyVersion do
+  def rv() RubyVersion end unless defined? rv
+end
+
 
 # syntax highlight
 Irbtools.add_library :coderay, :autoload => :CodeRay do
