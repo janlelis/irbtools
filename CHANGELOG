@@ -1,4 +1,7 @@
-1.5.0 (master)
+1.5.1 (master)
+* include binding.repl gem
+
+1.5.0
 * update debundle hack
 * load less zucker libraries
 * add alias gem

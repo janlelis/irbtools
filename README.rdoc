@@ -16,18 +16,22 @@ To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (it is loade
 
 If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
 
-=== Rails notes
+=== Rails/Bundler notes
 To integrate irbtools into a rails console, you can either add <tt>irbtools</tt> to your Gemfile:
 
-  gem 'irbtools', :require => false
+  gem 'irbtools', require: false
 
 Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 
-=== Yesterday's Ruby versions
+=== Call from binding
 
-*irbtools* is build for Ruby 1.9+. To last version working with 1.8.7, can be found in the *legacy* branch:
+Using the excellent {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can call irb directly from your code by doing:
 
-  gem 'irbtools', :git => "git://github.com/janlelis/irbtools.git", :branch => 'legacy', :require => false
+  binding.repl.irb # or binding.repl.auto
+
+*Hint:* Load irbtools in bundler environments in this way:
+
+  gem 'irbtools', require: 'binding.repl'
 
 === This is irbtools "light"
 

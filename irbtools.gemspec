@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
   s.add_dependency %q<alias>,         "~> 0.2.3"
+  s.add_dependency %q<binding.repl>,  ">= 0.7.0"
 
   # display
   s.add_dependency %q<paint>,         ">= 0.8.6"
