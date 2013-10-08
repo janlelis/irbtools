@@ -1,4 +1,7 @@
-= irbtools
+= irbtools 
+
+{<img src="http://www.iloveopensource.io/images/logo-lightbg.png" />}[http://www.iloveopensource.io/projects/52532c98c4e2e91944000b4f]
+
 irbtools improves Ruby's irb console. Unlike pry, you are still in your normal irb, but you have colors and lots of helpful methods. It's designed to work out-of-the-box so there is no reason to not use it!
 
 == Setup
@@ -152,6 +155,10 @@ You can get an about a second faster start-up time by changing the loading metho
 
 == Welcome message
 The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
+
+== Web Console
+
+Irbtools works well together with the amazing {web-console!}[https://github.com/rails/web-console]
 
 == Packages
 There are irbtools extension packages, which can be modified via:
