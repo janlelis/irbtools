@@ -1,6 +1,6 @@
 1.5.1 (master)
 * include binding.repl gem
-* bump coderay, awesome_print, method_source
+* bump coderay, awesome_print, method_source, wirb
 
 1.5.0
 * update debundle hack
