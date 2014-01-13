@@ -21,14 +21,14 @@ If it does not exist, just create a new one. It's possible to modify, which libr
 
 == Bundler Environments
 
-In the <tt>Gemfile</tt>, you need to add:
+In the <tt>Gemfile</tt>, you will need to add:
 
-  gem 'irbtools-more', :require => false
+  gem 'irbtools-more', require: false
 
 Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 
 == Copyright
 
-Copyright (c) 2010-2013 Jan Lelis, http://happycode.org. See LICENSE for details.
+Copyright (c) 2010-2014 Jan Lelis, http://janlelis.de. See LICENSE for details.
 
 == J-_-L

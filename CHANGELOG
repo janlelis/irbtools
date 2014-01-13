@@ -1,3 +1,7 @@
+== 1.5.2
+* Ruby 2.1 Compatibility / Update looksee gem
+* Be less restrictive in gem dependencies
+
 == 1.5.1
 * (nothing)
 
