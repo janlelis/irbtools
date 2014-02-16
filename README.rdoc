@@ -1,16 +1,15 @@
 = irbtools
 
-{<img src="http://www.iloveopensource.io/images/logo-lightbg.png" />}[http://www.iloveopensource.io/projects/52532c98c4e2e91944000b4f]
+Improvements fro Ruby's IRB console. Everything is colorful and you will get lots of console helpers. Unlike with PRY, you are still in your normal IRB. It is designed to work out-of-the-box so there is no reason to not use it!
 
-irbtools improves Ruby's irb console. Unlike pry, you are still in your normal irb, but you have colors and lots of helpful methods. It's designed to work out-of-the-box so there is no reason to not use it!
 
 == Setup
 
-  gem install irbtools
+  $ gem install irbtools
 
-* On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
-* On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enable colors
-* On MacOS, you need growl, to use the +g+ gem.
+* On Linux, you will need +xclip+ or +xsel+ for a functional clipboard: <tt>sudo apt-get install xclip</tt>
+* On Windows, you will need ansicon[https://github.com/adoxa/ansicon] to enable ANSI colors
+* On Mac OS, you will need growl, to use the +g+ gem
 
 
 == Usage
@@ -22,74 +21,69 @@ To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (it is loade
 If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
 
 
-=== Rails/Bundler notes
+=== Rails/Bundler Notes
 
-To integrate irbtools into a rails console, you can either add <tt>irbtools</tt> to your Gemfile:
+To integrate *irbtools* into a Rails console, you should <tt>irbtools</tt> to your Gemfile:
 
   gem 'irbtools', require: 'binding.repl'
 
-Thank to help from the {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can call irb directly from your code:
+Thanks to help from the {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can start IRB (with *irbtools*) directly from your code:
 
   binding.repl!
 
-
 === Debundle
 
-Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
+Another way to activate *irbtools* in bundler projects is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt> file.
 
 
-=== This is irbtools "light"
+=== This is irbtools Light
 
-When installing *irbtools*, some gems won't be installed to ensure Windows OS support, e.g. bond for better auto-completion or the looksee gem. These are packaged into the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use them, you need to change your <tt>.irbrc</tt> to:
+When installing *irbtools*, some gems will not be installed to ensure Windows OS support, e.g. the bond gem for better auto-completion or the looksee gem. These are packaged into the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use <tt>irbtools-more</tt>, you will need to change your <tt>.irbrc</tt> to:
 
   require 'irbtools/more'
 
 
-=== Included gems and libraries
+=== Included Gems and Libraries
 
-See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented source files to get some examples of what you can do with irbtools.
-
-[wirb[https://github.com/janlelis/wirb/]]                  General colorizer for resulting Ruby objects
+[wirb[https://github.com/janlelis/wirb/]]                  Colorizes Ruby objects
 [hirb[http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html]]
                                                            Custom views for specific objects, e.g. tables for ActiveRecord
-[fancy_irb[https://github.com/janlelis/fancy_irb]]         Hash rockets for results and colorful error messages
+[fancy_irb[https://github.com/janlelis/fancy_irb]]         Hash rockets and colorful error messages
 [every_day_irb[https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb]]
                                                            Contains helper methods that might be useful in every-day irb usage, see below for details
 [clipboard[http://github.com/janlelis/clipboard]]          Easy clipboard access
 [interactive_editor[https://github.com/jberkel/interactive_editor]]
-                                                           Lets you open vim (or emacs) from within irb to hack something that gets loaded into the current session
-[debugging[https:/github.com/janlelis/debugging]]          Print debugging helpers
-[ap[https://github.com/michaeldv/awesome_print]]           More print debugging
+                                                           Lets you open vim (or emacs) from within IRB to hack something that gets loaded into the current session
+[debugging[https:/github.com/janlelis/debugging]]          Print debugging helpers (<tt>q</tt>, <tt>mof</tt>, <tt>re</tt>)
+[ap[https://github.com/michaeldv/awesome_print]]           More print debugging (<tt>ap</tt>)
 [ruby_version[https://github.com/janlelis/ruby_version]]   <tt>rv</tt>
 [ruby_engine[https://github.com/janlelis/ruby_engine]]     <tt>re</tt>
 [os[https://github.com/rdp/os]]                            <tt>os</tt>
 [ruby_info[https://github.com/janlelis/ruby_info]]         <tt>info</tt>
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
-[paint[https://github.com/janlelis/paint/]]                Enables easy access to terminal colors
-[methodfinder[https://github.com/citizen428/methodfinder]] "A Smalltalk like Method Finder for Ruby" (<tt>mf</tt>)
-[ori[https://github.com/dadooda/ori]]                      Adds an <tt>Object#ri</tt> method
+[methodfinder[https://github.com/citizen428/methodfinder]] malltalk like method finder for Ruby (<tt>mf</tt>)
+[ori[https://github.com/dadooda/ori]]                      <tt>Object#ri</tt>
 [method_locator[https://github.com/ryanlecompte/method_locator]] Provides <tt>Object#mlp</tt> (improved version of <tt>Module#ancestors</tt>) and <tt>Object#methods_for(m)</tt> (get this method from all ancestors)
 [method_source[https://github.com/banister/method_source]] <tt>Object#src</tt> can be shown for Ruby methods
 [alias[http://tagaholic.me/2009/07/07/alias-quickness-in-the-ruby-console.html]] Easily create shortcuts for your favorite methods, even when they are nested, saved in personal yaml file
-[boson[http://tagaholic.me/boson/]]                        "A command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb."
-[bond[http://tagaholic.me/bond/]]                          <b>irbtools-more:</b> Improves irb tab-completion
-[looksee[https://github.com/oggy/looksee]]                 <b>irbtools-more:</b> Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>Object#m</tt>), also provides the ability to <tt>Object#edit</tt> methods.
-[*fileutils* (stdlib)]                                     Includes file system utility methods: <tt>cd</tt>, <tt>pwd</tt>, <tt>ln_s</tt>, <tt>mv</tt>, <tt>rm</tt>, <tt>mkdir</tt>, <tt>touch</tt>, ... ;)
+[boson[http://tagaholic.me/boson/]]                        Command/task framework similar to rake and thor that opens your ruby universe to the commandline and irb
+[bond[http://tagaholic.me/bond/]]                          <b>irbtools-more:</b> Better IRB tab-completion
+[looksee[https://github.com/oggy/looksee]]                 <b>irbtools-more:</b> Great load path inspector: <tt>Object#l</tt> (Extended version of <tt>mof</tt>), also provides the ability to <tt>Object#edit</tt> methods.
+[*fileutils* (stdlib)]                                     System utility methods: <tt>cd</tt>, <tt>pwd</tt>, <tt>ln_s</tt>, <tt>mv</tt>, <tt>rm</tt>, <tt>mkdir</tt>, <tt>touch</tt>
 
-=== Irbtools methods
 
-The following general helper methods are defined by <b>every_day_irb</b> (which belongs to *irbtools*)
+=== irbtools Methods (every_day_irb)
 
 [ls]     Returns an array with the directory's content
 [cat]    Shortcut for <tt>File.read</tt>
 [rq]     Shortcut for <tt>require library.to_s</tt> (allows concise syntax like <tt>rq:mathn</tt>)
 [ld]     Shortcut for <tt>load library.to_s + '.rb'</tt>
 [rrq/rerequire] Little hack for rerequiring a library (it's really hack and not reliable, but works in most cases)
-[reset!] Restarts irb
-[clear]  Clears your irb terminal (<tt>system "clear"</tt>)
-[session_history] Returns all issued commands as string
+[reset!] Restarts IRB
+[clear]  Clears the terminal (<tt>system "clear"</tt>)
+[session_history] Returns all issued commands as a string
 
-Irbtools also defines some more helpers in combination with the loaded gems:
+irbtools also defines custom helper methods in combination with the loaded gems:
 
 [cd]     Improves the cd that is already provided by *FileUtils* (try <tt>cd '-'</tt>)
 [rv]     Displays RubyVersion
@@ -112,15 +106,46 @@ These are the custom public +Object+ methods renamed/patched for some gems
 [l/ll]   Alternative method name to trigger the *looksee* gem (<b>irbtools-more</b>)
 
 
+== Advanced tweaking
+=== How to load more or less libraries
+
+It is possible to modify, which libraries should get loaded:
+
+  # Don't require 'irbtools', but:
+  require 'irbtools/configure'
+  # Here you can modify the libraries using the methods below
+  Irbtools.start
+
+If you do not want to load the default set of irbtools gems, you will have to use <tt>require 'irbtools/minimal'</tt> instead of <tt>configure</tt>.
+
+You can use the following methods:
+
+* <tt>Irbtools.add_library(lib, options_hash, &block)</tt>
+* <tt>Irbtools.remove_library(lib)</tt>
+
+The <tt>options_hash</tt> defines the way in which irbtools loads the library. The following options are possible
+[(no options)/<tt>:start</tt>] The library is required on startup before doing anything else (before displaying the prompt)
+[<tt>:thread => identifier</tt>] After loading everything else, the library is required in a thread (while continuing loading). You can choose any identifier, but if you take the same one for multiple libraries, they will be loaded in the same thread (in the order that you define)
+[<tt>:late => true</tt>] The library is required just before showing the prompt (note: loading threads might still be in process)
+[<tt>:late_thread => identifier</tt>] Same as <tt>:thread</tt>, but after loading late libraries.
+[<tt>:sub_session => true</tt>] The library is loaded every time a sub-session starts (using <tt>IRB.conf[:IRB_RC]</tt>). In ripl[https://github.com/cldwalker/ripl], <tt>ripl-after_rc</tt> is used.
+[<tt>:autoload => :Constant</tt>] Use Ruby's <tt>autoload</tt> feature. It loads the library as soon as the constant is encountered.
+
+You can pass a block as third argument, which gets executed after the library has completed loading (except for <tt>:autoload</tt>, in which case the code will executed directly on startup). You can modify the callbacks by using <tt>Irbtools.add_library_callback</tt> and <tt>Irbtools.replace_library_callback</tt>.
+
+When adding a new library, you should firstly consider some way to load it via <tt>:autoload</tt>.
+If this is not possible, try loading via <tt>:thread</tt>. If that is not possible either, you will need to fallback to the default loading mechanism.
+
+
 == Troubleshooting: Unicode causes wrong display widths?
 
-When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
+If you use double-width unicode characterss, you will need to paste the following snippet to your <tt>.irbrc</tt> file.
 
   Irbtools.replace_library_callback :fancy_irb do
-    FancyIrb.start :east_asian_width => true
+    FancyIrb.start east_asian_width: true
   end
 
-This setting is deactivated by default because of performance issues.
+This setting is deactivated by default, because of performance issues.
 
 
 == Hint: Faster start-up
@@ -135,7 +160,7 @@ You can get an about a second faster start-up time by changing the loading metho
   Irbtools.start
 
 
-== Welcome message
+== Welcome Message
 
 The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
 
@@ -145,44 +170,6 @@ The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
 Irbtools works well together with the amazing {web-console!}[https://github.com/rails/web-console]
 
 
-== Advanced tweaking
-=== How to load more or less libraries
-
-It's possible to modify, which libraries should get loaded:
-
-  # don't require 'irbtools', but:
-  require 'irbtools/configure'
-  # here you can modify the libraries using the methods below
-  Irbtools.start
-
-If you don't want to load the default set of irbtools gems, you will have to use <tt>require 'irbtools/minimal'</tt> instead of <tt>configure</tt>.
-
-You have the following methods:
-* <tt>Irbtools.add_library(lib, options_hash, &block)</tt>
-* <tt>Irbtools.remove_library(lib)</tt>
-
-The <tt>options_hash</tt> defines the way in which Irbtools loads the library. Following options are possible
-[(no options)/<tt>:start</tt>] The library is required on startup before doing anything else (before displaying the prompt)
-[<tt>:thread => identifier</tt>] After loading everything else, the library is required in a thread (while continuing loading). You can choose any identifier, but if you take the same one for multiple libraries, they will be loaded in the same thread (in the order that you define)
-[<tt>:late => true</tt>] The library is required just before showing the prompt (note: loading threads might still be in process)
-[<tt>:late_thread => identifier</tt>] Same as <tt>:thread</tt>, but after loading late libraries.
-[<tt>:sub_session => true</tt>] The library is loaded every time a sub-session starts (using <tt>IRB.conf[:IRB_RC]</tt>). In ripl[https://github.com/cldwalker/ripl], <tt>ripl-after_rc</tt> is used.
-[<tt>:autoload => :Constant</tt>] Use Ruby's <tt>autoload</tt> feature. It loads the library as soon as the constant is encountered.
-
-You can also apply a block that gets executed after the library is loaded (except for autoload, the code will executed on startup in this case). You can also just add callback block by using the <tt>Irbtools.add_library_callback</tt> or the <tt>Irbtools.replace_library_callback</tt> method.
-
-When adding a new library, you should firstly consider some way to load it via <tt>:autoload</tt>.
-If not possible, try loading via thread.
-If that is not possible either, fallback to the default loading.
-
-=== Packages
-
-There are irbtools extension packages, which can be modified via:
-* <tt>Irbtools.add_package(pkg)</tt>
-* <tt>Irbtools.remove_package(pkg)</tt>
-
-These packages add/modify the libraries to be loaded. For an example, see {irbtools-more}[https://github.com/janlelis/irbtools-more].
-
 == J-_-L
 
-Copyright (c) 2010-2013 Jan Lelis <http://happycode.org> released under the MIT license.
+Copyright (c) 2010-2014 Jan Lelis <http://happycode.org> released under the MIT license.
