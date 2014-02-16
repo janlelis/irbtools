@@ -179,12 +179,19 @@ end
 # # # load via autoload
 
 # information pseudo-constants
-Irbtools.add_library 'zucker/info', :autoload => :Info
-Irbtools.add_library 'zucker/os', :autoload => :OS
-Irbtools.add_library 'zucker/engine', :autoload => :RubyEngine do
+Irbtools.add_library 'ruby_info', :autoload => :RubyInfo do
+  def info() RubyInfo  end unless defined? info
+end
+
+Irbtools.add_library 'os', :autoload => :OS do
+  def os() OS          end unless defined? os
+end
+
+Irbtools.add_library 'ruby_engine', :autoload => :RubyEngine do
   def re() RubyEngine  end unless defined? re
 end
-Irbtools.add_library 'zucker/ruby_version', :autoload => :RubyVersion do
+
+Irbtools.add_library 'ruby_version', :autoload => :RubyVersion do
   def rv() RubyVersion end unless defined? rv
 end
 

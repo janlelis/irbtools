@@ -1,4 +1,4 @@
-= irbtools 
+= irbtools
 
 {<img src="http://www.iloveopensource.io/images/logo-lightbg.png" />}[http://www.iloveopensource.io/projects/52532c98c4e2e91944000b4f]
 
@@ -7,7 +7,7 @@ irbtools improves Ruby's irb console. Unlike pry, you are still in your normal i
 == Setup
 
   gem install irbtools
-  
+
 * On Linux, you need +xclip+ or +xsel+ to use the clipboard: sudo <tt>apt-get install xclip</tt>
 * On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enable colors
 * On MacOS, you need growl, to use the +g+ gem.
@@ -55,8 +55,12 @@ See http://rbjl.net/40-irbtools-release-the-power-of-irb or read the commented s
 [clipboard[http://github.com/janlelis/clipboard]]          Easy clipboard access
 [interactive_editor[https://github.com/jberkel/interactive_editor]]
                                                            Lets you open vim (or emacs) from within irb to hack something that gets loaded into the current session
-[zucker[http:/rubyzucker.info]]                            Print debugging helpers (<tt>q</tt>, <tt>Object#m</tt>, <tt>Object#d</tt>) and information pseudo-constants (<tt>Info</tt>, <tt>OS</tt>, <tt>RubyVersion</tt>, <tt>RubyEngine</tt>)
-[ap[https://github.com/michaeldv/awesome_print]]           Alternative for displaying Ruby objects
+[debugging[https:/github.com/janlelis/debugging]]          Print debugging helpers
+[ap[https://github.com/michaeldv/awesome_print]]           More print debugging
+[ruby_version[https://github.com/janlelis/ruby_version]]   <tt>rv</tt>
+[ruby_engine[https://github.com/janlelis/ruby_engine]]     <tt>re</tt>
+[os[https://github.com/rdp/os]]                            <tt>os</tt>
+[ruby_info[https://github.com/janlelis/ruby_info]]         <tt>info</tt>
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)
 [paint[https://github.com/janlelis/paint/]]                Enables easy access to terminal colors
 [methodfinder[https://github.com/citizen428/methodfinder]] "A Smalltalk like Method Finder for Ruby" (<tt>mf</tt>)
@@ -85,8 +89,10 @@ The following general helper methods are defined by <b>every_day_irb</b> (which 
 Irbtools also defines some more helpers in combination with the loaded gems:
 
 [cd]     Improves the cd that is already provided by *FileUtils* (try <tt>cd '-'</tt>)
-[rv]     Displays RubyVersion (*zucker*)
-[re]     Displays RubyEngine (*zucker*)
+[rv]     Displays RubyVersion
+[re]     Displays RubyEngine
+[os]     OS information
+[info]   Aggregates information about your Ruby environment
 [colorize] Syntax highlights a ruby string using *CodeRay*
 [ray]    Syntax highlights a ruby file using *CodeRay*
 [copy]   Shortcut for <tt>Clipboard.copy</tt>

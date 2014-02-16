@@ -1,3 +1,7 @@
+1.6.0
+* remove zucker dependency, but add debugging, ruby_version, ruby_engine, ruby_info and os gem
+* bump binding.repl, paint, wirb
+
 1.5.1
 * include binding.repl gem
 * bump coderay, awesome_print, method_source, wirb
