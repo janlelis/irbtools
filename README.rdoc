@@ -1,10 +1,12 @@
 = irbtools-more
 
-<tt>irbtools-more</tt> adds some more irb gems which may not build out-of-the-box. Currently included: bond for better auto-completion and looksee for great introspection. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
+<tt>irbtools-more</tt> adds more IRB gems which may not build out-of-the-box. Currently included: bond for better auto-completion and looksee for great method introspection. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
+
 
 == Setup
 
   gem install irbtools-more
+
 
 == Usage
 
@@ -19,16 +21,16 @@ If it does not exist, just create a new one. It's possible to modify, which libr
   # here you can edit which libraries get loaded. See the irbtools README for details.
   Irbtools.start
 
+
 == Bundler Environments
 
-In the <tt>Gemfile</tt>, you will need to add:
+In you <tt>Gemfile</tt>, you will need to add:
 
-  gem 'irbtools-more', require: false
+  gem 'irbtools-more', require: 'binding.repl'
 
 Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 
-== Copyright
-
-Copyright (c) 2010-2014 Jan Lelis, http://janlelis.de. See LICENSE for details.
 
 == J-_-L
+
+Copyright (c) 2010-2014 Jan Lelis, http://janlelis.de. See LICENSE for details.

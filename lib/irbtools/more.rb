@@ -4,7 +4,7 @@ standalone =  !(defined? Irbtools)
 # define version
 module Irbtools
   module More
-    VERSION = '1.5.2'
+    VERSION = '1.6.0'
   end
 end
 
