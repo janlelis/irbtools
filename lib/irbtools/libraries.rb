@@ -7,6 +7,9 @@ require 'rbconfig'
 # # # load on startup
 
 Irbtools.add_library :yaml
+Irbtools.add_library 'binding.repl' do
+  Binding.repl.auto_order = %w[irb ripl rib pry]
+end
 
 
 # # # load via thread
@@ -88,10 +91,10 @@ Irbtools.add_library :method_source, :thread => 70 do
       ).term
     rescue
       raise unless $!.message =~ /Cannot locate source for this method/
-      
+
       nil
     end
-    
+
     # alias source src # TODO activate this without warnings oO
   end
 end
@@ -154,9 +157,9 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   # colorful border
   if defined?(Paint)
     table_color = :yellow
-    
+
     Hirb::Helpers::UnicodeTable::CHARS.each do |place, group|
-      Hirb::Helpers::UnicodeTable::CHARS[place] = 
+      Hirb::Helpers::UnicodeTable::CHARS[place] =
       group.each do |name, part|
         if part.kind_of? String
           Hirb::Helpers::UnicodeTable::CHARS[place][name] = Paint[part, *table_color]
@@ -239,7 +242,7 @@ end
 # small-talk like method finder
 Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
   MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed]
-  
+
   def mf(*args, &block)
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
   end

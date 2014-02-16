@@ -12,35 +12,38 @@ irbtools improves Ruby's irb console. Unlike pry, you are still in your normal i
 * On Windows, you need ansicon[https://github.com/adoxa/ansicon] to enable colors
 * On MacOS, you need growl, to use the +g+ gem.
 
+
 == Usage
+
 To use *irbtools*, put the following in your <tt>~/.irbrc</tt> file (it is loaded every time you start irb):
 
   require 'irbtools'
 
 If the file does not exist, just create a new one. See further below on how to customize loaded libraries.
 
+
 === Rails/Bundler notes
+
 To integrate irbtools into a rails console, you can either add <tt>irbtools</tt> to your Gemfile:
 
-  gem 'irbtools', require: false
+  gem 'irbtools', require: 'binding.repl'
+
+Thank to help from the {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can call irb directly from your code:
+
+  binding.repl!
+
+
+=== Debundle
 
 Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 
-=== Call from binding
-
-Using the excellent {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can call irb directly from your code by doing:
-
-  binding.repl.irb # or binding.repl.auto
-
-*Hint:* Load irbtools in bundler environments in this way:
-
-  gem 'irbtools', require: 'binding.repl'
 
 === This is irbtools "light"
 
 When installing *irbtools*, some gems won't be installed to ensure Windows OS support, e.g. bond for better auto-completion or the looksee gem. These are packaged into the {irbtools-more}[https://github.com/janlelis/irbtools-more] gem. To use them, you need to change your <tt>.irbrc</tt> to:
 
   require 'irbtools/more'
+
 
 === Included gems and libraries
 
@@ -109,6 +112,39 @@ These are the custom public +Object+ methods renamed/patched for some gems
 [l/ll]   Alternative method name to trigger the *looksee* gem (<b>irbtools-more</b>)
 
 
+== Troubleshooting: Unicode causes wrong display widths?
+
+When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
+
+  Irbtools.replace_library_callback :fancy_irb do
+    FancyIrb.start :east_asian_width => true
+  end
+
+This setting is deactivated by default because of performance issues.
+
+
+== Hint: Faster start-up
+
+You can get an about a second faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (drawback: the hash rocket will not be used for the first result):
+
+  require 'irbtools/configure'
+  Irbtools.remove_library :paint
+  Irbtools.remove_library :fancy_irb
+  Irbtools.add_library :paint, :late => true do Wirb.load_schema :classic_paint if defined? Wirb end
+  Irbtools.add_library :fancy_irb, :thread => -1 do FancyIrb.start end
+  Irbtools.start
+
+
+== Welcome message
+
+The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
+
+
+== Web Console
+
+Irbtools works well together with the amazing {web-console!}[https://github.com/rails/web-console]
+
+
 == Advanced tweaking
 === How to load more or less libraries
 
@@ -139,41 +175,14 @@ When adding a new library, you should firstly consider some way to load it via <
 If not possible, try loading via thread.
 If that is not possible either, fallback to the default loading.
 
-== Troubleshooting: Unicode causes wrong display widths?
-When using double-width unicode chars, you need to paste the following snippet to your <tt>.irbrc</tt>.
+=== Packages
 
-  Irbtools.replace_library_callback :fancy_irb do
-    FancyIrb.start :east_asian_width => true
-  end
-
-This setting is deactivated by default because of performance issues.
-
-== Hint: Faster start-up
-
-You can get an about a second faster start-up time by changing the loading methods for wirb and fancy_irb to <tt>:thread</tt> (drawback: the hash rocket will not be used for the first result):
-
-  require 'irbtools/configure'
-  Irbtools.remove_library :paint
-  Irbtools.remove_library :fancy_irb
-  Irbtools.add_library :paint, :late => true do Wirb.load_schema :classic_paint if defined? Wirb end
-  Irbtools.add_library :fancy_irb, :thread => -1 do FancyIrb.start end
-  Irbtools.start
-
-== Welcome message
-The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
-
-== Web Console
-
-Irbtools works well together with the amazing {web-console!}[https://github.com/rails/web-console]
-
-== Packages
 There are irbtools extension packages, which can be modified via:
 * <tt>Irbtools.add_package(pkg)</tt>
 * <tt>Irbtools.remove_package(pkg)</tt>
 
 These packages add/modify the libraries to be loaded. For an example, see {irbtools-more}[https://github.com/janlelis/irbtools-more].
 
-== Copyright
-Copyright (c) 2010-2013 Jan Lelis <http://happycode.org> released under the MIT license.
-
 == J-_-L
+
+Copyright (c) 2010-2013 Jan Lelis <http://happycode.org> released under the MIT license.
