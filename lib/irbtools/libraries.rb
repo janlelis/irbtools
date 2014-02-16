@@ -37,10 +37,7 @@ end
 Irbtools.add_library 'every_day_irb', :thread => 10
 
 # print debugging helper (q, #m, #d, Regexp#visualize, ap, g)
-Irbtools.add_library 'zucker/qq', :thread => 20
-Irbtools.add_library 'zucker/mm', :thread => 21
-Irbtools.add_library 'zucker/dd', :thread => 22
-Irbtools.add_library 'zucker/regexp_visualize', :thread => 23
+Irbtools.add_library 'debugging/all', :thread => 20
 Irbtools.add_library 'ap', :thread => 30
 Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 
