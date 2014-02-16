@@ -2,7 +2,9 @@
 
 module EveryDayIrb
   VERSION = "1.5.1"
+
   extend self
+  private
 
   # shows the contents of your current directory (more such commands available by FileUtils)
   def ls(path='.')
@@ -41,7 +43,7 @@ module EveryDayIrb
   # restart irb
   def reset!
     # remember history...
-    reset_irb = proc{ exec$0 } 
+    reset_irb = proc{ exec$0 }
     if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
       Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
       reset_irb.call
