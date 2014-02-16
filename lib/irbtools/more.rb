@@ -1,10 +1,10 @@
 # check if loaded_directly to decide if Irbtools.init should be called
-standalone =  !(defined? Irbtools)
+standalone = !(defined? Irbtools)
 
 # define version
 module Irbtools
   module More
-    VERSION = '1.6.0'
+    VERSION = '1.6.1'
   end
 end
 
@@ -24,15 +24,18 @@ Irbtools.add_library :bond, :thread => 'more_2' do
   Bond.start :gems => %w[irbtools]
 end
 
-# Object#l method for inspecting its load path
-Irbtools.add_library 'looksee', :late_thread => :c do
+# Object#l method for inspecting its lookup path
+Irbtools.add_library 'looksee', late_thread: :c do
   Looksee::ObjectMixin.rename :l
-  class Object; alias ll l end
+  class Object; alias lp l; end
 end
 
+# repl method
+Irbtools.add_library 'binding_of_caller', thread: 'more_3'
+Irbtools.add_library 'debugging/repl', thread: 'more_3'
+
+
 # load now
-if standalone
-  Irbtools.start
-end
+Irbtools.start if standalone
 
 # J-_-L

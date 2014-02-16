@@ -1,6 +1,6 @@
 = irbtools-more
 
-<tt>irbtools-more</tt> adds more IRB gems which may not build out-of-the-box. Currently included: bond for better auto-completion and looksee for great method introspection. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
+<tt>irbtools-more</tt> adds more IRB gems which may not build out-of-the-box. Currently included: <tt>bond</tt> for better auto-completion and <tt>looksee</tt> for great method introspection. It also adds the <tt>binding_of_caller</tt> gem to enable starting IRB by just calling <tt>repl</tt> anywhere in your code. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
 
 
 == Setup
@@ -26,7 +26,7 @@ If it does not exist, just create a new one. It's possible to modify, which libr
 
 In you <tt>Gemfile</tt>, you will need to add:
 
-  gem 'irbtools-more', require: 'binding.repl'
+  gem 'irbtools-more', require: 'debugging/repl'
 
 Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 

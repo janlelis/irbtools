@@ -1,3 +1,7 @@
+== 1.6.1
+* Add binding_of_caller
+* Alias looksee to Object#lp instead of Object#ls
+
 == 1.6.0
 * (nothing)
 

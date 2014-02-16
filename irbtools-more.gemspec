@@ -16,5 +16,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'irbtools', '~> 1.6'
   s.add_dependency 'bond',     '~> 0.5'
   s.add_dependency 'looksee' , '~> 2.0'
+  s.add_dependency 'binding_of_caller', '~> 0.7'
 end
 
