@@ -36,8 +36,11 @@ end
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 Irbtools.add_library 'every_day_irb', :thread => 10
 
-# print debugging helper (q, #m, #d, Regexp#visualize, ap, g)
-Irbtools.add_library 'debugging/all', :thread => 20
+# print debugging helper (q, mof, re)
+Irbtools.add_library 'debugging/q', :thread => 21
+Irbtools.add_library 'debugging/mof', :thread => 22
+Irbtools.add_library 'debugging/re', :thread => 23
+Irbtools.add_library 'debugging/beep', :thread => 24
 Irbtools.add_library 'ap', :thread => 30
 Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 

@@ -1,3 +1,6 @@
+1.6.1
+* don't load debugging/repl by default
+
 1.6.0
 * remove zucker dependency, but add debugging, ruby_version, ruby_engine, ruby_info and os gem
 * configure binding.repl to load irb, not pry
