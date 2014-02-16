@@ -86,8 +86,8 @@ When installing *irbtools*, some gems will not be installed to ensure Windows OS
 irbtools also defines custom helper methods in combination with the loaded gems:
 
 [cd]     Improves the cd that is already provided by *FileUtils* (try <tt>cd '-'</tt>)
-[rv]     Displays RubyVersion
-[re]     Displays RubyEngine
+[version]Displays RubyVersion
+[engine] Displays RubyEngine
 [os]     OS information
 [info]   Aggregates information about your Ruby environment
 [colorize] Syntax highlights a ruby string using *CodeRay*
