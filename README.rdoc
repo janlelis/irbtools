@@ -172,4 +172,4 @@ Irbtools works well together with the amazing {web-console!}[https://github.com/
 
 == J-_-L
 
-Copyright (c) 2010-2014 Jan Lelis <http://happycode.org> released under the MIT license.
+Copyright (c) 2010-2014 Jan Lelis <http://janlelis.de> released under the MIT license.
