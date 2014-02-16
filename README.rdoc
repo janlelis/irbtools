@@ -56,8 +56,8 @@ When installing *irbtools*, some gems will not be installed to ensure Windows OS
                                                            Lets you open vim (or emacs) from within IRB to hack something that gets loaded into the current session
 [debugging[https:/github.com/janlelis/debugging]]          Print debugging helpers (<tt>q</tt>, <tt>mof</tt>, <tt>re</tt>)
 [ap[https://github.com/michaeldv/awesome_print]]           More print debugging (<tt>ap</tt>)
-[ruby_version[https://github.com/janlelis/ruby_version]]   <tt>rv</tt>
-[ruby_engine[https://github.com/janlelis/ruby_engine]]     <tt>re</tt>
+[ruby_version[https://github.com/janlelis/ruby_version]]   <tt>version</tt>
+[ruby_engine[https://github.com/janlelis/ruby_engine]]     <tt>engine</tt>
 [os[https://github.com/rdp/os]]                            <tt>os</tt>
 [ruby_info[https://github.com/janlelis/ruby_info]]         <tt>info</tt>
 [coderay[http://coderay.rubychan.de/]]                     Colorizes Ruby code (<tt>colorize</tt>, <tt>ray</tt>)

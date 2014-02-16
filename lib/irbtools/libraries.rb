@@ -191,11 +191,11 @@ Irbtools.add_library 'os', :autoload => :OS do
 end
 
 Irbtools.add_library 'ruby_engine', :autoload => :RubyEngine do
-  def re() RubyEngine  end unless defined? re
+  def engine() RubyEngine  end unless defined? engine
 end
 
 Irbtools.add_library 'ruby_version', :autoload => :RubyVersion do
-  def rv() RubyVersion end unless defined? rv
+  def version() RubyVersion end unless defined? version
 end
 
 
