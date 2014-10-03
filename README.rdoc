@@ -27,7 +27,7 @@ To integrate *irbtools* into a Rails console, you should <tt>irbtools</tt> to yo
 
   gem 'irbtools', require: 'binding.repl'
 
-Thanks to help from the {binding.repl}[https://github.com/robgleeson/binding.repl] gem, you can start IRB (with *irbtools*) directly from your code:
+Thanks to help from the {binding.repl}[https://github.com/rpag/binding.repl] gem, you can start IRB (with *irbtools*) directly from your code:
 
   binding.repl!
 
