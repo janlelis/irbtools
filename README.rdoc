@@ -5,32 +5,36 @@
 
 == Setup
 
+=== With bundler
+
+In your <tt>Gemfile</tt> put:
+
+  gem 'irbtools-more', require: 'debugging/repl'
+
+
+=== With bundler (debundle hack)
+
+See {debundle.rb}[https://github.com/janlelis/debundle.rb].
+
+
+=== Without bundler
+
   gem install irbtools-more
 
 
 == Usage
 
-To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb):
+To use it, put the following in your <tt>~/.irbrc</tt> file (this file is loaded every time you start an irb, just create the file, if it does not exist, yet):
 
   require 'irbtools/more'
 
-If it does not exist, just create a new one. It's possible to modify, which libraries get loaded:
+If you want to customize which libraries you want to use, you can load irbtools-more explicitely:
 
   require 'irbtools/configure'
   Irbtools.add_package :more # adds this extension package
-  # here you can edit which libraries get loaded. See the irbtools README for details.
   Irbtools.start
-
-
-== Bundler Environments
-
-In you <tt>Gemfile</tt>, you will need to add:
-
-  gem 'irbtools-more', require: 'debugging/repl'
-
-Another way is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt>.
 
 
 == J-_-L
 
-Copyright (c) 2010-2014 Jan Lelis, http://janlelis.de. See LICENSE for details.
+Copyright (c) 2010-2014 Jan Lelis, http://janlelis.com. See MIT-LICENSE for details.
