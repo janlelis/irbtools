@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[LICENSE README.rdoc]
   s.files                 = %w[lib/irbtools.rb lib/irbtools/configure.rb lib/irbtools/libraries.rb lib/irbtools/minimal.rb CHANGELOG Rakefile irbtools.gemspec]
   s.homepage              = 'https://github.com/janlelis/irbtools'
-  s.required_ruby_version = '>= 1.9.2'
+  s.required_ruby_version = '>= 1.9.3'
   s.license               = 'MIT'
 
   # functionality

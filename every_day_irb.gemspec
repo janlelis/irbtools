@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[LICENSE]
   s.files                 = Dir.glob(%w[lib/every_day_irb.rb every_day_irb.gemspec])
   s.homepage              = 'http://github.com/janlelis/irbtools'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.3'
   s.license               = 'MIT'
   s.add_development_dependency %q<rspec>
 end
