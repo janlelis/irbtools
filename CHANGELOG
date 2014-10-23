@@ -1,6 +1,7 @@
 == master
 * Bump looksee
 * Ruby 1.9.3 required
+* Add did_you_mean gem
 
 == 1.6.1
 * Add binding_of_caller

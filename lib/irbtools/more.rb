@@ -34,6 +34,8 @@ end
 Irbtools.add_library 'binding_of_caller', thread: 'more_3'
 Irbtools.add_library 'debugging/repl', thread: 'more_3'
 
+# new guessmethod
+Irbtools.add_library 'did_you_mean', thread: 'more_4'
 
 # load now
 Irbtools.start if standalone

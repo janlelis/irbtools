@@ -1,6 +1,6 @@
 = irbtools-more
 
-<tt>irbtools-more</tt> adds more IRB gems which may not build out-of-the-box. Currently included: <tt>bond</tt> for better auto-completion and <tt>looksee</tt> for great method introspection. It also adds the <tt>binding_of_caller</tt> gem to enable starting IRB by just calling <tt>repl</tt> anywhere in your code. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
+<tt>irbtools-more</tt> adds more IRB gems which may not build out-of-the-box. Currently included: <tt>bond</tt> for better auto-completion and <tt>looksee</tt> for great method introspection. The <tt>did_you_mean</tt> gem is included to improve error stacktraces. It also adds the <tt>binding_of_caller</tt> gem to enable starting IRB by just calling <tt>repl</tt> anywhere in your code. See the {irbtools readme}[https://github.com/janlelis/irbtools] for details.
 
 
 == Setup
