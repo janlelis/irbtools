@@ -1,5 +1,6 @@
 == master
 * Bump looksee
+* Ruby 1.9.3 required
 
 == 1.6.1
 * Add binding_of_caller
