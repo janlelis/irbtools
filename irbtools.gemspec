@@ -33,7 +33,6 @@ Gem::Specification.new do |s|
 
   # debugging
   s.add_dependency %q<debugging>,     "~> 1.0"
-  s.add_dependency %q<awesome_print>, "~> 1.2"
   s.add_dependency %q<g>,             ">= 1.7.2"
 
   # introspection / docs

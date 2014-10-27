@@ -41,7 +41,6 @@ Irbtools.add_library 'debugging/q', :thread => 21
 Irbtools.add_library 'debugging/mof', :thread => 22
 Irbtools.add_library 'debugging/re', :thread => 23
 Irbtools.add_library 'debugging/beep', :thread => 24
-Irbtools.add_library 'ap', :thread => 30
 Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 
 # lets you open vim (or your favourite editor), hack something, save it, and it's loaded in the current irb session

@@ -1,6 +1,7 @@
 master
 * bump boson, boson-more, binding.repl
 * required ruby version: 1.9.3
+* remove awesome_print
 
 1.6.1
 * don't load debugging/repl by default
