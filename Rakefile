@@ -1,5 +1,13 @@
 # require 'rake'
 require 'fileutils'
+require "rspec/core/rake_task"
+
+task :test => :spec
+task :default => :spec
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = '--backtrace --color'
+end
+
 
 def gemspec1
   @gemspec1 ||= eval(File.read('irbtools.gemspec'), binding, 'irbtools.gemspec')
