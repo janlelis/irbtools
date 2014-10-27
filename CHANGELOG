@@ -1,4 +1,4 @@
-== master
+== 1.7.0
 * Bump looksee
 * Ruby 1.9.3 required
 * Add did_you_mean gem

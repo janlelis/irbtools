@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[MIT-LICENSE README.rdoc]
   s.files                 = Dir.glob(%w[lib/**/*.rb ]) + %w{CHANGELOG Rakefile irbtools-more.gemspec}
   s.required_ruby_version = '>= 1.9.3'
-  s.add_dependency 'irbtools', '~> 1.6'
+  s.add_dependency 'irbtools', '~> 1.7'
   s.add_dependency 'bond',     '~> 0.5'
   s.add_dependency 'looksee' , '~> 2.1'
   s.add_dependency 'binding_of_caller', '~> 0.7'
