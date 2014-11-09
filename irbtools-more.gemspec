@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'bond',     '~> 0.5'
   s.add_dependency 'looksee' , '~> 2.1'
   s.add_dependency 'binding_of_caller', '~> 0.7'
-  s.add_dependency 'did_you_mean', '~> 0.8'
+  s.add_dependency 'did_you_mean', '~> 0.9'
 end
 
