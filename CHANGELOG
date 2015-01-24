@@ -1,3 +1,6 @@
+1.7.1
+* bump binding.repl
+
 1.7.0
 * bump boson, boson-more, binding.repl
 * required ruby version: 1.9.3

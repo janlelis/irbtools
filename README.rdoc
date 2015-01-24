@@ -32,7 +32,7 @@ To integrate *irbtools* into a Rails console (or any project that uses bundler),
 
   gem 'irbtools', require: 'binding.repl'
 
-Thanks to help from the {binding.repl gem}[https://github.com/robgleeson/binding.repl], you can start IRB (with *irbtools*) directly from your code:
+Thanks to help from the {binding.repl gem}[https://github.com/rpag/binding.repl], you can start IRB (with *irbtools*) directly from your code:
 
   binding.repl!
 
