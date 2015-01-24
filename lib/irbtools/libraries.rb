@@ -8,7 +8,7 @@ require 'rbconfig'
 
 Irbtools.add_library :yaml
 Irbtools.add_library 'binding.repl' do
-  Binding.repl.auto_order = %w[irb ripl rib pry]
+  BindingRepl.auto = %w[irb ripl rib pry]
 end
 
 
