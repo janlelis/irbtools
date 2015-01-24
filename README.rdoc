@@ -200,4 +200,4 @@ The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
 
 == J-_-L
 
-Copyright (c) 2010-2014 Jan Lelis <http://janlelis.com> released under the MIT license.
+Copyright (c) 2010-2015 Jan Lelis <http://janlelis.com> released under the MIT license.
