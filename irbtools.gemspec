@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<fancy_irb>,     ">= 0.7.3"
   s.add_dependency %q<wirb>,          ">= 1.0.3"
   s.add_dependency %q<paint>,         ">= 0.8.7"
-  s.add_dependency %q<hirb>,          "~> 0.7"
+  s.add_dependency %q<hirb>,          "~> 0.7", ">= 0.7.3"
   s.add_dependency %q<coderay>,       "~> 1.1.0"
 
   # debugging

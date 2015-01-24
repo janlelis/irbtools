@@ -1,5 +1,5 @@
 1.7.1
-* bump binding.repl
+* bump binding.repl, hirb
 
 1.7.0
 * bump boson, boson-more, binding.repl
