@@ -8,7 +8,7 @@ require 'rbconfig'
 
 Irbtools.add_library :yaml
 Irbtools.add_library 'binding.repl' do
-  BindingRepl.auto = %w[irb ripl rib pry]
+  BindingRepl.auto = %w[irb ripl ir rib pry]
 end
 
 
