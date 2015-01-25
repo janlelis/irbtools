@@ -15,8 +15,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_dependency 'irbtools', '~> 1.7'
   s.add_dependency 'bond',     '~> 0.5'
-  s.add_dependency 'looksee' , '~> 2.1'
+  s.add_dependency 'looksee' , '~> 3.0', '>= 3.0.1'
   s.add_dependency 'binding_of_caller', '~> 0.7'
-  s.add_dependency 'did_you_mean', '~> 0.9'
+  s.add_dependency 'did_you_mean', '~> 0.9', '>= 0.9.5'
 end
 

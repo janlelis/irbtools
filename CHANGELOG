@@ -1,3 +1,6 @@
+== 1.7.2
+* Bump did_you_mean and looksee (Ruby 2.2 compat)
+
 == 1.7.1
 * Bump did_you_mean version
 

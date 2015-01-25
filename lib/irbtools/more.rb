@@ -4,7 +4,7 @@ standalone = !(defined? Irbtools)
 # define version
 module Irbtools
   module More
-    VERSION = '1.7.1'
+    VERSION = '1.7.2'
   end
 end
 
@@ -26,8 +26,8 @@ end
 
 # Object#l method for inspecting its lookup path
 Irbtools.add_library 'looksee', late_thread: :c do
-  Looksee::ObjectMixin.rename :l
-  class Object; alias lp l; end
+  Looksee.rename :l
+  class Object; def lp() l end; end
 end
 
 # repl method

@@ -37,4 +37,4 @@ If you want to customize which libraries you want to use, you can load irbtools-
 
 == J-_-L
 
-Copyright (c) 2010-2014 Jan Lelis, http://janlelis.com. See MIT-LICENSE for details.
+Copyright (c) 2010-2015 Jan Lelis, http://janlelis.com. See MIT-LICENSE for details.
