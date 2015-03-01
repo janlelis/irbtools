@@ -195,7 +195,7 @@ section#downloads {
   background: transparent url(../images/shield.png) center 0 no-repeat;
 }
 
-section#downloads a {
+section#downloads .non-a {
   display: none;
 }
 

@@ -215,7 +215,7 @@ div#no-downloads span.inner {
   background: transparent url(../images/download-sprite.png) 0 0 no-repeat;
 }
 
-section#downloads a {
+section#downloads .non-a {
   display: block;
   position: relative;
   height: 67px;
@@ -230,32 +230,24 @@ section#downloads a {
   font-size: 1.3em;
 }
 
-section#downloads a:hover {
+section#downloads .non-a:hover {
   text-decoration: none;
 }
 
-section#downloads a em {
+section#downloads .non-a em {
   font: bold italic 12px/1 Georgia, Times, “Times New Roman”, serif;
   color: #83b7da;
   display: block;
 }
 
-section#downloads a.zip {
+section#downloads .non-a.zip {
   float: left;
   background-position: 0 0;
 }
 
-section#downloads a.tgz {
+section#downloads .non-a.tgz {
   float: right;
   background-position: -275px 0;
-}
-
-section#downloads a.zip:hover {
-  background-position: 0 -197px;
-}
-
-section#downloads a.tgz:hover {
-  background-position: -275px -197px;
 }
 
 span.banner-fix {
