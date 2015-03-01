@@ -57,7 +57,7 @@
 <h3>
 <a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h3>
 
-<p>Add to your project's <code>Gemfile:</code></p>
+<p>Add to your project's <code>Gemfile</code></p>
 
 <div class="highlight highlight-ruby"><pre><span class="pl-k">gem</span> <span class="pl-s1"><span class="pl-pds">'</span>irbtools<span class="pl-pds">'</span></span>, <span class="pl-c1">require:</span> <span class="pl-s1"><span class="pl-pds">'</span>binding.repl<span class="pl-pds">'</span></span></pre></div>
 
@@ -68,16 +68,16 @@
 <h3>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
 
-<p>Try the following things in your enhanced IRB:</p>
+<p>Put <code>binding.repl</code> in your code to start a new IRB session. Then try the following things in your enhanced IRB:</p>
 
 <ul>
 <li><code>vim</code> # starts VIM inside your IRB to edit multi-line code</li>
 <li><code>copy "string"</code> # copy something to your system clipboard</li>
-<li><code>mf [1,2,3], [3,2,1]</code> # list methods that transform object 1 into object 2</li>
+<li><code>mf [1,2,3], [3,2,1]</code> # list methods that transform object1 into object2</li>
 <li><code>ls</code> # list current directory contents</li>
-<li><code>src :ls</code> # list the source of a Ruby method (does not work for native C code)</li>
+<li><code>src :ls</code> # list the source of a (non-C) Ruby method</li>
 <li><code>rq:mathn</code> # short way of saying: require 'mathn'</li>
-<li><code>mof [1,2,3]</code> # list available methods for this object for each class/module it inherits from</li>
+<li><code>mof [1,2,3]</code> # list methods fo each module the object inherits from</li>
 <li><code>re "mail@janlelis.de", /\b([A-Z0-9._%+-]+)@([A-Z0-9.-]+\.[A-Z]{2,10})\b/i, 0..2</code> # visualize regexes</li>
 </ul>
 
@@ -87,7 +87,7 @@
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
-            <p>...project by <a href="https://janlelis.com">Jan Lelis</a> ...repo on <a href="https://github.com/janlelis/irbtools">github</a> ...generated with <a href="http://pages.github.com">pages</a></p>
+            <p>…gem by <a href="http://janlelis.com">Jan Lelis</a> …repo on <a href="https://github.com/janlelis/irbtools">github</a> …generated with <a href="http://pages.github.com">pages</a></p>
           </span>
           <span class="left-tail"></span>
           <span class="right-tail"></span>
