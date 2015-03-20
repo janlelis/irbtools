@@ -8,7 +8,7 @@
 # # # # #
 # define module methods
 module Irbtools
-  VERSION = "1.7.1"
+  VERSION = "2.0.0.pre"
 
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }

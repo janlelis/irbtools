@@ -1,3 +1,6 @@
+2.0.0 (master)
+* drop official support for Ruby 1
+
 1.7.1
 * bump binding.repl, hirb, methodfinder
 
