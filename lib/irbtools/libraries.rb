@@ -113,7 +113,7 @@ Irbtools.add_library :wirb, :late => true do
   Wirb.start
 end
 
-unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+unless defined?(Ripl) && Ripl.started?
   # use hash rocket and colorful errors/streams
   Irbtools.add_library :fancy_irb, :late => true do
     FancyIrb.start
@@ -138,34 +138,29 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   end
 
   # page wirb output hacks
-  if defined?(Wirb) && defined?(Paint)
-    class Hirb::Pager
-      alias original_activated_by? activated_by?
-      def activated_by?(string_to_page, inspect_mode=false)
-        original_activated_by?(Paint.unpaint(string_to_page || ''), inspect_mode)
-      end
+  class Hirb::Pager
+    alias original_activated_by? activated_by?
+    def activated_by?(string_to_page, inspect_mode=false)
+      original_activated_by?(Paint.unpaint(string_to_page || ''), inspect_mode)
     end
+  end
 
-    class << Hirb::View
-      def view_or_page_output(str)
-        view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
-      end
+  class << Hirb::View
+    def view_or_page_output(str)
+      view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
     end
   end
 
   # colorful border
-  if defined?(Paint)
-    table_color = :yellow
-
-    Hirb::Helpers::UnicodeTable::CHARS.each do |place, group|
-      Hirb::Helpers::UnicodeTable::CHARS[place] =
-      group.each do |name, part|
-        if part.kind_of? String
-          Hirb::Helpers::UnicodeTable::CHARS[place][name] = Paint[part, *table_color]
-        elsif part.kind_of? Hash
-          part.each do |special, char|
-            Hirb::Helpers::UnicodeTable::CHARS[place][name][special] = Paint[char, *table_color]
-          end
+  table_color = :yellow
+  Hirb::Helpers::UnicodeTable::CHARS.each do |place, group|
+    Hirb::Helpers::UnicodeTable::CHARS[place] =
+    group.each do |name, part|
+      if part.kind_of? String
+        Hirb::Helpers::UnicodeTable::CHARS[place][name] = Paint[part, *table_color]
+      elsif part.kind_of? Hash
+        part.each do |special, char|
+          Hirb::Helpers::UnicodeTable::CHARS[place][name][special] = Paint[char, *table_color]
         end
       end
     end
