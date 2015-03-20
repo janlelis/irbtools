@@ -92,7 +92,6 @@ and/or edit your Gemfile to
 
 ==== Code Organization
 
-* Command/task framework similar to rake and thor: boson[http://tagaholic.me/boson/]
 * Shortcuts for your favorite methods, saved in personal yaml file: alias[http://tagaholic.me/2009/07/07/alias-quickness-in-the-ruby-console.html]
 
 

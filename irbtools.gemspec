@@ -18,8 +18,6 @@ Gem::Specification.new do |s|
   # functionality
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
   s.add_dependency %q<binding.repl>,  "~> 3.0"
-  s.add_dependency %q<boson>,         "~> 1.3.0"
-  s.add_dependency %q<boson-more>,    "~> 0.3.0"
   s.add_dependency %q<alias>,         "~> 0.2.3"
   s.add_dependency %q<clipboard>,     "~> 1.0.5"
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"

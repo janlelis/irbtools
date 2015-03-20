@@ -172,11 +172,6 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   end
 end
 
-# command framework
-Irbtools.add_library 'boson/console', :late_thread => :hirb do
-  Boson.start
-end
-
 
 # # # load via autoload
 
