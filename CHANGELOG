@@ -2,6 +2,7 @@
 * drop official support for Ruby 1
 * remove boson
 * add instance gem for an api access to instance variables
+* simplify starting from code via irbtools/binding
 
 1.7.1
 * bump binding.repl, hirb, methodfinder

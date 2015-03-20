@@ -7,9 +7,6 @@ require 'rbconfig'
 # # # load on startup
 
 Irbtools.add_library :yaml
-Irbtools.add_library 'binding.repl' do
-  BindingRepl.auto = %w[irb ripl ir rib pry]
-end
 
 
 # # # load via thread

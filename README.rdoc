@@ -30,11 +30,15 @@ See further below, if you want to customize which libraries should be loaded on 
 
 To integrate *irbtools* into a Rails console (or any project that uses bundler), add <tt>irbtools</tt> to your Gemfile:
 
-  gem 'irbtools', require: 'binding.repl'
+  gem 'irbtools', require: 'irbtools/binding'
 
-Thanks to help from the {binding.repl gem}[https://github.com/rpag/binding.repl], you can start IRB (with *irbtools*) directly from your code:
+Then start IRB directly from your code with:
 
-  binding.repl!
+  binding.irb
+
+If the <tt>binding_of_caller</tt> gem is available, you can omit the <tt>binding</tt>:
+
+  irb
 
 
 === Debundle
