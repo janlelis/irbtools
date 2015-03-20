@@ -7,32 +7,15 @@ Improvements for Ruby's IRB console, for example, colored output, and a lot of d
 
   $ gem install irbtools
 
-
-=== Extra Requirements
-
-Linux: Clipboard support requires *xclip* or *xsel*: <tt>sudo apt-get install xclip</tt>
-
-Windows: ANSI colors can be enabled via ansicon[https://github.com/adoxa/ansicon]
-
-Mac OS: The g gem makes use of *growl*
-
-
-== Usage
-
-IRB executes code in <tt>~/.irbrc</tt> on start-up. If the file does not exist, yet, just create a new one. Add the following:
+IRB executes code in <tt>~/.irbrc</tt> on start-up. If the file does not exist, yet, just create a new one. Add the following content:
 
   require 'irbtools'
 
-See further below, if you want to customize which libraries should be loaded on IRB start-up.
-
-
-=== With Bundler
-
-To integrate *irbtools* into a Rails console (or any project that uses bundler), add <tt>irbtools</tt> to your Gemfile:
+You also need to add irbtools to your project's Gemfile:
 
   gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB directly from your code with:
+Then start IRB (with *irbtools*) directly from your code with:
 
   binding.irb
 
@@ -41,20 +24,15 @@ If the <tt>binding_of_caller</tt> gem is available, you can omit the <tt>binding
   irb
 
 
-=== Debundle
-
-Another way to activate *irbtools* in bundler projects is to add a {debundle hack}[https://github.com/janlelis/debundle.rb] at the beginning of your <tt>~/.irbrc</tt> file.
-
-
 === This is irbtools Light
 
-When installing *irbtools*, some gems will not be installed to ensure Windows OS support, for example, the bond gem for better auto-completion or the looksee gem for method/class introspection. These are packaged as {irbtools-more}[https://github.com/janlelis/irbtools-more]. To use <tt>irbtools-more</tt>, you will need to change your <tt>.irbrc</tt> to:
+Some suggested gems will not be installed to ensure wider general support. For the full feature set, you can add {irbtools-more}[https://github.com/janlelis/irbtools-more] and change your <tt>.irbrc</tt> to:
 
   require 'irbtools/more'
 
-and/or edit your Gemfile to
+and edit your Gemfile to
 
-  gem 'irbtools-more', require: 'binding.repl'
+  gem 'irbtools-more', require: 'irbtools/binding'
 
 
 === Included Gems and Libraries
@@ -138,6 +116,11 @@ and/or edit your Gemfile to
 
 
 == Advanced tweaking
+=== Welcome Message
+
+The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
+
+
 === Customize libraries to load
 
 It is possible to modify, which libraries to load:
@@ -168,7 +151,17 @@ When adding a new library, you should firstly consider some way to load it via <
 If this is not possible, try loading via <tt>:thread</tt>. If that is not possible either, you will need to fallback to the default loading mechanism.
 
 
-== Troubleshooting: Unicode causes wrong display widths?
+== Troubleshooting: ANSI colors on Windows
+
+Windows: ANSI support can be enabled via ansicon[https://github.com/adoxa/ansicon] or ConEmu[http://code.google.com/p/conemu-maximus5/].
+
+
+== Troubleshooting: Clipboard not working on Linux
+
+Clipboard support requires *xclip* or *xsel*. On ubuntu, do: <tt>sudo apt-get install xclip</tt>
+
+
+== Troubleshooting: Unicode causes wrong display widths
 
 If you use double-width unicode characterss, you will need to paste the following snippet to your <tt>.irbrc</tt> file.
 
@@ -177,6 +170,11 @@ If you use double-width unicode characterss, you will need to paste the followin
   end
 
 This setting is deactivated by default, because of performance issues.
+
+
+== Hint: Debundle
+
+If you do not want to add irbtools to your project's Gemfile, you will need a {debundle hack}[https://github.com/janlelis/debundle.rb]. Put it at the beginning of your <tt>~/.irbrc</tt> file and you are fine (until it breaks).
 
 
 == Hint: Faster start-up
@@ -191,12 +189,7 @@ You can get an about a second faster start-up time by changing the loading metho
   Irbtools.start
 
 
-== Welcome Message
-
-The welcome message can be customized with <tt>Irbtools.welcome_message=</tt>
-
-
-== Web Console
+== Hint: Web Console
 
 *irbtools* works well together with the amazing {web-console!}[https://github.com/rails/web-console]
 
