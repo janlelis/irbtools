@@ -51,4 +51,5 @@ Gem::Specification.new do |s|
   s.add_dependency %q<ruby_engine>,   "~> 1.0"
   s.add_dependency %q<ruby_info>,     "~> 1.0"
   s.add_dependency %q<os>,            "~> 0.9"
+  s.add_dependency %q<instance>,      "~> 0.2"
 end

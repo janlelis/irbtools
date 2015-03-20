@@ -1,6 +1,7 @@
 2.0.0 (master)
 * drop official support for Ruby 1
 * remove boson
+* add instance gem for an api access to instance variables
 
 1.7.1
 * bump binding.repl, hirb, methodfinder
