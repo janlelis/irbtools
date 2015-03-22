@@ -19,9 +19,9 @@ Gem::Specification.new do |s|
     irbtools.gemspec
   ]
   s.extra_rdoc_files      = %w[
-    README.rdoc
-    CHANGELOG
-    MIT-LICENSE
+    README.md
+    CHANGELOG.txt
+    MIT-LICENSE.txt
   ]
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.required_ruby_version = '>= 1.9.3'
