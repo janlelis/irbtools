@@ -29,18 +29,18 @@ Gem::Specification.new do |s|
 
   # core functionality
   s.add_dependency %q<every_day_irb>, ">= #{ s.version }"
-  s.add_dependency %q<fancy_irb>,     ">= 0.8.1"
-  s.add_dependency %q<wirb>,          ">= 1.0.3"
+  s.add_dependency %q<fancy_irb>,     "= 1.0.0.pre"
+  s.add_dependency %q<wirb>,          "= 2.0.0.pre"
   s.add_dependency %q<hirb>,          "~> 0.7", ">= 0.7.3"
   s.add_dependency %q<binding.repl>,  "~> 3.0"
 
   # utils
-  s.add_dependency %q<paint>,         ">= 0.9.0"
+  s.add_dependency %q<paint>,         "= 1.0.0.pre"
   s.add_dependency %q<clipboard>,     "~> 1.0.6"
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"
   s.add_dependency %q<alias>,         "~> 0.2.3"
   s.add_dependency %q<coderay>,       "~> 1.1.0"
-  s.add_dependency %q<debugging>,     "~> 1.0"
+  s.add_dependency %q<debugging>,     "~> 1.0", ">= 1.0.2"
   s.add_dependency %q<g>,             ">= 1.7.2"
 
   # introspection / docs
