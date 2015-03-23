@@ -1,4 +1,4 @@
-# irbtools
+# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](http://badge.fury.io/rb/irbtools)
 
 Improvements for Ruby's IRB console, for example, colored output, and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
