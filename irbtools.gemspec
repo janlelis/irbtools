@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
     MIT-LICENSE.txt
   ]
   s.homepage              = 'https://github.com/janlelis/irbtools'
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '~> 2.0'
   s.license               = 'MIT'
 
   # core functionality
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<binding.repl>,  "~> 3.0"
 
   # utils
-  s.add_dependency %q<paint>,         "= 1.0.0.pre"
+  s.add_dependency %q<paint>,         ">= 0.9", "< 2.0"
   s.add_dependency %q<clipboard>,     "~> 1.0.6"
   s.add_dependency %q<interactive_editor>, ">= 0.0.10"
   s.add_dependency %q<alias>,         "~> 0.2.3"
