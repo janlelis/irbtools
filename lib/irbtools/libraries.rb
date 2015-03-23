@@ -144,8 +144,10 @@ Irbtools.add_library :hirb, :late_thread => :hirb do
   end
 
   class << Hirb::View
-    def view_or_page_output(str)
-      view_output(str) || page_output(Wirb.colorize_result(str.inspect), true)
+    def view_or_page_output(val)
+      if defined?(val.inspect)
+        view_output(val) || page_output(Wirb.colorize_result_with_timeout(val.inspect), true)
+      end
     end
   end
 
