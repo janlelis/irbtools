@@ -1,5 +1,5 @@
 module Irbtools
   module More
-    VERSION = '1.7.2'
+    VERSION = '2.0.0'
   end
 end
