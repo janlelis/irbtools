@@ -26,7 +26,7 @@ describe EveryDayIrb do
     context 'one arg' do
       it 'calls Dir["#{path}/*"] to get the list of all files of the given path' do
         res = Dir["#{path}/*"]
-        Dir.should_receive(:[]).with("#{path}/*").and_return(res)
+        expect( Dir ).to receive(:[]).with("#{path}/*").and_return(res)
 
         ls(path)
       end
