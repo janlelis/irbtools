@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.email                 = 'mail@janlelis.de'
   s.files                 = %w[
     lib/irbtools/more.rb
+    lib/irbtools/more/version.rb
     lib/bond/completions/irbtools.rb
     irbtools-more.gemspec
   ]

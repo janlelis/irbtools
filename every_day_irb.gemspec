@@ -10,8 +10,17 @@ Gem::Specification.new do |s|
   s.summary               = 'EveryDayIrb simplifies daily life in IRB.'
   s.description           = 'EveryDayIrb simplifies daily life in IRB with commands like: ls, cat, rq, rrq, ld, reset!, ...'
   s.email                 = 'mail@janlelis.de'
-  s.files                 = %w[lib/every_day_irb.rb spec/every_day_irb_spec.rb every_day_irb.gemspec]
-  s.extra_rdoc_files      = %w[CHANGELOG-EVERYDAYIRB.txt MIT-LICENSE.txt README.md]
+  s.files                 = %w[
+    lib/every_day_irb.rb
+    lib/every_day_irb/version.rb
+    spec/every_day_irb_spec.rb
+    every_day_irb.gemspec
+  ]
+  s.extra_rdoc_files      = %w[
+    README.md
+    CHANGELOG-EVERYDAYIRB.txt
+    MIT-LICENSE.txt
+  ]
   s.license               = 'MIT'
 
   s.required_ruby_version = '>= 1.9.3'
