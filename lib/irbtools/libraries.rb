@@ -22,6 +22,7 @@ Irbtools.add_library 'debugging/q', :thread => 21
 Irbtools.add_library 'debugging/mof', :thread => 22
 Irbtools.add_library 'debugging/re', :thread => 23
 Irbtools.add_library 'debugging/beep', :thread => 24
+Irbtools.add_library 'debugging/howtocall', :thread => 25
 Irbtools.add_library 'instance', :thread => 30
 Irbtools.add_library 'g', :thread => 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
 
@@ -221,4 +222,3 @@ Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
   end
 end
 
-# J-_-L
