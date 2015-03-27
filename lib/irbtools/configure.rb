@@ -21,10 +21,6 @@ module Irbtools
     # a hash of arrays of libraries that get loaded
     # keys determine if lib is required, required on sub-session or autoloaded
     attr_accessor :libraries
-    alias libs libraries
-    alias libs= libraries=
-    alias gems libraries
-    alias gems= libraries=
 
     # an array of extension packages that get loaded (e.g. irbtools-more)
     attr_accessor :packages
@@ -60,16 +56,12 @@ module Irbtools
 
       add_library_callback(lib, &block) if block_given?
     end
-    alias add_lib add_library
-    alias add_gem add_library
 
     # add a callback that gets (usually) executed after loading the library
     def add_library_callback(lib, &block)
       lib = lib.to_s
       @lib_hooks[lib] << block
     end
-    alias add_lib_callback add_library_callback
-    alias add_gem_callback add_library_callback
 
     # replace all callbacks with the new one given in the block
     # a callback that gets (usually) executed after loading the library
@@ -78,8 +70,6 @@ module Irbtools
       @lib_hooks[lib].clear
       @lib_hooks[lib] << block
     end
-    alias replace_lib_callback replace_library_callback
-    alias replace_gem_callback replace_library_callback
 
     # don't load a specific library
     def remove_library(lib)
@@ -94,8 +84,6 @@ module Irbtools
 
       @lib_hooks.delete lib
     end
-    alias remove_lib remove_library
-    alias remove_gem remove_library
 
     # add extensions packages
     def add_package(pkg)
@@ -113,10 +101,9 @@ module Irbtools
     private :library_loaded
 
     # loads all the stuff ;)
-    def init
+    def start
       require File.expand_path( '../irbtools.rb', File.dirname(__FILE__) )
     end
-    alias start init
   end
 end
 
