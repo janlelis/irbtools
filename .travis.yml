@@ -1,3 +1,4 @@
+sudo: false
 language: ruby
 
 rvm:
@@ -9,3 +10,5 @@ rvm:
 - jruby-head
 - jruby-9000
 
+cache:
+- bundler
