@@ -40,11 +40,16 @@ module EveryDayIrb
   end
   alias rrq rerequire
 
+  # just clear the screen
+  def clear
+    system 'clear'
+  end
+
   # restart irb
   def reset!
     # remember history...
-    reset_irb = proc{ exec$0 }
-    if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+    reset_irb = proc{ exec $0 }
+    if defined?(Ripl) && Ripl.started?
       Ripl.shell.write_history if Ripl.shell.respond_to? :write_history
       reset_irb.call
     else
@@ -53,15 +58,10 @@ module EveryDayIrb
     end
   end
 
-  # just clear the screen
-  def clear
-    system 'clear'
-  end
-
-  # returns the last lines, needed for some copy_ methods
+  # returns the last lines
   def session_history(number_of_lines = nil)
     if !number_of_lines
-      if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
+      if defined?(Ripl) && Ripl.started?
         number_of_lines = Ripl.shell.line
       else
         number_of_lines = context.instance_variable_get(:@line_no)
