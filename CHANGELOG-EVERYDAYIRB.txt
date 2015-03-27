@@ -1,4 +1,4 @@
 2.0.0
 * Separate every_day_irb release cycle from irbtools release cycle
 * Move cd enhancements into cd microgem on which every_day_irb depends
-* You must include EveryDayIrb explicitely, does not happen on require, anymore
+* You must extend EveryDayIrb explicitely, does not happen on require, anymore

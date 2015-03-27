@@ -13,8 +13,8 @@ Irbtools.add_library :yaml
 
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
 Irbtools.add_library 'every_day_irb', :thread => :stdlib do
-  FileUtils::Verbose
-  include EveryDayIrb
+  include FileUtils::Verbose
+  extend EveryDayIrb
 end
 
 # print debugging helper (q, mof, re)
