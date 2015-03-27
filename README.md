@@ -22,11 +22,11 @@ Then start IRB (with **irbtools**) directly from your code with:
 
     binding.irb
 
-If the `binding_of_caller` gem is available, you can omit the `binding`:
+If the `binding_of_caller` gem is available (e.g. see below), you can omit the `binding`:
 
     irb
 
-### This is irbtools Light
+### More improvements
 
 Some suggested gems will not be installed to ensure wider general support. For
 the full feature set, you can add
@@ -39,6 +39,7 @@ and edit your Gemfile to
 
     gem 'irbtools-more', require: 'irbtools/binding'
 
+
 ### Included Gems and Libraries
 #### IRB Improvements
 
@@ -46,9 +47,10 @@ and edit your Gemfile to
 *   IRB tweaks: [fancy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
     [hirb](http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
+*   **(irbtools-more)** Correction for misspelled method/constant names:
+    [bond](https://github.com/yuki24/did_you_mean)
 *   **(irbtools-more)** Better IRB tab-completion:
     [bond](http://tagaholic.me/bond/)
-
 
 #### Helpful Methods
 
@@ -85,8 +87,6 @@ and edit your Gemfile to
 *   Syntax highlighting: [coderay](https://github.com/rubychan/coderay)
 *   **irbtools-more** Awesome lookup path inspection:
     [looksee](https://github.com/oggy/looksee)
-*   **irbtools-more** Useful "did you mean?" suggestions in stack-traces:
-    [did_you_mean](https://github.com/yuki42/did_you_mean)
 
 
 #### Code Organization
