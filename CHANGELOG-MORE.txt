@@ -1,0 +1,39 @@
+== 2.0.0 (master)
+* Integrate more-repo into irbtools main repo
+
+== 1.7.2
+* Bump did_you_mean and looksee (Ruby 2.2 compat)
+
+== 1.7.1
+* Bump did_you_mean version
+
+== 1.7.0
+* Bump looksee
+* Ruby 1.9.3 required
+* Add did_you_mean gem
+
+== 1.6.1
+* Add binding_of_caller
+* Alias looksee to Object#lp instead of Object#ls
+
+== 1.6.0
+* (nothing)
+
+== 1.5.2
+* Ruby 2.1 Compatibility / Update looksee gem
+* Be less restrictive in gem dependencies
+
+== 1.5.1
+* (nothing)
+
+== 1.5.0
+* Ruby 2.0 Compatibility
+* Drop 1.8 Support
+* Drop DrX gem
+
+== 1.2.0
+* add looksee
+
+== 0.3.2
+* load in threads (irbtools 1.0)
+* remove jeweler
