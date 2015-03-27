@@ -1,5 +1,7 @@
 require_relative '../lib/every_day_irb'
 
+require 'fileutils'
+
 describe EveryDayIrb do
   include EveryDayIrb
 
@@ -28,6 +30,18 @@ describe EveryDayIrb do
 
         ls(path)
       end
+    end
+  end
+
+  describe "#cd" do
+    it 'returns an array' do
+      expect( ls ).to be_a Array
+    end
+
+    it 'requests FileUtils to change the directory' do
+      expect( FileUtils::Verbose ).to receive(:cd).with("/")
+
+      cd "/"
     end
   end
 

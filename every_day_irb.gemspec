@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
   s.license               = 'MIT'
 
   s.required_ruby_version = '>= 1.9.3'
+  s.add_dependency 'cd', '~> 1.0'
 end

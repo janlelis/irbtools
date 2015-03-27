@@ -1,3 +1,5 @@
+require 'cd'
+
 module EveryDayIrb
   VERSION = "1.7.1"
 
@@ -5,10 +7,14 @@ module EveryDayIrb
   private
 
   # shows the contents of your current directory (more such commands available by FileUtils)
-  def ls(path='.')
-    Dir[ File.join( path, '*' )].map{|filename| File.basename filename }
+  def ls(path = '.')
+    Cd.cd.ls(path)
   end
-  alias dir ls
+
+  # patch cd so that it also shows the current directory and got some extras
+  def cd(path = nil)
+    Cd.cd(path)
+  end
 
   # read file contents (also see ray for ruby source files ;) )
   def cat(path)

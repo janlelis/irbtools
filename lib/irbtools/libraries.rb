@@ -10,28 +10,10 @@ Irbtools.add_library :yaml
 
 
 # # # load via thread
-#      the :stdlib thread ensures proper loading of fileutils and tempfile
-
-Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, mkdir, touch ... ;)
-  include FileUtils::Verbose
-
-  # patch cd so that it also shows the current directory and got some extras
-  def cd( path = '~' )
-    new_last_path = FileUtils.pwd
-    if path == '-'
-      unless path = Irbtools.instance_variable_get(:@last_cd_path)
-        warn 'Sorry, there is no previous directory.'
-        return
-      end
-    end
-    super(File.expand_path(path))
-    Irbtools.instance_variable_set(:@last_cd_path, new_last_path)
-    ls
-  end
-end
 
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
-Irbtools.add_library 'every_day_irb', :thread => 10 do
+Irbtools.add_library 'every_day_irb', :thread => :stdlib do
+  include FileUtils::Verbose
   include EveryDayIrb
 end
 
