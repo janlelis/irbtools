@@ -89,13 +89,6 @@ and edit your Gemfile to
     [looksee](https://github.com/oggy/looksee)
 
 
-#### Code Organization
-
-*   Shortcuts for your favorite methods, saved in personal yaml file:
-    [alias](http://tagaholic.me/2009/07/07/alias-quickness-in-the-ruby-console
-    .html)
-
-
 ### Irbtools Methods
 #### From every_day_irb
 

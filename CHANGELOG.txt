@@ -3,7 +3,7 @@
 * EveryDayIrb now gets released on its own, instead with every new irbtools version.
 * Integrate Irbtools::MORE into irbtools main repo
 * Drop support for Ruby 1
-* Remove boson gems
+* Remove code organization gems (boson + alias)
 * Add instance gem for improved access to instance variables
 * Simplify starting from code via require 'irbtools/binding'
 

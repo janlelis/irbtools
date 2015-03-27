@@ -81,10 +81,6 @@ Irbtools.add_library :method_source, :thread => 70 do
   end
 end
 
-Irbtools.add_library :alias, :thread => 80 do
-  Alias.create
-  extend Alias::Console
-end
 
 # # # load via late
 
