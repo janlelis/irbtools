@@ -1,5 +1,3 @@
-# every_day_irb defines some helper methods that might be useful in every-day irb usage
-
 module EveryDayIrb
   VERSION = "1.7.1"
 
@@ -71,6 +69,3 @@ module EveryDayIrb
   end
 end
 
-include EveryDayIrb
-
-# J-_-L

@@ -1,8 +1,8 @@
 require_relative '../lib/every_day_irb'
 
-require 'rspec'
-
 describe EveryDayIrb do
+  include EveryDayIrb
+
   let(:filename){ __FILE__ }
   let(:filename_without_rb){ filename.sub(/\.rb$/, '') }
   let(:path){ File.dirname(filename) + '/..' }

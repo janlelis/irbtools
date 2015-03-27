@@ -31,7 +31,9 @@ Irbtools.add_library :fileutils, :thread => :stdlib do # cd, pwd, ln_s, mv, rm, 
 end
 
 # ls, cat, rq, rrq, ld, session_history, reset!, clear, dbg, ...
-Irbtools.add_library 'every_day_irb', :thread => 10
+Irbtools.add_library 'every_day_irb', :thread => 10 do
+  include EveryDayIrb
+end
 
 # print debugging helper (q, mof, re)
 Irbtools.add_library 'debugging/q', :thread => 21
