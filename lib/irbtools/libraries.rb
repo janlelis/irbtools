@@ -1,6 +1,3 @@
-# encoding: utf-8
-# default irbtools set of libraries, you can remove any you don't like via Irbtools.remove_library
-
 require 'rbconfig'
 
 
@@ -17,7 +14,7 @@ Irbtools.add_library 'every_day_irb', :thread => :stdlib do
   extend EveryDayIrb
 end
 
-# print debugging helper (q, mof, re)
+# print debugging helpers
 Irbtools.add_library 'debugging/q', :thread => 21
 Irbtools.add_library 'debugging/mof', :thread => 22
 Irbtools.add_library 'debugging/re', :thread => 23
@@ -57,7 +54,7 @@ Irbtools.add_library :method_locator, :thread => 60 do
   end
 end
 
-# view method source :)
+# view method source
 Irbtools.add_library :method_source, :thread => 70 do
   class Object
     def src(method_name)
@@ -73,7 +70,6 @@ Irbtools.add_library :method_source, :thread => 70 do
       ).term
     rescue
       raise unless $!.message =~ /Cannot locate source for this method/
-
       nil
     end
 
@@ -103,7 +99,6 @@ end
 # # # load via late_thread
 
 Irbtools.add_library 'wirb/wp',  :late_thread => :a # ap alternative (wp)
-
 Irbtools.add_library 'paint/pa', :late_thread => :b # colorize a string (pa)
 
 # tables, menus...
@@ -217,4 +212,3 @@ Irbtools.add_library :methodfinder, :autoload => :MethodFinder do
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
   end
 end
-

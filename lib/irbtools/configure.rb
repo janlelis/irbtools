@@ -95,21 +95,74 @@ module Irbtools
       @packages.delete pkg.to_s
     end
 
-    def library_loaded(lib) #:nodoc:
+    # actually require registered packages
+    def load_packages
+      @packages.each{ |pkg|
+        begin
+          require "irbtools/#{pkg}"
+        rescue LoadError => err
+          warn "Couldn't load the extension package '#{pkg}' #{err.class}\n* " +
+                err.message + "\n* " + err.backtrace[0] + "\n"
+        end
+      }
+    end
+
+    # te be triggered when a library has loaded
+    def library_loaded(lib)
       @lib_hooks[lib.to_s].each{ |hook| hook.call }
     end
-    private :library_loaded
 
-    # loads all the stuff ;)
+    # actually load libraries
+    def load_libraries(libs)
+      remember_verbose_and_debug = $VERBOSE, $DEBUG
+      $VERBOSE = $DEBUG = false
+
+      libs.each{ |lib|
+        begin
+          require lib.to_s
+          library_loaded(lib)
+        rescue Exception => err
+          warn "Couldn't load the irb library '#{lib}': #{err.class}\n* " +
+               err.message + "\n* " + err.backtrace[0] + "\n"
+        end
+      }
+      $VERBOSE, $DEBUG = remember_verbose_and_debug
+    end
+
+    # configure irb
+    def configure_irb!
+      if defined?(IRB)
+        IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
+        IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
+        IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
+
+        # prompt
+        (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
+          :PROMPT_I => ">> ",    # normal
+          :PROMPT_N => "|  ",    # indenting
+          :PROMPT_C => " > ",    # continuing a statement
+          :PROMPT_S => "%l> ",   # continuing a string
+          :RETURN   => "=> %s \n",
+          :AUTO_INDENT => true,
+        }})
+
+        IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+      end
+    end
+
+    # add '.' to load path
+    def add_current_directory_to_load_path!
+      $LOAD_PATH << '.'
+    end
+
+    # loads all the stuff
     def start
-      require File.expand_path( '../irbtools.rb', File.dirname(__FILE__) )
+      require 'irbtools'
     end
   end
 end
 
 # # # # #
 # libraries
-require File.expand_path( 'libraries.rb', File.dirname(__FILE__) ) unless Irbtools.minimal
 
-# J-_-L
-
+require 'irbtools/libraries' unless Irbtools.minimal

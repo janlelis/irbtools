@@ -1,118 +1,67 @@
-# encoding: utf-8
+require_relative 'irbtools/configure'
 
-if defined?(IRB) || defined?(Ripl)
-  # # # # #
-  # require 'irbtools' in your .irbrc
-  # see the README file for more information
-  require_relative 'irbtools/configure'
+# # # # #
+# Load irbtools extension packages
+Irbtools.load_packages
 
-  # # # # #
-  # load extension packages
-  Irbtools.packages.each{ |pkg|
-    begin
-      require "irbtools/#{pkg}"
+# # # # #
+# Load: start
+Irbtools.load_libraries(Irbtools.libraries[:start])
 
-    rescue LoadError => err
-      warn "Couldn't load the extension package '#{pkg}' #{err.class}\n* " +
-            err.message + "\n* " + err.backtrace[0] + "\n"
-    end
-  }
+# # # # #
+# Load: autoload
+Irbtools.libraries[:autoload].each{ |constant, lib_name, gem_name|
+  gem(gem_name)
+  autoload(constant, lib_name)
+  Irbtools.library_loaded(lib_name)
+}
 
-  # # # # #
-  # loading helper proc
-  load_libraries_proc = proc{ |libs|
-    remember_verbose_and_debug = $VERBOSE, $DEBUG
-    $VERBOSE = $DEBUG = false
+# # # # #
+# Misc: Apply IRB options
+Irbtools.configure_irb!
 
-    libs.each{ |lib|
-      begin
-        require lib.to_s
-        Irbtools.send :library_loaded, lib
-      rescue Exception => err
-        warn "Couldn't load the irb library '#{lib}': #{err.class}\n* " +
-             err.message + "\n* " + err.backtrace[0] + "\n"
-      end
-    }
-    $VERBOSE, $DEBUG = remember_verbose_and_debug
-  }
+# # # # #
+# Misc: add current directory to the load path
+Irbtools.add_current_directory_to_load_path!
 
-  # # # # #
-  # load: start
-  load_libraries_proc[ Irbtools.libraries[:start] ]
-
-  # # # # #
-  # load: autoload
-  Irbtools.libraries[:autoload].each{ |constant, lib_name, gem_name|
-    gem gem_name
-    autoload constant, lib_name
-    Irbtools.send :library_loaded, lib_name
-  }
-
-  # # # # #
-  # irb options
-  unless defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
-    IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
-    IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
-    IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
-
-    # prompt
-    (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
-      :PROMPT_I => ">> ",    # normal
-      :PROMPT_N => "|  ",    # indenting
-      :PROMPT_C => " > ",    # continuing a statement
-      :PROMPT_S => "%l> ",   # continuing a string
-      :RETURN   => "=> %s \n",
-      :AUTO_INDENT => true,
-    }})
-
-    IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+# # # # #
+# Load: sub-session / after_rc
+if defined?(Ripl) && Ripl.started?
+  if defined? Ripl::AfterRc
+    Irbtools.libraries[:sub_session].each{ |r| Ripl.after_rcs << r }
+  elsif !Irbtools.libraries[:sub_session].empty?
+    warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
   end
-
-  # # # # #
-  # misc: add current directory to the load path
-  $: << '.'  if RUBY_VERSION >= '1.9.2'
-
-  # # # # #
-  # load: sub-session / after_rc
-  if defined?(Ripl) && Ripl.respond_to?(:started?) && Ripl.started?
-    if defined? Ripl::AfterRc
-      Irbtools.libraries[:sub_session].each{ |r| Ripl.after_rcs << r }
-    elsif !Irbtools.libraries[:sub_session].empty?
-      warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
-    end
-  else
-    original_irbrc_proc = IRB.conf[:IRB_RC]
-    IRB.conf[:IRB_RC] = proc{
-      load_libraries_proc[ Irbtools.libraries[:sub_session] ]
-      original_irbrc_proc[ ]  if original_irbrc_proc
-    }
-  end
-
-  # # # # #
-  # load: threads
-  Irbtools.libraries[:thread].each{ |_,libs|
-    Thread.new do
-      load_libraries_proc[ libs ]
-    end
+else
+  original_irbrc_proc = IRB.conf[:IRB_RC]
+  IRB.conf[:IRB_RC] = proc{
+    Irbtools.load_libraries(Irbtools.libraries[:sub_session])
+    original_irbrc_proc.call if original_irbrc_proc
   }
-
-  # # # # #
-  # load: late
-  load_libraries_proc[ Irbtools.libraries[:late] ]
-
-  # # # # #
-  # load: late_threads
-  Irbtools.libraries[:late_thread].each{ |_,libs|
-    Thread.new do
-      load_libraries_proc[ libs ]
-    end
-  }
-
-  # # # # #
-  # done :)
-  if msg = Irbtools.welcome_message
-    puts msg
-  end
 end
 
-# J-_-L
+# # # # #
+# Load: threads
+Irbtools.libraries[:thread].each{ |_,libs|
+  Thread.new do
+    Irbtools.load_libraries(libs)
+  end
+}
+
+# # # # #
+# Load: late
+Irbtools.load_libraries(Irbtools.libraries[:late])
+
+# # # # #
+# Load: late_threads
+Irbtools.libraries[:late_thread].each{ |_,libs|
+  Thread.new do
+    Irbtools.load_libraries(libs)
+  end
+}
+
+# # # # #
+# Done
+if msg = Irbtools.welcome_message
+  puts msg
+end
