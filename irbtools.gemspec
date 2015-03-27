@@ -42,18 +42,18 @@ Gem::Specification.new do |s|
 
   # utils
   s.add_dependency %q<paint>,         ">= 0.9", "< 2.0"
-  s.add_dependency %q<clipboard>,     "~> 1.0.6"
-  s.add_dependency %q<interactive_editor>, ">= 0.0.10"
+  s.add_dependency %q<clipboard>,     "~> 1.0", ">= 1.0.6"
+  s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
   s.add_dependency %q<alias>,         "~> 0.2.3"
   s.add_dependency %q<coderay>,       "~> 1.1"
   s.add_dependency %q<debugging>,     "~> 1.1"
-  s.add_dependency %q<g>,             ">= 1.7.2"
+  s.add_dependency %q<g>,             "~> 1.7", ">= 1.7.2"
 
   # introspection / docs
   s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<methodfinder>,  "~> 2.0"
-  s.add_dependency %q<method_locator>,">= 0.0.4"
-  s.add_dependency %q<method_source>, ">= 0.8.2"
+  s.add_dependency %q<method_locator>,"~> 0.0", ">= 0.0.4"
+  s.add_dependency %q<method_source>, "~> 0.8", ">= 0.8.2"
   s.add_dependency %q<ruby_version>,  "~> 1.0"
   s.add_dependency %q<ruby_engine>,   "~> 1.0"
   s.add_dependency %q<ruby_info>,     "~> 1.0"
