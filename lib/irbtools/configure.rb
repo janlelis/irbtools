@@ -1,15 +1,6 @@
-# encoding: utf-8
+require_relative 'version'
 
-# # # # #
-# require 'irbtools' in your .irbrc
-# but you could also require 'irbtools/configure' and then call Irbtools.init to modify the loaded libraries
-# see the README file for more information
-
-# # # # #
-# define module methods
 module Irbtools
-  VERSION = "2.0.0.pre"
-
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
   @packages        = []

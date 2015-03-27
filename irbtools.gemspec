@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.dirname(__FILE__) + '/lib/irbtools/configure'
+require File.dirname(__FILE__) + '/lib/irbtools/version'
 
 Gem::Specification.new do |s|
   s.name = 'irbtools'
@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.email                 = 'mail@janlelis.de'
   s.files                 = %w[
     lib/irbtools.rb
+    lib/irbtools/version.rb
     lib/irbtools/configure.rb
     lib/irbtools/libraries.rb
     lib/irbtools/minimal.rb
