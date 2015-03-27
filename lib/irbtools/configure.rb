@@ -98,12 +98,7 @@ module Irbtools
     # actually require registered packages
     def load_packages
       @packages.each{ |pkg|
-        begin
-          require "irbtools/#{pkg}"
-        rescue LoadError => err
-          warn "Couldn't load the extension package '#{pkg}' #{err.class}\n* " +
-                err.message + "\n* " + err.backtrace[0] + "\n"
-        end
+        require "irbtools/#{pkg}"
       }
     end
 
@@ -122,8 +117,8 @@ module Irbtools
           require lib.to_s
           library_loaded(lib)
         rescue Exception => err
-          warn "Couldn't load the irb library '#{lib}': #{err.class}\n* " +
-               err.message + "\n* " + err.backtrace[0] + "\n"
+          warn "Error while loading a library into IRB:\n\n### #{err.class}\n" +
+               err.message + "\n\n### STACKTRACE\n  " + err.backtrace*"\n  " + "\n\n\n"
         end
       }
       $VERBOSE, $DEBUG = remember_verbose_and_debug
