@@ -1,5 +1,6 @@
 2.0.0 (master)
 * Use updated Wirb 2.0, FancyIrb 1.0 and Debugging 1.1
+* EveryDayIrb now gets released on its own, instead with every new irbtools version.
 * Drop support for Ruby 1
 * Remove boson gems
 * Add instance gem for improved access to instance variables

@@ -1,8 +1,8 @@
+require_relative 'every_day_irb/version'
+
 require 'cd'
 
 module EveryDayIrb
-  VERSION = "1.7.1"
-
   extend self
   private
 
