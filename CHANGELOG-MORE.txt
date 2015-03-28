@@ -1,6 +1,7 @@
 == 2.0.0 (master)
 * Integrate more-repo into irbtools main repo
 * Improve auto-completion
+* Remove Object#l alias for looksee, use Object#lp
 
 == 1.7.2
 * Bump did_you_mean and looksee (Ruby 2.2 compat)
