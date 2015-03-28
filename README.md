@@ -1,5 +1,11 @@
 # Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](http://badge.fury.io/rb/irbtools)
 
+     _ _|        |      |                  |
+       |    __|  __ \   __|   _ \    _ \   |   __|
+       |   |     |   |  |    (   |  (   |  | \__ \
+     ___| _|    _.__/  \__| \___/  \___/  _| ____/
+
+
 Improvements for Ruby's IRB console, like colored output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
 normal IRB. It is designed to work out-of-the-box, so there is no reason to not
