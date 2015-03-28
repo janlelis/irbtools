@@ -161,14 +161,12 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do
     copy session_history
     "The session input history has been copied to the clipboard."
   end
-  alias copy_session_input copy_input
 
   # copies the output of all irb commands in this irb session
   def copy_output
     copy context.instance_variable_get(:@eval_history_values).inspect.gsub(/^\d+ (.*)/, '\1')
     "The session output history has been copied to the clipboard."
   end
-  alias copy_session_output copy_output
 end
 
 Irbtools.add_library :methodfinder, autoload: :MethodFinder do
