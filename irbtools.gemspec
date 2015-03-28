@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   ]
   s.extra_rdoc_files      = %w[
     README.md
+    CONFIGURE.md
     CHANGELOG.txt
     MIT-LICENSE.txt
   ]

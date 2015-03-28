@@ -1,8 +1,8 @@
 # Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](http://badge.fury.io/rb/irbtools)
 
-Improvements for Ruby's IRB console, for example, colored output, and a lot of
+Improvements for Ruby's IRB console, like colored output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
-normal IRB. It is designed to work out-of-the-box so there is no reason to not
+normal IRB. It is designed to work out-of-the-box, so there is no reason to not
 use it!
 
 ## Setup
@@ -18,7 +18,7 @@ You also need to add irbtools to your project's Gemfile:
 
     gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB (with **irbtools**) directly from your code with:
+Then start IRB (with **irbtools** loaded) from the console or directly from your code with:
 
     binding.irb
 
@@ -26,7 +26,7 @@ If the `binding_of_caller` gem is available (e.g. see below), you can omit the `
 
     irb
 
-### More improvements
+### More Improvements
 
 Some suggested gems will not be installed to ensure wider general support. For
 the full feature set, you can add
@@ -157,61 +157,9 @@ l/lp
 
 
 ## Advanced tweaking
-### Welcome Message
 
-The welcome message can be customized with `Irbtools.welcome_message=`
+See [CONFIGURE.md](https://github.com/janlelis/irbtools/blob/master/CONFIGURE.md)
 
-### Customize libraries to load
-
-It is possible to modify, which libraries to load:
-
-    # Don't require 'irbtools', but:
-    require 'irbtools/configure'
-    # Here you can modify the libraries using the methods below
-    Irbtools.start
-
-If you do not want to load the default set of **irbtools** gems, you will have
-to use `require 'irbtools/minimal'` instead of `configure`.
-
-You can use the following methods:
-
-*   `Irbtools.add_library(lib, options_hash, &block)`
-*   `Irbtools.remove_library(lib)`
-
-
-The `options_hash` defines the way in which **irbtools** loads the library.
-The following options are possible
-(no options)/`:start`
-:   The library is required on startup before doing anything else (before
-    displaying the prompt)
-`:thread => identifier`
-:   After loading everything else, the library is required in a thread (while
-    continuing loading). You can choose any identifier, but if you take the
-    same one for multiple libraries, they will be loaded in the same thread
-    (in the order that you define)
-`:late => true`
-:   The library is required just before showing the prompt (note: loading
-    threads might still be in process)
-`:late_thread => identifier`
-:   Same as `:thread`, but after loading late libraries.
-`:sub_session => true`
-:   The library is loaded every time a sub-session starts (using
-    `IRB.conf[:IRB_RC]`). In [ripl](https://github.com/cldwalker/ripl),
-    `ripl-after_rc` is used.
-`:autoload => :Constant`
-:   Use Ruby's `autoload` feature. It loads the library as soon as the
-    constant is encountered.
-
-
-You can pass a block as third argument, which gets executed after the library
-has completed loading (except for `:autoload`, in which case the code will be
-executed directly on startup). You can modify the callbacks by using
-`Irbtools.add_library_callback` and `Irbtools.replace_library_callback`.
-
-When adding a new library, you should firstly consider some way to load it via
-`:autoload`. If this is not possible, try loading via `:thread`. If that is
-not possible either, you will need to fallback to the default loading
-mechanism.
 
 ## Troubleshooting: ANSI colors on Windows
 
@@ -219,10 +167,12 @@ Windows: ANSI support can be enabled via
 [ansicon](https://github.com/adoxa/ansicon) or
 [ConEmu](http://code.google.com/p/conemu-maximus5/).
 
+
 ## Troubleshooting: Clipboard not working on Linux
 
 Clipboard support requires **xclip** or **xsel**. On ubuntu, do: `sudo apt-get
 install xclip`
+
 
 ## Troubleshooting: Unicode causes wrong display widths
 
@@ -235,16 +185,19 @@ following snippet to your `.irbrc` file.
 
 This setting is deactivated by default, because of performance issues.
 
+
 ## Hint: Debundle
 
 If you do not want to add irbtools to your project's Gemfile, you will need a
 [debundle hack](https://github.com/janlelis/debundle.rb). Put it at the
 beginning of your `~/.irbrc` file and you are fine (until it breaks).
 
+
 ## Hint: Web Console
 
 **irbtools** works well together with the amazing
 [web-console!](https://github.com/rails/web-console)
+
 
 ## J-_-L
 
