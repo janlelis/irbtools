@@ -6,6 +6,7 @@
 * Add instance gem for improved access to instance variables
 * Remove code organization gems (boson + alias)
 * Simplify starting from code via require 'irbtools/binding'
+* Improve loading order of libraries
 * Remove aliases for Irbtools configuration
 
 1.7.1

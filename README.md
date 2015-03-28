@@ -241,19 +241,6 @@ If you do not want to add irbtools to your project's Gemfile, you will need a
 [debundle hack](https://github.com/janlelis/debundle.rb). Put it at the
 beginning of your `~/.irbrc` file and you are fine (until it breaks).
 
-## Hint: Faster start-up
-
-You can get an about a second faster start-up time by changing the loading
-methods for wirb and fancy_irb to `:thread` (drawback: the hash rocket will
-not be used for the first result):
-
-    require 'irbtools/configure'
-    Irbtools.remove_library :paint
-    Irbtools.remove_library :fancy_irb
-    Irbtools.add_library :paint, :late => true do Wirb.load_schema :classic_paint if defined? Wirb end
-    Irbtools.add_library :fancy_irb, :thread => -1 do FancyIrb.start end
-    Irbtools.start
-
 ## Hint: Web Console
 
 **irbtools** works well together with the amazing

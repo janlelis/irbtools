@@ -42,11 +42,14 @@ end
 
 # # # # #
 # Load: threads
+threads = []
 Irbtools.libraries[:thread].each{ |_,libs|
-  Thread.new do
+  threads << Thread.new do
     Irbtools.load_libraries(libs)
   end
 }
+
+threads.map(&:join)
 
 # # # # #
 # Load: late
