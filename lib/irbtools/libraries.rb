@@ -21,7 +21,7 @@ Irbtools.add_library 'wirb/wp', thread: :paint do
   Wirb.start
 end
 
-unless defined?(Ripl) && Ripl.started?
+unless Irbtools.ripl?
   Irbtools.add_library :fancy_irb, thread: :paint do
     FancyIrb.start
   end

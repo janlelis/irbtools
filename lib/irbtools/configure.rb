@@ -150,6 +150,11 @@ module Irbtools
       $LOAD_PATH << '.'
     end
 
+    # check if we are in a RIPL session
+    def ripl?
+      defined?(Ripl) && Ripl.started?
+    end
+
     # loads all the stuff
     def start
       require 'irbtools'

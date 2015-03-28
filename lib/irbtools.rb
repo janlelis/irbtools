@@ -26,7 +26,7 @@ Irbtools.add_current_directory_to_load_path!
 
 # # # # #
 # Load: sub-session / after_rc
-if defined?(Ripl) && Ripl.started?
+if Irbtools.ripl?
   if defined? Ripl::AfterRc
     Irbtools.libraries[:sub_session].each{ |r| Ripl.after_rcs << r }
   elsif !Irbtools.libraries[:sub_session].empty?
