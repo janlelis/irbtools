@@ -43,48 +43,47 @@ and edit your Gemfile to
 ### Included Gems and Libraries
 #### IRB Improvements
 
-*   Colorization: [wirb](https://github.com/janlelis/wirb/)
-*   IRB tweaks: [fancy_irb](https://github.com/janlelis/fancy_irb)
+*   Colored output:
+    [wirb](https://github.com/janlelis/wirb/)
+    [fanycy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
     [hirb](http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
-*   **(irbtools-more)** Correction for misspelled method/constant names:
-    [bond](https://github.com/yuki24/did_you_mean)
-*   **(irbtools-more)** Better IRB tab-completion:
+*   **(irbtools-more)** Correction suggestions for misspelled method/constant names:
+    [did_you_mean](https://github.com/yuki24/did_you_mean)
+*   **(irbtools-more)** Better tab-completion:
     [bond](http://tagaholic.me/bond/)
 
-#### Helpful Methods
+#### Utils
 
-*   Useful IRB commands:
+*   Useful IRB commands (see below):
     [every_day_irb](https://github.com/janlelis/irbtools/tree/master/lib/every
     _day_irb.rb)
-*   Clipboard Access: [clipboard](http://github.com/janlelis/clipboard)
-*   Loads an editor into your IRB session:
+    [debugging](https:/github.com/janlelis/debugging)
+    [fileutils](http://ruby-doc.org/stdlib-2.2.1/libdoc/fileutils/rdoc/FileUtils.html)
+*   Clipboard Access:
+    [clipboard](https://github.com/janlelis/clipboard)
+*   Terminal colors:
+    [paint](https://github.com/janlelis/paint)
+*   Load an editor into your IRB session:
     [interactive_editor](https://github.com/jberkel/interactive_editor)
-*   Print debugging helpers: [debugging](https:/github.com/janlelis/debugging)
-*   File-related system commands: **fileutils** (stdlib)
-
-
-#### Platform Information
-
-*   Query current Ruby version:
-    [ruby_version](https://github.com/janlelis/ruby_version)
-*   Query current Ruby engine:
-    [ruby_engine](https://github.com/janlelis/ruby_engine)
-*   Query current operating system: [os](https://github.com/rdp/os)
-*   Global information by the interpreter behind one `Info` constant:
-    [ruby_info](https://github.com/janlelis/ruby_info)
-
 
 #### Introspection
 
-*   Improved lookup path inspection:
-    [method_locator](https://github.com/ryanlecompte/method_locator)
 *   Displays a method's source:
-    [method_source](https://github.com/banister/method_source)
-*   Adds a `ri` doc method to Object: [[ori](https://github.com/dadooda/ori)
-*   Finds the methods that turned a value into another value:
+    [code](https://github.com/janlelis/code)
+*   Access to `ri` docs:
+    [ori](https://github.com/dadooda/ori)
+*   Manipulate instance variables with ease:
+    [instance](https://github.com/rubyworks/instance/)
+*   Platform information:
+    [ruby_version](https://github.com/janlelis/ruby_version)
+    [ruby_engine](https://github.com/janlelis/ruby_engine)
+    [os](https://github.com/rdp/os)
+    [ruby_info](https://github.com/janlelis/ruby_info)
+*   Improved method lookup path inspection:
+    [method_locator](https://github.com/ryanlecompte/method_locator)
+*   Finds methods that turn one value into another value:
     [methodfinder](https://github.com/citizen428/methodfinder)
-*   Syntax highlighting: [coderay](https://github.com/rubychan/coderay)
 *   **irbtools-more** Awesome lookup path inspection:
     [looksee](https://github.com/oggy/looksee)
 
