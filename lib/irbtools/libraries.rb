@@ -108,28 +108,6 @@ Irbtools.add_library 'method_locator', thread: 60 do
   end
 end
 
-Irbtools.add_library 'method_source', thread: 70 do
-  class Object
-    def src(method_name)
-      m = method(method_name)
-
-      source   = m.source || ""
-      indent   = source.match(/\A +/)
-      comment  = m.comment && !m.comment.empty? ? "#{ m.comment }" : ""
-      location = m.source_location ? "# in #{ m.source_location*':' }\n" : ""
-
-      puts CodeRay.scan(
-        location + comment + source.gsub(/^#{indent}/,""), :ruby
-      ).term
-    rescue
-      raise unless $!.message =~ /Cannot locate source for this method/
-      nil
-    end
-
-    # alias source src # TODO activate this without warnings oO
-  end
-end
-
 
 # # # load via autoload
 
@@ -149,6 +127,11 @@ Irbtools.add_library 'ruby_version', :autoload => :RubyVersion do
   def version() RubyVersion end unless defined? version
 end
 
+Irbtools.add_library 'code', :autoload => :Code do
+  def code(object = self, method_name)
+    Code.for(object, method_name)
+  end
+end
 
 Irbtools.add_library :coderay, :autoload => :CodeRay do
   # ...a string
