@@ -24,7 +24,7 @@ You also need to add irbtools to your project's Gemfile:
 
     gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB (with **irbtools** loaded) from the console or directly from your code with:
+Then start IRB (with **Irbtools** loaded) from the console or directly from your code with:
 
     binding.irb
 
@@ -35,8 +35,7 @@ If the `binding_of_caller` gem is available (e.g. see below), you can omit the `
 ### More Improvements
 
 Some suggested gems will not be installed to ensure wider general support. For
-the full feature set, you can add
-[irbtools-more](https://github.com/janlelis/irbtools-more) and change your
+the full feature set, you can add **irbtools-more** and change your
 `.irbrc` to:
 
     require 'irbtools/more'
@@ -132,30 +131,30 @@ Method | Arguments  | Description
 `version` | | Show the Ruby version.
 `wp` | inspect_string | Syntax-highlight a Ruby object.
 `Object#instance` | | Proxy object to read and manipulate instance variables / run eval.
-`Object#lp | | **Only with irbtools-more** Supercharged method introspection in IRB
+`Object#lp` | | **irbtools-more** Supercharged method introspection in IRB
 `Object#mlp` / `Object#method_lookup_path` | | Traverse an object's method lookup path to find all places where a method may be defined.
 `Object#ri` | *args | Show ri documentation for this object or method.
 
 
-## Advanced tweaking
+### Advanced tweaking
 
 See [CONFIGURE.md](https://github.com/janlelis/irbtools/blob/master/CONFIGURE.md).
 
 
-## Troubleshooting: ANSI colors on Windows
+### Troubleshooting: ANSI colors on Windows
 
 Windows: ANSI support can be enabled via
 [ansicon](https://github.com/adoxa/ansicon) or
 [ConEmu](http://code.google.com/p/conemu-maximus5/).
 
 
-## Troubleshooting: Clipboard not working on Linux
+### Troubleshooting: Clipboard not working on Linux
 
 Clipboard support requires **xclip** or **xsel**. On ubuntu, do: `sudo apt-get
 install xclip`
 
 
-## Troubleshooting: Unicode causes wrong display widths
+### Troubleshooting: Unicode causes wrong display widths
 
 If you use double-width unicode characterss, you will need to paste the
 following snippet to your `.irbrc` file.
@@ -167,16 +166,16 @@ following snippet to your `.irbrc` file.
 This setting is deactivated by default, because of performance issues.
 
 
-## Hint: Debundle
+### Hint: Debundle
 
-If you do not want to add irbtools to your project's Gemfile, you will need a
+If you do not want to add **Irbtools** to your project's Gemfile, you will need a
 [debundle hack](https://github.com/janlelis/debundle.rb). Put it at the
 beginning of your `~/.irbrc` file and you are fine (until it breaks).
 
 
-## Hint: No ANSI / IRB extension
+### Hint: No ANSI / IRB extension
 
-You can use irbtools without colors/irb extensions. To do so, put this into `~/.irbrc`:
+You can use Irbtools without colors/irb extensions. To do so, put this into `~/.irbrc`:
 
 ```ruby
 require 'irbtools/non_fancy'
@@ -184,9 +183,9 @@ Irbtools.start
 ```
 
 
-## Hint: Web Console
+### Hint: Web Console
 
-**irbtools** works well together with the amazing
+**Irbtools** works well together with the amazing
 [web-console!](https://github.com/rails/web-console)
 
 
