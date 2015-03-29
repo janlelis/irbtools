@@ -76,7 +76,7 @@ and edit your Gemfile to
 
 *   Displays a method's source:
     [code](https://github.com/janlelis/code)
-*   Access to `ri` docs:
+*   Access to *ri* docs:
     [ori](https://github.com/dadooda/ori)
 *   Manipulate instance variables with ease:
     [instance](https://github.com/rubyworks/instance/)
@@ -89,7 +89,7 @@ and edit your Gemfile to
     [method_locator](https://github.com/ryanlecompte/method_locator)
 *   Finds methods that turn one value into another value:
     [methodfinder](https://github.com/citizen428/methodfinder)
-*   **irbtools-more** Awesome lookup path inspection:
+*   **(irbtools-more)** Awesome lookup path inspection:
     [looksee](https://github.com/oggy/looksee)
 
 
@@ -115,7 +115,7 @@ Method | Arguments  | Description
 `info` | | List general information about the Ruby environment.
 `ld` | file | Shortcut for `load lib.to_s + '.rb'`.
 `ls` | path = "." | List directory content.
-`mf` | object1, object2 | Find methods that turn one value into another value:w
+`mf` | object1, object2 | Find methods that turn one value into another value.
 `mof` | object, depth = 0, grep = // | Print a method list, ordered by modules.
 `os` | | Query operating system information.
 `pa` | string, color | Print a string in the specified color.
@@ -126,12 +126,13 @@ Method | Arguments  | Description
 `re` | string, regexg, groups = nil | Assists you when matching regexes againts strings.
 `reset!` | | Restart the current IRB session.
 `rq` | lib | Shortcut for `require lib.to_s`. Use it like this: `rq:prime`.
+`rr` | lib | Shortcut for `require_relative lib.to_s`.
 `rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again.
 `session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
 `version` | | Show the Ruby version.
 `wp` | inspect_string | Syntax-highlight a Ruby object.
 `Object#instance` | | Proxy object to read and manipulate instance variables / run eval.
-`Object#lp` | | **irbtools-more** Supercharged method introspection in IRB
+`Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB.
 `Object#mlp` / `Object#method_lookup_path` | | Traverse an object's method lookup path to find all places where a method may be defined.
 `Object#ri` | *args | Show ri documentation for this object or method.
 
@@ -157,11 +158,13 @@ install xclip`
 ### Troubleshooting: Unicode causes wrong display widths
 
 If you use double-width unicode characterss, you will need to paste the
-following snippet to your `.irbrc` file.
+following snippet to your `~/.irbrc` file.
 
-    Irbtools.replace_library_callback :fancy_irb do
-      FancyIrb.start east_asian_width: true
-    end
+```ruby
+Irbtools.replace_library_callback :fancy_irb do
+  FancyIrb.start east_asian_width: true
+end
+```
 
 This setting is deactivated by default, because of performance issues.
 
