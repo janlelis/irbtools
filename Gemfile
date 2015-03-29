@@ -2,5 +2,5 @@ source 'https://rubygems.org'
 
 gemspec name: 'every_day_irb'
 gemspec name: 'irbtools'
-gemspec name: 'irbtools-more'
+# gemspec name: 'irbtools-more'
 
