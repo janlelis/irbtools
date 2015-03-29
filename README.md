@@ -174,6 +174,16 @@ If you do not want to add irbtools to your project's Gemfile, you will need a
 beginning of your `~/.irbrc` file and you are fine (until it breaks).
 
 
+## Hint: No ANSI / IRB extension
+
+You can use irbtools without colors/irb extensions. To do so, put this into `~/.irbrc`:
+
+```ruby
+require 'irbtools/non_fancy'
+Irbtools.start
+```
+
+
 ## Hint: Web Console
 
 **irbtools** works well together with the amazing

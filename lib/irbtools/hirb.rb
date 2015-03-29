@@ -18,7 +18,13 @@ Irbtools.add_library :hirb, thread: :paint do
   class << Hirb::View
     def view_or_page_output(val)
       if defined?(val.inspect)
-        view_output(val) || page_output(Wirb.colorize_result_with_timeout(val.inspect), true)
+        unless view_output(val)
+          if defined?(Wirb) && Wirb.running?
+            page_output Wirb.colorize_result_with_timeout(val.inspect), true
+          else
+            page_output val.inspect, true
+          end
+        end
       end
     end
   end
