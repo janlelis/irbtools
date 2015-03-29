@@ -1,4 +1,4 @@
-== 2.0.0 (master)
+== 2.0.0
 * Integrate more-repo into irbtools main repo
 * Improve auto-completion
 * Remove Object#l alias for looksee, use Object#lp

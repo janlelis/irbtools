@@ -1,4 +1,4 @@
-2.0.0 (master)
+2.0.0
 * Use Wirb 2.0 and FancyIrb 1.0
 * Drop support for Ruby 1
 * Simplify starting from code via: require 'irbtools/binding'
