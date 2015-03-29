@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
     lib/irbtools/configure.rb
     lib/irbtools/implementation.rb
     lib/irbtools/libraries.rb
+    lib/irbtools/hirb.rb
     lib/irbtools/minimal.rb
     lib/irbtools/binding.rb
     Rakefile
