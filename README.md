@@ -104,7 +104,7 @@ Method | Arguments  | Description
 `cat` | path | Read file contents.
 `cd` | path = nil | Changes the directory. Can also be used in these forms: `~cd` (change to home directory), `-cd` (change to previous directory).
 `clear` | | Clear the terminal.
-`code` | object = self, method_name | Display the method source with syntax highlighting.
+`code` | object = self, method_name | Display the method source with syntax highlighting. Will also look up C methods if the **core_docs** gem is available.
 `colorize` | string | Syntax highlight a Ruby string.
 `copy` | string | Copy something to the clipboard.
 `copy_input` | | Copy session history to the clipboard.
