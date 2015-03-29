@@ -143,11 +143,6 @@ module Irbtools
       end
     end
 
-    # add '.' to load path
-    def add_current_directory_to_load_path!
-      $LOAD_PATH << '.'
-    end
-
     # check if we are in a RIPL session
     def ripl?
       defined?(Ripl) && Ripl.started?

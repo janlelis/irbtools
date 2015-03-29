@@ -5,6 +5,7 @@
 * Rename method to show a method's source to: code
 * Add instance gem
 * Remove code organization gems (boson + alias)
+* Don't add '.' to the load path, use rr (require_relative) instead
 * Improve loading order of libraries
 * Remove aliases for Irbtools configuration
 * Integrate irbtools-more into irbtools main repo

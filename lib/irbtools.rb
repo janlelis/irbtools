@@ -21,10 +21,6 @@ Irbtools.libraries[:autoload].each{ |constant, lib_name, gem_name|
 Irbtools.configure_irb!
 
 # # # # #
-# Misc: add current directory to the load path
-Irbtools.add_current_directory_to_load_path!
-
-# # # # #
 # Load: sub-session / after_rc
 if Irbtools.ripl?
   if defined? Ripl::AfterRc

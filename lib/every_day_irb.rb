@@ -26,6 +26,11 @@ module EveryDayIrb
     require lib.to_s
   end
 
+  # same for require relative
+  def rr(lib)
+    require_relative lib.to_s
+  end
+
   # load shortcut, not suited for non-rb
   def ld(lib)
     load lib.to_s + '.rb'

@@ -71,6 +71,20 @@ describe EveryDayIrb do
     end
   end
 
+  describe '#rr' do
+    it 'calls require_re with the arg' do
+      expect( self ).to receive(:require_relative).with('something').and_return(nil)
+
+      rr 'something'
+    end
+
+    it 'calls to_s on the arg' do
+      expect( self ).to receive(:require_relative).with('something').and_return(nil)
+
+      rr:something
+    end
+  end
+
   describe '#ld' do
     it 'calls load with the arg, but appends ".rb"' do
       expect( self ).to receive(:load).with(filename)
