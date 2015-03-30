@@ -61,9 +61,8 @@ and edit your Gemfile to
 #### Utils
 
 *   Useful IRB commands (see below):
-    [every_day_irb](https://github.com/janlelis/irbtools/tree/master/lib/every
-    _day_irb.rb)
-    [debugging](https:/github.com/janlelis/debugging)
+    [every_day_irb](https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb)
+    [debugging](https://github.com/janlelis/debugging)
     [fileutils](http://ruby-doc.org/stdlib-2.2.1/libdoc/fileutils/rdoc/FileUtils.html)
 *   Clipboard Access:
     [clipboard](https://github.com/janlelis/clipboard)
