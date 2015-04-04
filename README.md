@@ -156,7 +156,7 @@ install xclip`
 
 ### Troubleshooting: Unicode causes wrong display widths
 
-If you use double-width unicode characterss, you will need to paste the
+If you use double-width unicode characters, you will need to paste the
 following snippet to your `~/.irbrc` file.
 
 ```ruby
