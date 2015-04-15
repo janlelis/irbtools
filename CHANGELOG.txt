@@ -1,4 +1,4 @@
-master
+2.0.1
 * Remove g gem
 
 2.0.0
