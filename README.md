@@ -109,7 +109,6 @@ Method | Arguments  | Description
 `copy_output` | | Copy session output history to the clipboard.
 `ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context.
 `engine` | | Show the Ruby engine.
-`g` | *args | Like `Kernel#p`, but using terminal-notifier or growl.
 `howtocall` | object = self, method_or_proc | Displays parameter names and types for a proc or method.
 `info` | | List general information about the Ruby environment.
 `ld` | file | Shortcut for `load lib.to_s + '.rb'`.

@@ -32,8 +32,8 @@ Gem::Specification.new do |s|
   s.license               = 'MIT'
 
   s.required_ruby_version = '~> 2.0'
-  s. add_development_dependency 'rspec', '~> 3.2'
-  s. add_development_dependency 'rake', '~> 10.4'
+  s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency 'rake', '~> 10.4'
 
   # # #
   # Dependencies
@@ -51,7 +51,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
   s.add_dependency %q<coderay>,       "~> 1.1"
   s.add_dependency %q<debugging>,     "~> 1.1"
-  s.add_dependency %q<g>,             "~> 1.7", ">= 1.7.2"
 
   # introspection / docs
   s.add_dependency %q<code>,          "~> 0.9"

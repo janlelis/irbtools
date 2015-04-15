@@ -41,8 +41,6 @@ require_relative 'hirb'
 
 Irbtools.add_library 'instance', thread: 30
 
-Irbtools.add_library 'g', thread: 40 if RbConfig::CONFIG['host_os'] =~ /mac|darwin/
-
 Irbtools.add_library 'ori', thread: 50 do
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
