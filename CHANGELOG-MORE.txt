@@ -1,3 +1,6 @@
+== 2.2.0
+* Re-enable looksee (not comptible with Ruby 2.3, but does not crash anymore during install)
+
 == 2.1.0
 * Ruby 2.3 compat: Upgrade did_you_mean to ~> 1.0
 * Ruby 2.3 compat: Disable looksee gem as long it is not adapted for 2.3
