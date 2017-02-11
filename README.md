@@ -50,7 +50,7 @@ and edit your Gemfile to
 
 *   Colored output:
     [wirb](https://github.com/janlelis/wirb/)
-    [fanycy_irb](https://github.com/janlelis/fancy_irb)
+    [fancy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
     [hirb](http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
 *   **(irbtools-more)** Correction suggestions for misspelled method/constant names:
