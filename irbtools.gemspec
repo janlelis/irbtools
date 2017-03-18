@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<binding.repl>,  "~> 3.0"
 
   # utils
-  s.add_dependency %q<paint>,         ">= 0.9", "< 2.0"
+  s.add_dependency %q<paint>,         ">= 0.9", "< 3.0"
   s.add_dependency %q<clipboard>,     "~> 1.1"
   s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
   s.add_dependency %q<coderay>,       "~> 1.1"

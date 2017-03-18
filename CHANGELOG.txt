@@ -1,4 +1,5 @@
 2.1.0
+* Relax paint dependency (allows usage of paint >= 2.0)
 * Require new versions of fancy_irb, clipboard, os
 
 2.0.1
