@@ -1,7 +1,8 @@
 2.1.0
-* Do not load instance gem in the context of Rails
-* Make sure to actually require "irb" before using it
-* Use terrible hack to load Wirb in context of Rails
+* Improve Rails compatibility
+  * Do not load instance gem in the context of Rails
+  * Make sure to actually require "irb" before using it
+  * Use terrible hack to load Wirb in context of Rails
 * Relax paint dependency (allows usage of paint >= 2.0)
 * Require new versions of fancy_irb, clipboard, os
 * Set abort_on_exception to true for late threads (early threads do this implicitly via join)
