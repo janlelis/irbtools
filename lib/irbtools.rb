@@ -1,6 +1,11 @@
 require_relative 'irbtools/configure'
 
 # # # # #
+# Make sure we load IRB if we are not in RIPL
+
+require 'irb' unless Irbtools.ripl?
+
+# # # # #
 # Load irbtools extension packages
 Irbtools.load_packages
 
