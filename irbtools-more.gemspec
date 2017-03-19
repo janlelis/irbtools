@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'irbtools', '~> 2.0'
   s.add_dependency 'bond',     '~> 0.5'
   s.add_dependency 'looksee' , '~> 4.0'
+  s.add_dependency 'core_docs', '>= 0.9.2'
   s.add_dependency 'binding_of_caller', '~> 0.7'
   s.add_dependency 'did_you_mean', '~> 1.0'
 end
