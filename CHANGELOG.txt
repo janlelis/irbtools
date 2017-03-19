@@ -4,6 +4,7 @@
 * Use terrible hack to load Wirb in context of Rails
 * Relax paint dependency (allows usage of paint >= 2.0)
 * Require new versions of fancy_irb, clipboard, os
+* Set abort_on_exception to true for late threads (early threads do this implicitly via join)
 
 2.0.1
 * Remove g gem

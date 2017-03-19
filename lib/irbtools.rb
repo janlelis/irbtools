@@ -59,9 +59,10 @@ Irbtools.load_libraries(Irbtools.libraries[:late])
 # # # # #
 # Load: late_threads
 Irbtools.libraries[:late_thread].each{ |_,libs|
-  Thread.new do
+  t = Thread.new do
     Irbtools.load_libraries(libs)
   end
+  t.abort_on_exception = true
 }
 
 # # # # #
