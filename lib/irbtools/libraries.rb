@@ -18,7 +18,19 @@ Irbtools.add_library 'interactive_editor',  thread: :stdlib
 Irbtools.add_library 'paint/pa', thread: :paint
 
 Irbtools.add_library 'wirb/wp', thread: :paint do
-  Wirb.start
+  if defined?(Rails)
+    Class.new Rails::Railtie do
+      console {
+        # This is terrible... anyone has a better idea?
+        Thread.new do
+          sleep 0.2
+          Wirb.start unless Wirb.running?
+        end
+      }
+    end
+  else
+    Wirb.start
+  end
 end
 
 unless Irbtools.ripl?
