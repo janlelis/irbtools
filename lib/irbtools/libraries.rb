@@ -39,7 +39,9 @@ Irbtools.add_library 'debugging/howtocall', thread: :paint
 
 require_relative 'hirb'
 
-Irbtools.add_library 'instance', thread: 30
+unless defined?(Rails)
+  Irbtools.add_library 'instance', thread: 30
+end
 
 Irbtools.add_library 'ori', thread: 50 do
   class Object

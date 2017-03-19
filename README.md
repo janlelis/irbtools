@@ -78,7 +78,7 @@ and edit your Gemfile to
 *   Access to *ri* docs:
     [ori](https://github.com/dadooda/ori)
 *   Manipulate instance variables with ease:
-    [instance](https://github.com/rubyworks/instance/)
+    [instance](https://github.com/rubyworks/instance/) (not loaded in Rails context)
 *   Platform information:
     [ruby_version](https://github.com/janlelis/ruby_version)
     [ruby_engine](https://github.com/janlelis/ruby_engine)
@@ -129,7 +129,7 @@ Method | Arguments  | Description
 `session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
 `version` | | Show the Ruby version.
 `wp` | inspect_string | Syntax-highlight a Ruby object.
-`Object#instance` | | Proxy object to read and manipulate instance variables / run eval.
+`Object#instance` | | Proxy object to read and manipulate instance variables / run eval (not loaded in Rails context).
 `Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB.
 `Object#mlp` / `Object#method_lookup_path` | | Traverse an object's method lookup path to find all places where a method may be defined.
 `Object#ri` | *args | Show ri documentation for this object or method.
