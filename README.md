@@ -96,7 +96,7 @@ and edit your Gemfile to
 
 Besides improving IRB itself, you will get the following methods:
 
-Method | Arguments  | Description
+Method / Constant | Arguments  | Description
 ------ | ---------- | -----------
 `beep` | | Ring terminal bell.
 `cat` | path | Read file contents.
@@ -108,14 +108,14 @@ Method | Arguments  | Description
 `copy_input` | | Copy session history to the clipboard.
 `copy_output` | | Copy session output history to the clipboard.
 `ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context.
-`engine` | | Show the Ruby engine.
+`RubyEngine` | | Show the Ruby engine.
 `howtocall` | object = self, method_or_proc | Displays parameter names and types for a proc or method.
-`info` | | List general information about the Ruby environment.
+`RubyInfo` | | List general information about the Ruby environment.
 `ld` | file | Shortcut for `load lib.to_s + '.rb'`.
 `ls` | path = "." | List directory content.
 `mf` | object1, object2 | Find methods that turn one value into another value.
 `mof` | object, depth = 0, grep = // | Print a method list, ordered by modules.
-`os` | | Query operating system information.
+`OS` | | Query operating system information.
 `pa` | string, color | Print a string in the specified color.
 `page` | what, options = {} | Page long content.
 `paste` | | Paste clipboard content.
@@ -127,7 +127,7 @@ Method | Arguments  | Description
 `rr` | lib | Shortcut for `require_relative lib.to_s`.
 `rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again.
 `session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
-`version` | | Show the Ruby version.
+`RubyVersion` | | Show the Ruby version.
 `wp` | inspect_string | Syntax-highlight a Ruby object.
 `Object#instance` | | Proxy object to read and manipulate instance variables / run eval (not loaded in Rails context).
 `Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB.
