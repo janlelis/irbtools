@@ -1,3 +1,6 @@
+Next
+* Remove info, version, engine, and os methods. Use RubyInfo, RubyVersion, RubyEngine, and OS instead (fixes #40)
+
 2.1.0
 * Improve Rails compatibility
   * Do not load instance gem in the context of Rails

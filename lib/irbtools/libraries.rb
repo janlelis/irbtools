@@ -81,24 +81,12 @@ Irbtools.add_library 'method_locator', thread: 60 do
   end
 end
 
+Irbtools.add_library 'ruby_info', thread: :ri
+Irbtools.add_library 'os', thread: :os
+Irbtools.add_library 'ruby_engine', thread: :re
+Irbtools.add_library 'ruby_version', thread: :rv
 
 # # # load via autoload
-
-Irbtools.add_library 'ruby_info', :autoload => :RubyInfo do
-  def info() RubyInfo  end unless defined? info
-end
-
-Irbtools.add_library 'os', :autoload => :OS do
-  def os() OS          end unless defined? os
-end
-
-Irbtools.add_library 'ruby_engine', :autoload => :RubyEngine do
-  def engine() RubyEngine  end unless defined? engine
-end
-
-Irbtools.add_library 'ruby_version', :autoload => :RubyVersion do
-  def version() RubyVersion end unless defined? version
-end
 
 Irbtools.add_library 'code', :autoload => :Code do
   def code(object = self, method_name)
