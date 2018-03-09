@@ -60,6 +60,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<ruby_version>,  "~> 1.0"
   s.add_dependency %q<ruby_engine>,   "~> 1.0"
   s.add_dependency %q<ruby_info>,     "~> 1.0"
-  s.add_dependency %q<os>,            "~> 1.0"
+  s.add_dependency %q<os>
   s.add_dependency %q<instance>,      "~> 0.2"
 end

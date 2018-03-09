@@ -1,3 +1,6 @@
+2.2.1
+* Allow os gem to be below 1.0
+
 2.2.0
 * Remove info, version, engine, and os methods. Use RubyInfo, RubyVersion, RubyEngine, and OS instead (fixes #40)
 
