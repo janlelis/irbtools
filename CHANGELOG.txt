@@ -1,5 +1,6 @@
-2.2.1
+2.2.1 (unreleased)
 * Allow os gem to be below 1.0
+* Do not use binding.repl gem if Ruby version is at least 2.5
 
 2.2.0
 * Remove info, version, engine, and os methods. Use RubyInfo, RubyVersion, RubyEngine, and OS instead (fixes #40)
