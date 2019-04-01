@@ -1,5 +1,6 @@
 == 2.3.0 (unreleased)
 * Remove dependency to did_you_mean, since it is now a default gem anyways
+* Version bump: irbtools, looksee, core_docs, and binding_of_caller
 
 == 2.2.1
 * Add core_docs dependency
