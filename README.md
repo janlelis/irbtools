@@ -1,4 +1,4 @@
-# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](http://badge.fury.io/rb/irbtools)
+# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)
 
      _ _|        |      |                  |
        |    __|  __ \   __|   _ \    _ \   |   __|
@@ -52,18 +52,18 @@ and edit your Gemfile to
     [wirb](https://github.com/janlelis/wirb/)
     [fancy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
-    [hirb](http://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
+    [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
 *   **(irbtools-more)** Correction suggestions for misspelled method/constant names:
     [did_you_mean](https://github.com/yuki24/did_you_mean)
 *   **(irbtools-more)** Better tab-completion:
-    [bond](http://tagaholic.me/bond/)
+    [bond](https://tagaholic.me/bond/)
 
 #### Utils
 
 *   Useful IRB commands (see below):
     [every_day_irb](https://github.com/janlelis/irbtools/tree/master/lib/every_day_irb.rb)
     [debugging](https://github.com/janlelis/debugging)
-    [fileutils](http://ruby-doc.org/stdlib-2.2.1/libdoc/fileutils/rdoc/FileUtils.html)
+    [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 *   Clipboard Access:
     [clipboard](https://github.com/janlelis/clipboard)
 *   Terminal colors:
@@ -144,13 +144,15 @@ See [CONFIGURE.md](https://github.com/janlelis/irbtools/blob/master/CONFIGURE.md
 
 Windows: ANSI support can be enabled via
 [ansicon](https://github.com/adoxa/ansicon) or
-[ConEmu](http://code.google.com/p/conemu-maximus5/).
+[ConEmu](https://conemu.github.io/) or
+[WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
 
 
 ### Troubleshooting: Clipboard not working on Linux
 
-Clipboard support requires **xclip** or **xsel**. On ubuntu, do: `sudo apt-get
-install xclip`
+Clipboard support requires **xsel** or **xclip**. On ubuntu, do:
+
+    sudo apt-get install xsel
 
 
 ### Troubleshooting: Unicode causes wrong display widths
@@ -192,5 +194,5 @@ Irbtools.start
 
 ## J-_-L
 
-Copyright (c) 2010-2019 Jan Lelis <http://janlelis.com> released under the MIT
+Copyright (c) 2010-2019 Jan Lelis <https://janlelis.com> released under the MIT
 license.
