@@ -3,18 +3,22 @@ language: ruby
 
 rvm:
 - ruby-head
-- 2.5.0
-- 2.4.3
-- 2.3.6
+- 2.6.2
+- 2.5.5
+- 2.4.5
+- 2.3.8
 - 2.2
 - 2.1
 - 2.0
 - jruby-head
-- jruby-9.1.15.0
+- jruby-9.2.6.0
 
 matrix:
   allow_failures:
     - rvm: jruby-head
     - rvm: ruby-head
+    - rvm: 2.3.8
+    - rvm: 2.2
+    - rvm: 2.1
     - rvm: 2.0
 #   fast_finish: true
