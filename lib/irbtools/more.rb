@@ -18,9 +18,6 @@ rescue LoadError
   # do not load if not supported
 end
 
-# new guessmethod
-Irbtools.add_library 'did_you_mean', thread: :more3
-
 # load now
 Irbtools.start if standalone
 

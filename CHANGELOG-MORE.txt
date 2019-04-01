@@ -1,3 +1,6 @@
+== 2.3.0 (unreleased)
+* Remove dependency to did_you_mean, since it is now a default gem anyways
+
 == 2.2.1
 * Add core_docs dependency
 

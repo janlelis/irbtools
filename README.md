@@ -53,8 +53,6 @@ and edit your Gemfile to
     [fancy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
     [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
-*   **(irbtools-more)** Correction suggestions for misspelled method/constant names:
-    [did_you_mean](https://github.com/yuki24/did_you_mean)
 *   **(irbtools-more)** Better tab-completion:
     [bond](https://tagaholic.me/bond/)
 
