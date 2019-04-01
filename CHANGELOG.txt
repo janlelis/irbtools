@@ -1,4 +1,4 @@
-2.2.2 (unreleased)
+2.2.2
 * Remove Rails WIRB loading hack (no longer necessary)
 
 2.2.1
