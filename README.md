@@ -153,20 +153,6 @@ Clipboard support requires **xsel** or **xclip**. On ubuntu, do:
     sudo apt-get install xsel
 
 
-### Troubleshooting: Unicode causes wrong display widths
-
-If you use double-width unicode characters, you will need to paste the
-following snippet to your `~/.irbrc` file.
-
-```ruby
-Irbtools.replace_library_callback :fancy_irb do
-  FancyIrb.start east_asian_width: true
-end
-```
-
-This setting is deactivated by default, because of performance issues.
-
-
 ### Hint: Debundle
 
 If you do not want to add **Irbtools** to your project's Gemfile, you will need a
