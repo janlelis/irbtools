@@ -1,3 +1,6 @@
+Next
+* Version bump code, clipboard, and methodfinder
+
 2.2.2
 * Remove Rails WIRB loading hack (no longer necessary)
 
