@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
   # Dependencies
 
   # core functionality
+  s.add_dependency %q<irb>,           ">= 0.9.6"
   s.add_dependency %q<every_day_irb>, "~> 2.0"
   s.add_dependency %q<fancy_irb>,     "~> 1.1"
   s.add_dependency %q<wirb>,          "~> 2.0"
