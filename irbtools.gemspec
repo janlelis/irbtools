@@ -32,8 +32,6 @@ Gem::Specification.new do |s|
   s.license               = 'MIT'
 
   s.required_ruby_version = '~> 2.0'
-  s.add_development_dependency 'rspec', '~> 3.2'
-  s.add_development_dependency 'rake', '~> 10.4'
 
   # # #
   # Dependencies
