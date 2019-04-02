@@ -1,4 +1,6 @@
-Next
+3.0 (Unreleased)
+* Move: "Every day… IRB" into its own git repository
+  * https://github.com/janlelis/every_day_irb
 * Version bump code, clipboard, and methodfinder
 
 2.2.2
