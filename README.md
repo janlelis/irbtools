@@ -49,7 +49,7 @@ and edit your Gemfile to
 #### IRB Improvements
 
 *   Colored output:
-    [wirb](https://github.com/janlelis/wirb/)
+    [wirb](https://github.com/janlelis/wirb/) /
     [fancy_irb](https://github.com/janlelis/fancy_irb)
 *   Custom views for specific objects:
     [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
@@ -58,9 +58,9 @@ and edit your Gemfile to
 
 #### Utils
 
-*   Useful IRB commands (see below):
-    [every_day_irb](https://github.com/janlelis/every_day_irb)
-    [debugging](https://github.com/janlelis/debugging)
+*   Useful IRB commands (listed in next section):
+    [every_day_irb](https://github.com/janlelis/every_day_irb) /
+    [debugging](https://github.com/janlelis/debugging) /
     [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 *   Clipboard Access:
     [clipboard](https://github.com/janlelis/clipboard)
@@ -71,23 +71,21 @@ and edit your Gemfile to
 
 #### Introspection
 
-*   Displays a method's source:
-    [code](https://github.com/janlelis/code)
-*   Access to *ri* docs:
-    [ori](https://github.com/dadooda/ori)
-*   Manipulate instance variables with ease:
-    [instance](https://github.com/rubyworks/instance/) (not loaded in Rails context)
-*   Platform information:
-    [ruby_version](https://github.com/janlelis/ruby_version)
-    [ruby_engine](https://github.com/janlelis/ruby_engine)
-    [os](https://github.com/rdp/os)
-    [ruby_info](https://github.com/janlelis/ruby_info)
-*   Improved method lookup path inspection:
-    [method_locator](https://github.com/ryanlecompte/method_locator)
-*   Finds methods that turn one value into another value:
-    [methodfinder](https://github.com/citizen428/methodfinder)
-*   **(irbtools-more)** Awesome lookup path inspection:
+*   Lookup and manipulate instance variables / methods with ease:
+    [object_shadow](https://github.com/janlelis/object_shadow/)
+*   **(irbtools-more)** Make lookup path inspection even more awesome:
     [looksee](https://github.com/oggy/looksee)
+*   Display a method's source code:
+    [code](https://github.com/janlelis/code)
+*   Find methods that turn one value into another value:
+    [methodfinder](https://github.com/citizen428/methodfinder)
+*   Access the *ri* docs:
+    [ori](https://github.com/dadooda/ori)
+*   Platform information:
+    [ruby_version](https://github.com/janlelis/ruby_version) /
+    [ruby_engine](https://github.com/janlelis/ruby_engine) /
+    [os](https://github.com/rdp/os) /
+    [ruby_info](https://github.com/janlelis/ruby_info)
 
 
 ### Irbtools Methods
@@ -127,10 +125,9 @@ Method / Constant | Arguments  | Description
 `session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
 `RubyVersion` | | Show the Ruby version.
 `wp` | inspect_string | Syntax-highlight a Ruby object.
-`Object#instance` | | Proxy object to read and manipulate instance variables / run eval (not loaded in Rails context).
 `Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB.
-`Object#mlp` / `Object#method_lookup_path` | | Traverse an object's method lookup path to find all places where a method may be defined.
 `Object#ri` | *args | Show ri documentation for this object or method.
+`Object#shadow` | | Proxy object for manipulating instance variables and method introspection.
 
 
 ### Advanced tweaking

@@ -28,22 +28,16 @@ unless Irbtools.ripl?
 end
 
 Irbtools.add_library 'debugging/q',         thread: :paint
-
 Irbtools.add_library 'debugging/mof',       thread: :paint
-
 Irbtools.add_library 'debugging/re',        thread: :paint
-
 Irbtools.add_library 'debugging/beep',      thread: :paint
-
 Irbtools.add_library 'debugging/howtocall', thread: :paint
 
 require_relative 'hirb'
 
-unless defined?(Rails)
-  Irbtools.add_library 'instance', thread: 30
-end
+Irbtools.add_library 'object_shadow', thread: :shadow
 
-Irbtools.add_library 'ori', thread: 50 do
+Irbtools.add_library 'ori', thread: :ori do
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
@@ -60,12 +54,6 @@ Irbtools.add_library 'ori', thread: 50 do
         super
       end
     end
-  end
-end
-
-Irbtools.add_library 'method_locator', thread: 60 do
-  module MethodLocator
-    alias mlp method_lookup_path
   end
 end
 
