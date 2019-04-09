@@ -1,4 +1,10 @@
 # Irbtools (More) Changelog
+
+## 3.0 (unreleased)
+* Keep Irbtools::More in sync with Irbtools:
+  * irbtools-more 3.x depends on irbtools 3.x
+  * No code changes
+
 ## 2.3.0
 * Remove dependency to did_you_mean, since it is now a default gem anyways
 * Version bump: irbtools, looksee, core_docs, and binding_of_caller
