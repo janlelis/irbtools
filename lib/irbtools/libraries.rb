@@ -38,6 +38,8 @@ require_relative 'hirb'
 Irbtools.add_library 'object_shadow', thread: :shadow
 
 Irbtools.add_library 'ori', thread: :ori do
+  require_relative "ori_readline_fix"
+
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
     def ri(*args)
