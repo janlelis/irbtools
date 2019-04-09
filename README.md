@@ -10,7 +10,7 @@
                                                                                  _|          _|
 ```
 
-Improvements for Ruby's IRB console, like colored output and a lot of
+Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
 normal IRB. It is designed to work out-of-the-box, so there is no reason to not
 use it!
@@ -24,30 +24,25 @@ just create a new one. Add the following content:
 
     require 'irbtools'
 
-You also need to add irbtools to your project's Gemfile:
+You also need to add irbtools to your project's `Gemfile`:
 
     gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB (with **Irbtools** loaded) from the console or directly from your code with:
+Then start IRB (with **Irbtools** loaded) from the terminal or directly from your code with:
 
     binding.irb
-
-If the `binding_of_caller` gem is available (e.g. see below), you can omit the `binding`:
-
-    irb
 
 ### More Improvements
 
 Some suggested gems will not be installed to ensure wider general support. For
-the full feature set, you can add **irbtools-more** and change your
+the full feature set, you can install **irbtools-more**. To do so, change your
 `.irbrc` to:
 
     require 'irbtools/more'
 
-and edit your Gemfile to
+and edit your `Gemfile` to read like this:
 
     gem 'irbtools-more', require: 'irbtools/binding'
-
 
 ### Included Gems and Libraries
 #### IRB Improvements
@@ -91,53 +86,89 @@ and edit your Gemfile to
     [os](https://github.com/rdp/os) /
     [ruby_info](https://github.com/janlelis/ruby_info)
 
-
 ### Irbtools Methods
 
-Besides improving IRB itself, you will get the following methods:
+Besides configuring IRB itself, and loading all libraries efficiently, **Irbtools** provides the following methods:
+
+#### Ruby Introspection
 
 Method / Constant | Arguments  | Description
 ------ | ---------- | -----------
-`beep` | | Ring terminal bell.
-`cat` | path | Read file contents.
-`cd` | path = nil | Changes the directory. Can also be used in these forms: `~cd` (change to home directory), `-cd` (change to previous directory).
-`clear` | | Clear the terminal.
 `code` | object = self, method_name | Display the method source with syntax highlighting. Will also look up C methods if the **core_docs** gem (which is included in **irbtools-more**) is available.
-`colorize` | string | Syntax highlight a Ruby string.
-`copy` | string | Copy something to the clipboard.
-`copy_input` | | Copy session history to the clipboard.
-`copy_output` | | Copy session output history to the clipboard.
-`ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context.
-`RubyEngine` | | Show the Ruby engine.
 `howtocall` | object = self, method_or_proc | Displays parameter names and types for a proc or method.
-`RubyInfo` | | List general information about the Ruby environment.
-`ld` | file | Shortcut for `load lib.to_s + '.rb'`.
-`ls` | path = "." | List directory content.
 `mf` | object1, object2 | Find methods that turn one value into another value.
 `mof` | object, depth = 0, grep = // | Print a method list, ordered by modules.
-`OS` | | Query operating system information.
-`pa` | string, color | Print a string in the specified color.
-`page` | what, options = {} | Page long content.
-`paste` | | Paste clipboard content.
-`q` | *args | Like `Kernel#p`, but prints results on one line, with different colors.
-`ray` | path | Syntax highlight a Ruby file.
-`re` | string, regexg, groups = nil | Assists you when matching regexes againts strings.
-`reset!` | | Restart the current IRB session.
-`rq` | lib | Shortcut for `require lib.to_s`. Use it like this: `rq:prime`.
-`rr` | lib | Shortcut for `require_relative lib.to_s`.
-`rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again.
-`session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
-`RubyVersion` | | Show the Ruby version.
-`wp` | inspect_string | Syntax-highlight a Ruby object.
 `Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB.
 `Object#ri` | *args | Show ri documentation for this object or method.
 `Object#shadow` | | Proxy object for manipulating instance variables and method introspection.
 
+#### Platform Info
 
-### Advanced tweaking
+Method / Constant | Arguments  | Description
+------ | ---------- | -----------
+`OS` | | Query operating system information.
+`RubyVersion` | | Show the Ruby version.
+`RubyEngine` | | Show the Ruby engine.
+`RubyInfo` | | List general information about the Ruby environment.
+
+#### General Utils
+
+Method / Constant | Arguments  | Description
+------ | ---------- | -----------
+`beep` | | Ring terminal bell.
+`copy` | string | Copy something to the clipboard.
+`colorize` | string | Syntax-highlight a string of Ruby code.
+`ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context.
+`ld` | file | Shortcut for `load lib.to_s + '.rb'`.
+`pa` | string, color | Print a string in the specified color.
+`page` | what, options = {} | Use pager to improve viewing longer content
+`paste` | | Paste clipboard content.
+`q` | *args | Like `Kernel#p`, but prints results on one line, with different colors.
+`re` | string, regexg, groups = nil | Assists you when matching regexes againts strings.
+`rq` | lib | Shortcut for `require lib.to_s`. Use it like this: `rq:prime`.
+`rr` | lib | Shortcut for `require_relative lib.to_s`.
+`rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again.
+`wp` | inspect_string | Syntax-highlight a Ruby return value.
+
+#### IRB Support
+
+Method / Constant | Arguments  | Description
+------ | ---------- | -----------
+`clear` | | Clear the terminal.
+`copy_input` | | Copy session history to the clipboard.
+`copy_output` | | Copy session output history to the clipboard.
+`reset!` | | Restart the current IRB session.
+`session_history` | number_of_lines = nil | Return a string of all commands issued in the current session.
+
+#### Files and Navigation
+
+Method / Constant | Arguments  | Description
+------ | ---------- | -----------
+`cat` | path | Read file contents
+`cd` | path = nil | Change the directory. Can also be used in these forms: `~cd` (change to home directory), `-cd` (change to previous directory).
+`chmod` | mode, path | Set file mode for file
+`chmod_R` | mode, path | Set file mode for directory
+`chown` | user, group, path | Set file owner for file
+`chown_R` | user, group, path | Set file owner for directory
+`cp` | source, destination | Copy file
+`cp_r` | source, destination | Copy directory
+`ls` | path = "." | List directory content
+`ln` | target, link | Create symlink (`ln`)
+`ln_s` | target, link | Create symlink (`ln -s`)
+`ln_sf` | target, link | Create symlink (`ln -sf`)
+`mkdir` | path | Create a new directory
+`mkdir_p` | path | Create a new directory (with `-p` option)
+`cp` | source, destination | Move file or directory
+`pwd` | | Return current directory
+`ray` | path | Syntax highlight a Ruby file
+`rm` | path | Delete an a file (`rm`)
+`rm_r` | path | Delete an a file or directory (`rm -r`)
+`rm_rf` | path | Delete an a file or directory, with force (`rm -rf`)
+`rmdir` | path | Delete an empty directory
+
+### Advanced Tweaking
 
 See [CONFIGURE.md](https://github.com/janlelis/irbtools/blob/master/CONFIGURE.md).
-
 
 ### Troubleshooting: ANSI colors on Windows
 
@@ -146,36 +177,31 @@ Windows: ANSI support can be enabled via
 [ConEmu](https://conemu.github.io/) or
 [WSL](https://docs.microsoft.com/en-us/windows/wsl/about).
 
-
 ### Troubleshooting: Clipboard not working on Linux
 
 Clipboard support requires **xsel** or **xclip**. On ubuntu, do:
 
     sudo apt-get install xsel
 
-
 ### Hint: Debundle
 
-If you do not want to add **Irbtools** to your project's Gemfile, you will need a
+If you do not want to add **Irbtools** to your project's `Gemfile`, you will need a
 [debundle hack](https://github.com/janlelis/debundle.rb). Put it at the
-beginning of your `~/.irbrc` file and you are fine (until it breaks).
-
+beginning of your `~/.irbrc` file and you are fine.
 
 ### Hint: No ANSI / IRB extension
 
-You can use Irbtools without colors/irb extensions. To do so, put this into `~/.irbrc`:
+You can use **Irbtools** without colors/IRB extensions. To do so, put this into `~/.irbrc`:
 
 ```ruby
 require 'irbtools/non_fancy'
 Irbtools.start
 ```
 
-
 ### Hint: Web Console
 
 **Irbtools** works well together with the amazing
 [web-console!](https://github.com/rails/web-console)
-
 
 ## J-_-L
 
