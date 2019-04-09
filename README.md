@@ -1,4 +1,4 @@
-# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)
+# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools) [![[travis]](https://travis-ci.org/janlelis/irbtools.svg)](https://travis-ci.org/janlelis/irbtools)
 
 ```ruby
                                                                                  _|          _|
