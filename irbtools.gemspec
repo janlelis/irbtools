@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.authors               = ["Jan Lelis"]
   s.summary               = 'Irbtools happy IRB.'
-  s.description           = "Irbtools make Ruby's IRB more productive."
+  s.description           = "Irbtools make working with Ruby's IRB console more productive."
   s.email                 = 'mail@janlelis.de'
   s.files                 = %w[
     lib/irbtools.rb
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files      = %w[
     README.md
     CONFIGURE.md
-    CHANGELOG.txt
+    CHANGELOG.md
     MIT-LICENSE.txt
   ]
   s.license               = 'MIT'
@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
   # # #
   # Dependencies
 
-  # core functionality
+  # Core Functionality
   s.add_dependency %q<irb>,           ">= 0.9.6"
   s.add_dependency %q<every_day_irb>, "~> 2.0"
   s.add_dependency %q<fancy_irb>,     "~> 1.1"
@@ -44,14 +44,14 @@ Gem::Specification.new do |s|
   s.add_dependency %q<hirb>,          "~> 0.7", ">= 0.7.3"
   s.add_dependency %q<binding.repl>,  "~> 3.0"
 
-  # utils
+  # Utils
   s.add_dependency %q<paint>,         ">= 0.9", "< 3.0"
   s.add_dependency %q<clipboard>,     "~> 1.3"
   s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
   s.add_dependency %q<coderay>,       "~> 1.1"
   s.add_dependency %q<debugging>,     "~> 1.1"
 
-  # introspection / docs
+  # Introspection / Docs
   s.add_dependency %q<object_shadow>, "~> 1.0"
   s.add_dependency %q<code>,          ">= 0.9.2", "< 2.0"
   s.add_dependency %q<ori>,           "~> 0.1.0"
