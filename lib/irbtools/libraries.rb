@@ -35,7 +35,9 @@ Irbtools.add_library 'debugging/howtocall', thread: :paint
 
 require_relative 'hirb'
 
-Irbtools.add_library 'object_shadow', thread: :shadow
+Irbtools.add_library 'object_shadow', thread: :paint do
+  ObjectShadow.include(ObjectShadow::DeepInspect)
+end
 
 Irbtools.add_library 'ori', thread: :ori do
   # TODO Readline history can be empty (issue)

@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<debugging>,     "~> 1.1"
 
   # Introspection / Docs
-  s.add_dependency %q<object_shadow>, "~> 1.0"
+  s.add_dependency %q<object_shadow>, "~> 1.1"
   s.add_dependency %q<code>,          ">= 0.9.2", "< 2.0"
   s.add_dependency %q<ori>,           "~> 0.1.0"
   s.add_dependency %q<methodfinder>,  "~> 2.2"
