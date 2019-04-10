@@ -32,7 +32,7 @@ Then start IRB (with **Irbtools** loaded) from the terminal or directly from you
 
     binding.irb
 
-### More Improvements
+### Enable More Gems
 
 Some suggested gems will not be installed to ensure wider general support. For
 the full feature set, you can install **irbtools-more**. To do so, change your
@@ -44,22 +44,25 @@ and edit your `Gemfile` to read like this:
 
     gem 'irbtools-more', require: 'irbtools/binding'
 
-### IRB Improvements
+## Features
+
+### Irbtools' IRB Improvements
 
 - Syntax highlighting ([wirb](https://github.com/janlelis/wirb/) / [fancy_irb](https://github.com/janlelis/fancy_irb))
 - Loads included third party libraries effeciently
-- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html),
-  for example, ActiveRecord results get displayed as a table
--  **(irbtools-more)** Improved tab-completion: [bond](https://tagaholic.me/bond/)
+- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
+  - ActiveRecord results get displayed as a table
+-  **(irbtools-more)** [Improved tab-completion](https://tagaholic.me/bond/)
 
-### Included Methods for IRB
+### Irbtools' Included Methods for IRB
 
-Highlights:
+#### Highlights
 
 - Lookup and manipulate instance variables / methods with ease using [object_shadow](https://github.com/janlelis/object_shadow/)
-- **(irbtools-more)** Go even further with the best lookup path inspection tool out there: [looksee](https://github.com/oggy/looksee)
+- **(irbtools-more)** Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
 - Display a method's source code using [code](https://github.com/janlelis/code)
-- Inline access to *ri* docs [ori](https://github.com/dadooda/ori) (if you have deactivated *ri*, you can re-generate the docs with something like: `rvm docs generate-ri`)
+- Inline access to *ri* docs by [ori](https://github.com/dadooda/ori)
+  - If you have deactivated *ri*, you can re-generate the docs with something like: `rvm docs generate-ri`
 - Find methods that turn one value into another value with [methodfinder](https://github.com/citizen428/methodfinder)
 - [Use VIM from inside IRB](https://github.com/jberkel/interactive_editor)
 
