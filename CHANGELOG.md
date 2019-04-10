@@ -1,9 +1,11 @@
 # Irbtools Changelog
-## 3.0 (Unreleased)
+
+## 3.0.0
 * Make IRB itself a dependency (default gem)
 * Move: "Every day… IRB" into its own git repository
   * https://github.com/janlelis/every_day_irb
 * Replace instance and method_locator gems with new object_shadow gem
+* Improve README
 * Version bump code, clipboard, and methodfinder
 
 ## 2.2.2
