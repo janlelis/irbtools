@@ -1,5 +1,4 @@
 # Irbtools Changelog
-
 ## 3.0 (Unreleased)
 * Make IRB itself a dependency (default gem)
 * Move: "Every day… IRB" into its own git repository
