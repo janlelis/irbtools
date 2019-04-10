@@ -38,7 +38,14 @@ require_relative 'hirb'
 Irbtools.add_library 'object_shadow', thread: :shadow
 
 Irbtools.add_library 'ori', thread: :ori do
-  require_relative "ori_readline_fix"
+  # TODO Readline history can be empty (issue)
+  module ORI::Internals
+    def self.get_ri_arg_prefix(cmd)
+      if cmd && (mat = cmd.match /\A(\s*.+?\.ri)\s+\S/)
+        mat[1]
+      end
+    end
+  end
 
   class Object
     # patch ori to also allow shell-like "Array#slice" syntax
