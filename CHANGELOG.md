@@ -1,5 +1,8 @@
 # Irbtools Changelog
 
+## 3.0.1
+* Bump fancy_irb to ensure Ruby 2.7 compatiblity
+
 ## 3.0.0
 * Make IRB itself a dependency (default gem)
 * Move: "Every day… IRB" into its own git repository

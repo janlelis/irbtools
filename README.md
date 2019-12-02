@@ -15,6 +15,8 @@ debugging and introspection methods. Unlike with PRY, you are still in your
 normal IRB. It is designed to work out-of-the-box, so there is no reason to not
 use it!
 
+**Compatible with Ruby 2.7's new IRB**
+
 ## Setup
 
     $ gem install irbtools
