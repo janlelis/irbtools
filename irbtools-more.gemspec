@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
 
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.authors               = ["Jan Lelis"]
+  s.email                 = ["hi@ruby.consulting"]
   s.summary               = 'irbtools-more adds bond and looksee to IRB.'
-  s.description           = 'irbtools-more adds bond and looksee to IRB (Gems that use core extensions). Simply put a require "irbtools/more" in the .irbrc file in your home directory to get started.'
-  s.email                 = 'mail@janlelis.de'
+  s.description           = 'irbtools-more extend irbtools with some extra functionality which requires a compile step, like the amazing looksee gem. Put `require "irbtools/more"` in the .irbrc file in your home directory to load irbtools together with irbtools/more'
   s.files                 = %w[
     lib/irbtools/more.rb
     lib/irbtools/more/version.rb

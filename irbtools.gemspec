@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
 
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.authors               = ["Jan Lelis"]
+  s.email                 = ["hi@ruby.consulting"]
   s.summary               = 'Irbtools happy IRB.'
-  s.description           = "Irbtools make working with Ruby's IRB console more productive."
-  s.email                 = 'mail@janlelis.de'
+  s.description           = "The Irbtools make working with Ruby's IRB console more fun & productive."
   s.files                 = %w[
     lib/irbtools.rb
     lib/irbtools/version.rb
