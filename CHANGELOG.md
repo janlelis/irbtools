@@ -1,5 +1,8 @@
 # Irbtools Changelog
 
+## 3.0.2
+* Bump wirb to ensure Ruby 2.7 compatibility
+
 ## 3.0.1
 * Bump fancy_irb to ensure Ruby 2.7 compatiblity
 
