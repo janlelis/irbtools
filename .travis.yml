@@ -13,6 +13,7 @@ rvm:
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - rvm: jruby-9.2.6.0
     - rvm: truffleruby
     - rvm: 2.3
 #   fast_finish: true
