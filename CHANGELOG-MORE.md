@@ -1,5 +1,8 @@
 # Irbtools (More) Changelog
 
+## 2.4.0
+* Bump looksee & core_docs for Ruby 2.7
+
 ## 2.3.1
 * Loosen irbrtools-more dependency to irbtools (allow 3.x)
 
