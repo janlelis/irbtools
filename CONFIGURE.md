@@ -3,6 +3,12 @@
 
 The welcome message can be customized with `Irbtools.welcome_message=`
 
+### IRB Prompt
+
+**irbtools** changes the prompt to *:IRBTOOLS mode*, which uses `>> ` as the prompt, `|  ` for indentation, and ` > ` for continuing a statement. You can switch back to the default IRB prompt with:
+
+    IRB.conf[:PROMPT_MODE] = :DEFAULT
+
 ### Customize Libraries to Load
 
 It is possible to modify, which libraries to load:
@@ -53,3 +59,15 @@ When adding a new library, you should firstly consider some way to load it via
 `:autoload`. If this is not possible, try loading via `:thread`. If that is
 not possible either, you will need to fallback to the default loading
 mechanism.
+
+#### Example
+
+Change a [FancyIRB](https://github.com/janlelis/fancy_irb/) setting:
+
+    require 'irbtools/configure'
+
+    Irbtools.replace_library_callback :fancy_irb do
+      FancyIrb.start rocket_mode: false
+    end
+
+    Irbtools.start
