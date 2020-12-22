@@ -1,5 +1,8 @@
 # Irbtools Changelog
 
+## 3.0.3 (unreleased)
+* Workaround a HIRB issue for newer IRBs (fixes #48)
+
 ## 3.0.2
 * Bump wirb to ensure Ruby 2.7 compatibility
 

@@ -7,6 +7,15 @@ Irbtools.add_library :hirb, thread: :paint do
     Hirb::Pager.command_pager(what, options = {})
   end
 
+  # Workaround for newer IRB versions
+  if defined? IRB::Irb
+    IRB::Irb.class_eval do
+      def output_value(_ = false)
+        Hirb::View.view_or_page_output(@context.last_value) || non_hirb_view_output
+      end
+    end
+  end
+
   # page wirb output hacks
   class Hirb::Pager
     alias original_activated_by? activated_by?
