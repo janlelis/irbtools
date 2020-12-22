@@ -2,6 +2,7 @@
 
 ## 3.0.3 (unreleased)
 * Workaround a HIRB issue for newer IRBs (fixes #48)
+* Workaround ORI issue for newer IRBs
 
 ## 3.0.2
 * Bump wirb to ensure Ruby 2.7 compatibility
