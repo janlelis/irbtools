@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name = 'irbtools'
   s.version = Irbtools::VERSION
 
-  s.homepage              = 'https://github.com/janlelis/irbtools'
+  s.homepage              = 'https://irb.tools'
   s.authors               = ["Jan Lelis"]
   s.email                 = ["hi@ruby.consulting"]
   s.summary               = 'Irbtools happy IRB.'
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   ]
   s.license               = 'MIT'
 
-  s.required_ruby_version = '~> 2.0'
+  s.required_ruby_version = '>= 2.0', '< 4.0'
 
   # # #
   # Dependencies
