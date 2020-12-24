@@ -1,5 +1,8 @@
 # Irbtools Changelog
 
+## 3.0.4
+* Loosen Ruby dependency to allow Ruby 3.0
+
 ## 3.0.3
 * Workaround a HIRB issue for newer IRBs (fixes #48)
 * Workaround ORI issue for newer IRBs
