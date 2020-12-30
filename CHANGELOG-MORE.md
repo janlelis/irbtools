@@ -1,6 +1,6 @@
 # Irbtools (More) Changelog
 
-## 2.5.0 (unreleased)
+## 2.5.0
 * Bump binding_of_caller & core_docs for Ruby 3.0
 
 ## 2.4.1
