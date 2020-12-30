@@ -1,4 +1,4 @@
-# Irbtools [![version](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools) [![[travis]](https://travis-ci.org/janlelis/irbtools.svg)](https://travis-ci.org/janlelis/irbtools)
+# Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
 ```ruby
                                                                                  _|          _|
@@ -14,8 +14,6 @@ Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
 normal IRB. It is designed to work out-of-the-box, so there is no reason to not
 use it!
-
-**Compatible with Ruby 2.7's new IRB**
 
 ## Setup
 
