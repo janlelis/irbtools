@@ -180,5 +180,5 @@ Irbtools.start
 
 ## J-_-L
 
-Copyright (c) 2010-2020 Jan Lelis <https://janlelis.com> released under the MIT
+Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT
 license.
