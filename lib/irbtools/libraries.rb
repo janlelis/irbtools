@@ -39,7 +39,7 @@ Irbtools.add_library 'object_shadow', thread: :paint do
   ObjectShadow.include(ObjectShadow::DeepInspect)
 end
 
-Irbtools.add_library 'readline', thread: :ori
+Readline = Reline if defined? Reline
 Irbtools.add_library 'ori', thread: :ori do
   # TODO Readline history can be empty (issue)
   module ORI::Internals
