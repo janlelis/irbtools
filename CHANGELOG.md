@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## 3.0.5 (unreleased)
+## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)
 
 ## 3.0.4
