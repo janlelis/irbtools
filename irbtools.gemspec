@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
   s.add_dependency %q<object_shadow>, "~> 1.1"
   s.add_dependency %q<code>,          ">= 0.9.2", "< 2.0"
   s.add_dependency %q<ori>,           "~> 0.1.0"
-  s.add_dependency %q<methodfinder>,  "~> 2.2"
+  s.add_dependency %q<methodfinder>,  "~> 2.2", ">= 2.2.2"
   s.add_dependency %q<ruby_version>,  "~> 1.0"
   s.add_dependency %q<ruby_engine>,   "~> 1.0"
   s.add_dependency %q<ruby_info>,     "~> 1.0"

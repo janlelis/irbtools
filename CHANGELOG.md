@@ -1,5 +1,8 @@
 # Irbtools Changelog
 
+## 3.0.5 (unreleased)
+* Bump methodfinder dependency & update usage (fixes #52)
+
 ## 3.0.4
 * Loosen Ruby dependency to allow Ruby 3.0
 

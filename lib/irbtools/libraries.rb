@@ -119,7 +119,7 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do
 end
 
 Irbtools.add_library :methodfinder, autoload: :MethodFinder do
-  MethodFinder::INSTANCE_METHOD_BLACKLIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed]
+  MethodFinder::INSTANCE_METHOD_IGNORELIST[:Object] += [:ri, :vi, :vim, :emacs, :nano, :mate, :mvim, :ed]
 
   def mf(*args, &block)
     args.empty? ? MethodFinder : MethodFinder.find(*args, &block)
