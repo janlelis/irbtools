@@ -20,9 +20,15 @@ You also need to add irbtools to your project's `Gemfile`:
 
     gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB (with **Irbtools** loaded) from the terminal or directly from your code with:
+Then start IRB (with **Irbtools** loaded) from the terminal or directly from
+your code with:
 
     binding.irb
+
+If the **binding_of_caller** gem is available, it is enough to just call `irb`
+in your code to start a session with the current binding:
+
+    irb
 
 ### Enable More Gems
 

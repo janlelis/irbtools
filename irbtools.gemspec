@@ -42,7 +42,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<fancy_irb>,     "~> 1.2", ">= 1.2.1"
   s.add_dependency %q<wirb>,          "~> 2.0", ">= 2.2.1"
   s.add_dependency %q<hirb>,          "~> 0.7", ">= 0.7.3"
-  s.add_dependency %q<binding.repl>,  "~> 3.0"
 
   # Utils
   s.add_dependency %q<paint>,         ">= 0.9", "< 3.0"
