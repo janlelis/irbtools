@@ -23,10 +23,10 @@ Gem::Specification.new do |s|
   ]
   s.license               = 'MIT'
 
-  s.required_ruby_version = '>= 2.0', '< 4.0'
-  s.add_dependency 'irbtools', '>= 2.2', '< 4.0'
+  s.required_ruby_version = '>= 3.2', '< 4.0'
+  s.add_dependency 'irbtools', '~> 3.2'
   s.add_dependency 'bond',     '~> 0.5'
-  s.add_dependency 'looksee' , '~> 4.2'
+  s.add_dependency 'looksee' , '~> 5.0'
   s.add_dependency 'core_docs', '>= 0.9.6'
   s.add_dependency 'binding_of_caller', '~> 1.0'
 end
