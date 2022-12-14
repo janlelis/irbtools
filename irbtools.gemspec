@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   ]
   s.license               = 'MIT'
 
-  s.required_ruby_version = '>= 2.0', '< 4.0'
+  s.required_ruby_version = '>= 3.2', '< 4.0'
 
   # # #
   # Dependencies
