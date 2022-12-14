@@ -1,14 +1,6 @@
 # Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
-```ruby
-                                                                                 _|          _|
- _|_|_|  _|_|_|    _|_|_|        _|                          _|                _|    _|_|_|    _|
-   _|    _|    _|  _|    _|    _|_|_|_|    _|_|      _|_|    _|    _|_|_|      _|          _|  _|
-   _|    _|_|_|    _|_|_|        _|      _|    _|  _|    _|  _|  _|_|          _|      _|_|    _|
-   _|    _|    _|  _|    _|      _|      _|    _|  _|    _|  _|      _|_|      _|          _|  _|
- _|_|_|  _|    _|  _|_|_|    _|    _|_|    _|_|      _|_|    _|  _|_|_|        _|    _|_|_|    _|
-                                                                                 _|          _|
-```
+**Next IRBTOOLS release, aimed at Ruby 3.2+ / IRB 1.6+**
 
 Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
