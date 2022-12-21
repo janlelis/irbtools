@@ -50,7 +50,6 @@ and edit your `Gemfile` to read like this:
 - Loads included third party libraries effeciently
 - Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
   - ActiveRecord results get displayed as a table
--  **(irbtools-more)** [Improved tab-completion](https://tagaholic.me/bond/)
 
 ### Irbtools' Included Methods for IRB
 

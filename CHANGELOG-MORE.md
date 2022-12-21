@@ -4,6 +4,7 @@
 
 * Ruby 3.2 / Irbtools 3.2 required
 * Bump looksee to 5.0
+* Remove bond (outdated)
 
 ## 2.5.0
 * Bump binding_of_caller & core_docs for Ruby 3.0
