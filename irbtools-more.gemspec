@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://github.com/janlelis/irbtools'
   s.authors               = ["Jan Lelis"]
   s.email                 = ["hi@ruby.consulting"]
-  s.summary               = 'irbtools-more adds bond and looksee to IRB.'
-  s.description           = 'irbtools-more extend irbtools with some extra functionality which requires a compile step, like the amazing looksee gem. Put `require "irbtools/more"` in the .irbrc file in your home directory to load irbtools together with irbtools/more'
+  s.summary               = "irbtools-more not necessary anymore: Everything's now in core irbtools."
+  s.description           = "irbtools-more not necessary anymore: looksee is now part of core irbtools and the other extensions have been removed (bond) or left optional (binding_of_caller)."
   s.files                 = %w[
     lib/irbtools/more.rb
     lib/irbtools/more/version.rb
@@ -24,8 +24,5 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 3.2', '< 4.0'
   s.add_dependency 'irbtools', '~> 3.2'
-  s.add_dependency 'looksee' , '~> 5.0'
-  s.add_dependency 'core_docs', '>= 0.9.6'
-  s.add_dependency 'binding_of_caller', '~> 1.0'
 end
 

@@ -30,18 +30,6 @@ in your code to start a session with the current binding:
 
     irb
 
-### Enable More Gems
-
-Some suggested gems will not be installed to ensure wider general support. For
-the full feature set, you can install **irbtools-more**. To do so, change your
-`.irbrc` to:
-
-    require 'irbtools/more'
-
-and edit your `Gemfile` to read like this:
-
-    gem 'irbtools-more', require: 'irbtools/binding'
-
 ## Features
 
 ### Irbtools' IRB Improvements
@@ -56,7 +44,7 @@ and edit your `Gemfile` to read like this:
 #### Highlights
 
 - Lookup and manipulate instance variables / methods with ease using [object_shadow](https://github.com/janlelis/object_shadow/)
-- **(irbtools-more)** Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
+- Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
 - Display a method's source code using [code](https://github.com/janlelis/code)
 - Inline access to *ri* docs by [ori](https://github.com/dadooda/ori)
   - If you have deactivated *ri*, you can re-generate the docs with something like: `rvm docs generate-ri`
@@ -67,11 +55,11 @@ and edit your `Gemfile` to read like this:
 
 Method / Constant | Arguments  | Description | Provided By
 ------ | ---------- | -----------|-
-`code` | object = self, method_name | Display the method source with syntax highlighting. Will also look up C methods if the **core_docs** gem (which is included in **irbtools-more**) is available. | [code](https://github.com/janlelis/code)
+`code` | object = self, method_name | Display the method source with syntax highlighting. Will also try to look up C methods. | [code](https://github.com/janlelis/code)
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
 `mof` | object, depth = 0, grep = // | Print a method list, ordered by modules (looksee lite) | [debugging](https://github.com/janlelis/debugging#mofobj-depth--nil)
-`Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
+`Object#lp` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
 `Object#ri` | *args | Show ri documentation for this object or method | [ori](https://github.com/dadooda/ori)
 `Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 

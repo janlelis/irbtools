@@ -4,14 +4,7 @@ require_relative 'more/version'
 
 require 'irbtools/configure'
 
-begin
-  # Object#l method for inspecting its lookup path
-  Irbtools.add_library 'looksee', thread: :more2 do
-    Looksee.rename :lp
-  end
-rescue LoadError
-  # do not load if not supported
-end
+warn "irbtools-more is not necessary anymore, everything has been moved to irbtools (or removed)"
 
 # load now
 Irbtools.start if standalone

@@ -74,6 +74,15 @@ Irbtools.add_library 'os', thread: :os
 Irbtools.add_library 'ruby_engine', thread: :re
 Irbtools.add_library 'ruby_version', thread: :rv
 
+begin
+  # Object#l method for inspecting its lookup path
+  Irbtools.add_library 'looksee', thread: :ls do
+    Looksee.rename :lp
+  end
+rescue LoadError
+  # do not load if not supported
+end
+
 # # # load via autoload
 
 Irbtools.add_library 'code', :autoload => :Code do

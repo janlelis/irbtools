@@ -6,10 +6,6 @@ require_relative 'irbtools/configure'
 require 'irb' unless Irbtools.ripl?
 
 # # # # #
-# Load irbtools extension packages
-Irbtools.load_packages
-
-# # # # #
 # Load: start
 Irbtools.load_libraries(Irbtools.libraries[:start])
 

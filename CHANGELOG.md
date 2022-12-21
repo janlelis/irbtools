@@ -2,6 +2,11 @@
 
 ## Next (unreleased)
 
+* Retire irbtools-more:
+  * Move looksee to core irbtools
+  * Move core_docs to core irbtools
+  * Remove bond (outdated)
+  * Leave binding_of_caller optional
 
 ## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)

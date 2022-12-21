@@ -1,7 +1,6 @@
 module Irbtools
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @packages        = []
   @shell_name      = File.split($0)[-1].upcase
   @welcome_message = "Welcome to #{ @shell_name }. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
   @minimal         ||= false
@@ -19,9 +18,6 @@ module Irbtools
     # a hash of arrays of libraries that get loaded
     # keys determine if lib is required, required on sub-session or autoloaded
     attr_accessor :libraries
-
-    # an array of extension packages that get loaded (e.g. irbtools-more)
-    attr_accessor :packages
 
     # add a library. the block gets executed, when the library was loaded.
     # if the second param is true, it's hooked in into IRB.conf[:IRB_RC] instead of the start.
@@ -81,23 +77,6 @@ module Irbtools
       @libraries[:late_thread].each{ |_,libs| libs.delete lib }
 
       @lib_hooks.delete lib
-    end
-
-    # add extensions packages
-    def add_package(pkg)
-      @packages << pkg.to_s
-    end
-
-    # remove extension package
-    def remove_package(pkg)
-      @packages.delete pkg.to_s
-    end
-
-    # actually require registered packages
-    def load_packages
-      @packages.each{ |pkg|
-        require "irbtools/#{pkg}"
-      }
     end
 
     # te be triggered when a library has loaded
