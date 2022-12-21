@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   ]
   s.license               = 'MIT'
 
-  s.required_ruby_version = '>= 3.2', '< 4.0'
-  s.add_dependency 'irbtools', '~> 3.2'
+  s.required_ruby_version = '>= 3.2.rc1', '< 4.0'
+  # s.add_dependency 'irbtools', '~> 3.2'
 end
 
