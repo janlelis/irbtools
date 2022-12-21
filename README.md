@@ -58,7 +58,7 @@ Method / Constant | Arguments  | Description | Provided By
 `code` | object = self, method_name | Display the method source with syntax highlighting. Will also try to look up C methods. | [code](https://github.com/janlelis/code)
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
-`Object#lp` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
+`Object#lp` or `Object#look` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
 `Object#ri` | *args | Show ri documentation for this object or method | [ori](https://github.com/dadooda/ori)
 `Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 

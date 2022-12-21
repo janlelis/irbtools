@@ -77,6 +77,9 @@ begin
   # Object#l method for inspecting its lookup path
   Irbtools.add_library 'looksee', thread: :ls do
     Looksee.rename :lp
+    class Object
+      alias look lp
+    end
   end
 rescue LoadError
   # do not load if not supported
