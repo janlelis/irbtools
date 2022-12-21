@@ -28,7 +28,6 @@ unless Irbtools.ripl?
 end
 
 Irbtools.add_library 'debugging/q',         thread: :paint
-Irbtools.add_library 'debugging/mof',       thread: :paint
 Irbtools.add_library 'debugging/re',        thread: :paint
 Irbtools.add_library 'debugging/beep',      thread: :paint
 Irbtools.add_library 'debugging/howtocall', thread: :paint

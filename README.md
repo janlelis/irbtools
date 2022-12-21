@@ -35,7 +35,7 @@ in your code to start a session with the current binding:
 ### Irbtools' IRB Improvements
 
 - Syntax highlighting ([wirb](https://github.com/janlelis/wirb/) / [fancy_irb](https://github.com/janlelis/fancy_irb))
-- Loads included third party libraries effeciently
+- Loads included third party libraries efficiently
 - Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
   - ActiveRecord results get displayed as a table
 
@@ -58,7 +58,6 @@ Method / Constant | Arguments  | Description | Provided By
 `code` | object = self, method_name | Display the method source with syntax highlighting. Will also try to look up C methods. | [code](https://github.com/janlelis/code)
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
-`mof` | object, depth = 0, grep = // | Print a method list, ordered by modules (looksee lite) | [debugging](https://github.com/janlelis/debugging#mofobj-depth--nil)
 `Object#lp` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
 `Object#ri` | *args | Show ri documentation for this object or method | [ori](https://github.com/dadooda/ori)
 `Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
