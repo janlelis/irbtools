@@ -1,6 +1,11 @@
 # Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
-**Next IRBTOOLS release, aimed at Ruby 3.2+ / IRB 1.6+**
+## Irbtools 4.0 for Ruby 3.2+ / IRB 1.6+
+
+The current version of Irbtools requires Ruby 3.2 and IRB 1.6. Please use
+Irbtools 3.0 for earlier versions of Ruby/IRB.
+
+## Description
 
 Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
 debugging and introspection methods. Unlike with PRY, you are still in your
@@ -25,8 +30,8 @@ your code with:
 
     binding.irb
 
-If the **binding_of_caller** gem is available, it is enough to just call `irb`
-in your code to start a session with the current binding:
+*Optional:* If the **binding_of_caller** gem is available, you can just call the `irb`
+method and it will start a session with the current binding:
 
     irb
 
