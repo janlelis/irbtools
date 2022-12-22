@@ -119,6 +119,13 @@ module Irbtools
         }})
 
         IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+
+        # prevent clash between IRB's ls and FileUtil's ls
+        if aliases = IRB::ExtendCommandBundle.instance_variable_get(:@ALIASES)
+          if irb_ls = aliases.find{|a,*| a == :ls}
+            irb_ls[0] = :ils
+          end
+        end
       end
     end
 

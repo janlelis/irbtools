@@ -12,6 +12,7 @@
   * Remove bond (outdated)
   * Leave binding_of_caller optional
 * Version bumps: looksee, os, methodfinder, code
+* Alias IRB's ls to ils (fixes #53)
 
 ## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)

@@ -128,6 +128,10 @@ Method / Constant | Arguments  | Description | Provided By
 `rm_rf` | path | Delete a file or directory, with force (`rm -rf`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `rmdir` | path | Delete an empty directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 
+### IRB's ls?
+
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory.
+
 ### Advanced Tweaking
 
 See [CONFIGURE.md](https://github.com/janlelis/irbtools/blob/master/CONFIGURE.md).
