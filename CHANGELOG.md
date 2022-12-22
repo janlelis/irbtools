@@ -11,6 +11,7 @@
   * Move core_docs to core irbtools
   * Remove bond (outdated)
   * Leave binding_of_caller optional
+* Version bumps: looksee, os, methodfinder, code
 
 ## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)
