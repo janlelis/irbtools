@@ -38,36 +38,7 @@ Irbtools.add_library 'object_shadow', thread: :paint do
   ObjectShadow.include(ObjectShadow::DeepInspect)
 end
 
-Irbtools.add_library 'readline', thread: :ori
-Irbtools.add_library 'ori', thread: :ori do
-  # TODO Readline history can be empty (issue)
-  module ORI::Internals
-    def self.get_ri_arg_prefix(cmd)
-      if cmd && (mat = cmd.match /\A(\s*.+?\.ri)\s+\S/)
-        mat[1]
-      end
-    end
-  end
-
-  class Object
-    # patch ori to also allow shell-like "Array#slice" syntax
-    def ri(*args)
-      if  args[0] &&
-          self == TOPLEVEL_BINDING.eval('self') &&
-          args[0] =~ /\A(.*)(?:#|\.)(.*)\Z/
-        begin
-          klass = Object.const_get $1
-          klass.ri $2
-        rescue
-          super
-        end
-      else
-        super
-      end
-    end
-  end
-end
-
+Irbtools.add_library 'readline', thread: :readline
 Irbtools.add_library 'ruby_info', thread: :ri
 Irbtools.add_library 'os', thread: :os
 Irbtools.add_library 'ruby_engine', thread: :re

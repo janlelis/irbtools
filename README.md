@@ -46,8 +46,6 @@ in your code to start a session with the current binding:
 - Lookup and manipulate instance variables / methods with ease using [object_shadow](https://github.com/janlelis/object_shadow/)
 - Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
 - Display a method's source code using [code](https://github.com/janlelis/code)
-- Inline access to *ri* docs by [ori](https://github.com/dadooda/ori)
-  - If you have deactivated *ri*, you can re-generate the docs with something like: `rvm docs generate-ri`
 - Find methods that turn one value into another value with [methodfinder](https://github.com/citizen428/methodfinder)
 - [Use VIM from inside IRB](https://github.com/jberkel/interactive_editor)
 
@@ -59,7 +57,6 @@ Method / Constant | Arguments  | Description | Provided By
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
 `Object#lp` or `Object#look` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
-`Object#ri` | *args | Show ri documentation for this object or method | [ori](https://github.com/dadooda/ori)
 `Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 
 #### Platform Info

@@ -3,7 +3,9 @@
 ## Next (unreleased)
 
 * Requires Ruby 3.2 / IRB 1.6
-* Drop binding.repl gem since it was only needed for older Rubies
+* Remove a bunch of gems:
+    * Drop binding.repl gem since it was only needed for older Rubies
+    * Drop ori gem, since IRB now has `show_doc`
 * Retire irbtools-more:
   * Move looksee to core irbtools
   * Move core_docs to core irbtools
