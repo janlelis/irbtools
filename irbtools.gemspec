@@ -48,13 +48,13 @@ Gem::Specification.new do |s|
   s.add_dependency %q<clipboard>,     "~> 1.3"
   s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
   s.add_dependency %q<coderay>,       "~> 1.1"
-  s.add_dependency %q<debugging>,     "~> 1.1"
+  s.add_dependency %q<debugging>,     "~> 2.1"
 
   # Introspection / Docs
   s.add_dependency %q<looksee>,       "~> 5.0"
   s.add_dependency %q<object_shadow>, "~> 1.1"
   s.add_dependency %q<code>,          ">= 0.9.3", "< 2.0"
-  s.add_dependency %q<core_docs>,     ">= 0.9.8"
+  s.add_dependency %q<core_docs>,     ">= 0.9.9"
   s.add_dependency %q<methodfinder>,  "~> 2.2", ">= 2.2.5"
   s.add_dependency %q<ruby_version>,  "~> 1.0"
   s.add_dependency %q<ruby_engine>,   "~> 1.0"
