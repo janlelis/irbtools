@@ -31,13 +31,13 @@ Gem::Specification.new do |s|
   ]
   s.license               = 'MIT'
 
-  # s.required_ruby_version = '>= 3.2', '< 4.0'
+  s.required_ruby_version = '>= 3.0', '< 4.0'
 
   # # #
   # Dependencies
 
   # Core Functionality
-  s.add_dependency %q<irb>,           ">= 1.6.1"
+  s.add_dependency %q<irb>,           ">= 1.6.2"
   s.add_dependency %q<every_day_irb>, "~> 2.0"
   s.add_dependency %q<fancy_irb>,     "~> 1.2", ">= 1.2.1"
   s.add_dependency %q<wirb>,          "~> 2.0", ">= 2.2.1"

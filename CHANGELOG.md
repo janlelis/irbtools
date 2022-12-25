@@ -2,15 +2,19 @@
 
 ## Next (unreleased)
 
-* Requires Ruby 3.2 / IRB 1.6
+* Requires IRB 1.6 (Ruby 3.2 bundles IRB 1.6.2)
+* Requires Ruby 3.0
+
 * Remove a bunch of gems:
     * Drop binding.repl gem since it was only needed for older Rubies
     * Drop ori gem, since IRB now has `show_doc`
+
 * Retire irbtools-more:
   * Move looksee to core irbtools
   * Move core_docs to core irbtools
   * Remove bond (outdated)
   * Leave binding_of_caller optional
+
 * Version bumps: looksee, os, methodfinder, code
 * Alias IRB's ls to ils (fixes #53)
 
