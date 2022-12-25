@@ -1,16 +1,17 @@
 # Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
-## Irbtools 4.0 for Ruby 3.2+ / IRB 1.6+
+## Irbtools 4.0 for IRB 1.6+
 
-The current version of Irbtools requires Ruby 3.2 and IRB 1.6. Please use
-Irbtools 3.0 for earlier versions of Ruby/IRB.
+The current version of Irbtools requires IRB 1.6+ (which is the default for Ruby
+from 3.2 on). Please use Irbtools 3 for earlier versions of IRB.
 
 ## Description
 
-Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
-debugging and introspection methods. Unlike with PRY, you are still in your
-normal IRB. It is designed to work out-of-the-box, so there is no reason to not
-use it!
+Improves Ruby's IRB with:
+
+- a default configuration
+- better syntax highlighting of result objects
+- helpful methods for debugging and introspection
 
 ## Setup
 
@@ -37,12 +38,11 @@ method and it will start a session with the current binding:
 
 ## Features
 
-### Irbtools' IRB Improvements
+### General IRB Improvements
 
 - Syntax highlighting ([wirb](https://github.com/janlelis/wirb/) / [fancy_irb](https://github.com/janlelis/fancy_irb))
-- Loads included third party libraries efficiently
-- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
-  - ActiveRecord results get displayed as a table
+- Loads included efficiently to reduce IRB start-up time
+- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html). By default, ActiveRecord results get displayed as a table
 
 ### Irbtools' Included Methods for IRB
 
