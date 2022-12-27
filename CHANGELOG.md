@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## Next (unreleased)
+## 4.0 (unreleased)
 
 * Requires IRB 1.6 (Ruby 3.2 bundles IRB 1.6.2)
 * Requires Ruby 3.0

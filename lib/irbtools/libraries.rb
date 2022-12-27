@@ -85,12 +85,6 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do
     Clipboard.paste
   end
 
-  # copies everything you have entered in this irb session
-  def copy_input
-    copy session_history
-    "The session input history has been copied to the clipboard."
-  end
-
   # copies the output of all irb commands in this irb session
   def copy_output
     copy context.instance_variable_get(:@eval_history_values).inspect.gsub(/^\d+ (.*)/, '\1')

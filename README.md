@@ -143,7 +143,7 @@ Command | Alias | Description | Example
 
 ##### IRB's ls?
 
-Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory. If you haven't tried looksee (`Object#look`) or object shadows ('Object#shadow') - give it a try ;)
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` already refers to a method listing all files in the current directory. If you haven't tried looksee (`Object#look`) or object shadows (`Object#shadow`) - give it a try ;)
 
 #### Ruby Introspection
 
@@ -169,7 +169,9 @@ Method / Constant | Arguments  | Description | Provided By
 Method / Constant | Arguments  | Description | Provided By
 ------ | ---------- | -----------|-
 `beep` | | Ring terminal bell | [debugging/beep](https://github.com/janlelis/debugging#beep)
+`clear` | | Clear the terminal | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `copy` | string | Copy something to the clipboard | [clipboard](https://github.com/janlelis/clipboard)
+`copy_output` | | Copy session output history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
 `colorize` | string | Syntax-highlight a string of Ruby code | [coderay](https://github.com/rubychan/coderay), irbtools
 `ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context | [interactive_editor](https://github.com/jberkel/interactive_editor)
 `ld` | file | Shortcut for `load lib.to_s + '.rb'` | [every_day_irb](https://github.com/janlelis/every_day_irb)
@@ -178,20 +180,11 @@ Method / Constant | Arguments  | Description | Provided By
 `paste` | | Paste clipboard content | [clipboard](https://github.com/janlelis/clipboard)
 `q` | *args | Like `Kernel#p`, but prints results on one line, with different colors | [debugging/q](https://github.com/janlelis/debugging#qargs)
 `re` | string, regexg, groups = nil | Regex debugging helper | [debugging/re](https://github.com/janlelis/debugging#qargs)
+`reset!` | | Restart the current IRB session | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rq` | lib | Shortcut for `require lib.to_s`. Use it like this: `rq:prime` | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rr` | lib | Shortcut for `require_relative lib.to_s` |  [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `wp` | inspect_string | Syntax-highlight a Ruby return value | [wirb](https://github.com/janlelis/wirb#kernelwp)
-
-#### IRB Support
-
-Method / Constant | Arguments  | Description | Provided By
------- | ---------- | -----------|-
-`clear` | | Clear the terminal | [every_day_irb](https://github.com/janlelis/every_day_irb)
-`copy_input` | | Copy session history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
-`copy_output` | | Copy session output history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
-`reset!` | | Restart the current IRB session | [every_day_irb](https://github.com/janlelis/every_day_irb)
-`session_history` | number_of_lines = nil | Return a string of all commands issued in the current session | [every_day_irb](https://github.com/janlelis/every_day_irb)
 
 #### Files and Navigation
 
@@ -205,7 +198,7 @@ Method / Constant | Arguments  | Description | Provided By
 `chown_R` | user, group, path | Set file owner for directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `cp` | source, destination | Copy file | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `cp_r` | source, destination | Copy directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
-`ls` | path = "." | List directory content | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
+`ls` | path = "." | List directory content | [cd](https://github.com/janlelis/cd)
 `ln` | target, link | Create symlink (`ln`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `ln_s` | target, link | Create symlink (`ln -s`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `ln_sf` | target, link | Create symlink (`ln -sf`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
