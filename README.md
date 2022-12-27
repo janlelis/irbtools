@@ -10,8 +10,8 @@ from 3.2 on). Please use Irbtools 3 for earlier versions of IRB.
 Improves Ruby's IRB with:
 
 - a default configuration
-- better syntax highlighting of result objects
-- helpful methods for debugging and introspection
+- improved syntax highlighting of result objects
+- helpful commands and utilities for debugging and introspection
 
 ## Setup
 
@@ -41,8 +41,8 @@ method and it will start a session with the current binding:
 ### General IRB Improvements
 
 - Syntax highlighting ([wirb](https://github.com/janlelis/wirb/) / [fancy_irb](https://github.com/janlelis/fancy_irb))
-- Loads included efficiently to reduce IRB start-up time
-- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html). By default, ActiveRecord results get displayed as a table
+- Loads included libraries efficiently to reduce IRB start-up time
+- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html). By default, ActiveRecord results get displayed as a table.
 
 ### Included Debugging Methods for IRB
 
@@ -53,6 +53,18 @@ method and it will start a session with the current binding:
 - Display a method's source code using [code](https://github.com/janlelis/code)
 - Find methods that turn one value into another value with [methodfinder](https://github.com/citizen428/methodfinder)
 - [Use VIM from inside IRB](https://github.com/jberkel/interactive_editor)
+
+#### Extra Commands
+
+Command | Alias | Description | Example
+------ | ---------- | ---------|---
+`look ` | - | Shows looksee method list (of object if one is given) | `look [1,2,3]`
+`shadow ` | `+ ` | Shows object shadow method list (of object if one is given) | `shadow [1,2,3]`
+`sys ` | `$ ` | Calls system shell | `$ top`
+
+##### IRB's ls?
+
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory. If you haven't tried looksee (`Object#look`) or object shadows ('Object#shadow') - give it a try ;)
 
 #### Ruby Introspection
 
@@ -127,10 +139,6 @@ Method / Constant | Arguments  | Description | Provided By
 `rm_r` | path | Delete a file or directory (`rm -r`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `rm_rf` | path | Delete a file or directory, with force (`rm -rf`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `rmdir` | path | Delete an empty directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
-
-### IRB's ls?
-
-Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory. If you haven't tried looksee (`Object#look`) or object shadows ('Object#shadow') - give it a try ;)
 
 ### Advanced Tweaking
 
