@@ -144,7 +144,7 @@ module Irbtools
       IRB.conf[:COMMAND_ALIASES].merge!({
         :ri => :show_doc,
         :'$' => :sys,
-        # :'+' => :shadow,
+        :'+' => :shadow,
       })
     end
 
