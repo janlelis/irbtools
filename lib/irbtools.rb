@@ -1,9 +1,5 @@
 require_relative 'irbtools/configure'
-
-# # # # #
-# Make sure we load IRB if we are not in RIPL
-
-require 'irb' unless Irbtools.ripl?
+require 'irb'
 
 # # # # #
 # Load: start
@@ -23,19 +19,11 @@ Irbtools.configure_irb!
 
 # # # # #
 # Load: sub-session / after_rc
-if Irbtools.ripl?
-  if defined? Ripl::AfterRc
-    Irbtools.libraries[:sub_session].each{ |r| Ripl.after_rcs << r }
-  elsif !Irbtools.libraries[:sub_session].empty?
-    warn "Couldn't load libraries in Irbtools.libraries[:sub_session]. Please install ripl-after_rc to use this feature in Ripl!"
-  end
-else
-  original_irbrc_proc = IRB.conf[:IRB_RC]
-  IRB.conf[:IRB_RC] = proc{
-    Irbtools.load_libraries(Irbtools.libraries[:sub_session])
-    original_irbrc_proc.call if original_irbrc_proc
-  }
-end
+original_irbrc_proc = IRB.conf[:IRB_RC]
+IRB.conf[:IRB_RC] = proc{
+  Irbtools.load_libraries(Irbtools.libraries[:sub_session])
+  original_irbrc_proc.call if original_irbrc_proc
+}
 
 # # # # #
 # Load: threads

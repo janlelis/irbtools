@@ -44,7 +44,7 @@ method and it will start a session with the current binding:
 - Loads included efficiently to reduce IRB start-up time
 - Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html). By default, ActiveRecord results get displayed as a table
 
-### Irbtools' Included Methods for IRB
+### Included Debugging Methods for IRB
 
 #### Highlights
 
@@ -130,7 +130,7 @@ Method / Constant | Arguments  | Description | Provided By
 
 ### IRB's ls?
 
-Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory.
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` referts to FileUtils' method for listing the current files in the directory. If you haven't tried looksee (`Object#look`) or object shadows ('Object#shadow') - give it a try ;)
 
 ### Advanced Tweaking
 
@@ -163,11 +163,6 @@ You can use **Irbtools** without colors/IRB extensions. To do so, put this into 
 require 'irbtools/non_fancy'
 Irbtools.start
 ```
-
-### Hint: Web Console and Other Approaches
-
-**Irbtools** works well together with the amazing [web-console!](https://github.com/rails/web-console), and also with the [ripl](https://github.com/cldwalker/ripl) IRB alternative.
-
 ## J-_-L
 
 Copyright (c) 2010-2022 Jan Lelis <https://janlelis.com> released under the MIT

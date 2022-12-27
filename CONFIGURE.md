@@ -43,8 +43,7 @@ The following options are possible
 :   Same as `:thread`, but after loading late libraries.
 `:sub_session => true`
 :   The library is loaded every time a sub-session starts (using
-    `IRB.conf[:IRB_RC]`). In [ripl](https://github.com/cldwalker/ripl),
-    `ripl-after_rc` is used.
+    `IRB.conf[:IRB_RC]`).
 `:autoload => :Constant`
 :   Use Ruby's `autoload` feature. It loads the library as soon as the
     constant is encountered.

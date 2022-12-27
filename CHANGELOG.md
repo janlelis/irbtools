@@ -20,6 +20,7 @@
 
 * Version bumps: looksee, os, methodfinder, code, core_docs, debugging
 * Alias IRB's ls to ils (fixes #53)
+* Remove support for RIPL repl (outdated)
 
 ## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)
