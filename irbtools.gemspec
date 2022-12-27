@@ -20,6 +20,10 @@ Gem::Specification.new do |s|
     lib/irbtools/hirb.rb
     lib/irbtools/minimal.rb
     lib/irbtools/binding.rb
+    lib/irbtools/commands.rb
+    lib/irbtools/commands/look.rb
+    lib/irbtools/commands/shadow.rb
+    lib/irbtools/commands/sys.rb
     Rakefile
     irbtools.gemspec
   ]

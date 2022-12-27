@@ -15,6 +15,9 @@
   * Remove bond (outdated)
   * Leave binding_of_caller optional
 
+* Add command wrappers for looksee + shadow
+* Add `$` command to directly call system
+
 * Version bumps: looksee, os, methodfinder, code, core_docs, debugging
 * Alias IRB's ls to ils (fixes #53)
 

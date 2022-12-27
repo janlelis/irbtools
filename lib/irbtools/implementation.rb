@@ -120,11 +120,39 @@ module Irbtools
 
         IRB.conf[:PROMPT_MODE] = :IRBTOOLS
 
-        # prevent clash between IRB's ls and FileUtil's ls
-        if aliases = IRB::ExtendCommandBundle.instance_variable_get(:@ALIASES)
-          if irb_ls = aliases.find{|a,*| a == :ls}
-            irb_ls[0] = :ils
-          end
+        load_commands
+        add_command_aliases
+        rename_ls_to_ils
+      end
+    end
+
+    def load_commands
+      ec = IRB::ExtendCommandBundle.instance_variable_get(:@EXTEND_COMMANDS)
+
+      [
+        [:look, :Look, nil, [:look, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:shadow, :Shadow, nil, [:shadow, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        # [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:sys, :Sys, nil, [:sys, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+      ].each{ |ecconfig|
+        ec.push(ecconfig)
+        IRB::ExtendCommandBundle.def_extend_command(*ecconfig)
+      }
+    end
+
+    def add_command_aliases
+      IRB.conf[:COMMAND_ALIASES].merge!({
+        :ri => :show_doc,
+        :'$' => :sys,
+        # :'+' => :shadow,
+      })
+    end
+
+    # prevent clash between IRB's ls and FileUtil's ls
+    def rename_ls_to_ils
+      if aliases = IRB::ExtendCommandBundle.instance_variable_get(:@ALIASES)
+        if irb_ls = aliases.find{|a,*| a == :ls}
+          irb_ls[0] = :ils
         end
       end
     end
