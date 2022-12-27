@@ -13,6 +13,82 @@ Improves Ruby's IRB with:
 - improved syntax highlighting of result objects
 - helpful commands and utilities for debugging and introspection
 
+## Examples
+
+```ruby
+>> shadow [1,2,3].reverse
+=> # ObjectShadow of Object #85280
+
+## Lookup Chain
+
+    [#<Class:#<Array:0x00007fccd9cfac30>>, Array, Enumerable, Object, "…"]
+
+## 141 Public Methods (Non-Class/Object)
+
+    [:&, :*, :+, :-, :<<, :<=>, :==, :[], :[]=, :all?, :any?, :append, :assoc, :at, :bsearch, :bsearch_index, :chain,
+    :chunk, :chunk_while, :clear, :collect, :collect!, :collect_concat, :combination, :compact, :compact!, :concat,
+    :count, :cycle, :deconstruct, :delete, :delete_at, :delete_if, :detect, :difference, :dig, :drop, :drop_while,
+    :each, :each_cons, :each_entry, :each_index, :each_slice, :each_with_index, :each_with_object, :empty?, :entries,
+    :eql?, :fetch, :fill, :filter, :filter!, :filter_map, :find, :find_all, :find_index, :first, :flat_map, :flatten,
+    :flatten!, :grep, :grep_v, :group_by, :hash, :include?, :index, :inject, :insert, :inspect, :intersect?,
+    :intersection, :join, :keep_if, :last, :lazy, :length, :map, :map!, :max, :max_by, :member?, :min, :min_by,
+    :minmax, :minmax_by, :none?, :one?, :pack, :partition, :permutation, :pop, :prepend, :product, :push, :rassoc,
+    :reduce, :reject, :reject!, :repeated_combination, :repeated_permutation, :replace, :reverse, :reverse!,
+    :reverse_each, :rindex, :rotate, :rotate!, :sample, :select, :select!, :shelljoin, :shift, :shuffle, :shuffle!,
+    :size, :slice, :slice!, :slice_after, :slice_before, :slice_when, :sort, :sort!, :sort_by, :sort_by!, :sum,
+    :take, :take_while, :tally, :to_a, :to_ary, :to_h, :to_s, :to_set, :transpose, :union, :uniq, :uniq!, :unshift,
+    :values_at, :zip, :|]
+
+## 2 Private Methods (Non-Class/Object)
+
+    [:initialize, :initialize_copy]
+
+## Object Inspect
+
+    [3, 2, 1]
+```
+
+```ruby
+.
+.
+.
+Comparable
+  <  <=  ==  >  >=  between?  clamp
+String
+  %            crypt                  inspect      squeeze!
+  *            dedup                  intern       start_with?
+  +            delete                 length       strip
+  +@           delete!                lines        strip!
+  -@           delete_prefix          ljust        sub
+  <<           delete_prefix!         lstrip       sub!
+  <=>          delete_suffix          lstrip!      succ
+.
+.
+.
+>> look "str"
+```
+
+```ruby
+>> code :puts
+//
+//   https://github.com/ruby/ruby/blob/ruby_3_2/io.c#L8940
+//
+// Equivalent to
+//
+//    $stdout.puts(objects)
+static VALUE
+rb_f_puts(int argc, VALUE *argv, VALUE recv)
+{
+    VALUE r_stdout = rb_ractor_stdout();
+    if (recv == r_stdout) {
+        return rb_io_puts(argc, argv, recv);
+    }
+    return forward(r_stdout, rb_intern("puts"), argc, argv);
+
+>> $ git status # displays current git status
+
+```
+
 ## Setup
 
     $ gem install irbtools
@@ -55,6 +131,8 @@ method and it will start a session with the current binding:
 - [Use VIM from inside IRB](https://github.com/jberkel/interactive_editor)
 
 #### Extra Commands
+
+Commands get treated specially by IRB and do not necessarily follow Ruby syntax.
 
 Command | Alias | Description | Example
 ------ | ---------- | ---------|---
