@@ -1,5 +1,14 @@
 # Irbtools (More) Changelog
 
+## 3.0 (final)
+
+Retire irbtools-more:
+
+* Move looksee to core irbtools
+* Move core_docs to core irbtools
+* Remove bond (outdated)
+* Leave binding_of_caller optional
+
 ## 2.5.0
 * Bump binding_of_caller & core_docs for Ruby 3.0
 

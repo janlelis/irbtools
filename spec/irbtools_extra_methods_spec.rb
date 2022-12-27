@@ -2,20 +2,6 @@ require "irbtools"
 
 describe "irbtools extra methods" do
   describe "[introspection]" do
-    describe "Object#ri" do
-      it "supports 'Array#slice' syntax" do
-        allow(ORI::Internals).to receive(:ri)
-        ri "Array#slice"
-        expect(ORI::Internals).to have_received(:ri)
-      end
-
-      it "also delegates to ORI in other cases" do
-        allow(ORI::Internals).to receive(:ri)
-        ri "require"
-        expect(ORI::Internals).to have_received(:ri)
-      end
-    end
-
     describe "code()" do
       it "delegates to Code.for() to show the method's source code" do
         allow(Code).to receive(:for)

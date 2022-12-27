@@ -1,7 +1,6 @@
 module Irbtools
   @libraries       = { :start => [], :sub_session => [], :autoload => [], :thread => {}, :late => [], :late_thread => {} }
   @lib_hooks       = Hash.new{|h,k| h[k] = [] }
-  @packages        = []
   @shell_name      = File.split($0)[-1].upcase
   @welcome_message = "Welcome to #{ @shell_name }. You are using #{ RUBY_DESCRIPTION }. Have fun ;)"
   @minimal         ||= false
@@ -19,9 +18,6 @@ module Irbtools
     # a hash of arrays of libraries that get loaded
     # keys determine if lib is required, required on sub-session or autoloaded
     attr_accessor :libraries
-
-    # an array of extension packages that get loaded (e.g. irbtools-more)
-    attr_accessor :packages
 
     # add a library. the block gets executed, when the library was loaded.
     # if the second param is true, it's hooked in into IRB.conf[:IRB_RC] instead of the start.
@@ -83,23 +79,6 @@ module Irbtools
       @lib_hooks.delete lib
     end
 
-    # add extensions packages
-    def add_package(pkg)
-      @packages << pkg.to_s
-    end
-
-    # remove extension package
-    def remove_package(pkg)
-      @packages.delete pkg.to_s
-    end
-
-    # actually require registered packages
-    def load_packages
-      @packages.each{ |pkg|
-        require "irbtools/#{pkg}"
-      }
-    end
-
     # te be triggered when a library has loaded
     def library_loaded(lib)
       @lib_hooks[lib.to_s].each{ |hook| hook.call }
@@ -122,30 +101,60 @@ module Irbtools
       $VERBOSE, $DEBUG = remember_verbose_and_debug
     end
 
-    # configure irb
     def configure_irb!
       if defined?(IRB)
         IRB.conf[:AUTO_INDENT]  = true                 # simple auto indent
         IRB.conf[:EVAL_HISTORY] = 42424242424242424242 # creates the special __ variable
         IRB.conf[:SAVE_HISTORY] = 2000                 # how many lines will go to ~/.irb_history
-
-        # prompt
-        (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
-          :PROMPT_I => ">> ",    # normal
-          :PROMPT_N => "|  ",    # indenting
-          :PROMPT_C => " > ",    # continuing a statement
-          :PROMPT_S => "%l> ",   # continuing a string
-          :RETURN   => "=> %s \n",
-          :AUTO_INDENT => true,
-        }})
-
-        IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+        set_propmt
+        load_commands
+        add_command_aliases
+        rename_ls_to_ils
       end
     end
 
-    # check if we are in a RIPL session
-    def ripl?
-      defined?(Ripl) && Ripl.started?
+    def set_propmt
+      (IRB.conf[:PROMPT] ||= {} ).merge!( {:IRBTOOLS => {
+        :PROMPT_I => ">> ",    # normal
+        :PROMPT_N => "|  ",    # indenting
+        :PROMPT_C => " > ",    # continuing a statement
+        :PROMPT_S => "%l> ",   # continuing a string
+        :RETURN   => "=> %s \n",
+        :AUTO_INDENT => true,
+      }})
+
+      IRB.conf[:PROMPT_MODE] = :IRBTOOLS
+    end
+
+    def load_commands
+      ec = IRB::ExtendCommandBundle.instance_variable_get(:@EXTEND_COMMANDS)
+
+      [
+        [:look, :Look, nil, [:look, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:shadow, :Shadow, nil, [:shadow, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        # [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:sys, :Sys, nil, [:sys, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+      ].each{ |ecconfig|
+        ec.push(ecconfig)
+        IRB::ExtendCommandBundle.def_extend_command(*ecconfig)
+      }
+    end
+
+    def add_command_aliases
+      IRB.conf[:COMMAND_ALIASES] = (IRB.conf[:COMMAND_ALIASES] || {}).merge({
+        :ri => :show_doc,
+        :'$' => :sys,
+        :'+' => :shadow,
+      })
+    end
+
+    # prevent clash between IRB's ls and FileUtil's ls
+    def rename_ls_to_ils
+      if aliases = IRB::ExtendCommandBundle.instance_variable_get(:@ALIASES)
+        if irb_ls = aliases.find{|a,*| a == :ls}
+          irb_ls[0] = :ils
+        end
+      end
     end
 
     # loads all the stuff

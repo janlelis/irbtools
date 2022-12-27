@@ -1,19 +1,94 @@
 # Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
+## Irbtools 4.0 for IRB 1.6+
+
+The current version of Irbtools requires IRB 1.6+ (which is the default for Ruby
+from 3.2 on). Please use Irbtools 3 for earlier versions of IRB.
+
+## Description
+
+Improves Ruby's IRB with:
+
+- a default configuration
+- improved syntax highlighting of result objects
+- helpful commands and utilities for debugging and introspection
+
+## Examples
+
 ```ruby
-                                                                                 _|          _|
- _|_|_|  _|_|_|    _|_|_|        _|                          _|                _|    _|_|_|    _|
-   _|    _|    _|  _|    _|    _|_|_|_|    _|_|      _|_|    _|    _|_|_|      _|          _|  _|
-   _|    _|_|_|    _|_|_|        _|      _|    _|  _|    _|  _|  _|_|          _|      _|_|    _|
-   _|    _|    _|  _|    _|      _|      _|    _|  _|    _|  _|      _|_|      _|          _|  _|
- _|_|_|  _|    _|  _|_|_|    _|    _|_|    _|_|      _|_|    _|  _|_|_|        _|    _|_|_|    _|
-                                                                                 _|          _|
+>> shadow [1,2,3].reverse
+=> # ObjectShadow of Object #85280
+
+## Lookup Chain
+
+    [#<Class:#<Array:0x00007fccd9cfac30>>, Array, Enumerable, Object, "…"]
+
+## 141 Public Methods (Non-Class/Object)
+
+    [:&, :*, :+, :-, :<<, :<=>, :==, :[], :[]=, :all?, :any?, :append, :assoc, :at, :bsearch, :bsearch_index, :chain,
+    :chunk, :chunk_while, :clear, :collect, :collect!, :collect_concat, :combination, :compact, :compact!, :concat,
+    :count, :cycle, :deconstruct, :delete, :delete_at, :delete_if, :detect, :difference, :dig, :drop, :drop_while,
+    :each, :each_cons, :each_entry, :each_index, :each_slice, :each_with_index, :each_with_object, :empty?, :entries,
+    :eql?, :fetch, :fill, :filter, :filter!, :filter_map, :find, :find_all, :find_index, :first, :flat_map, :flatten,
+    :flatten!, :grep, :grep_v, :group_by, :hash, :include?, :index, :inject, :insert, :inspect, :intersect?,
+    :intersection, :join, :keep_if, :last, :lazy, :length, :map, :map!, :max, :max_by, :member?, :min, :min_by,
+    :minmax, :minmax_by, :none?, :one?, :pack, :partition, :permutation, :pop, :prepend, :product, :push, :rassoc,
+    :reduce, :reject, :reject!, :repeated_combination, :repeated_permutation, :replace, :reverse, :reverse!,
+    :reverse_each, :rindex, :rotate, :rotate!, :sample, :select, :select!, :shelljoin, :shift, :shuffle, :shuffle!,
+    :size, :slice, :slice!, :slice_after, :slice_before, :slice_when, :sort, :sort!, :sort_by, :sort_by!, :sum,
+    :take, :take_while, :tally, :to_a, :to_ary, :to_h, :to_s, :to_set, :transpose, :union, :uniq, :uniq!, :unshift,
+    :values_at, :zip, :|]
+
+## 2 Private Methods (Non-Class/Object)
+
+    [:initialize, :initialize_copy]
+
+## Object Inspect
+
+    [3, 2, 1]
 ```
 
-Improvements for Ruby's IRB console, like syntax highlighted output and a lot of
-debugging and introspection methods. Unlike with PRY, you are still in your
-normal IRB. It is designed to work out-of-the-box, so there is no reason to not
-use it!
+```ruby
+>> look "str"
+.
+.
+.
+Comparable
+  <  <=  ==  >  >=  between?  clamp
+String
+  %            crypt                  inspect      squeeze!
+  *            dedup                  intern       start_with?
+  +            delete                 length       strip
+  +@           delete!                lines        strip!
+  -@           delete_prefix          ljust        sub
+  <<           delete_prefix!         lstrip       sub!
+  <=>          delete_suffix          lstrip!      succ
+.
+.
+.
+```
+
+```ruby
+>> code :puts
+//
+//   https://github.com/ruby/ruby/blob/ruby_3_2/io.c#L8940
+//
+// Equivalent to
+//
+//    $stdout.puts(objects)
+static VALUE
+rb_f_puts(int argc, VALUE *argv, VALUE recv)
+{
+    VALUE r_stdout = rb_ractor_stdout();
+    if (recv == r_stdout) {
+        return rb_io_puts(argc, argv, recv);
+    }
+    return forward(r_stdout, rb_intern("puts"), argc, argv);
+```
+
+```ruby
+>> $ git status # $ -> call to system shell: displays current git status
+```
 
 ## Setup
 
@@ -28,55 +103,57 @@ You also need to add irbtools to your project's `Gemfile`:
 
     gem 'irbtools', require: 'irbtools/binding'
 
-Then start IRB (with **Irbtools** loaded) from the terminal or directly from your code with:
+Then start IRB (with **Irbtools** loaded) from the terminal or directly from
+your code with:
 
     binding.irb
 
-### Enable More Gems
+*Optional:* If the **binding_of_caller** gem is available, you can just call the `irb`
+method and it will start a session with the current binding:
 
-Some suggested gems will not be installed to ensure wider general support. For
-the full feature set, you can install **irbtools-more**. To do so, change your
-`.irbrc` to:
-
-    require 'irbtools/more'
-
-and edit your `Gemfile` to read like this:
-
-    gem 'irbtools-more', require: 'irbtools/binding'
+    irb
 
 ## Features
 
-### Irbtools' IRB Improvements
+### General IRB Improvements
 
 - Syntax highlighting ([wirb](https://github.com/janlelis/wirb/) / [fancy_irb](https://github.com/janlelis/fancy_irb))
-- Loads included third party libraries effeciently
-- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html)
-  - ActiveRecord results get displayed as a table
--  **(irbtools-more)** [Improved tab-completion](https://tagaholic.me/bond/)
+- Loads included libraries efficiently to reduce IRB start-up time
+- Customizable views for specfic options using [hirb](https://tagaholic.me/2009/03/13/hirb-irb-on-the-good-stuff.html). By default, ActiveRecord results get displayed as a table.
 
-### Irbtools' Included Methods for IRB
+### Included Debugging Methods for IRB
 
 #### Highlights
 
 - Lookup and manipulate instance variables / methods with ease using [object_shadow](https://github.com/janlelis/object_shadow/)
-- **(irbtools-more)** Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
+- Go even further with [looksee](https://github.com/oggy/looksee), the best lookup path inspection tool out there
 - Display a method's source code using [code](https://github.com/janlelis/code)
-- Inline access to *ri* docs by [ori](https://github.com/dadooda/ori)
-  - If you have deactivated *ri*, you can re-generate the docs with something like: `rvm docs generate-ri`
 - Find methods that turn one value into another value with [methodfinder](https://github.com/citizen428/methodfinder)
 - [Use VIM from inside IRB](https://github.com/jberkel/interactive_editor)
+
+#### Extra Commands
+
+Commands get treated specially by IRB and do not necessarily follow Ruby syntax.
+
+Command | Alias | Description | Example
+------ | ---------- | ---------|---
+`look ` | - | Shows looksee method list (of object if one is given) | `look [1,2,3]`
+`shadow ` | `+ ` | Shows object shadow method list (of object if one is given) | `shadow [1,2,3]`
+`sys ` | `$ ` | Calls system shell | `$ top`
+
+##### IRB's ls?
+
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` already refers to a method listing all files in the current directory. If you haven't tried looksee (`Object#look`) or object shadows (`Object#shadow`) - give it a try ;)
 
 #### Ruby Introspection
 
 Method / Constant | Arguments  | Description | Provided By
 ------ | ---------- | -----------|-
-`code` | object = self, method_name | Display the method source with syntax highlighting. Will also look up C methods if the **core_docs** gem (which is included in **irbtools-more**) is available. | [code](https://github.com/janlelis/code)
+`Object#lp` or `Object#look` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
+`Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
+`code` | object = self, method_name | Display the method source with syntax highlighting. Will also try to look up C methods. | [code](https://github.com/janlelis/code)
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
-`mof` | object, depth = 0, grep = // | Print a method list, ordered by modules (looksee lite) | [debugging](https://github.com/janlelis/debugging#mofobj-depth--nil)
-`Object#lp` | | **(irbtools-more)** Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
-`Object#ri` | *args | Show ri documentation for this object or method | [ori](https://github.com/dadooda/ori)
-`Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 
 #### Platform Info
 
@@ -92,7 +169,9 @@ Method / Constant | Arguments  | Description | Provided By
 Method / Constant | Arguments  | Description | Provided By
 ------ | ---------- | -----------|-
 `beep` | | Ring terminal bell | [debugging/beep](https://github.com/janlelis/debugging#beep)
+`clear` | | Clear the terminal | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `copy` | string | Copy something to the clipboard | [clipboard](https://github.com/janlelis/clipboard)
+`copy_output` | | Copy session output history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
 `colorize` | string | Syntax-highlight a string of Ruby code | [coderay](https://github.com/rubychan/coderay), irbtools
 `ed` / `emacs` / `mate` / `mvim` / `nano` / `vi` / `vim` | filename = nil | Start an editor in the session context | [interactive_editor](https://github.com/jberkel/interactive_editor)
 `ld` | file | Shortcut for `load lib.to_s + '.rb'` | [every_day_irb](https://github.com/janlelis/every_day_irb)
@@ -101,20 +180,11 @@ Method / Constant | Arguments  | Description | Provided By
 `paste` | | Paste clipboard content | [clipboard](https://github.com/janlelis/clipboard)
 `q` | *args | Like `Kernel#p`, but prints results on one line, with different colors | [debugging/q](https://github.com/janlelis/debugging#qargs)
 `re` | string, regexg, groups = nil | Regex debugging helper | [debugging/re](https://github.com/janlelis/debugging#qargs)
+`reset!` | | Restart the current IRB session | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rq` | lib | Shortcut for `require lib.to_s`. Use it like this: `rq:prime` | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rr` | lib | Shortcut for `require_relative lib.to_s` |  [every_day_irb](https://github.com/janlelis/every_day_irb)
 `rrq` / `rerequire` | lib | Hack to remove a library from `$LOADED_FEATURES` and `require` it again | [every_day_irb](https://github.com/janlelis/every_day_irb)
 `wp` | inspect_string | Syntax-highlight a Ruby return value | [wirb](https://github.com/janlelis/wirb#kernelwp)
-
-#### IRB Support
-
-Method / Constant | Arguments  | Description | Provided By
------- | ---------- | -----------|-
-`clear` | | Clear the terminal | [every_day_irb](https://github.com/janlelis/every_day_irb)
-`copy_input` | | Copy session history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
-`copy_output` | | Copy session output history to the clipboard | [clipboard](https://github.com/janlelis/clipboard), irbtools
-`reset!` | | Restart the current IRB session | [every_day_irb](https://github.com/janlelis/every_day_irb)
-`session_history` | number_of_lines = nil | Return a string of all commands issued in the current session | [every_day_irb](https://github.com/janlelis/every_day_irb)
 
 #### Files and Navigation
 
@@ -128,7 +198,7 @@ Method / Constant | Arguments  | Description | Provided By
 `chown_R` | user, group, path | Set file owner for directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `cp` | source, destination | Copy file | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `cp_r` | source, destination | Copy directory | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
-`ls` | path = "." | List directory content | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
+`ls` | path = "." | List directory content | [cd](https://github.com/janlelis/cd)
 `ln` | target, link | Create symlink (`ln`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `ln_s` | target, link | Create symlink (`ln -s`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
 `ln_sf` | target, link | Create symlink (`ln -sf`) | [fileutils](https://ruby-doc.org/stdlib/libdoc/fileutils/rdoc/FileUtils.html)
@@ -173,12 +243,7 @@ You can use **Irbtools** without colors/IRB extensions. To do so, put this into 
 require 'irbtools/non_fancy'
 Irbtools.start
 ```
-
-### Hint: Web Console and Other Approaches
-
-**Irbtools** works well together with the amazing [web-console!](https://github.com/rails/web-console), and also with the [ripl](https://github.com/cldwalker/ripl) IRB alternative.
-
 ## J-_-L
 
-Copyright (c) 2010-2021 Jan Lelis <https://janlelis.com> released under the MIT
+Copyright (c) 2010-2022 Jan Lelis <https://janlelis.com> released under the MIT
 license.

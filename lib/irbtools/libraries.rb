@@ -21,14 +21,11 @@ Irbtools.add_library 'wirb/wp', thread: :paint do
   Wirb.start
 end
 
-unless Irbtools.ripl?
-  Irbtools.add_library :fancy_irb, thread: :paint do
-    FancyIrb.start
-  end
+Irbtools.add_library :fancy_irb, thread: :paint do
+  FancyIrb.start
 end
 
 Irbtools.add_library 'debugging/q',         thread: :paint
-Irbtools.add_library 'debugging/mof',       thread: :paint
 Irbtools.add_library 'debugging/re',        thread: :paint
 Irbtools.add_library 'debugging/beep',      thread: :paint
 Irbtools.add_library 'debugging/howtocall', thread: :paint
@@ -39,40 +36,23 @@ Irbtools.add_library 'object_shadow', thread: :paint do
   ObjectShadow.include(ObjectShadow::DeepInspect)
 end
 
-Irbtools.add_library 'readline', thread: :ori
-Irbtools.add_library 'ori', thread: :ori do
-  # TODO Readline history can be empty (issue)
-  module ORI::Internals
-    def self.get_ri_arg_prefix(cmd)
-      if cmd && (mat = cmd.match /\A(\s*.+?\.ri)\s+\S/)
-        mat[1]
-      end
-    end
-  end
-
-  class Object
-    # patch ori to also allow shell-like "Array#slice" syntax
-    def ri(*args)
-      if  args[0] &&
-          self == TOPLEVEL_BINDING.eval('self') &&
-          args[0] =~ /\A(.*)(?:#|\.)(.*)\Z/
-        begin
-          klass = Object.const_get $1
-          klass.ri $2
-        rescue
-          super
-        end
-      else
-        super
-      end
-    end
-  end
-end
-
+Irbtools.add_library 'readline', thread: :readline
 Irbtools.add_library 'ruby_info', thread: :ri
 Irbtools.add_library 'os', thread: :os
 Irbtools.add_library 'ruby_engine', thread: :re
 Irbtools.add_library 'ruby_version', thread: :rv
+
+begin
+  # Object#l method for inspecting its lookup path
+  Irbtools.add_library 'looksee', thread: :ls do
+    Looksee.rename :lp
+    class Object
+      alias look lp
+    end
+  end
+rescue LoadError
+  # do not load if not supported
+end
 
 # # # load via autoload
 
@@ -103,12 +83,6 @@ Irbtools.add_library :clipboard, :autoload => :Clipboard do
   # pastes the clipboard
   def paste
     Clipboard.paste
-  end
-
-  # copies everything you have entered in this irb session
-  def copy_input
-    copy session_history
-    "The session input history has been copied to the clipboard."
   end
 
   # copies the output of all irb commands in this irb session

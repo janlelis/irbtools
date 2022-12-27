@@ -1,5 +1,27 @@
 # Irbtools Changelog
 
+## 4.0 (unreleased)
+
+* Requires IRB 1.6 (Ruby 3.2 bundles IRB 1.6.2)
+* Requires Ruby 3.0
+
+* Remove a bunch of gems:
+    * Drop binding.repl gem since it was only needed for older Rubies
+    * Drop ori gem, since IRB now has `show_doc`
+
+* Retire irbtools-more:
+  * Move looksee to core irbtools
+  * Move core_docs to core irbtools
+  * Remove bond (outdated)
+  * Leave binding_of_caller optional
+
+* Add command wrappers for looksee + shadow
+* Add `$` command to directly call system
+
+* Version bumps: looksee, os, methodfinder, code, core_docs, debugging
+* Alias IRB's ls to ils (fixes #53)
+* Remove support for RIPL repl (outdated)
+
 ## 3.0.5
 * Bump methodfinder dependency & update usage (fixes #52)
 
