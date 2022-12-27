@@ -49,6 +49,7 @@ Improves Ruby's IRB with:
 ```
 
 ```ruby
+>> look "str"
 .
 .
 .
@@ -65,7 +66,6 @@ String
 .
 .
 .
->> look "str"
 ```
 
 ```ruby
@@ -84,9 +84,10 @@ rb_f_puts(int argc, VALUE *argv, VALUE recv)
         return rb_io_puts(argc, argv, recv);
     }
     return forward(r_stdout, rb_intern("puts"), argc, argv);
+```
 
->> $ git status # displays current git status
-
+```ruby
+>> $ git status # $ -> call to system shell: displays current git status
 ```
 
 ## Setup
@@ -148,11 +149,11 @@ Please note that IRB's own **ls** command is aliased to `ils`, since `ls` refert
 
 Method / Constant | Arguments  | Description | Provided By
 ------ | ---------- | -----------|-
+`Object#lp` or `Object#look` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
+`Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 `code` | object = self, method_name | Display the method source with syntax highlighting. Will also try to look up C methods. | [code](https://github.com/janlelis/code)
 `howtocall` | object = self, method_or_proc | Display parameter names and types you will need to call a method | [debugging/howtocall](https://github.com/janlelis/debugging#howtocallobj--self-method_or_proc)
 `mf` | object1, object2 | Find methods which turn one value into another value | [methodfinder](https://github.com/citizen428/methodfinder)
-`Object#lp` or `Object#look` | | Supercharged method introspection in IRB | [looksee](https://github.com/oggy/looksee)
-`Object#shadow` | | Manipulate instance variables and learn about callable methods |  [object_shadow](https://github.com/janlelis/object_shadow/)
 
 #### Platform Info
 
