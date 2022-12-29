@@ -130,9 +130,10 @@ module Irbtools
       ec = IRB::ExtendCommandBundle.instance_variable_get(:@EXTEND_COMMANDS)
 
       [
+        [:code, :Code, nil, [:code, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
         [:look, :Look, nil, [:look, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
         [:shadow, :Shadow, nil, [:shadow, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
-        [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
         [:sys, :Sys, nil, [:sys, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
       ].each{ |ecconfig|
         ec.push(ecconfig)

@@ -1,3 +1,4 @@
+require_relative "commands/code"
 require_relative "commands/howtocall"
 require_relative "commands/look"
 require_relative "commands/shadow"

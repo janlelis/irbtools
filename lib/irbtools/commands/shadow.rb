@@ -4,7 +4,7 @@ module IRB
   module ExtendCommand
     class Shadow < Nop
       category "Introspection"
-      description 'Method list & lookup path inspection based on object shadow gem'
+      description 'Method list and lookup path inspection based on object shadow gem'
 
       def execute(*args)
         if args.empty?

@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     lib/irbtools/minimal.rb
     lib/irbtools/binding.rb
     lib/irbtools/commands.rb
+    lib/irbtools/commands/code.rb
     lib/irbtools/commands/howtocall.rb
     lib/irbtools/commands/look.rb
     lib/irbtools/commands/shadow.rb
@@ -58,7 +59,7 @@ Gem::Specification.new do |s|
   # Introspection / Docs
   s.add_dependency %q<looksee>,       "~> 5.0"
   s.add_dependency %q<object_shadow>, "~> 1.1"
-  s.add_dependency %q<code>,          ">= 0.9.3", "< 2.0"
+  s.add_dependency %q<code>,          ">= 0.9.4", "< 2.0"
   s.add_dependency %q<core_docs>,     "~> 0.9.9"
   s.add_dependency %q<methodfinder>,  "~> 2.2", ">= 2.2.5"
   s.add_dependency %q<ruby_version>,  "~> 1.0"

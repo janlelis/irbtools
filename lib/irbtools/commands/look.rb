@@ -4,7 +4,7 @@ module IRB
   module ExtendCommand
     class Look < Nop
       category "Introspection"
-      description 'Method list & lookup path inspection based on looksee gem'
+      description 'Method list and lookup path inspection based on looksee gem'
 
       def execute(*args)
         if args.empty?
