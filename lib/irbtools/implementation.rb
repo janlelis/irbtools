@@ -143,6 +143,7 @@ module Irbtools
     def add_command_aliases
       IRB.conf[:COMMAND_ALIASES] = (IRB.conf[:COMMAND_ALIASES] || {}).merge({
         :ri => :show_doc,
+        :co => :chws,
         :'$' => :sys,
         :'+' => :shadow,
       })
