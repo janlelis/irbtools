@@ -199,12 +199,13 @@ Commands get treated specially by IRB and do not necessarily follow Ruby syntax.
 
 Command | Alias | Description | Example
 ------ | ---------- | ---------|---
+`code ` | - | Shows syntax-highlighted source code of a method | `code Array#reverse`
 `howtocall ` | - | Shows the method signature | `howtocall String#gsub`
 `look ` | - | Shows looksee method list | `look [1,2,3]`
 `shadow ` | `+ ` | Shows object shadow method list | `shadow [1,2,3]`
 `sys ` | `$ ` | Calls system shell | `$ top`
 
-Two default commands got an additional alias:
+Two default commands have an additional alias:
 
 Command | Alias | Description | Example
 ------ | ---------- | ---------|---
@@ -213,7 +214,7 @@ Command | Alias | Description | Example
 
 ##### IRB's ls?
 
-Please note that IRB's own **ls** command is aliased to `ils`, since `ls` already refers to a method listing all files in the current directory. If you haven't tried looksee (`Object#look`) or object shadows (`Object#shadow`) - give it a try ;)
+Please note that IRB's own **ls** command is aliased to `ils`, since `ls` already refers to a method listing all files in the current directory. If you haven't tried looksee (`look`) or object shadows (`shadow`) - give it a try ;)
 
 #### Ruby Introspection
 
