@@ -11,9 +11,11 @@ Improves Ruby's IRB with:
 
 - a default configuration
 - improved syntax highlighting of result objects
-- helpful commands and utilities for debugging and introspection
+- helpful commands for debugging and introspection
 
 ## Examples
+
+### Show lookup chain and method list grouped by visibility
 
 ```ruby
 >> shadow [1,2,3].reverse
@@ -48,6 +50,8 @@ Improves Ruby's IRB with:
     [3, 2, 1]
 ```
 
+### Show a method list grouped by ancestors
+
 ```ruby
 >> look "str"
 .
@@ -68,26 +72,84 @@ String
 .
 ```
 
+### Show source code of a Ruby-based method
+
 ```ruby
->> code :puts
+>> code SecureRandom.uuid
+#
+#   /home/dan/.rvm/rubies/ruby-3.2.0/lib/ruby/3.2.0/random/formatter.rb:170
+#
+# Generate a random v4 UUID (Universally Unique IDentifier).
+#
+#   require 'random/formatter'
+#
+#   Random.uuid #=> "2d931510-d99f-494a-8c67-87feb05e1594"
+#   Random.uuid #=> "bad85eb9-0713-4da7-8d36-07a8e4b00eab"
+#   # or
+#   prng = Random.new
+#   prng.uuid #=> "62936e70-1815-439b-bf89-8492855a7e6b"
+#
+# The version 4 UUID is purely random (except the version).
+# It doesn't contain meaningful information such as MAC addresses, timestamps, etc.
+#
+# The result contains 122 random bits (15.25 random bytes).
+#
+# See RFC4122[https://datatracker.ietf.org/doc/html/rfc4122] for details of UUID.
+#
+def uuid
+  ary = random_bytes(16).unpack("NnnnnN")
+  ary[2] = (ary[2] & 0x0fff) | 0x4000
+  ary[3] = (ary[3] & 0x3fff) | 0x8000
+  "%08x-%04x-%04x-%04x-%04x%08x" % ary
+end
+```
+
+### Show source code of a natively implemented method
+
+```ruby
+>> code Array#reverse
 //
-//   https://github.com/ruby/ruby/blob/ruby_3_2/io.c#L8940
+//   https://github.com/ruby/ruby/blob/ruby_3_2/array.c#L3282
 //
-// Equivalent to
+// Returns a new \Array with the elements of +self+ in reverse order:
 //
-//    $stdout.puts(objects)
+//   a = ['foo', 'bar', 'two']
+//   a1 = a.reverse
+//   a1 # => ["two", "bar", "foo"]
 static VALUE
-rb_f_puts(int argc, VALUE *argv, VALUE recv)
+rb_ary_reverse_m(VALUE ary)
 {
-    VALUE r_stdout = rb_ractor_stdout();
-    if (recv == r_stdout) {
-        return rb_io_puts(argc, argv, recv);
+    long len = RARRAY_LEN(ary);
+    VALUE dup = rb_ary_new2(len);
+
+    if (len > 0) {
+        const VALUE *p1 = RARRAY_CONST_PTR_TRANSIENT(ary);
+        VALUE *p2 = (VALUE *)RARRAY_CONST_PTR_TRANSIENT(dup) + len - 1;
+        do *p2-- = *p1++; while (--len > 0);
     }
-    return forward(r_stdout, rb_intern("puts"), argc, argv);
+    ARY_SET_LEN(dup, RARRAY_LEN(ary));
+    return dup;
+}
+```
+
+### Find out method signatures (most useful for Ruby-based methods with keyword args)
+
+```ruby
+>> howtocall require
+require(path)
 ```
 
 ```ruby
->> $ git status # $ -> call to system shell: displays current git status
+>> require "rubygems/user_interaction"
+>> ui = Gem::ConsoleUI.new
+>> howtocall ui.choose_from_list
+choose_from_list(question, list)
+```
+
+### Call system commands with `$`
+
+```ruby
+>> $ git status # displays current git status
 ```
 
 ## Setup
@@ -137,9 +199,17 @@ Commands get treated specially by IRB and do not necessarily follow Ruby syntax.
 
 Command | Alias | Description | Example
 ------ | ---------- | ---------|---
-`look ` | - | Shows looksee method list (of object if one is given) | `look [1,2,3]`
-`shadow ` | `+ ` | Shows object shadow method list (of object if one is given) | `shadow [1,2,3]`
+`howtocall ` | - | Shows the method signature | `howtocall String#gsub`
+`look ` | - | Shows looksee method list | `look [1,2,3]`
+`shadow ` | `+ ` | Shows object shadow method list | `shadow [1,2,3]`
 `sys ` | `$ ` | Calls system shell | `$ top`
+
+Two default commands got an additional alias:
+
+Command | Alias | Description | Example
+------ | ---------- | ---------|---
+`show_doc` | `ri ` | Shows documentation | `ri String#gsub`
+`chws` | `co ` | "change into an object" | `co [1,2,3]`
 
 ##### IRB's ls?
 
