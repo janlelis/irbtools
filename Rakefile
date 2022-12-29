@@ -11,27 +11,19 @@ def gemspec2
   @gemspec2 ||= eval(File.read('irbtools.gemspec'), binding, 'irbtools.gemspec')
 end
 
-def gemspec3
-  @gemspec3 ||= eval(File.read('irbtools-more.gemspec'), binding, 'irbtools-more.gemspec')
-end
-
 desc "Build the gems"
 task :gem => :gemspec do
   sh "gem build #{gemspec2.name}.gemspec"
-  sh "gem build #{gemspec3.name}.gemspec"
   FileUtils.mkdir_p 'pkg'
   FileUtils.mv "#{gemspec2.name}-#{gemspec2.version}.gem", 'pkg'
-  FileUtils.mv "#{gemspec3.name}-#{gemspec3.version}.gem", 'pkg'
 end
 
 desc "Install the gem locally (without docs)"
 task :install => :gem do
   sh %{gem install pkg/#{gemspec2.name}-#{gemspec2.version}.gem --no-document}
-  sh %{gem install pkg/#{gemspec3.name}-#{gemspec3.version}.gem --no-document}
 end
 
 desc "Validate the gemspec"
 task :gemspec do
   gemspec2.validate
-  gemspec3.validate
 end
