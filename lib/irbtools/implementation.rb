@@ -132,7 +132,7 @@ module Irbtools
       [
         [:look, :Look, nil, [:look, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
         [:shadow, :Shadow, nil, [:shadow, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
-        # [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
+        [:howtocall, :Howtocall, nil, [:howtocall, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
         [:sys, :Sys, nil, [:sys, IRB::ExtendCommandBundle::OVERRIDE_ALL]],
       ].each{ |ecconfig|
         ec.push(ecconfig)

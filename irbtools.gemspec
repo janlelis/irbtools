@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     lib/irbtools/minimal.rb
     lib/irbtools/binding.rb
     lib/irbtools/commands.rb
+    lib/irbtools/commands/howtocall.rb
     lib/irbtools/commands/look.rb
     lib/irbtools/commands/shadow.rb
     lib/irbtools/commands/sys.rb
