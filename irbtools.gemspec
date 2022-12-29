@@ -40,6 +40,6 @@ Gem::Specification.new do |s|
   s.add_dependency %q<core_docs>,     "~> 0.9.9"
   s.add_dependency %q<methodfinder>,  "~> 2.2", ">= 2.2.5"
   s.add_dependency %q<ruby_version>,  "~> 1.0"
-  s.add_dependency %q<ruby_engine>,   "~> 1.0"
+  s.add_dependency %q<ruby_engine>,   "~> 2.0"
   s.add_dependency %q<os>,            "~> 1.1", ">= 1.1.4"
 end

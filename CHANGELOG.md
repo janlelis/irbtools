@@ -1,6 +1,10 @@
 # Irbtools Changelog
 
-## 4.0
+## 4.0.1
+
+* Bump ruby_engine gem
+
+## 4.0.0
 
 * Requires IRB 1.6 (Ruby 3.2 bundles IRB 1.6.2)
 * Requires Ruby 3.0
