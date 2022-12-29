@@ -232,7 +232,6 @@ Method / Constant | Arguments  | Description | Provided By
 `OS` | | Query operating system information | [os](https://github.com/rdp/os)
 `RubyVersion` | | Show the Ruby version | [ruby_version](https://github.com/janlelis/ruby_version)
 `RubyEngine` | | Show the Ruby engine | [ruby_engine](https://github.com/janlelis/ruby_engine)
-`RubyInfo` | | List general information about the Ruby environment | [ruby_info](https://github.com/janlelis/ruby_info)
 
 #### General Utils
 

@@ -8,6 +8,7 @@
 * Remove a bunch of gems:
     * Drop binding.repl gem since it was only needed for older Rubies
     * Drop ori gem, since IRB now has `show_doc`
+    * Drop RubyInfo
 
 * Retire irbtools-more:
   * Move looksee to core irbtools

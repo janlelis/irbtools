@@ -37,7 +37,6 @@ Irbtools.add_library 'object_shadow', thread: :paint do
 end
 
 Irbtools.add_library 'readline', thread: :readline
-Irbtools.add_library 'ruby_info', thread: :ri
 Irbtools.add_library 'os', thread: :os
 Irbtools.add_library 'ruby_engine', thread: :re
 Irbtools.add_library 'ruby_version', thread: :rv
