@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 module Irbtools
-  VERSION = "3.0.5"
+  VERSION = "4.0.0"
 end

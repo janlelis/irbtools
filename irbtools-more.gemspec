@@ -20,10 +20,11 @@ Gem::Specification.new do |s|
     CHANGELOG-MORE.md
     MIT-LICENSE.txt
   ]
+  s.metadata              = { "rubygems_mfa_required" => "true" }
   s.license               = 'MIT'
 
   s.required_ruby_version = '>= 3.0', '< 4.0'
-  # s.add_dependency 'irbtools', '~> 4.0
+  s.add_dependency 'irbtools', '~> 4.0'
   s.post_install_message = "Notice (2022-12-29): irbtools-more is not necessary anymore. You can switch to just irbtools."
 end
 

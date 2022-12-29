@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name = 'irbtools'
   s.version = Irbtools::VERSION
 
-  s.homepage              = 'https://irb.tools'
+  s.homepage              = 'https://github.com/janlelis/irbtools'
   s.authors               = ["Jan Lelis"]
   s.email                 = ["hi@ruby.consulting"]
   s.summary               = 'Irbtools happy IRB.'
@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     CHANGELOG.md
     MIT-LICENSE.txt
   ]
+  s.metadata              = { "rubygems_mfa_required" => "true" }
   s.license               = 'MIT'
 
   s.required_ruby_version = '>= 3.0', '< 4.0'
