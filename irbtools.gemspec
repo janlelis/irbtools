@@ -10,31 +10,7 @@ Gem::Specification.new do |s|
   s.email                 = ["hi@ruby.consulting"]
   s.summary               = 'Irbtools happy IRB.'
   s.description           = "The Irbtools make working with Ruby's IRB console more fun & productive."
-  s.files                 = %w[
-    lib/irbtools.rb
-    lib/irbtools/version.rb
-    lib/irbtools/configure.rb
-    lib/irbtools/implementation.rb
-    lib/irbtools/libraries.rb
-    lib/irbtools/non_fancy.rb
-    lib/irbtools/hirb.rb
-    lib/irbtools/minimal.rb
-    lib/irbtools/binding.rb
-    lib/irbtools/commands.rb
-    lib/irbtools/commands/code.rb
-    lib/irbtools/commands/howtocall.rb
-    lib/irbtools/commands/look.rb
-    lib/irbtools/commands/shadow.rb
-    lib/irbtools/commands/sys.rb
-    Rakefile
-    irbtools.gemspec
-  ]
-  s.extra_rdoc_files      = %w[
-    README.md
-    CONFIGURE.md
-    CHANGELOG.md
-    MIT-LICENSE.txt
-  ]
+  s.files                 = Dir["{**/}{.*,*}"].select{ |path| File.file?(path) && path !~ /^pkg/ }
   s.metadata              = { "rubygems_mfa_required" => "true" }
   s.license               = 'MIT'
 
