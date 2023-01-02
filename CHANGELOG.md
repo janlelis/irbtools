@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.2 (unreleased)
+
+* Bump interactive_editor gem (Ruby 3.2 compatibility)
+
 ## 4.0.1
 
 * Bump ruby_engine gem

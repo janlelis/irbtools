@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   # Utils
   s.add_dependency %q<paint>,         ">= 0.9", "< 3.0"
   s.add_dependency %q<clipboard>,     "~> 1.3"
-  s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.10"
+  s.add_dependency %q<interactive_editor>, "~> 0.0", ">= 0.0.12"
   s.add_dependency %q<coderay>,       "~> 1.1"
   s.add_dependency %q<debugging>,     "~> 2.1"
 
