@@ -12,6 +12,12 @@ describe "irbtools commands" do
           IRB::ExtendCommand::Code.transform_args("String#gsub")
         ).to eq "String, String.instance_method(:gsub)"
       end
+
+      it "supports question-mark methods" do
+        expect(
+          IRB::ExtendCommand::Howtocall.transform_args("String#ascii_only?")
+        ).to eq "String, String.instance_method(:ascii_only?)"
+      end
     end
   end
 end

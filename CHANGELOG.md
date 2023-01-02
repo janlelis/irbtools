@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.3 (unreleased)
+
+* code / howtocall commands: Support question mark / exclamation mark methods
+
 ## 4.0.2
 
 * Bump interactive_editor gem (Ruby 3.2 compatibility)

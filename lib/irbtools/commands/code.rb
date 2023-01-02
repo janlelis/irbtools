@@ -8,7 +8,7 @@ module IRB
 
       class << self
         def transform_args(args)
-          if args.strip =~ /\A(?:([\w:]+)([#.]))?(\w+)\z/
+          if args.strip =~ /\A(?:([\w:]+)([#.]))?(\w+[?!]?)\z/
             if $1
               if $2 == "#"
                 "#{$1}, #{$1}.instance_method(:#{$3})"
