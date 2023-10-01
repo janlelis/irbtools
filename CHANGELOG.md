@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.4
+
+* Loosen IRB dependency
+
 ## 4.0.3
 
 * code / howtocall commands: Support question mark / exclamation mark methods
