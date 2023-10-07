@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## 4.0.5 (unreleased)
+## 4.0.5
 
 * Bump IRB and FancyIRB
 
