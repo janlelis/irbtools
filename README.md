@@ -2,8 +2,7 @@
 
 ## Irbtools 4.0 for IRB 1.8+
 
-The current version of Irbtools requires [IRB 1.8+](https://github.com/ruby/irb) (which is the default for Ruby
-from 3.2 on). Please use Irbtools 3 for earlier versions of IRB.
+The current version of Irbtools requires [IRB 1.8+](https://github.com/ruby/irb) ([which Ruby version bundles which IRB?](https://stdgems.org/irb/)). Please use Irbtools 3 for earlier versions of IRB.
 
 ## Description
 
