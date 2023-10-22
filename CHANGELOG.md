@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.6
+
+* Bump FancyIRB to close #56
+
 ## 4.0.5
 
 * Bump IRB and FancyIRB
