@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.7
+
+* Allow clipboard gem v2
+
 ## 4.0.6
 
 * Bump FancyIRB to close #56
