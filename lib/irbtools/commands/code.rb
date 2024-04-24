@@ -1,8 +1,8 @@
-require "irb/cmd/nop"
+require "irb"
 
 module IRB
-  module ExtendCommand
-    class Code < Nop
+  module Command
+    class Code < Base
       category "Introspection"
       description "Shows the syntax-highlighted source code of a method"
 

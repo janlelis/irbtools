@@ -1,8 +1,8 @@
-require "irb/cmd/nop"
+require "irb"
 
 module IRB
-  module ExtendCommand
-    class Sys < Nop
+  module Command
+    class Sys < Base
       category "Misc"
       description 'Run a system command'
 

@@ -1,8 +1,8 @@
 # Irbtools [![[version]](https://badge.fury.io/rb/irbtools.svg)](https://badge.fury.io/rb/irbtools)  [![[ci]](https://github.com/janlelis/irbtools/workflows/Test/badge.svg)](https://github.com/janlelis/irbtools/actions?query=workflow%3ATest)
 
-## Irbtools 4.0 for IRB 1.8+
+## Irbtools 4 for Current IRB
 
-The current version of Irbtools requires [IRB 1.8+](https://github.com/ruby/irb) ([which Ruby version bundles which IRB?](https://stdgems.org/irb/)). Please use Irbtools 3 for earlier versions of IRB.
+The current version of Irbtools requires [IRB 1.11+](https://github.com/ruby/irb) ([which Ruby version bundles which IRB?](https://stdgems.org/irb/)). Please use Irbtools 3 for earlier versions of IRB.
 
 ## Description
 

@@ -1,8 +1,8 @@
-require "irb/cmd/nop"
+require "irb"
 
 module IRB
-  module ExtendCommand
-    class Look < Nop
+  module Command
+    class Look < Base
       category "Introspection"
       description 'Method list and lookup path inspection based on looksee gem'
 

@@ -1,5 +1,10 @@
 # Irbtools Changelog
 
+## 4.0.8 (unreleased)
+
+* Require IRB 1.11
+* Fix "NameError: uninitialized constant IRB::ExtendCommand::Nop"
+
 ## 4.0.7
 
 * Allow clipboard gem v2

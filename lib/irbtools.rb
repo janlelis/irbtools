@@ -1,5 +1,7 @@
-require_relative 'irbtools/configure'
-require 'irb'
+require_relative "irbtools/configure"
+require_relative "irbtools/commands"
+
+require "irb"
 
 # # # # #
 # Load: start

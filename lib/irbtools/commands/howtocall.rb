@@ -1,8 +1,8 @@
-require "irb/cmd/nop"
+require "irb"
 
 module IRB
-  module ExtendCommand
-    class Howtocall < Nop
+  module Command
+    class Howtocall < Base
       category "Introspection"
       description "Displays method signatures based on Method#parameters"
 

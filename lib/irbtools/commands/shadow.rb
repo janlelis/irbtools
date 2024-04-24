@@ -1,8 +1,8 @@
-require "irb/cmd/nop"
+require "irb"
 
 module IRB
-  module ExtendCommand
-    class Shadow < Nop
+  module Command
+    class Shadow < Base
       category "Introspection"
       description 'Method list and lookup path inspection based on object shadow gem'
 
