@@ -1,9 +1,10 @@
 # Irbtools Changelog
 
-## 4.0.8 (unreleased)
+## 4.0.8
 
 * Require IRB 1.11
 * Fix "NameError: uninitialized constant IRB::ExtendCommand::Nop"
+* Bump core_docs gem
 
 ## 4.0.7
 
