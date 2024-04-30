@@ -1,4 +1,4 @@
-require "irb"
+require "irb/command/base"
 
 module IRB
   module Command

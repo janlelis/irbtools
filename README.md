@@ -2,7 +2,7 @@
 
 ## Irbtools 4 for Current IRB
 
-The current version of Irbtools requires [IRB 1.11+](https://github.com/ruby/irb) ([which Ruby version bundles which IRB?](https://stdgems.org/irb/)). Please use Irbtools 3 for earlier versions of IRB.
+The current version of Irbtools requires [IRB 1.12+](https://github.com/ruby/irb) ([which Ruby version bundles which IRB?](https://stdgems.org/irb/)). Please use Irbtools 3 for earlier versions of IRB.
 
 ## Description
 
