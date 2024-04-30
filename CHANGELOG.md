@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## 4.0.9 (unreleased)
+## 4.0.9
 
 * Fix loading command `Base` class and require IRB 1.12 to make sure it is available
 
