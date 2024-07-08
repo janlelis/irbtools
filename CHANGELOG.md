@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.0.11
+
+* Loosen IRB dependency to allow IRB 1.14
+
 ## 4.0.10
 
 * Loosen IRB dependency to allow IRB 1.13, fixes #57
