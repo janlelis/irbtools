@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## 4.1.0 (unreleased)
+## 4.1.0
 
 -   Fix command loading (was broken in previous version)
 -   Minor changes to command argument parsing
