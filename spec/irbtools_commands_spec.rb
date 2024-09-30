@@ -5,18 +5,18 @@ describe "irbtools commands" do
     describe "howtocall / code" do
       it "support ri Syntax like String.name or String#gsub" do
         expect(
-          IRB::Command::Howtocall.transform_args("String.name")
-        ).to eq "String, :name"
+          Irbtools::Command::Howtocall.new(nil).transform_arg("String.name")
+        ).to eq "[String, :name]"
 
         expect(
-          IRB::Command::Code.transform_args("String#gsub")
-        ).to eq "String, String.instance_method(:gsub)"
+          Irbtools::Command::Code.new(nil).transform_arg("String#gsub")
+        ).to eq "[String, String.instance_method(:gsub)]"
       end
 
       it "supports question-mark methods" do
         expect(
-          IRB::Command::Howtocall.transform_args("String#ascii_only?")
-        ).to eq "String, String.instance_method(:ascii_only?)"
+          Irbtools::Command::Howtocall.new(nil).transform_arg("String#ascii_only?")
+        ).to eq "[String, String.instance_method(:ascii_only?)]"
       end
     end
   end

@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   # Dependencies
 
   # Core Functionality
-  s.add_dependency %q<irb>,           ">= 1.12.0", "< 1.15"
+  s.add_dependency %q<irb>,           ">= 1.13.0", "< 1.15"
   s.add_dependency %q<every_day_irb>, "~> 2.2"
   s.add_dependency %q<fancy_irb>,     "~> 2.1"
   s.add_dependency %q<wirb>,          "~> 2.0", ">= 2.2.1"

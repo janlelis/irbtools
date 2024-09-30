@@ -1,5 +1,4 @@
 require_relative "irbtools/configure"
-require_relative "irbtools/commands"
 
 require "irb"
 

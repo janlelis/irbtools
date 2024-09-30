@@ -1,23 +1,18 @@
-require "irb/command/base"
+require "irb/command"
 
-module IRB
+module Irbtools
   module Command
-    class Sys < Base
+    class Sys < IRB::Command::Base
       category "Misc"
       description 'Run a system command'
+      help_message <<~HELP
+        Run a command via Ruby's Kernel#system method
 
-      class << self
-        def transform_args(args)
-          if args.empty? || string_literal?(args)
-            args
-          else
-            args.strip.dump
-          end
-        end
-      end
+        Example usage: $ cowsay "Hello from IRB"
+      HELP
 
-      def execute(*args)
-        system(*args)
+      def execute(arg)
+        system(arg)
       end
     end
   end

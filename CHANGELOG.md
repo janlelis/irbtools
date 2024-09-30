@@ -1,5 +1,11 @@
 # Irbtools Changelog
 
+## 4.1.0 (unreleased)
+
+-   Fix command loading (was broken in previous version)
+-   Minor changes to command argument parsing
+-   Set required IRB to 1.13.0
+
 ## 4.0.11
 
 -   Loosen IRB dependency to allow IRB 1.14
