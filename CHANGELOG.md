@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## Next (unreleased)
+
+-   Improve Emoji support if recent unicode-display_width is available
+
 ## 4.1.0
 
 -   Fix command loading (was broken in previous version)

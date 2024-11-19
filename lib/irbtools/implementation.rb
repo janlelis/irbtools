@@ -111,6 +111,11 @@ module Irbtools
         add_command_aliases
         rename_ls_to_ils
       end
+
+      # Improve Emoji support if recent unicode-display_width is available
+      if defined?(Reline) && defined?(Unicode::DisplayWidth) && Unicode::DisplayWidth::VERSION >= "3.0"
+        require "unicode/display_width/reline_ext"
+      end
     end
 
     def set_propmt
