@@ -14,16 +14,16 @@ Gem::Specification.new do |s|
   s.metadata              = { "rubygems_mfa_required" => "true" }
   s.license               = 'MIT'
 
-  s.required_ruby_version = '>= 3.0', '< 4.0'
+  s.required_ruby_version = '>= 4.0'
 
   # # #
   # Dependencies
-
+  
   # Core Functionality
-  s.add_dependency %q<irb>,           ">= 1.13.0", "< 1.16"
-  s.add_dependency %q<every_day_irb>, "~> 2.2"
-  s.add_dependency %q<fancy_irb>,     "~> 2.1"
-  s.add_dependency %q<wirb>,          "~> 2.0", ">= 2.2.1"
+  s.add_dependency %q<irb>,           "~> 1.16"
+  s.add_dependency %q<every_day_irb>, "~> 2.3"
+  s.add_dependency %q<fancy_irb>,     "~> 2.1", ">= 2.1.3"
+  s.add_dependency %q<wirb>,          "~> 3.0"
   s.add_dependency %q<hirb>,          "~> 0.7", ">= 0.7.3"
 
   # Utils
@@ -34,10 +34,10 @@ Gem::Specification.new do |s|
   s.add_dependency %q<debugging>,     "~> 2.1"
 
   # Introspection / Docs
-  s.add_dependency %q<looksee>,       "~> 5.0"
-  s.add_dependency %q<object_shadow>, "~> 1.1"
-  s.add_dependency %q<code>,          ">= 0.9.4", "< 2.0"
-  s.add_dependency %q<core_docs>,     "~> 0.9.11"
+  s.add_dependency %q<looksee>,       ">= 5.0", "< 7.0"
+  s.add_dependency %q<object_shadow>, "~> 1.1", ">= 1.1.2"
+  s.add_dependency %q<code>,          ">= 0.9.5", "< 2.0"
+  s.add_dependency %q<core_docs>,     "~> 0.9.13"
   s.add_dependency %q<methodfinder>,  "~> 2.2", ">= 2.2.5"
   s.add_dependency %q<ruby_version>,  "~> 1.0"
   s.add_dependency %q<ruby_engine>,   "~> 2.0"

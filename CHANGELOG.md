@@ -1,5 +1,9 @@
 # Irbtools Changelog
 
+## 4.2.0 (unreleased)
+
+-   Require Ruby 4 and IRB 1.16
+
 ## 4.1.1
 
 -   Loosen IRB dependency to allow IRB 1.15
