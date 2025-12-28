@@ -1,6 +1,6 @@
 # Irbtools Changelog
 
-## 4.2.0 (unreleased)
+## 4.2.0
 
 -   Require Ruby 4 and IRB 1.16
 
