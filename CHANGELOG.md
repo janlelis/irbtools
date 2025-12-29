@@ -4,6 +4,10 @@
 
 -   Require Ruby 4 and IRB 1.16
 
+## 4.1.2
+
+-   Relax restriction of IRB dependency, allow 1.16+
+
 ## 4.1.1
 
 -   Loosen IRB dependency to allow IRB 1.15
